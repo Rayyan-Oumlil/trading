@@ -1,0 +1,15 @@
+# Confidence Log
+
+One line per day. The agent appends to this file at the end of each daily routine.
+
+Format: `YYYY-MM-DD | DECISION | N/10 | <one-phrase reason>`
+
+The point of this log: after 4+ weeks, sort by confidence and check whether high-conviction days outperformed low-conviction days. If they don't, the confidence scoring is uncalibrated and needs a rule revision.
+
+---
+
+## Entries
+
+```
+2026-04-24 | HOLD | 7/10 | position open, no regime change (seed entry, pre-multi-agent)
+```

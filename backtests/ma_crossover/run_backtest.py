@@ -49,8 +49,23 @@ def fetch_data(ticker: str, start: str, end: str) -> pd.DataFrame:
     return df
 
 
-def run_backtest(df: pd.DataFrame, initial_equity: float = 100_000.0) -> dict:
-    signals = calculate_signals(df)
+def fetch_vix(start: str, end: str) -> pd.Series:
+    df = yf.download("^VIX", start=start, end=end, auto_adjust=False, progress=False)
+    if df.empty:
+        raise RuntimeError(f"No VIX data {start} -> {end}")
+    if isinstance(df.columns, pd.MultiIndex):
+        df.columns = df.columns.get_level_values(0)
+    df.columns = [str(c).lower() for c in df.columns]
+    return df["close"].rename("vix")
+
+
+def run_backtest(
+    df: pd.DataFrame,
+    initial_equity: float = 100_000.0,
+    vix: pd.Series | None = None,
+    vix_max: float | None = None,
+) -> dict:
+    signals = calculate_signals(df, vix=vix, vix_max=vix_max)
 
     cash = initial_equity
     position = 0.0
@@ -180,14 +195,32 @@ def main() -> None:
     parser.add_argument("--end", default="2021-12-31")
     parser.add_argument("--label", default="run")
     parser.add_argument("--ticker", default="SPY")
+    parser.add_argument(
+        "--vix-gate",
+        action="store_true",
+        help="Apply VIX regime filter: only take signals when VIX < --vix-max.",
+    )
+    parser.add_argument(
+        "--vix-max",
+        type=float,
+        default=25.0,
+        help="VIX threshold (literature default 25). Ignored unless --vix-gate.",
+    )
     args = parser.parse_args()
 
     print(f"Fetching {args.ticker} {args.start} -> {args.end}...")
     df = fetch_data(args.ticker, args.start, args.end)
     print(f"Loaded {len(df)} bars")
 
+    vix_series: pd.Series | None = None
+    vix_max: float | None = None
+    if args.vix_gate:
+        print(f"Fetching ^VIX (gate threshold {args.vix_max})...")
+        vix_series = fetch_vix(args.start, args.end)
+        vix_max = args.vix_max
+
     print("Running backtest...")
-    stats = run_backtest(df)
+    stats = run_backtest(df, vix=vix_series, vix_max=vix_max)
     bh = benchmark_buy_hold(df)
 
     run_id = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
@@ -197,6 +230,8 @@ def main() -> None:
         "ticker": args.ticker,
         "start": args.start,
         "end": args.end,
+        "vix_gate": args.vix_gate,
+        "vix_max": vix_max,
         "strategy": stats,
         "benchmark_buy_hold": bh,
     }

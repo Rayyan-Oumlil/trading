@@ -1,47 +1,114 @@
-name: Daily Trade Signal
+name: daily-trade
 
+# GitHub Actions cron is UTC and best-effort (can lag 5-15 min on free tier).
+# Two crons:
+#   premarket  -> 11:00 UTC weekdays (~07:00 ET DST / 06:00 ET standard)
+#   eod        -> 21:15 UTC weekdays (~17:15 ET DST / 16:15 ET standard, after 16:00 ET close)
+#
+# Manual `workflow_dispatch` lets us trigger any mode from the Actions tab.
 on:
   schedule:
-    # 4:15 PM ET = 20:15 UTC, weekdays only
-    - cron: '15 20 * * 1-5'
-  workflow_dispatch:  # allow manual trigger from GitHub UI
+    - cron: '0 11 * * 1-5'    # premarket
+    - cron: '15 21 * * 1-5'   # eod (after market close)
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'premarket | eod'
+        required: true
+        default: 'eod'
+        type: choice
+        options:
+          - premarket
+          - eod
+
+permissions:
+  contents: write   # required so the run can commit memory/journal updates back
+
+concurrency:
+  group: daily-trade
+  cancel-in-progress: false
 
 jobs:
-  trade:
+  run:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write  # needed to commit journal updates back
-
+    timeout-minutes: 10
+    env:
+      ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
+      ALPACA_API_SECRET: ${{ secrets.ALPACA_API_SECRET }}
+      PYTHONUNBUFFERED: '1'
     steps:
-      - name: Checkout repo
+      - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Set up Python
+      - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
           cache: 'pip'
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
-
-      - name: Run signal + place order
-        env:
-          ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
-          ALPACA_API_SECRET: ${{ secrets.ALPACA_API_SECRET }}
-        run: python run_signal.py
-
-      - name: Run EOD close + log journal
-        env:
-          ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
-          ALPACA_API_SECRET: ${{ secrets.ALPACA_API_SECRET }}
-        run: python routines_pkg/eod_close.py
-
-      - name: Commit journal + memory updates
         run: |
-          git config user.name "claude-trading-bot"
-          git config user.email "bot@claude-trading"
-          git add journal/ memory/
-          git diff --staged --quiet || git commit -m "chore: EOD snapshot $(date -u +%Y-%m-%d)"
-          git push
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
+      - name: Determine mode
+        id: mode
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "mode=${{ github.event.inputs.mode }}" >> "$GITHUB_OUTPUT"
+          elif [ "${{ github.event.schedule }}" = "0 11 * * 1-5" ]; then
+            echo "mode=premarket" >> "$GITHUB_OUTPUT"
+          else
+            echo "mode=eod" >> "$GITHUB_OUTPUT"
+          fi
+          echo "Selected mode: $(cat "$GITHUB_OUTPUT" | grep mode=)"
+
+      - name: Verify required secrets
+        shell: bash
+        run: |
+          if [ -z "$ALPACA_API_KEY" ] || [ -z "$ALPACA_API_SECRET" ]; then
+            echo "::error ::ALPACA_API_KEY / ALPACA_API_SECRET are not set as repo secrets."
+            exit 1
+          fi
+
+      - name: Run premarket routine
+        if: steps.mode.outputs.mode == 'premarket'
+        run: python -m routines_pkg.premarket
+
+      - name: Run signal then EOD routine
+        if: steps.mode.outputs.mode == 'eod'
+        run: |
+          set -e
+          python run_signal.py
+          python -m routines_pkg.eod_close
+
+      - name: Commit memory + journal updates
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add memory journal
+          if git diff --cached --quiet; then
+            echo "No state changes to commit."
+          else
+            git commit -m "routine: ${{ steps.mode.outputs.mode }} $(date -u +%Y-%m-%dT%H:%MZ)"
+            # Push with retry to handle the rare race with another routine.
+            for i in 1 2 3; do
+              if git push; then
+                exit 0
+              fi
+              git pull --rebase --autostash
+            done
+            git push
+          fi
+
+      - name: Surface confidence-log tail (self-test)
+        if: always()
+        shell: bash
+        run: |
+          echo "::group::confidence-log tail"
+          tail -n 5 memory/confidence-log.md || true
+          echo "::endgroup::"

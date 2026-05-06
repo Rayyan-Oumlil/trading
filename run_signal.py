@@ -13,6 +13,7 @@ Paper trading only. Never touches live account.
 from __future__ import annotations
 
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 
 import pandas as pd
@@ -31,6 +32,17 @@ TICKER = "SPY"
 POSITION_PCT = 0.95
 FAST = 10
 SLOW = 50
+
+CONFIDENCE_LOG = PROJECT_ROOT / "memory" / "confidence-log.md"
+
+
+def append_confidence(decision: str, score: int, reason: str) -> None:
+    """Append one line to memory/confidence-log.md. Routine self-test signal."""
+    date_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    line = f"{date_str} | {decision} | {score}/10 | {reason}\n"
+    CONFIDENCE_LOG.parent.mkdir(parents=True, exist_ok=True)
+    with CONFIDENCE_LOG.open("a", encoding="utf-8") as fh:
+        fh.write(line)
 
 
 def fetch_bars(ticker: str, lookback: int = 120) -> pd.DataFrame:
@@ -55,6 +67,7 @@ def current_regime(df: pd.DataFrame) -> tuple[float, float, bool]:
 def main() -> int:
     if is_halted():
         print("HALTED — kill switch active. No orders placed.")
+        append_confidence("HALT", 0, "kill switch active")
         return 0
 
     print(f"Fetching {TICKER} bars...")
@@ -79,12 +92,16 @@ def main() -> int:
     spy_pos_str = f"qty={spy_pos['qty']:.2f}" if spy_pos else "none"
     print(f"SPY position:   {spy_pos_str}")
 
+    regime_margin_pct = (sma_fast - sma_slow) / sma_slow * 100 if sma_slow else 0.0
+    margin_phrase = f"fast-slow margin {regime_margin_pct:+.2f}%"
+
     # --- Decision ---
     if should_be_long and spy_pos is None:
         cash = account["cash"]
         qty = round((cash * POSITION_PCT) / last_close, 2)
         if qty < 0.01:
             print("\nNot enough cash to open a position. No order placed.")
+            append_confidence("FLAT", 4, f"insufficient cash; {margin_phrase}")
             return 0
         print(f"\nSIGNAL: BUY — placing market order for {qty} shares of {TICKER}...")
         result = client.place_market_order(TICKER, qty, "buy")
@@ -92,6 +109,7 @@ def main() -> int:
         print(f"  Status:   {result.status}")
         if result.filled_avg_price:
             print(f"  Filled:   ${result.filled_avg_price:.2f}")
+        append_confidence("BUY", 7, f"cross-up confirmed; {margin_phrase}")
 
     elif not should_be_long and spy_pos is not None:
         qty = spy_pos["qty"]
@@ -101,12 +119,15 @@ def main() -> int:
         print(f"  Status:   {result.status}")
         if result.filled_avg_price:
             print(f"  Filled:   ${result.filled_avg_price:.2f}")
+        append_confidence("SELL", 6, f"regime flipped bearish; {margin_phrase}")
 
     else:
         if should_be_long and spy_pos is not None:
             print(f"\nHOLD — already long {spy_pos['qty']} shares. Nothing to do.")
+            append_confidence("HOLD", 7, f"position aligned with regime; {margin_phrase}")
         else:
             print("\nFLAT — bearish regime, no position. Nothing to do.")
+            append_confidence("FLAT", 5, f"awaiting cross-up; {margin_phrase}")
 
     return 0
 
