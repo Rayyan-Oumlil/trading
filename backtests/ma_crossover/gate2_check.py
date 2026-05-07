@@ -54,7 +54,8 @@ class PaperSnapshot:
 def fetch_paper_snapshot(since: str, until: str) -> PaperSnapshot:
     """Pull the actual paper account state and activity over the window."""
     from alpaca.trading.client import TradingClient
-    from alpaca.trading.requests import GetPortfolioHistoryRequest
+    from alpaca.trading.requests import GetOrdersRequest, GetPortfolioHistoryRequest
+    from alpaca.trading.enums import QueryOrderStatus
 
     api_key = os.environ["ALPACA_API_KEY"]
     secret = os.environ["ALPACA_API_SECRET"]
@@ -81,22 +82,31 @@ def fetch_paper_snapshot(since: str, until: str) -> PaperSnapshot:
     start_equity = float(in_window["equity"].iloc[0])
     end_equity = float(in_window["equity"].iloc[-1])
 
-    # Activities: filled orders only.
-    activities = client.get_activities(activity_types="FILL", page_size=100)
-    fills = []
-    for a in activities or []:
-        ts_str = str(getattr(a, "transaction_time", "") or "")
-        if not ts_str:
+    # Filled orders in window. (TradingClient lost get_activities; use get_orders.)
+    until_dt = datetime.strptime(until, "%Y-%m-%d").replace(tzinfo=timezone.utc)
+    after_dt = datetime.strptime(since, "%Y-%m-%d").replace(tzinfo=timezone.utc)
+    orders = client.get_orders(
+        GetOrdersRequest(
+            status=QueryOrderStatus.CLOSED,
+            after=after_dt,
+            until=until_dt,
+            limit=100,
+        )
+    )
+    fills: list[dict] = []
+    for o in orders or []:
+        if str(getattr(o, "status", "")).lower() != "filled":
             continue
-        date_str = ts_str[:10]
-        if date_str < since or date_str > until:
+        filled_at = getattr(o, "filled_at", None) or getattr(o, "submitted_at", None)
+        date_str = str(filled_at)[:10] if filled_at else ""
+        if not date_str or date_str < since or date_str > until:
             continue
         fills.append({
             "date": date_str,
-            "symbol": getattr(a, "symbol", None),
-            "side": str(getattr(a, "side", "")),
-            "qty": float(getattr(a, "qty", 0) or 0),
-            "price": float(getattr(a, "price", 0) or 0),
+            "symbol": getattr(o, "symbol", None),
+            "side": str(getattr(o, "side", "")),
+            "qty": float(getattr(o, "filled_qty", 0) or 0),
+            "price": float(getattr(o, "filled_avg_price", 0) or 0),
         })
     fills.sort(key=lambda x: x["date"])
 
@@ -220,6 +230,29 @@ def render_report(paper: PaperSnapshot, expected: dict, eval_: dict) -> str:
     return "\n".join(lines)
 
 
+def expected_carry_in_pnl(since: str, until: str) -> dict:
+    """Carry-in mode: assume the position was already open at `since` and held through.
+    Expected return = SPY return over window * POSITION_PCT (cash drag is implicit).
+    Use this when paper trading began with an open position rather than from cash."""
+    df = yf.download(TICKER, start=since, end=until, auto_adjust=True, progress=False)
+    if df.empty:
+        raise RuntimeError(f"No SPY data {since} -> {until}")
+    if isinstance(df.columns, pd.MultiIndex):
+        df.columns = df.columns.get_level_values(0)
+    df.columns = [str(c).lower() for c in df.columns]
+    spy_start = float(df["close"].iloc[0])
+    spy_end = float(df["close"].iloc[-1])
+    spy_return_pct = (spy_end - spy_start) / spy_start * 100
+    expected_return_pct = spy_return_pct * POSITION_PCT
+    return {
+        "expected_final_equity_norm_100k": round(INITIAL_EQUITY * (1 + expected_return_pct / 100), 2),
+        "expected_return_pct": round(expected_return_pct, 4),
+        "bars_in_window": int(len(df)),
+        "spy_return_pct": round(spy_return_pct, 4),
+        "mode": "carry-in",
+    }
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--since", required=True, help="YYYY-MM-DD start of window")
@@ -233,6 +266,11 @@ def main() -> int:
         action="store_true",
         help="Write the report to journal/<until>_gate2_review.md",
     )
+    parser.add_argument(
+        "--carry-in",
+        action="store_true",
+        help="Position was already open at --since; compare to SPY return * position_pct instead of replaying signal from cash.",
+    )
     args = parser.parse_args()
 
     print(f"Pulling paper snapshot {args.since} -> {args.until}...")
@@ -241,8 +279,12 @@ def main() -> int:
     print(f"  end equity:   ${paper.end_equity:,.2f}")
     print(f"  fills:        {len(paper.fills)}")
 
-    print("Replaying backtest expectation...")
-    expected = expected_backtest_pnl(args.since, args.until)
+    if args.carry_in:
+        print("Computing carry-in expectation (SPY return * 95%)...")
+        expected = expected_carry_in_pnl(args.since, args.until)
+    else:
+        print("Replaying backtest expectation from cash...")
+        expected = expected_backtest_pnl(args.since, args.until)
 
     eval_ = evaluate(paper, expected)
     report = render_report(paper, expected, eval_)

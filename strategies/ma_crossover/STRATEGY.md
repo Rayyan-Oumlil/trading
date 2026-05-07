@@ -74,6 +74,16 @@ Execute on **next-day open** (bar t+1). No look-ahead bias.
 - No trades for 90 days (strategy stuck) → halt and inspect
 - Any fill price deviates >2% from signal price → halt and debug
 
+## 10.5 Watch Flags (non-actionable, journal only)
+
+These do NOT trigger automated actions. They are flags the routine surfaces in the journal so I can review whether the regime is changing under the strategy.
+
+- **RSI(14) > 78 on signal bar:** log warning in journal entry — overbought, MA crossover historically continues but draw-downs shorten on the next reversal.
+- **RSI(14) > 85 on signal bar:** log warning AND require a one-sentence justification for continuing to hold in the daily journal entry. Still no automated SELL — the only exit rules are §5.
+- **Volume < 0.7× 20-day avg on signal bar:** log warning — thin tape, signals are noisier. Caveat: ignore if the routine ran intraday and pulled a partial bar.
+
+These are observational. The strategy spec is unchanged: exits are ONLY §5 (stop-loss, signal exit). Adding RSI as an exit rule would be a parameter change requiring a new STRATEGY.md version and re-backtest — not a watch flag.
+
 ## 11. Parameters
 
 | Name | Value | Source | Notes |
@@ -90,6 +100,7 @@ Execute on **next-day open** (bar t+1). No look-ahead bias.
 |------|------|--------|--------|------|
 | 2026-04-23 | backtest IS (2015-2021) | 20260423_193804_in_sample | Sharpe 0.822, DD -15.0%, 22 trades, 72% return | [results](../../backtests/ma_crossover/results/) |
 | 2026-04-23 | backtest OOS (2022-2024) | 20260423_193805_out_of_sample | Sharpe 0.646, DD -12.4%, 9 trades, 21% return | [results](../../backtests/ma_crossover/results/) |
+| 2026-05-07 | Gate 2 paper review (carry-in) | 2026-04-23→2026-05-07 | SOFT-PASS — actual +2.69% vs expected +3.40% (21% rel spread, 0 fills, 14 days) | [review](../../journal/2026-05-07_gate2_review.md) |
 
 ## 13. Notes
 

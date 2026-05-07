@@ -35,6 +35,7 @@ jobs:
     env:
       ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
       ALPACA_API_SECRET: ${{ secrets.ALPACA_API_SECRET }}
+      ALPACA_PAPER_TRADE: ${{ secrets.ALPACA_PAPER_TRADE }}
       PYTHONUNBUFFERED: '1'
     steps:
       - name: Checkout
@@ -66,13 +67,20 @@ jobs:
           fi
           echo "Selected mode: $(cat "$GITHUB_OUTPUT" | grep mode=)"
 
-      - name: Verify required secrets
+      - name: Verify required secrets and paper-mode flag
         shell: bash
         run: |
           if [ -z "$ALPACA_API_KEY" ] || [ -z "$ALPACA_API_SECRET" ]; then
             echo "::error ::ALPACA_API_KEY / ALPACA_API_SECRET are not set as repo secrets."
             exit 1
           fi
+          # Paper-mode safety gate. The Python client constructor hardcodes paper=True,
+          # but this check guarantees no one flips the flag silently via repo secrets.
+          if [ "$ALPACA_PAPER_TRADE" != "true" ]; then
+            echo "::error ::ALPACA_PAPER_TRADE must be 'true' (got: '${ALPACA_PAPER_TRADE:-<unset>}'). Live trading is not authorized from this workflow."
+            exit 1
+          fi
+          echo "Paper mode confirmed: ALPACA_PAPER_TRADE=true"
 
       - name: Run premarket routine
         if: steps.mode.outputs.mode == 'premarket'

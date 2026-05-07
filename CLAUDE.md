@@ -76,7 +76,8 @@ Apply the seven lessons from [PRINCIPLES.md](PRINCIPLES.md) on every task:
 
 ## 6. Active Strategies
 
-- [ma-crossover](strategies/ma_crossover/STRATEGY.md) — stage: **paper** (entered 2026-04-23). Backtest: IS Sharpe 0.82, OOS Sharpe 0.65, OOS DD -12.4%, OOS trades/year 3.02 (soft-fail). Phase B Gate 2 evaluation pending — target window through ~2026-05-22. Gate 2 reconciliation tool: `backtests/ma_crossover/gate2_check.py`.
+- [ma-crossover](strategies/ma_crossover/STRATEGY.md) — stage: **paper** (entered 2026-04-23). Backtest: IS Sharpe 0.82, OOS Sharpe 0.65, OOS DD -12.4%, OOS trades/year 3.02. **Gate 2: SOFT-PASS** as of 2026-05-07 (21% relative spread vs SPY×95% expectation; 0 fills in 14 days; kill-switch drill not yet run). Re-run target 2026-05-21. Tool: `backtests/ma_crossover/gate2_check.py --carry-in`.
+- [rsi2-connors](strategies/rsi2_connors/STRATEGY.md) — stage: **research** (specced 2026-05-07). Connors RSI(2) mean-reversion on SPY + 200-DMA regime filter. Backtest pending. Will NOT enter paper until ma-crossover hits a clean Gate 2 PASS.
 
 ### Rejected experiments (do not retry without a new thesis)
 

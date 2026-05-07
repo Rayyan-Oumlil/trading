@@ -18,14 +18,17 @@ A good "second strategy" is:
 
 ## Candidates
 
-### A. RSI(2) mean-reversion on SPY (Larry Connors)
+### A. RSI(2) mean-reversion on SPY (Larry Connors) — **SPECCED 2026-05-07**
 
-- **Thesis:** Short-term oversold readings on SPY revert. Buy when RSI(2) < 10, exit when RSI(2) > 70 or close > 5-day MA.
-- **Why it complements MA crossover:** Wins in chop / range-bound regimes where MA crossover whipsaws. Trade frequency is much higher (~30-50/year).
-- **Data:** Same as MA strategy (SPY daily, 2015-2024).
-- **Risks:** Famously dies in sustained bear markets. Need a regime filter (e.g., only trade longs above 200-day MA).
-- **Effort:** ~4 hours to backtest. Can reuse most of `run_signal.py` infrastructure.
-- **Source:** Connors, "Short Term Trading Strategies That Work" (2008). Standard literature defaults.
+- **Status:** Spec written at [strategies/rsi2_connors/STRATEGY.md](../strategies/rsi2_connors/STRATEGY.md). Stage: `research`.
+- **Thesis:** Short-term oversold readings on SPY revert. Buy when RSI(2) < 10 AND close > SMA(200). Exit when RSI(2) > 70 OR close > SMA(5).
+- **Why it complements MA crossover:** Wins in chop / range-bound regimes where MA crossover whipsaws. Trade frequency ~30-50/year vs. MA's 3/year — faster path to statistical confidence.
+- **Data:** Same as MA strategy (SPY daily, 2015-2024). 200-bar warmup needed.
+- **Risks:** Famously dies in sustained bear markets — that's why 200-DMA regime filter is non-negotiable.
+- **Effort:** ~4 hours to backtest. Reuses `run_signal.py` infrastructure.
+- **Source:** Connors, "Short Term Trading Strategies That Work" (2008). Strict literature defaults.
+- **Open design questions** (resolve before backtest): capital sharing with MA crossover, optional hard stop, time stop justification, regime filter sensitivity. See STRATEGY.md §13.
+- **Next action:** Backtest IS+OOS with literature defaults. Do not start until MA crossover hits a clean Gate 2 PASS (currently SOFT-PASS at 21% spread; expect clean pass at next re-run 2026-05-21).
 
 ### B. VIX-gated SPY trend (regime filter, not a new strategy) — **REJECTED 2026-05-05**
 
