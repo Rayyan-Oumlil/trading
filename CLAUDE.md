@@ -76,7 +76,11 @@ Apply the seven lessons from [PRINCIPLES.md](PRINCIPLES.md) on every task:
 
 ## 6. Active Strategies
 
-- [ma-crossover](strategies/ma_crossover/STRATEGY.md) — stage: backtest (IS Sharpe 0.82, OOS Sharpe 0.65, OOS DD -12.4% — 2/3 gates pass, ready for paper)
+- [ma-crossover](strategies/ma_crossover/STRATEGY.md) — stage: **paper** (entered 2026-04-23). Backtest: IS Sharpe 0.82, OOS Sharpe 0.65, OOS DD -12.4%, OOS trades/year 3.02 (soft-fail). Phase B Gate 2 evaluation pending — target window through ~2026-05-22. Gate 2 reconciliation tool: `backtests/ma_crossover/gate2_check.py`.
+
+### Rejected experiments (do not retry without a new thesis)
+
+- **VIX25 regime gate** — rejected 2026-05-05. Filtered exactly one OOS trade and that trade was a +$1,763 winner (Nov-Dec 2022 reversal). High-VIX cross-ups on broad indices are reversal entries, not noise. See `journal/2026-05-05.md`. No re-tuning at thresholds 20/30 — the frame is wrong, not the number.
 
 ## 7. Hard Rules (never break without a written waiver in this file)
 
