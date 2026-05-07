@@ -1,21 +1,14 @@
 # Portfolio State
 
-Last updated: 2026-05-07T16:30:00Z (weekly close routine)
+Last updated: 2026-05-07T17:02:21.399699+00:00
 
-**Equity:**       $102,625.50
+**Equity:**       $102,414.98
 **Cash:**         $4,995.77
-**Buying power:** $107,621.27
-**Status:**       ACTIVE
+**Buying power:** $107,410.75
+**Status:**       AccountStatus.ACTIVE
 
 ## Open positions
 
-| Symbol | Qty | Avg Entry | Market Value | Unrealized P&L | Stop Price |
-|--------|-----|-----------|--------------|----------------|------------|
-| SPY | 133.13 | $713.62 | $97,629.73 | +$2,625.32 (+2.76%) | $677.94 |
-
-## Notes
-
-- Peak equity observed: $102,797.06 (2026-05-07T15:53Z)
-- Current drawdown from peak: -0.17% (trivial, GREEN)
-- Position is 95.1% of equity — spec-compliant (STRATEGY.md §6 target: 95%)
-- Stop is 7.6% below current price ($733.34 → stop $677.94)
+| Symbol | Qty | Market Value | Unrealized P&L |
+|--------|-----|--------------|----------------|
+| SPY | 133.13 | $97,419.21 | +$2,414.98 |

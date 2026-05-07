@@ -15,3 +15,4 @@ The point of this log: after 4+ weeks, sort by confidence and check whether high
 ```
 2026-05-07 | HOLD | 7/10 | position aligned with regime; fast-slow margin +5.48% (pre-market)
 2026-05-07 | HOLD | 7/10 | weekly close: all agents bullish, Iran deal risk-on, no MA cross
+2026-05-07 | HOLD | 7/10 | position aligned with regime; fast-slow margin +5.45%
