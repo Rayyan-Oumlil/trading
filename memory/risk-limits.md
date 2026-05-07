@@ -13,7 +13,7 @@ These are the system-level defaults until a strategy spec says otherwise.
 
 ## Guardrails
 
-- If `paper-trading/.HALT` exists, veto all new trades.
+- If `.HALT` exists at repo root, veto all new trades. (Source of truth: `paper_trading/kill_switch.py` — file lives at `<repo>/.HALT`, NOT `paper-trading/.HALT`.)
 - If a strategy is not at `paper` or `live` stage, it cannot route orders.
 - If a routine cannot confirm current account state, it cannot trade.
 - If a planned trade would exceed the per-position cap, reject it.

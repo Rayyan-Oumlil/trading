@@ -21,10 +21,14 @@ freqtrade forceexit all   # close all open positions at market
 Two ways:
 
 1. **Paper dashboard:** https://paper-trading.alpaca.markets/ -> Orders -> Cancel All, Positions -> Close All.
-2. **API kill-switch file:** the strategy runner checks for `paper-trading/.HALT` on every loop and exits if present.
+2. **API kill-switch file:** the strategy runner checks for `.HALT` at the **repository root** on every loop and exits if present. Path is `<repo>/.HALT` — NOT `paper-trading/.HALT` (that subfolder is documentation only). Source of truth: `paper_trading/kill_switch.py` → `HALT_FILE = PROJECT_ROOT / ".HALT"`.
 
 ```bash
-touch "C:/Users/rayya/Desktop/Claude Trading/paper-trading/.HALT"
+# Preferred (handles timestamp + reason atomically):
+python -c "from paper_trading.kill_switch import create_halt; create_halt('reason here')"
+
+# Or manually:
+touch "C:/Users/rayya/Desktop/Claude Trading/.HALT"
 ```
 
 Remove the file to resume.
@@ -48,10 +52,11 @@ The kill switch only counts as proven once it has been tested under fire conditi
 
 ### Procedure
 
-1. **Confirm baseline state.** `git pull` to refresh; verify the most recent commit is a clean `routine: eod ...` from the bot. Confirm `paper-trading/.HALT` does **not** exist.
-2. **Arm the switch.**
-   ```powershell
-   New-Item -ItemType File "C:/Users/rayya/Desktop/Claude Trading/paper-trading/.HALT" -Value "DRILL: $(Get-Date -Format o)"
+1. **Confirm baseline state.** `git pull` to refresh; verify the most recent commit is a clean `routine: eod ...` from the bot. Confirm `.HALT` does **not** exist.
+2. **Arm the switch.** Use the helper to get a timestamped halt file, then commit + push so GHA sees it:
+   ```bash
+   python -c "from paper_trading.kill_switch import create_halt; create_halt('fire drill')"
+   git add .HALT && git commit -m "halt: fire drill" && git push
    ```
 3. **Trigger a manual EOD run** from the GitHub Actions tab (`daily-trade` → Run workflow → mode=`eod`).
 4. **Verify the no-op.** Expected log line in `run_signal.py` step:
@@ -61,8 +66,9 @@ The kill switch only counts as proven once it has been tested under fire conditi
    Expected confidence-log append: `YYYY-MM-DD | HALT | 0/10 | kill switch active`.
    No order should appear in the Alpaca paper activity feed for this run.
 5. **Disarm the switch.**
-   ```powershell
-   Remove-Item "C:/Users/rayya/Desktop/Claude Trading/paper-trading/.HALT"
+   ```bash
+   python -c "from paper_trading.kill_switch import remove_halt; remove_halt()"
+   git add -A && git commit -m "halt: cleared" && git push
    ```
 6. **Trigger one more manual EOD run.** Verify normal evaluation resumes (no HALT line; appropriate BUY/SELL/HOLD/FLAT confidence-log entry).
 7. **Document the drill** in the day's journal entry: timestamp, what happened, what didn't.
