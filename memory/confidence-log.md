@@ -20,3 +20,4 @@ The point of this log: after 4+ weeks, sort by confidence and check whether high
 2026-05-07 | HOLD | 7/10 | position aligned with regime; fast-slow margin +5.44%
 2026-05-07 | HOLD | 7/10 | position aligned with regime; fast-slow margin +5.44%
 2026-05-07 | HOLD | 7/10 | post-EOD reflection: regime stable, sanity-checks clean, NFP+CPI flags noted (no action) [reconstructed — routine push 403]
+2026-05-08 | HOLD | 7/10 | position aligned with regime; fast-slow margin +5.63%
