@@ -2,7 +2,10 @@
 name: rsi2-connors
 version: 1
 created: 2026-05-07
-stage: research
+stage: rejected
+backtest_completed: 2026-05-07
+verdict: REJECT_AS_STANDALONE
+correlation_with_ma_crossover_oos: 0.187
 author: rayyan
 parent_strategy_doc: ../ma_crossover/STRATEGY.md
 ---
@@ -99,8 +102,46 @@ Execute on **next-day open** (bar t+1). No look-ahead bias.
 
 | Date | Type | Run ID | Result | Link |
 |------|------|--------|--------|------|
-| — | (pending IS backtest) | — | — | — |
-| — | (pending OOS backtest) | — | — | — |
+| 2026-05-07 | backtest IS, no-stop (2014-2021, 1yr warmup) | 20260508_001138 | Sharpe **0.424**, DD -12.34%, 59 trades, 7.39/yr, win 67.8%, return 20.75% | [results](../../backtests/rsi2_connors/results/) |
+| 2026-05-07 | backtest IS, with 5% stop | 20260508_001139 | Sharpe 0.230, DD -17.86%, 63 trades, win 68.25%, return 10.04% — **strictly worse** | [results](../../backtests/rsi2_connors/results/) |
+| 2026-05-07 | backtest OOS, no-stop (2021-2024, 1yr warmup) | 20260508_001202 | Sharpe **0.308**, DD -6.63%, 27 trades, 6.78/yr, win 59.26%, return 5.16% | [results](../../backtests/rsi2_connors/results/) |
+| 2026-05-07 | backtest OOS, with stop | 20260508_001203 | Sharpe 0.252, DD -7.71% — strictly worse | [results](../../backtests/rsi2_connors/results/) |
+| 2026-05-07 | correlation check (OOS daily returns vs ma-crossover) | — | **r = 0.187** (target < 0.4 — passes diversification test) | — |
+
+## 12.1 Verdict: REJECT as standalone
+
+**The strategy fails 2 of 3 standalone OOS gates** (per §9 success criteria):
+
+| Criterion | Target | OOS Actual | Pass? |
+|---|---|---|---|
+| Min Sharpe (OOS) | ≥ 0.5 | 0.308 | **FAIL** |
+| Max drawdown | ≤ 15% | -6.63% | PASS |
+| Min trades/year | ≥ 15 | 6.78 | **FAIL** |
+| Correlation w/ MA crossover | < 0.4 | 0.187 | PASS |
+
+**What this means:** the literature-default thesis ("RSI(2) mean-reversion above 200-DMA on SPY daily") does NOT survive 2022-2024 OOS with standard parameters. The IS Sharpe (0.42) was already borderline; OOS dropped further to 0.31. Per CLAUDE.md §7 (no re-tuning) and PRINCIPLES.md corollary "If a strategy needs more than 2 parameter passes, the thesis is wrong" — we've used our one parameter pass (literature defaults). No re-tuning.
+
+**Hard-stop variant rejected too.** Per §13 question 2, both variants were tested. The 5% hard stop is strictly worse on every dimension (lower Sharpe, higher DD, lower return). Connors' original "no hard stop" framing was empirically validated.
+
+**Why it failed in OOS specifically:** the 200-DMA filter blocked entries during most of 2022 (bear market — price below 200-DMA). The 2023-24 rally was so steady that RSI(2) < 10 readings were rare. Combined: only 6.78 trades/year vs the 30-50/year the literature claimed. The strategy needs choppy-uptrend regimes (like 2015-2019) to fire often enough; 2022-24 was bear-then-strong-trend, neither friendly.
+
+## 12.2 Saved insights (don't forget these)
+
+1. **Diversification potential exists** — correlation 0.187 with MA crossover OOS is genuinely low. If a *different* mean-reversion candidate later passes the standalone gates, expect similar low correlation with trend following on the same underlying. This is structural (entries fire at opposite regime bars), not strategy-specific.
+
+2. **Connors original framing was right empirically.** The hard-stop variant created bad exits because mean reversion needs room — confirms the literature default. If a future mean-reversion candidate is considered, start without a hard stop.
+
+3. **Time stop fires effectively never** in OOS — every exit was `signal` (RSI > 70 OR close > 5d-MA). Time stop at 10 bars is a real safety floor but didn't bind. That's good — means no trades got stuck.
+
+4. **The 200-DMA regime filter is too restrictive in non-uptrend years.** A future variant could try 100-DMA OR add a "rising 200-DMA slope" condition. But that's a *different strategy*, not a parameter tweak — it would need a new STRATEGY.md and a fresh thesis.
+
+## 12.3 Action
+
+- **Stage:** `rejected` (front-matter updated)
+- Do NOT paper-trade.
+- Do NOT re-tune. (One parameter pass used.)
+- File this in `research/strategy-candidates.md` under "rejected experiments" alongside VIX25 gate.
+- The next strategy candidate should be **C (sector momentum rotation)** or **D (BTC/ETH MA crossover)** per `research/strategy-candidates.md`. Not another mean-reversion variant — that frame failed.
 
 ## 13. Open Design Questions (resolve before backtest)
 

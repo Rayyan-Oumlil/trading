@@ -18,17 +18,17 @@ A good "second strategy" is:
 
 ## Candidates
 
-### A. RSI(2) mean-reversion on SPY (Larry Connors) — **SPECCED 2026-05-07**
+### A. RSI(2) mean-reversion on SPY (Larry Connors) — **REJECTED 2026-05-07**
 
-- **Status:** Spec written at [strategies/rsi2_connors/STRATEGY.md](../strategies/rsi2_connors/STRATEGY.md). Stage: `research`.
-- **Thesis:** Short-term oversold readings on SPY revert. Buy when RSI(2) < 10 AND close > SMA(200). Exit when RSI(2) > 70 OR close > SMA(5).
-- **Why it complements MA crossover:** Wins in chop / range-bound regimes where MA crossover whipsaws. Trade frequency ~30-50/year vs. MA's 3/year — faster path to statistical confidence.
-- **Data:** Same as MA strategy (SPY daily, 2015-2024). 200-bar warmup needed.
-- **Risks:** Famously dies in sustained bear markets — that's why 200-DMA regime filter is non-negotiable.
-- **Effort:** ~4 hours to backtest. Reuses `run_signal.py` infrastructure.
-- **Source:** Connors, "Short Term Trading Strategies That Work" (2008). Strict literature defaults.
-- **Open design questions** (resolve before backtest): capital sharing with MA crossover, optional hard stop, time stop justification, regime filter sensitivity. See STRATEGY.md §13.
-- **Next action:** Backtest IS+OOS with literature defaults. Do not start until MA crossover hits a clean Gate 2 PASS (currently SOFT-PASS at 21% spread; expect clean pass at next re-run 2026-05-21).
+- **Status:** Specced + backtested + rejected same day. See [strategies/rsi2_connors/STRATEGY.md §12](../strategies/rsi2_connors/STRATEGY.md) for full result tables and failure analysis.
+- **Result summary:** IS Sharpe 0.424, OOS Sharpe 0.308 (both below the 0.5 bar). OOS trades/year 6.78 (below the 15 bar). Max DD acceptable at -6.6% OOS. Hard-stop variant strictly worse on every dimension.
+- **Why it failed OOS:** the 200-DMA filter blocks entries during most of 2022 (bear market — price below 200-DMA). The 2023-24 rally was so steady that RSI(2) < 10 readings became rare. Combined: only 6.78 trades/year vs the literature-claimed 30-50.
+- **What the result preserved (saved insights):**
+  - Correlation with MA crossover OOS is 0.187 (genuinely diversifying — structural, applies to any future mean-reversion candidate).
+  - Connors' "no hard stop" framing is empirically correct on this data.
+  - Time stop at 10 bars never binds in practice — exits are signal-driven.
+  - 200-DMA regime filter is too restrictive in non-uptrend years; future regime gates need rising-slope or 100-DMA variants (DIFFERENT strategy, not a tweak).
+- **No re-tuning** per CLAUDE.md §7 and PRINCIPLES.md corollary. One parameter pass used.
 
 ### B. VIX-gated SPY trend (regime filter, not a new strategy) — **REJECTED 2026-05-05**
 
@@ -58,8 +58,15 @@ A good "second strategy" is:
 ## Recommendation
 
 ~~**Do B before anything else.**~~ — Superseded 2026-05-05 (B failed empirical test).
+~~**Do A (RSI(2) Connors).**~~ — Superseded 2026-05-07 (A failed OOS gates, see above).
 
-**New recommendation:** **A (RSI(2) Connors mean-reversion on SPY)** is the natural next candidate. It targets the regime where MA crossover is weakest (chop), and the literature has well-documented defaults so no grid-search temptation. Wait until ≥ 2 weeks of clean paper data on the existing strategy before starting it — per CLAUDE.md, no new strategy gets paper-traded until 2/3 gates pass on the existing one.
+**New recommendation:** **C (sector momentum rotation)** is now the lead candidate. Two reasons:
+1. Different shape entirely — momentum, not mean reversion. Two failed mean-reversion-style filters (B and A) suggest the wrong frame for this regime; pivot to a different model class.
+2. Different exposure (sector ETFs, monthly rebalance) reduces correlation risk with MA crossover by construction.
+
+**Alternative: D (crypto BTC/ETH MA crossover).** Tests whether the MA crossover thesis is asset-specific or general. Higher operational cost (different framework — freqtrade), but no new strategy *concept* to validate.
+
+**Wait condition:** before starting C or D, ma-crossover should hit a clean Gate 2 PASS. Currently SOFT-PASS at 21% relative spread; re-run target 2026-05-21.
 
 ---
 

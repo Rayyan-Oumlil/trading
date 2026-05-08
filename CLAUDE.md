@@ -77,11 +77,12 @@ Apply the seven lessons from [PRINCIPLES.md](PRINCIPLES.md) on every task:
 ## 6. Active Strategies
 
 - [ma-crossover](strategies/ma_crossover/STRATEGY.md) — stage: **paper** (entered 2026-04-23). Backtest: IS Sharpe 0.82, OOS Sharpe 0.65, OOS DD -12.4%, OOS trades/year 3.02. **Gate 2: SOFT-PASS** as of 2026-05-07 (21% relative spread vs SPY×95% expectation; 0 fills in 14 days; kill-switch drill not yet run). Re-run target 2026-05-21. Tool: `backtests/ma_crossover/gate2_check.py --carry-in`.
-- [rsi2-connors](strategies/rsi2_connors/STRATEGY.md) — stage: **research** (specced 2026-05-07). Connors RSI(2) mean-reversion on SPY + 200-DMA regime filter. Backtest pending. Will NOT enter paper until ma-crossover hits a clean Gate 2 PASS.
+- [rsi2-connors](strategies/rsi2_connors/STRATEGY.md) — stage: **rejected** (specced + backtested 2026-05-07). Fails 2/3 standalone OOS gates (Sharpe 0.31 < 0.5; trades/year 6.8 < 15). Correlation with ma-crossover OOS is 0.187 (genuinely diversifying), but absolute performance too weak to paper-trade. Hard-stop variant strictly worse → confirms Connors original framing. No re-tuning per §7.
 
 ### Rejected experiments (do not retry without a new thesis)
 
 - **VIX25 regime gate** — rejected 2026-05-05. Filtered exactly one OOS trade and that trade was a +$1,763 winner (Nov-Dec 2022 reversal). High-VIX cross-ups on broad indices are reversal entries, not noise. See `journal/2026-05-05.md`. No re-tuning at thresholds 20/30 — the frame is wrong, not the number.
+- **RSI(2) Connors mean-reversion** — rejected 2026-05-07. IS Sharpe 0.42, OOS Sharpe 0.31 (both below 0.5 bar). 200-DMA filter blocks too much of 2022 (bear) and RSI<10 readings too rare in 2023-24 (steady bull). Hard-stop variant strictly worse — confirms Connors original. Correlation 0.187 with ma-crossover OOS is genuinely low, BUT absolute return too weak (5% in 3 years) to be a useful diversifier on its own. See `strategies/rsi2_connors/STRATEGY.md §12`. Do not retry — the next strategy candidate is C (sector momentum) or D (crypto MA), not another mean-reversion variant.
 
 ## 7. Hard Rules (never break without a written waiver in this file)
 
