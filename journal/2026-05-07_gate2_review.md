@@ -70,3 +70,51 @@ The -0.71 pp gap is fully explainable:
 2. Run the kill-switch fire drill at least once (flip `.HALT`, confirm next routine vetos new trades, restore).
 3. Re-run `gate2_check.py --carry-in` at 2026-05-21 for tighter sample.
 4. Methodology note: `--carry-in` flag added today. Original script assumed paper would START from a fresh entry signal; in reality paper started with the position open. Both modes now supported.
+
+---
+
+## Reflection — 2026-05-07T22:10:55Z
+
+> **Source note:** This section was originally written by the `daily-reflection` Claude routine that fired at 6:09 PM EDT (22:09 UTC). The routine completed its work and committed locally as `59acc38 routine: reflection 2026-05-07` on a branch `claude/modest-curie-EjGbS`, but the push to origin failed with a 403 (token didn't have write access to the auto-created branch). The branch did not survive the routine's ephemeral environment. The content below is reconstructed from the routine's own session summary, preserving the findings verbatim where possible.
+
+### Macro context (pulled from web at 22:10 UTC)
+
+- **SPY** ~$733.88 (+0.01% on the day) — bullish drift continues, no shock event
+- **VIX** 17.24 (-0.86%) — benign volatility regime, no fear premium
+- **Dominant narrative:** Iran-US ceasefire talks (consistent with the sentiment agent's earlier finding)
+- **Macro calendar (next 5 trading days):**
+  - **2026-05-08 (tomorrow):** NFP April release
+  - **2026-05-12 (Tuesday):** CPI release
+
+### Sanity check on today's decision
+
+| Check | Finding | OK? |
+|---|---|---|
+| Regime margin stability across the day | +5.48% (pre-market) → +5.45% (weekly close) → +5.44% (recovery run) | ✓ stable, all entries align with HOLD |
+| Position vs. 95% target | Actual $97,413.88 vs target $97,289.17 → 0.12% drift | ✓ well within 1% tolerance |
+| HALT entry in confidence-log explainable? | Yes — confirmed via `git log` as the kill-switch fire drill (commits `halt: fire drill 2026-05-07` + `drill: kill-switch fire drill PASSED`) | ✓ no ghost halt |
+| Volatility regime | VIX 17.24 — benign | ✓ |
+| Macro events that could invalidate the MA-crossover thesis in next 5 days | NFP tomorrow + CPI Tue (Mon 12) — both could move the trend regime | ⚠ flag fires |
+| Confidence-log freshness | Gap 2026-04-24 → 2026-05-07 with no appends (9 trading days) | ⚠ flag fires (consistent with routine being newly initialized today; not a real bug) |
+
+### Risk flags fired
+
+1. **Two macro prints in next 5 trading days** (NFP May 8, CPI May 12). Either could shift the trend regime fast enough that the MA crossover signal lags into a worse entry/exit. Mitigation: no action required — the strategy explicitly does not predict; it follows. But if a stop hits in the next 5 days, do NOT attribute to "bad luck" — these prints were on the calendar.
+
+2. **Confidence-log gap Apr 24 → May 7** (9 trading days with no daily appends). Resolved as benign: the multi-agent confidence framework was newly initialized today, so prior days didn't append. This will not recur — going forward every routine run writes a confidence entry. Worth re-checking in 2 weeks to confirm no silent regressions.
+
+### Gate 2 re-run readiness
+
+- **Days observed:** 11 trading / 14 calendar (criterion: ≥ 2 weeks → cleared)
+- **Return:** +2.69% actual vs +3.40% expected (21% relative spread → SOFT-PASS)
+- **Pre-conditions for Stage 3:** all 3 cleared today including the kill-switch drill PASS
+- **Re-run target:** 2026-05-21 — by then will have ~3 weeks of data, expected to tighten the relative spread under 20% for clean PASS
+- **Nothing actionable until then.**
+
+### Operational note (routine self-diagnosis)
+
+The push failure (403) is structural to how the routine was provisioned — it tries to push to a `claude/*` branch the host token doesn't have write access for. This is the second sequencing/permission issue surfaced today (first: routine fires before GHA bot pushes; second: routine can't push its own output). Both are addressable in the routine config. Will fold into next-session priorities under `memory/routine-state.md`.
+
+### Summary line for confidence-log
+
+`2026-05-07 | HOLD | 7/10 | post-EOD reflection: regime stable, sanity-checks clean, NFP+CPI flags noted (no action)`
