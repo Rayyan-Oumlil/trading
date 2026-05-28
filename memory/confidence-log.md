@@ -34,3 +34,4 @@ The point of this log: after 4+ weeks, sort by confidence and check whether high
 2026-05-25 | HOLD | 7/10 | position aligned with regime; fast-slow margin +6.38%
 2026-05-26 | HOLD | 7/10 | position aligned with regime; fast-slow margin +6.26%
 2026-05-27 | HOLD | 7/10 | position aligned with regime; fast-slow margin +6.19%
+2026-05-28 | HOLD | 7/10 | position aligned with regime; fast-slow margin +6.10%
