@@ -72,10 +72,11 @@ jobs:
             exit 1
           fi
           if [ -z "$ANTHROPIC_API_KEY" ]; then
-            echo "::error ::ANTHROPIC_API_KEY missing — agents cannot run."
-            exit 1
+            echo "::warning ::ANTHROPIC_API_KEY not set — running in deterministic mode (no LLM agents). Add secret to enable full multi-agent mode."
+          else
+            echo "ANTHROPIC_API_KEY present — full multi-agent mode enabled."
           fi
-          echo "All secrets verified. Paper mode confirmed."
+          echo "Secrets verified. Paper mode confirmed."
 
       - name: Determine mode
         id: mode
