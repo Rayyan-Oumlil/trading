@@ -1,0 +1,8744 @@
+{
+  "total_return_pct": 3.79,
+  "annualized_pct": 0.94,
+  "sharpe": 0.215,
+  "max_dd_pct": -9.44,
+  "total_trades": 429,
+  "trades_per_year": 107.8,
+  "win_rate_pct": 54.1,
+  "trades": [
+    {
+      "ticker": "TLT",
+      "entry_date": "2021-01-07",
+      "exit_date": "2021-01-14",
+      "entry_price": 127.9525,
+      "exit_price": 128.4899,
+      "qty": 93.7848,
+      "pnl": 50.4,
+      "reason": "signal",
+      "bars_held": 5
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2021-01-11",
+      "exit_date": "2021-01-19",
+      "entry_price": 172.2261,
+      "exit_price": 172.6237,
+      "qty": 69.632,
+      "pnl": 27.68,
+      "reason": "time_stop",
+      "bars_held": 5
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2021-01-19",
+      "exit_date": "2021-01-21",
+      "entry_price": 172.7964,
+      "exit_price": 175.0224,
+      "qty": 69.5001,
+      "pnl": 154.71,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2021-01-26",
+      "exit_date": "2021-01-27",
+      "entry_price": 17.2839,
+      "exit_price": 16.757,
+      "qty": 695.9036,
+      "pnl": -366.67,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2021-01-28",
+      "exit_date": "2021-02-02",
+      "entry_price": 198.0179,
+      "exit_price": 199.9874,
+      "qty": 60.6227,
+      "pnl": 119.39,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2021-01-28",
+      "exit_date": "2021-02-02",
+      "entry_price": 174.3671,
+      "exit_price": 172.4038,
+      "qty": 68.8454,
+      "pnl": -135.17,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2021-02-01",
+      "exit_date": "2021-02-02",
+      "entry_price": 62.6858,
+      "exit_price": 64.0536,
+      "qty": 190.8146,
+      "pnl": 260.99,
+      "reason": "signal",
+      "bars_held": 1
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2021-01-27",
+      "exit_date": "2021-02-03",
+      "entry_price": 16.4899,
+      "exit_price": 16.5392,
+      "qty": 726.7453,
+      "pnl": 35.81,
+      "reason": "signal",
+      "bars_held": 5
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2021-01-28",
+      "exit_date": "2021-02-03",
+      "entry_price": 350.5414,
+      "exit_price": 355.8483,
+      "qty": 34.2452,
+      "pnl": 181.74,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2021-02-05",
+      "exit_date": "2021-02-09",
+      "entry_price": 169.0745,
+      "exit_price": 172.4837,
+      "qty": 71.0675,
+      "pnl": 242.28,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2021-02-03",
+      "exit_date": "2021-02-10",
+      "entry_price": 126.9531,
+      "exit_price": 125.8567,
+      "qty": 94.834,
+      "pnl": -103.97,
+      "reason": "time_stop",
+      "bars_held": 5
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2021-02-19",
+      "exit_date": "2021-02-22",
+      "entry_price": 208.9312,
+      "exit_price": 209.7076,
+      "qty": 57.5732,
+      "pnl": 44.7,
+      "reason": "signal",
+      "bars_held": 1
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2021-02-17",
+      "exit_date": "2021-02-23",
+      "entry_price": 123.1723,
+      "exit_price": 119.4174,
+      "qty": 97.8796,
+      "pnl": -367.53,
+      "reason": "stop_loss",
+      "bars_held": 4
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2021-02-17",
+      "exit_date": "2021-02-23",
+      "entry_price": 167.0035,
+      "exit_price": 169.3953,
+      "qty": 72.1905,
+      "pnl": 172.67,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2021-02-22",
+      "exit_date": "2021-02-23",
+      "entry_price": 316.6041,
+      "exit_price": 306.9524,
+      "qty": 38.0446,
+      "pnl": -367.19,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2021-02-22",
+      "exit_date": "2021-02-23",
+      "entry_price": 64.5693,
+      "exit_price": 62.601,
+      "qty": 186.5447,
+      "pnl": -367.19,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2021-02-23",
+      "exit_date": "2021-02-25",
+      "entry_price": 62.8684,
+      "exit_price": 64.0872,
+      "qty": 190.0784,
+      "pnl": 231.67,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2021-02-23",
+      "exit_date": "2021-02-25",
+      "entry_price": 358.272,
+      "exit_price": 363.2642,
+      "qty": 33.3543,
+      "pnl": 166.51,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2021-02-23",
+      "exit_date": "2021-02-25",
+      "entry_price": 119.4336,
+      "exit_price": 115.7927,
+      "qty": 100.0549,
+      "pnl": -364.29,
+      "reason": "stop_loss",
+      "bars_held": 2
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2021-02-25",
+      "exit_date": "2021-03-01",
+      "entry_price": 117.7458,
+      "exit_price": 118.7319,
+      "qty": 101.3575,
+      "pnl": 99.95,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2021-02-23",
+      "exit_date": "2021-03-02",
+      "entry_price": 307.3919,
+      "exit_price": 314.1078,
+      "qty": 38.8752,
+      "pnl": 261.08,
+      "reason": "signal",
+      "bars_held": 5
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2021-02-26",
+      "exit_date": "2021-03-03",
+      "entry_price": 165.0825,
+      "exit_price": 160.05,
+      "qty": 72.5489,
+      "pnl": -365.11,
+      "reason": "stop_loss",
+      "bars_held": 3
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2021-03-05",
+      "exit_date": "2021-03-10",
+      "entry_price": 159.7398,
+      "exit_price": 160.9795,
+      "qty": 74.831,
+      "pnl": 92.76,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2021-03-17",
+      "exit_date": "2021-03-18",
+      "entry_price": 21.106,
+      "exit_price": 20.4626,
+      "qty": 566.2498,
+      "pnl": -364.34,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2021-03-15",
+      "exit_date": "2021-03-22",
+      "entry_price": 115.3273,
+      "exit_price": 114.5367,
+      "qty": 103.745,
+      "pnl": -82.02,
+      "reason": "time_stop",
+      "bars_held": 5
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2021-03-19",
+      "exit_date": "2021-03-23",
+      "entry_price": 20.3655,
+      "exit_price": 19.7446,
+      "qty": 584.4152,
+      "pnl": -362.83,
+      "reason": "stop_loss",
+      "bars_held": 2
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2021-03-23",
+      "exit_date": "2021-03-25",
+      "entry_price": 19.7749,
+      "exit_price": 20.0252,
+      "qty": 600.13,
+      "pnl": 150.17,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2021-03-24",
+      "exit_date": "2021-03-25",
+      "entry_price": 206.4894,
+      "exit_price": 200.1946,
+      "qty": 57.6824,
+      "pnl": -363.1,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2021-03-25",
+      "exit_date": "2021-03-29",
+      "entry_price": 196.9789,
+      "exit_price": 205.8719,
+      "qty": 60.118,
+      "pnl": 534.63,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2021-03-31",
+      "exit_date": "2021-04-05",
+      "entry_price": 158.139,
+      "exit_price": 161.4392,
+      "qty": 75.289,
+      "pnl": 248.47,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2021-04-13",
+      "exit_date": "2021-04-15",
+      "entry_price": 19.8456,
+      "exit_price": 20.4571,
+      "qty": 601.4401,
+      "pnl": 367.8,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2021-04-21",
+      "exit_date": "2021-04-22",
+      "entry_price": 204.2054,
+      "exit_price": 209.8669,
+      "qty": 58.6668,
+      "pnl": 332.14,
+      "reason": "signal",
+      "bars_held": 1
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2021-04-21",
+      "exit_date": "2021-04-27",
+      "entry_price": 19.3217,
+      "exit_price": 19.9545,
+      "qty": 620.032,
+      "pnl": 392.37,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2021-04-28",
+      "exit_date": "2021-05-04",
+      "entry_price": 117.3126,
+      "exit_price": 118.0783,
+      "qty": 102.8622,
+      "pnl": 78.76,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2021-05-03",
+      "exit_date": "2021-05-04",
+      "entry_price": 67.6284,
+      "exit_price": 65.5668,
+      "qty": 178.4319,
+      "pnl": -367.86,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2021-05-04",
+      "exit_date": "2021-05-10",
+      "entry_price": 66.5787,
+      "exit_price": 66.5555,
+      "qty": 180.7233,
+      "pnl": -4.21,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2021-05-05",
+      "exit_date": "2021-05-10",
+      "entry_price": 322.5867,
+      "exit_price": 322.7783,
+      "qty": 37.2394,
+      "pnl": 7.13,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2021-05-11",
+      "exit_date": "2021-05-17",
+      "entry_price": 116.2814,
+      "exit_price": 115.8266,
+      "qty": 103.479,
+      "pnl": -47.06,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2021-05-13",
+      "exit_date": "2021-05-17",
+      "entry_price": 200.7145,
+      "exit_price": 206.5957,
+      "qty": 59.8713,
+      "pnl": 352.12,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2021-05-13",
+      "exit_date": "2021-05-17",
+      "entry_price": 310.6153,
+      "exit_price": 314.8732,
+      "qty": 38.6878,
+      "pnl": 164.73,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2021-05-13",
+      "exit_date": "2021-05-17",
+      "entry_price": 63.9208,
+      "exit_price": 65.0258,
+      "qty": 187.9988,
+      "pnl": 207.74,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2021-05-13",
+      "exit_date": "2021-05-17",
+      "entry_price": 380.3866,
+      "exit_price": 387.7733,
+      "qty": 31.5916,
+      "pnl": 233.36,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2021-06-16",
+      "exit_date": "2021-06-17",
+      "entry_price": 173.997,
+      "exit_price": 168.6927,
+      "qty": 69.7828,
+      "pnl": -370.15,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2021-06-21",
+      "exit_date": "2021-06-22",
+      "entry_price": 390.7529,
+      "exit_price": 394.1555,
+      "qty": 31.0071,
+      "pnl": 105.5,
+      "reason": "signal",
+      "bars_held": 1
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2021-06-21",
+      "exit_date": "2021-06-22",
+      "entry_price": 21.9638,
+      "exit_price": 22.6342,
+      "qty": 551.6397,
+      "pnl": 369.83,
+      "reason": "signal",
+      "bars_held": 1
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2021-06-18",
+      "exit_date": "2021-06-23",
+      "entry_price": 210.8071,
+      "exit_price": 214.6352,
+      "qty": 57.2973,
+      "pnl": 219.34,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2021-06-17",
+      "exit_date": "2021-06-24",
+      "entry_price": 167.1035,
+      "exit_price": 166.9165,
+      "qty": 72.3957,
+      "pnl": -13.54,
+      "reason": "signal",
+      "bars_held": 5
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2021-06-30",
+      "exit_date": "2021-07-02",
+      "entry_price": 164.6523,
+      "exit_price": 167.2663,
+      "qty": 73.9699,
+      "pnl": 193.36,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2021-07-08",
+      "exit_date": "2021-07-12",
+      "entry_price": 206.6701,
+      "exit_price": 212.3475,
+      "qty": 59.0434,
+      "pnl": 335.21,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2021-07-08",
+      "exit_date": "2021-07-12",
+      "entry_price": 21.4766,
+      "exit_price": 21.9251,
+      "qty": 568.178,
+      "pnl": 254.83,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2021-07-15",
+      "exit_date": "2021-07-16",
+      "entry_price": 21.1111,
+      "exit_price": 20.4676,
+      "qty": 581.3671,
+      "pnl": -374.15,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2021-07-15",
+      "exit_date": "2021-07-19",
+      "entry_price": 205.2754,
+      "exit_price": 199.0176,
+      "qty": 59.7895,
+      "pnl": -374.15,
+      "reason": "stop_loss",
+      "bars_held": 2
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2021-07-16",
+      "exit_date": "2021-07-19",
+      "entry_price": 21.2035,
+      "exit_price": 20.5572,
+      "qty": 575.7632,
+      "pnl": -372.17,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2021-07-19",
+      "exit_date": "2021-07-21",
+      "entry_price": 198.4904,
+      "exit_price": 206.5954,
+      "qty": 61.1559,
+      "pnl": 495.67,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2021-07-19",
+      "exit_date": "2021-07-22",
+      "entry_price": 19.7502,
+      "exit_price": 20.6452,
+      "qty": 614.6194,
+      "pnl": 550.1,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2021-07-19",
+      "exit_date": "2021-07-22",
+      "entry_price": 344.1514,
+      "exit_price": 351.304,
+      "qty": 35.2719,
+      "pnl": 252.29,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2021-07-19",
+      "exit_date": "2021-07-22",
+      "entry_price": 399.5561,
+      "exit_price": 407.1644,
+      "qty": 30.3809,
+      "pnl": 231.15,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2021-07-20",
+      "exit_date": "2021-07-22",
+      "entry_price": 71.8624,
+      "exit_price": 73.3472,
+      "qty": 170.3637,
+      "pnl": 252.95,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2021-08-09",
+      "exit_date": "2021-08-13",
+      "entry_price": 163.0915,
+      "exit_price": 164.9375,
+      "qty": 75.741,
+      "pnl": 139.82,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2021-08-09",
+      "exit_date": "2021-08-16",
+      "entry_price": 126.0326,
+      "exit_price": 126.7904,
+      "qty": 98.0121,
+      "pnl": 74.28,
+      "reason": "signal",
+      "bars_held": 5
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2021-08-17",
+      "exit_date": "2021-08-19",
+      "entry_price": 20.1786,
+      "exit_price": 19.5635,
+      "qty": 613.441,
+      "pnl": -377.36,
+      "reason": "stop_loss",
+      "bars_held": 2
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2021-08-17",
+      "exit_date": "2021-08-23",
+      "entry_price": 204.1729,
+      "exit_price": 204.7408,
+      "qty": 60.6271,
+      "pnl": 34.43,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2021-08-19",
+      "exit_date": "2021-08-23",
+      "entry_price": 350.1488,
+      "exit_price": 358.1306,
+      "qty": 35.128,
+      "pnl": 280.38,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2021-08-19",
+      "exit_date": "2021-08-23",
+      "entry_price": 409.0062,
+      "exit_price": 416.9236,
+      "qty": 30.073,
+      "pnl": 238.1,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2021-08-19",
+      "exit_date": "2021-08-24",
+      "entry_price": 19.4058,
+      "exit_price": 20.1459,
+      "qty": 633.834,
+      "pnl": 469.11,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2021-08-26",
+      "exit_date": "2021-08-30",
+      "entry_price": 125.8793,
+      "exit_price": 126.6204,
+      "qty": 98.9501,
+      "pnl": 73.33,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2021-09-09",
+      "exit_date": "2021-09-16",
+      "entry_price": 210.6564,
+      "exit_price": 209.2408,
+      "qty": 59.1701,
+      "pnl": -83.76,
+      "reason": "time_stop",
+      "bars_held": 5
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2021-09-10",
+      "exit_date": "2021-09-16",
+      "entry_price": 422.8532,
+      "exit_price": 418.9466,
+      "qty": 29.4452,
+      "pnl": -115.03,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2021-09-13",
+      "exit_date": "2021-09-16",
+      "entry_price": 76.1316,
+      "exit_price": 75.8001,
+      "qty": 163.4524,
+      "pnl": -54.19,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2021-09-13",
+      "exit_date": "2021-09-16",
+      "entry_price": 368.394,
+      "exit_price": 365.7827,
+      "qty": 33.7788,
+      "pnl": -88.21,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2021-09-17",
+      "exit_date": "2021-09-22",
+      "entry_price": 163.9419,
+      "exit_price": 165.8071,
+      "qty": 75.7806,
+      "pnl": 141.34,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2021-09-21",
+      "exit_date": "2021-09-23",
+      "entry_price": 74.0861,
+      "exit_price": 74.9872,
+      "qty": 167.9493,
+      "pnl": 151.34,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2021-09-21",
+      "exit_date": "2021-09-23",
+      "entry_price": 206.1613,
+      "exit_price": 209.1654,
+      "qty": 60.3542,
+      "pnl": 181.31,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2021-09-21",
+      "exit_date": "2021-09-24",
+      "entry_price": 357.6992,
+      "exit_price": 360.3262,
+      "qty": 34.7854,
+      "pnl": 91.38,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2021-09-21",
+      "exit_date": "2021-09-24",
+      "entry_price": 410.5611,
+      "exit_price": 414.764,
+      "qty": 30.3066,
+      "pnl": 127.38,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2021-09-30",
+      "exit_date": "2021-10-01",
+      "entry_price": 162.7413,
+      "exit_price": 164.1879,
+      "qty": 76.5301,
+      "pnl": 110.7,
+      "reason": "signal",
+      "bars_held": 1
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2021-09-27",
+      "exit_date": "2021-10-04",
+      "entry_price": 124.4125,
+      "exit_price": 123.2617,
+      "qty": 100.5266,
+      "pnl": -115.69,
+      "reason": "signal",
+      "bars_held": 5
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2021-09-29",
+      "exit_date": "2021-10-04",
+      "entry_price": 351.4615,
+      "exit_price": 340.7472,
+      "qty": 35.5326,
+      "pnl": -380.71,
+      "reason": "stop_loss",
+      "bars_held": 3
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2021-09-29",
+      "exit_date": "2021-10-04",
+      "entry_price": 73.0713,
+      "exit_price": 72.752,
+      "qty": 170.9063,
+      "pnl": -54.56,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2021-10-01",
+      "exit_date": "2021-10-06",
+      "entry_price": 405.3412,
+      "exit_price": 403.3295,
+      "qty": 30.8675,
+      "pnl": -62.1,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2021-10-12",
+      "exit_date": "2021-10-13",
+      "entry_price": 121.6451,
+      "exit_price": 123.2106,
+      "qty": 102.3179,
+      "pnl": 160.17,
+      "reason": "signal",
+      "bars_held": 1
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2021-11-11",
+      "exit_date": "2021-11-15",
+      "entry_price": 382.0175,
+      "exit_price": 384.8826,
+      "qty": 32.6312,
+      "pnl": 93.49,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2021-11-16",
+      "exit_date": "2021-11-19",
+      "entry_price": 124.4132,
+      "exit_price": 125.9012,
+      "qty": 100.2861,
+      "pnl": 149.23,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2021-11-22",
+      "exit_date": "2021-11-24",
+      "entry_price": 23.2085,
+      "exit_price": 24.2301,
+      "qty": 537.9147,
+      "pnl": 549.54,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2021-11-19",
+      "exit_date": "2021-11-26",
+      "entry_price": 220.4915,
+      "exit_price": 213.7698,
+      "qty": 56.668,
+      "pnl": -380.9,
+      "reason": "stop_loss",
+      "bars_held": 4
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2021-11-29",
+      "exit_date": "2021-11-30",
+      "entry_price": 213.8277,
+      "exit_price": 207.3092,
+      "qty": 58.4974,
+      "pnl": -381.32,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2021-11-29",
+      "exit_date": "2021-11-30",
+      "entry_price": 385.2482,
+      "exit_price": 387.6726,
+      "qty": 32.4683,
+      "pnl": 78.72,
+      "reason": "signal",
+      "bars_held": 1
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2021-11-23",
+      "exit_date": "2021-12-01",
+      "entry_price": 167.3636,
+      "exit_price": 166.7566,
+      "qty": 75.0256,
+      "pnl": -45.55,
+      "reason": "time_stop",
+      "bars_held": 5
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2021-11-29",
+      "exit_date": "2021-12-01",
+      "entry_price": 436.4627,
+      "exit_price": 423.1571,
+      "qty": 28.6585,
+      "pnl": -381.32,
+      "reason": "stop_loss",
+      "bars_held": 2
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2021-11-30",
+      "exit_date": "2021-12-01",
+      "entry_price": 208.5723,
+      "exit_price": 202.214,
+      "qty": 59.6134,
+      "pnl": -379.04,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2021-12-01",
+      "exit_date": "2021-12-02",
+      "entry_price": 210.9448,
+      "exit_price": 204.5142,
+      "qty": 58.698,
+      "pnl": -377.47,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2021-12-01",
+      "exit_date": "2021-12-06",
+      "entry_price": 166.9234,
+      "exit_price": 166.0569,
+      "qty": 74.1779,
+      "pnl": -64.27,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2021-12-02",
+      "exit_date": "2021-12-07",
+      "entry_price": 202.6269,
+      "exit_price": 209.7614,
+      "qty": 60.8101,
+      "pnl": 433.85,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2021-12-09",
+      "exit_date": "2021-12-14",
+      "entry_price": 127.6852,
+      "exit_price": 128.4373,
+      "qty": 96.9657,
+      "pnl": 72.93,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2021-12-15",
+      "exit_date": "2021-12-16",
+      "entry_price": 203.0907,
+      "exit_price": 207.8508,
+      "qty": 61.0064,
+      "pnl": 290.39,
+      "reason": "signal",
+      "bars_held": 1
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2021-12-16",
+      "exit_date": "2021-12-17",
+      "entry_price": 23.6506,
+      "exit_price": 22.9296,
+      "qty": 525.343,
+      "pnl": -378.77,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2021-12-21",
+      "exit_date": "2021-12-22",
+      "entry_price": 23.0611,
+      "exit_price": 23.4812,
+      "qty": 536.8014,
+      "pnl": 225.5,
+      "reason": "signal",
+      "bars_held": 1
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2021-12-30",
+      "exit_date": "2022-01-03",
+      "entry_price": 126.0401,
+      "exit_price": 125.1958,
+      "qty": 98.4313,
+      "pnl": -83.1,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2022-01-06",
+      "exit_date": "2022-01-10",
+      "entry_price": 372.6156,
+      "exit_price": 361.2564,
+      "qty": 33.2429,
+      "pnl": -377.61,
+      "reason": "stop_loss",
+      "bars_held": 2
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2022-01-06",
+      "exit_date": "2022-01-10",
+      "entry_price": 80.8447,
+      "exit_price": 78.3801,
+      "qty": 153.2174,
+      "pnl": -377.61,
+      "reason": "stop_loss",
+      "bars_held": 2
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2022-01-06",
+      "exit_date": "2022-01-10",
+      "entry_price": 206.5133,
+      "exit_price": 200.2178,
+      "qty": 59.9807,
+      "pnl": -377.61,
+      "reason": "stop_loss",
+      "bars_held": 2
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2022-01-05",
+      "exit_date": "2022-01-12",
+      "entry_price": 123.3781,
+      "exit_price": 123.0496,
+      "qty": 100.4743,
+      "pnl": -33.01,
+      "reason": "signal",
+      "bars_held": 5
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2022-01-06",
+      "exit_date": "2022-01-12",
+      "entry_price": 441.6015,
+      "exit_price": 444.6487,
+      "qty": 28.0497,
+      "pnl": 85.47,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2022-01-10",
+      "exit_date": "2022-01-12",
+      "entry_price": 79.1404,
+      "exit_price": 81.8376,
+      "qty": 154.6056,
+      "pnl": 417.0,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2022-01-10",
+      "exit_date": "2022-01-12",
+      "entry_price": 365.2104,
+      "exit_price": 378.1225,
+      "qty": 33.5028,
+      "pnl": 432.59,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2022-01-19",
+      "exit_date": "2022-01-20",
+      "entry_price": 197.971,
+      "exit_price": 191.9358,
+      "qty": 62.477,
+      "pnl": -377.06,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2022-01-19",
+      "exit_date": "2022-01-20",
+      "entry_price": 432.3899,
+      "exit_price": 419.2085,
+      "qty": 28.6053,
+      "pnl": -377.06,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2022-01-20",
+      "exit_date": "2022-01-21",
+      "entry_price": 194.719,
+      "exit_price": 188.783,
+      "qty": 63.0557,
+      "pnl": -374.3,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2022-01-20",
+      "exit_date": "2022-01-21",
+      "entry_price": 428.256,
+      "exit_price": 415.2006,
+      "qty": 28.6701,
+      "pnl": -374.3,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2022-01-20",
+      "exit_date": "2022-01-21",
+      "entry_price": 360.3094,
+      "exit_price": 349.3254,
+      "qty": 34.0766,
+      "pnl": -374.3,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2022-01-20",
+      "exit_date": "2022-01-21",
+      "entry_price": 77.9204,
+      "exit_price": 75.545,
+      "qty": 157.5729,
+      "pnl": -374.3,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2022-01-21",
+      "exit_date": "2022-01-24",
+      "entry_price": 189.3908,
+      "exit_price": 183.6172,
+      "qty": 63.881,
+      "pnl": -368.82,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2022-01-21",
+      "exit_date": "2022-01-24",
+      "entry_price": 420.5261,
+      "exit_price": 407.7064,
+      "qty": 28.7698,
+      "pnl": -368.82,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2022-01-21",
+      "exit_date": "2022-01-24",
+      "entry_price": 350.254,
+      "exit_price": 339.5765,
+      "qty": 34.542,
+      "pnl": -368.82,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2022-01-21",
+      "exit_date": "2022-01-24",
+      "entry_price": 76.0515,
+      "exit_price": 73.7331,
+      "qty": 159.0826,
+      "pnl": -368.82,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2022-01-24",
+      "exit_date": "2022-01-26",
+      "entry_price": 26.2565,
+      "exit_price": 28.3942,
+      "qty": 454.0375,
+      "pnl": 970.61,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2022-01-24",
+      "exit_date": "2022-01-28",
+      "entry_price": 183.9962,
+      "exit_price": 178.387,
+      "qty": 64.7918,
+      "pnl": -363.43,
+      "reason": "stop_loss",
+      "bars_held": 4
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2022-01-24",
+      "exit_date": "2022-01-31",
+      "entry_price": 407.7563,
+      "exit_price": 416.0326,
+      "qty": 29.2367,
+      "pnl": 241.97,
+      "reason": "signal",
+      "bars_held": 5
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2022-01-24",
+      "exit_date": "2022-01-31",
+      "entry_price": 337.0417,
+      "exit_price": 343.8008,
+      "qty": 35.3708,
+      "pnl": 239.07,
+      "reason": "signal",
+      "bars_held": 5
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2022-01-24",
+      "exit_date": "2022-01-31",
+      "entry_price": 73.4758,
+      "exit_price": 76.4398,
+      "qty": 162.2499,
+      "pnl": 480.91,
+      "reason": "signal",
+      "bars_held": 5
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2022-01-28",
+      "exit_date": "2022-02-01",
+      "entry_price": 181.7492,
+      "exit_price": 191.001,
+      "qty": 66.62,
+      "pnl": 616.36,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2022-01-28",
+      "exit_date": "2022-02-02",
+      "entry_price": 166.6433,
+      "exit_price": 168.2558,
+      "qty": 72.659,
+      "pnl": 117.17,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2022-02-07",
+      "exit_date": "2022-02-14",
+      "entry_price": 119.067,
+      "exit_price": 117.4238,
+      "qty": 102.4445,
+      "pnl": -168.33,
+      "reason": "signal",
+      "bars_held": 5
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2022-02-23",
+      "exit_date": "2022-02-24",
+      "entry_price": 408.3509,
+      "exit_price": 395.9024,
+      "qty": 29.8213,
+      "pnl": -371.23,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2022-02-23",
+      "exit_date": "2022-02-24",
+      "entry_price": 332.5693,
+      "exit_price": 322.4309,
+      "qty": 36.6166,
+      "pnl": -371.23,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2022-02-23",
+      "exit_date": "2022-02-24",
+      "entry_price": 73.8825,
+      "exit_price": 71.6302,
+      "qty": 164.8234,
+      "pnl": -371.23,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2022-02-23",
+      "exit_date": "2022-02-24",
+      "entry_price": 187.9497,
+      "exit_price": 182.22,
+      "qty": 64.7916,
+      "pnl": -371.23,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2022-02-24",
+      "exit_date": "2022-02-25",
+      "entry_price": 310.6656,
+      "exit_price": 332.2271,
+      "qty": 38.6063,
+      "pnl": 832.41,
+      "reason": "signal",
+      "bars_held": 1
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2022-02-24",
+      "exit_date": "2022-02-25",
+      "entry_price": 68.8424,
+      "exit_price": 73.7651,
+      "qty": 174.2189,
+      "pnl": 857.63,
+      "reason": "signal",
+      "bars_held": 1
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2022-02-24",
+      "exit_date": "2022-02-25",
+      "entry_price": 178.5446,
+      "exit_price": 188.1881,
+      "qty": 67.1745,
+      "pnl": 647.79,
+      "reason": "signal",
+      "bars_held": 1
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2022-02-23",
+      "exit_date": "2022-02-28",
+      "entry_price": 28.9997,
+      "exit_price": 29.4225,
+      "qty": 419.92,
+      "pnl": 177.52,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2022-02-24",
+      "exit_date": "2022-02-28",
+      "entry_price": 387.9267,
+      "exit_price": 407.3487,
+      "qty": 30.9173,
+      "pnl": 600.48,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2022-03-08",
+      "exit_date": "2022-03-10",
+      "entry_price": 315.742,
+      "exit_price": 322.0163,
+      "qty": 39.1879,
+      "pnl": 245.88,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2022-03-08",
+      "exit_date": "2022-03-10",
+      "entry_price": 69.6606,
+      "exit_price": 70.9114,
+      "qty": 177.6221,
+      "pnl": 222.17,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2022-03-08",
+      "exit_date": "2022-03-10",
+      "entry_price": 396.0435,
+      "exit_price": 398.3821,
+      "qty": 31.2422,
+      "pnl": 73.06,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2022-03-08",
+      "exit_date": "2022-03-10",
+      "entry_price": 184.2522,
+      "exit_price": 186.9757,
+      "qty": 67.154,
+      "pnl": 182.9,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2022-03-11",
+      "exit_date": "2022-03-16",
+      "entry_price": 115.2937,
+      "exit_price": 111.779,
+      "qty": 108.0731,
+      "pnl": -379.85,
+      "reason": "stop_loss",
+      "bars_held": 3
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2022-03-16",
+      "exit_date": "2022-03-18",
+      "entry_price": 31.0453,
+      "exit_price": 31.7585,
+      "qty": 399.8857,
+      "pnl": 285.22,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2022-03-16",
+      "exit_date": "2022-03-21",
+      "entry_price": 113.148,
+      "exit_price": 112.5633,
+      "qty": 109.7197,
+      "pnl": -64.15,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2022-03-16",
+      "exit_date": "2022-03-22",
+      "entry_price": 179.2196,
+      "exit_price": 179.5102,
+      "qty": 69.2702,
+      "pnl": 20.13,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2022-04-06",
+      "exit_date": "2022-04-11",
+      "entry_price": 108.6795,
+      "exit_price": 105.3664,
+      "qty": 114.4974,
+      "pnl": -379.34,
+      "reason": "stop_loss",
+      "bars_held": 3
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2022-04-07",
+      "exit_date": "2022-04-14",
+      "entry_price": 190.0955,
+      "exit_price": 190.8546,
+      "qty": 65.459,
+      "pnl": 49.68,
+      "reason": "signal",
+      "bars_held": 5
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2022-04-12",
+      "exit_date": "2022-04-14",
+      "entry_price": 337.3119,
+      "exit_price": 337.6376,
+      "qty": 36.574,
+      "pnl": 11.91,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2022-04-11",
+      "exit_date": "2022-04-18",
+      "entry_price": 106.5218,
+      "exit_price": 103.2745,
+      "qty": 116.1322,
+      "pnl": -377.12,
+      "reason": "stop_loss",
+      "bars_held": 4
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2022-04-11",
+      "exit_date": "2022-04-18",
+      "entry_price": 73.0004,
+      "exit_price": 70.775,
+      "qty": 169.4596,
+      "pnl": -377.12,
+      "reason": "stop_loss",
+      "bars_held": 4
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2022-04-12",
+      "exit_date": "2022-04-20",
+      "entry_price": 419.4846,
+      "exit_price": 422.6972,
+      "qty": 29.4095,
+      "pnl": 94.48,
+      "reason": "signal",
+      "bars_held": 5
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2022-04-18",
+      "exit_date": "2022-04-21",
+      "entry_price": 103.9001,
+      "exit_price": 103.7619,
+      "qty": 118.3548,
+      "pnl": -16.36,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2022-04-25",
+      "exit_date": "2022-04-28",
+      "entry_price": 181.432,
+      "exit_price": 175.901,
+      "qty": 67.9276,
+      "pnl": -375.7,
+      "reason": "stop_loss",
+      "bars_held": 3
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2022-04-25",
+      "exit_date": "2022-04-29",
+      "entry_price": 32.0857,
+      "exit_price": 33.5738,
+      "qty": 384.104,
+      "pnl": 571.58,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2022-04-25",
+      "exit_date": "2022-04-29",
+      "entry_price": 401.1083,
+      "exit_price": 400.6317,
+      "qty": 30.7255,
+      "pnl": -14.64,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2022-04-25",
+      "exit_date": "2022-04-29",
+      "entry_price": 69.0957,
+      "exit_price": 70.7275,
+      "qty": 178.3649,
+      "pnl": 291.05,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2022-04-25",
+      "exit_date": "2022-04-29",
+      "entry_price": 315.8202,
+      "exit_price": 306.1925,
+      "qty": 39.023,
+      "pnl": -375.7,
+      "reason": "stop_loss",
+      "bars_held": 4
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2022-04-28",
+      "exit_date": "2022-05-02",
+      "entry_price": 176.008,
+      "exit_price": 173.5232,
+      "qty": 70.6219,
+      "pnl": -175.48,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2022-05-03",
+      "exit_date": "2022-05-05",
+      "entry_price": 102.5012,
+      "exit_price": 99.3764,
+      "qty": 120.1428,
+      "pnl": -375.42,
+      "reason": "stop_loss",
+      "bars_held": 2
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2022-05-03",
+      "exit_date": "2022-05-05",
+      "entry_price": 173.9769,
+      "exit_price": 177.4712,
+      "qty": 70.784,
+      "pnl": 247.34,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2022-05-09",
+      "exit_date": "2022-05-11",
+      "entry_price": 97.1798,
+      "exit_price": 98.6998,
+      "qty": 126.5634,
+      "pnl": 192.38,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2022-05-10",
+      "exit_date": "2022-05-11",
+      "entry_price": 168.6836,
+      "exit_price": 163.5412,
+      "qty": 73.1306,
+      "pnl": -376.06,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2022-05-10",
+      "exit_date": "2022-05-11",
+      "entry_price": 297.0699,
+      "exit_price": 288.0137,
+      "qty": 41.5253,
+      "pnl": -376.06,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2022-05-10",
+      "exit_date": "2022-05-11",
+      "entry_price": 67.107,
+      "exit_price": 65.0612,
+      "qty": 183.8247,
+      "pnl": -376.06,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2022-05-10",
+      "exit_date": "2022-05-11",
+      "entry_price": 382.9496,
+      "exit_price": 371.2754,
+      "qty": 32.2129,
+      "pnl": -376.06,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2022-05-11",
+      "exit_date": "2022-05-12",
+      "entry_price": 166.3657,
+      "exit_price": 161.294,
+      "qty": 72.9837,
+      "pnl": -370.15,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2022-05-12",
+      "exit_date": "2022-05-16",
+      "entry_price": 161.3309,
+      "exit_price": 168.4485,
+      "qty": 74.8591,
+      "pnl": 532.82,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2022-05-12",
+      "exit_date": "2022-05-16",
+      "entry_price": 368.6348,
+      "exit_price": 378.3014,
+      "qty": 32.7617,
+      "pnl": 316.69,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2022-05-11",
+      "exit_date": "2022-05-18",
+      "entry_price": 172.5962,
+      "exit_price": 168.9255,
+      "qty": 70.3491,
+      "pnl": -258.23,
+      "reason": "time_stop",
+      "bars_held": 5
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2022-05-18",
+      "exit_date": "2022-05-19",
+      "entry_price": 98.7814,
+      "exit_price": 102.0547,
+      "qty": 123.1864,
+      "pnl": 403.22,
+      "reason": "signal",
+      "bars_held": 1
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2022-06-01",
+      "exit_date": "2022-06-03",
+      "entry_price": 172.2961,
+      "exit_price": 173.4432,
+      "qty": 70.9065,
+      "pnl": 81.34,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2022-06-07",
+      "exit_date": "2022-06-13",
+      "entry_price": 98.8622,
+      "exit_price": 95.8484,
+      "qty": 123.6738,
+      "pnl": -372.73,
+      "reason": "stop_loss",
+      "bars_held": 4
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2022-06-13",
+      "exit_date": "2022-06-14",
+      "entry_price": 165.3754,
+      "exit_price": 160.3339,
+      "qty": 73.6624,
+      "pnl": -371.37,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2022-06-14",
+      "exit_date": "2022-06-15",
+      "entry_price": 37.2898,
+      "exit_price": 36.1531,
+      "qty": 323.9993,
+      "pnl": -368.32,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2022-06-13",
+      "exit_date": "2022-06-16",
+      "entry_price": 272.9149,
+      "exit_price": 264.5951,
+      "qty": 44.6364,
+      "pnl": -371.37,
+      "reason": "stop_loss",
+      "bars_held": 3
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2022-06-13",
+      "exit_date": "2022-06-16",
+      "entry_price": 61.5823,
+      "exit_price": 59.7049,
+      "qty": 197.8158,
+      "pnl": -371.37,
+      "reason": "stop_loss",
+      "bars_held": 3
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2022-06-13",
+      "exit_date": "2022-06-16",
+      "entry_price": 359.6218,
+      "exit_price": 348.6587,
+      "qty": 33.8743,
+      "pnl": -371.37,
+      "reason": "stop_loss",
+      "bars_held": 3
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2022-06-14",
+      "exit_date": "2022-06-16",
+      "entry_price": 162.5561,
+      "exit_price": 157.6006,
+      "qty": 74.3244,
+      "pnl": -368.32,
+      "reason": "stop_loss",
+      "bars_held": 2
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2022-06-15",
+      "exit_date": "2022-06-17",
+      "entry_price": 94.9633,
+      "exit_price": 96.5229,
+      "qty": 127.7774,
+      "pnl": 199.28,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2022-06-16",
+      "exit_date": "2022-06-17",
+      "entry_price": 34.8639,
+      "exit_price": 33.801,
+      "qty": 342.3634,
+      "pnl": -363.87,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2022-06-17",
+      "exit_date": "2022-06-22",
+      "entry_price": 33.5639,
+      "exit_price": 32.5407,
+      "qty": 354.4146,
+      "pnl": -362.64,
+      "reason": "stop_loss",
+      "bars_held": 2
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2022-06-30",
+      "exit_date": "2022-07-05",
+      "entry_price": 169.5947,
+      "exit_price": 164.4247,
+      "qty": 69.8844,
+      "pnl": -361.31,
+      "reason": "stop_loss",
+      "bars_held": 2
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2022-07-05",
+      "exit_date": "2022-07-06",
+      "entry_price": 167.2636,
+      "exit_price": 162.1646,
+      "qty": 70.5992,
+      "pnl": -359.99,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2022-07-06",
+      "exit_date": "2022-07-13",
+      "entry_price": 164.4022,
+      "exit_price": 160.02,
+      "qty": 71.5652,
+      "pnl": -313.61,
+      "reason": "time_stop",
+      "bars_held": 5
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2022-07-14",
+      "exit_date": "2022-07-18",
+      "entry_price": 355.242,
+      "exit_price": 368.9168,
+      "qty": 32.9926,
+      "pnl": 451.17,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2022-07-15",
+      "exit_date": "2022-07-18",
+      "entry_price": 163.3847,
+      "exit_price": 166.6374,
+      "qty": 71.9785,
+      "pnl": 234.12,
+      "reason": "signal",
+      "bars_held": 1
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2022-07-15",
+      "exit_date": "2022-07-19",
+      "entry_price": 30.3177,
+      "exit_price": 30.7705,
+      "qty": 387.8992,
+      "pnl": 175.65,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2022-07-13",
+      "exit_date": "2022-07-20",
+      "entry_price": 160.1801,
+      "exit_price": 159.6302,
+      "qty": 73.2166,
+      "pnl": -40.26,
+      "reason": "time_stop",
+      "bars_held": 5
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2022-08-05",
+      "exit_date": "2022-08-10",
+      "entry_price": 31.0782,
+      "exit_price": 32.905,
+      "qty": 380.5337,
+      "pnl": 695.14,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2022-08-12",
+      "exit_date": "2022-08-17",
+      "entry_price": 99.6623,
+      "exit_price": 99.5281,
+      "qty": 119.5009,
+      "pnl": -16.04,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2022-08-19",
+      "exit_date": "2022-08-25",
+      "entry_price": 163.7318,
+      "exit_price": 163.888,
+      "qty": 72.7275,
+      "pnl": 11.36,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2022-08-22",
+      "exit_date": "2022-08-26",
+      "entry_price": 97.7227,
+      "exit_price": 97.1406,
+      "qty": 121.6662,
+      "pnl": -70.82,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2022-08-22",
+      "exit_date": "2022-08-26",
+      "entry_price": 311.3153,
+      "exit_price": 301.8248,
+      "qty": 38.1914,
+      "pnl": -362.45,
+      "reason": "stop_loss",
+      "bars_held": 4
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2022-08-23",
+      "exit_date": "2022-08-26",
+      "entry_price": 392.6005,
+      "exit_price": 398.3728,
+      "qty": 30.229,
+      "pnl": 174.49,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2022-08-23",
+      "exit_date": "2022-08-26",
+      "entry_price": 69.8832,
+      "exit_price": 70.9599,
+      "qty": 169.8252,
+      "pnl": 182.85,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2022-08-31",
+      "exit_date": "2022-09-01",
+      "entry_price": 66.8243,
+      "exit_price": 64.7871,
+      "qty": 178.0799,
+      "pnl": -362.77,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2022-08-31",
+      "exit_date": "2022-09-01",
+      "entry_price": 297.1326,
+      "exit_price": 288.0746,
+      "qty": 40.0497,
+      "pnl": -362.77,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2022-08-31",
+      "exit_date": "2022-09-01",
+      "entry_price": 176.1477,
+      "exit_price": 170.7779,
+      "qty": 67.5573,
+      "pnl": -362.77,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2022-08-31",
+      "exit_date": "2022-09-08",
+      "entry_price": 380.268,
+      "exit_price": 375.5755,
+      "qty": 31.2939,
+      "pnl": -146.85,
+      "reason": "signal",
+      "bars_held": 5
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2022-08-31",
+      "exit_date": "2022-09-08",
+      "entry_price": 159.5797,
+      "exit_price": 159.4602,
+      "qty": 74.5712,
+      "pnl": -8.91,
+      "reason": "signal",
+      "bars_held": 5
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2022-09-01",
+      "exit_date": "2022-09-08",
+      "entry_price": 65.1367,
+      "exit_price": 64.6587,
+      "qty": 180.2503,
+      "pnl": -86.17,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2022-09-01",
+      "exit_date": "2022-09-08",
+      "entry_price": 290.0267,
+      "exit_price": 289.8636,
+      "qty": 40.4822,
+      "pnl": -6.6,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2022-09-01",
+      "exit_date": "2022-09-08",
+      "entry_price": 173.138,
+      "exit_price": 171.9277,
+      "qty": 67.8125,
+      "pnl": -82.07,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2022-09-16",
+      "exit_date": "2022-09-22",
+      "entry_price": 154.7373,
+      "exit_price": 156.1819,
+      "qty": 75.8045,
+      "pnl": 109.5,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2022-09-22",
+      "exit_date": "2022-09-23",
+      "entry_price": 34.377,
+      "exit_price": 33.329,
+      "qty": 341.5925,
+      "pnl": -357.98,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2022-09-22",
+      "exit_date": "2022-09-23",
+      "entry_price": 359.5369,
+      "exit_price": 348.5764,
+      "qty": 32.6613,
+      "pnl": -357.98,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2022-09-22",
+      "exit_date": "2022-09-23",
+      "entry_price": 276.134,
+      "exit_price": 267.7161,
+      "qty": 42.5262,
+      "pnl": -357.98,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2022-09-22",
+      "exit_date": "2022-09-23",
+      "entry_price": 166.6802,
+      "exit_price": 161.599,
+      "qty": 70.4518,
+      "pnl": -357.98,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2022-09-22",
+      "exit_date": "2022-09-23",
+      "entry_price": 61.4072,
+      "exit_price": 59.5352,
+      "qty": 191.2304,
+      "pnl": -357.98,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2022-09-23",
+      "exit_date": "2022-09-26",
+      "entry_price": 32.3371,
+      "exit_price": 31.3513,
+      "qty": 356.4993,
+      "pnl": -351.44,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2022-09-23",
+      "exit_date": "2022-09-29",
+      "entry_price": 160.9655,
+      "exit_price": 160.4696,
+      "qty": 71.6187,
+      "pnl": -35.52,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2022-09-23",
+      "exit_date": "2022-09-29",
+      "entry_price": 271.7766,
+      "exit_price": 263.4915,
+      "qty": 42.4177,
+      "pnl": -351.44,
+      "reason": "stop_loss",
+      "bars_held": 4
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2022-09-23",
+      "exit_date": "2022-09-29",
+      "entry_price": 353.8084,
+      "exit_price": 349.859,
+      "qty": 32.583,
+      "pnl": -128.68,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2022-09-23",
+      "exit_date": "2022-09-29",
+      "entry_price": 60.5687,
+      "exit_price": 58.7223,
+      "qty": 190.3316,
+      "pnl": -351.44,
+      "reason": "stop_loss",
+      "bars_held": 4
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2022-09-26",
+      "exit_date": "2022-09-29",
+      "entry_price": 31.1282,
+      "exit_price": 31.9984,
+      "qty": 366.1073,
+      "pnl": 318.58,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2022-10-03",
+      "exit_date": "2022-10-04",
+      "entry_price": 58.3651,
+      "exit_price": 60.8491,
+      "qty": 195.6673,
+      "pnl": 486.03,
+      "reason": "signal",
+      "bars_held": 1
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2022-10-11",
+      "exit_date": "2022-10-13",
+      "entry_price": 259.1938,
+      "exit_price": 251.2923,
+      "qty": 44.2488,
+      "pnl": -349.63,
+      "reason": "stop_loss",
+      "bars_held": 2
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2022-10-11",
+      "exit_date": "2022-10-13",
+      "entry_price": 57.5559,
+      "exit_price": 55.8013,
+      "qty": 199.2676,
+      "pnl": -349.63,
+      "reason": "stop_loss",
+      "bars_held": 2
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2022-10-12",
+      "exit_date": "2022-10-14",
+      "entry_price": 341.9602,
+      "exit_price": 351.5186,
+      "qty": 33.4835,
+      "pnl": 320.05,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2022-10-13",
+      "exit_date": "2022-10-14",
+      "entry_price": 55.2889,
+      "exit_price": 59.0081,
+      "qty": 206.227,
+      "pnl": 767.0,
+      "reason": "signal",
+      "bars_held": 1
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2022-10-13",
+      "exit_date": "2022-10-14",
+      "entry_price": 249.8523,
+      "exit_price": 265.2933,
+      "qty": 45.6352,
+      "pnl": 704.65,
+      "reason": "signal",
+      "bars_held": 1
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2022-10-10",
+      "exit_date": "2022-10-17",
+      "entry_price": 87.4126,
+      "exit_price": 86.2739,
+      "qty": 131.3137,
+      "pnl": -149.53,
+      "reason": "time_stop",
+      "bars_held": 5
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2022-10-11",
+      "exit_date": "2022-10-18",
+      "entry_price": 155.5678,
+      "exit_price": 154.003,
+      "qty": 73.7236,
+      "pnl": -115.36,
+      "reason": "time_stop",
+      "bars_held": 5
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2022-10-18",
+      "exit_date": "2022-10-20",
+      "entry_price": 85.1947,
+      "exit_price": 82.5975,
+      "qty": 135.8979,
+      "pnl": -352.95,
+      "reason": "stop_loss",
+      "bars_held": 2
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2022-10-20",
+      "exit_date": "2022-10-21",
+      "entry_price": 83.4377,
+      "exit_price": 80.8941,
+      "qty": 138.2519,
+      "pnl": -351.66,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2022-10-21",
+      "exit_date": "2022-10-24",
+      "entry_price": 152.056,
+      "exit_price": 153.3733,
+      "qty": 75.5855,
+      "pnl": 99.57,
+      "reason": "signal",
+      "bars_held": 1
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2022-10-21",
+      "exit_date": "2022-10-26",
+      "entry_price": 80.9067,
+      "exit_price": 83.2153,
+      "qty": 142.0553,
+      "pnl": 327.96,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2022-11-01",
+      "exit_date": "2022-11-07",
+      "entry_price": 153.8969,
+      "exit_price": 156.1419,
+      "qty": 75.0147,
+      "pnl": 168.41,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2022-11-03",
+      "exit_date": "2022-11-08",
+      "entry_price": 257.539,
+      "exit_price": 263.2781,
+      "qty": 44.7534,
+      "pnl": 256.85,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2022-11-04",
+      "exit_date": "2022-11-08",
+      "entry_price": 59.1305,
+      "exit_price": 60.4059,
+      "qty": 195.7665,
+      "pnl": 249.67,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2022-11-04",
+      "exit_date": "2022-11-08",
+      "entry_price": 359.9379,
+      "exit_price": 363.4982,
+      "qty": 32.1605,
+      "pnl": 114.5,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2022-11-04",
+      "exit_date": "2022-11-08",
+      "entry_price": 171.2954,
+      "exit_price": 172.3771,
+      "qty": 67.5778,
+      "pnl": 73.1,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2022-11-07",
+      "exit_date": "2022-11-10",
+      "entry_price": 82.6579,
+      "exit_price": 84.2564,
+      "qty": 140.5917,
+      "pnl": 224.74,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2022-11-10",
+      "exit_date": "2022-11-11",
+      "entry_price": 174.1006,
+      "exit_price": 177.6662,
+      "qty": 67.0589,
+      "pnl": 239.1,
+      "reason": "signal",
+      "bars_held": 1
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2022-11-22",
+      "exit_date": "2022-11-23",
+      "entry_price": 40.6746,
+      "exit_price": 40.6384,
+      "qty": 287.7392,
+      "pnl": -10.42,
+      "reason": "signal",
+      "bars_held": 1
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2022-11-22",
+      "exit_date": "2022-11-25",
+      "entry_price": 162.3812,
+      "exit_price": 162.7686,
+      "qty": 72.0754,
+      "pnl": 27.92,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2022-11-30",
+      "exit_date": "2022-12-01",
+      "entry_price": 63.0843,
+      "exit_price": 66.2794,
+      "qty": 185.558,
+      "pnl": 592.89,
+      "reason": "signal",
+      "bars_held": 1
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2022-12-06",
+      "exit_date": "2022-12-07",
+      "entry_price": 38.7014,
+      "exit_price": 37.5215,
+      "qty": 304.3029,
+      "pnl": -359.02,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2022-12-07",
+      "exit_date": "2022-12-09",
+      "entry_price": 37.9103,
+      "exit_price": 36.7546,
+      "qty": 309.5165,
+      "pnl": -357.71,
+      "reason": "stop_loss",
+      "bars_held": 2
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2022-12-07",
+      "exit_date": "2022-12-13",
+      "entry_price": 375.1564,
+      "exit_price": 391.263,
+      "qty": 31.2772,
+      "pnl": 503.77,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2022-12-07",
+      "exit_date": "2022-12-13",
+      "entry_price": 274.6358,
+      "exit_price": 290.1889,
+      "qty": 42.7251,
+      "pnl": 664.51,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2022-12-07",
+      "exit_date": "2022-12-13",
+      "entry_price": 63.2744,
+      "exit_price": 67.5213,
+      "qty": 185.444,
+      "pnl": 787.57,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2022-12-07",
+      "exit_date": "2022-12-13",
+      "entry_price": 172.0901,
+      "exit_price": 178.4571,
+      "qty": 68.1844,
+      "pnl": 434.13,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2022-12-09",
+      "exit_date": "2022-12-13",
+      "entry_price": 37.5414,
+      "exit_price": 38.4052,
+      "qty": 311.6695,
+      "pnl": 269.21,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2022-12-19",
+      "exit_date": "2022-12-22",
+      "entry_price": 367.7963,
+      "exit_price": 367.0262,
+      "qty": 32.654,
+      "pnl": -25.15,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2022-12-19",
+      "exit_date": "2022-12-22",
+      "entry_price": 268.8151,
+      "exit_price": 260.6203,
+      "qty": 44.6777,
+      "pnl": -366.13,
+      "reason": "stop_loss",
+      "bars_held": 3
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2022-12-19",
+      "exit_date": "2022-12-22",
+      "entry_price": 167.9404,
+      "exit_price": 167.5035,
+      "qty": 71.5137,
+      "pnl": -31.24,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2022-12-19",
+      "exit_date": "2022-12-22",
+      "entry_price": 62.1556,
+      "exit_price": 60.2608,
+      "qty": 193.2254,
+      "pnl": -366.13,
+      "reason": "stop_loss",
+      "bars_held": 3
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2022-12-20",
+      "exit_date": "2022-12-27",
+      "entry_price": 90.5721,
+      "exit_price": 87.811,
+      "qty": 131.8531,
+      "pnl": -364.06,
+      "reason": "stop_loss",
+      "bars_held": 4
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2022-12-29",
+      "exit_date": "2022-12-30",
+      "entry_price": 59.9506,
+      "exit_price": 60.2325,
+      "qty": 198.058,
+      "pnl": 55.85,
+      "reason": "signal",
+      "bars_held": 1
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2022-12-29",
+      "exit_date": "2022-12-30",
+      "entry_price": 258.1065,
+      "exit_price": 258.4957,
+      "qty": 46.0031,
+      "pnl": 17.9,
+      "reason": "signal",
+      "bars_held": 1
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2022-12-27",
+      "exit_date": "2023-01-04",
+      "entry_price": 88.0401,
+      "exit_price": 90.3415,
+      "qty": 134.8443,
+      "pnl": 310.33,
+      "reason": "signal",
+      "bars_held": 5
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2023-01-20",
+      "exit_date": "2023-01-23",
+      "entry_price": 374.1553,
+      "exit_price": 380.1244,
+      "qty": 31.8525,
+      "pnl": 190.13,
+      "reason": "signal",
+      "bars_held": 1
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2023-02-03",
+      "exit_date": "2023-02-08",
+      "entry_price": 38.844,
+      "exit_price": 39.5992,
+      "qty": 307.399,
+      "pnl": 232.13,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2023-02-06",
+      "exit_date": "2023-02-13",
+      "entry_price": 174.1971,
+      "exit_price": 172.6136,
+      "qty": 68.4531,
+      "pnl": -108.39,
+      "reason": "time_stop",
+      "bars_held": 5
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2023-02-08",
+      "exit_date": "2023-02-15",
+      "entry_price": 92.2632,
+      "exit_price": 90.8635,
+      "qty": 129.7399,
+      "pnl": -181.59,
+      "reason": "time_stop",
+      "bars_held": 5
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2023-02-16",
+      "exit_date": "2023-02-24",
+      "entry_price": 170.4252,
+      "exit_price": 168.3358,
+      "qty": 70.0229,
+      "pnl": -146.3,
+      "reason": "time_stop",
+      "bars_held": 5
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2023-02-17",
+      "exit_date": "2023-02-24",
+      "entry_price": 88.8024,
+      "exit_price": 89.012,
+      "qty": 134.4635,
+      "pnl": 28.18,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2023-02-22",
+      "exit_date": "2023-02-24",
+      "entry_price": 66.8736,
+      "exit_price": 66.4746,
+      "qty": 178.223,
+      "pnl": -71.11,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2023-02-21",
+      "exit_date": "2023-02-27",
+      "entry_price": 37.7709,
+      "exit_price": 38.0516,
+      "qty": 315.7069,
+      "pnl": 88.63,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2023-02-22",
+      "exit_date": "2023-03-01",
+      "entry_price": 383.1903,
+      "exit_price": 378.8692,
+      "qty": 31.1031,
+      "pnl": -134.4,
+      "reason": "time_stop",
+      "bars_held": 5
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2023-02-24",
+      "exit_date": "2023-03-01",
+      "entry_price": 168.5042,
+      "exit_price": 170.8645,
+      "qty": 70.6658,
+      "pnl": 166.79,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2023-03-10",
+      "exit_date": "2023-03-13",
+      "entry_price": 173.4996,
+      "exit_price": 168.2105,
+      "qty": 68.7349,
+      "pnl": -363.55,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2023-03-10",
+      "exit_date": "2023-03-13",
+      "entry_price": 37.5823,
+      "exit_price": 36.4366,
+      "qty": 317.3165,
+      "pnl": -363.55,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2023-03-10",
+      "exit_date": "2023-03-15",
+      "entry_price": 375.0089,
+      "exit_price": 369.7475,
+      "qty": 31.8005,
+      "pnl": -167.32,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2023-03-13",
+      "exit_date": "2023-03-15",
+      "entry_price": 36.1544,
+      "exit_price": 35.0523,
+      "qty": 326.8457,
+      "pnl": -360.24,
+      "reason": "stop_loss",
+      "bars_held": 2
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2023-03-13",
+      "exit_date": "2023-03-15",
+      "entry_price": 281.4378,
+      "exit_price": 288.9814,
+      "qty": 41.9877,
+      "pnl": 316.74,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2023-03-13",
+      "exit_date": "2023-03-17",
+      "entry_price": 165.9303,
+      "exit_price": 167.2249,
+      "qty": 71.2162,
+      "pnl": 92.2,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2023-03-16",
+      "exit_date": "2023-03-22",
+      "entry_price": 33.9722,
+      "exit_price": 36.459,
+      "qty": 348.539,
+      "pnl": 866.73,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2023-04-13",
+      "exit_date": "2023-04-14",
+      "entry_price": 72.1857,
+      "exit_price": 72.7597,
+      "qty": 165.2405,
+      "pnl": 94.85,
+      "reason": "signal",
+      "bars_held": 1
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2023-04-13",
+      "exit_date": "2023-04-14",
+      "entry_price": 309.4975,
+      "exit_price": 311.8987,
+      "qty": 38.5399,
+      "pnl": 92.54,
+      "reason": "signal",
+      "bars_held": 1
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2023-04-17",
+      "exit_date": "2023-04-21",
+      "entry_price": 92.1777,
+      "exit_price": 92.8616,
+      "qty": 129.6463,
+      "pnl": 88.66,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2023-04-24",
+      "exit_date": "2023-04-25",
+      "entry_price": 38.4328,
+      "exit_price": 38.7252,
+      "qty": 311.2083,
+      "pnl": 91.01,
+      "reason": "signal",
+      "bars_held": 1
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2023-04-21",
+      "exit_date": "2023-04-28",
+      "entry_price": 310.5592,
+      "exit_price": 314.3736,
+      "qty": 38.5148,
+      "pnl": 146.91,
+      "reason": "signal",
+      "bars_held": 5
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2023-04-25",
+      "exit_date": "2023-04-28",
+      "entry_price": 71.73,
+      "exit_price": 73.0387,
+      "qty": 166.5195,
+      "pnl": 217.92,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2023-04-26",
+      "exit_date": "2023-04-28",
+      "entry_price": 391.5848,
+      "exit_price": 395.7813,
+      "qty": 30.5158,
+      "pnl": 128.06,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2023-04-26",
+      "exit_date": "2023-05-01",
+      "entry_price": 166.2625,
+      "exit_price": 168.7677,
+      "qty": 71.8715,
+      "pnl": 180.05,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2023-05-05",
+      "exit_date": "2023-05-08",
+      "entry_price": 393.6933,
+      "exit_price": 397.2048,
+      "qty": 30.6475,
+      "pnl": 107.62,
+      "reason": "signal",
+      "bars_held": 1
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2023-05-03",
+      "exit_date": "2023-05-09",
+      "entry_price": 36.0599,
+      "exit_price": 36.0783,
+      "qty": 334.2438,
+      "pnl": 6.13,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2023-05-10",
+      "exit_date": "2023-05-12",
+      "entry_price": 91.7466,
+      "exit_price": 92.875,
+      "qty": 131.5194,
+      "pnl": 148.4,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2023-05-12",
+      "exit_date": "2023-05-18",
+      "entry_price": 35.7469,
+      "exit_price": 35.3486,
+      "qty": 338.0509,
+      "pnl": -134.65,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2023-05-17",
+      "exit_date": "2023-05-24",
+      "entry_price": 184.4022,
+      "exit_price": 183.4482,
+      "qty": 65.4953,
+      "pnl": -62.48,
+      "reason": "signal",
+      "bars_held": 5
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2023-05-19",
+      "exit_date": "2023-05-26",
+      "entry_price": 89.6138,
+      "exit_price": 88.5163,
+      "qty": 134.6012,
+      "pnl": -147.71,
+      "reason": "time_stop",
+      "bars_held": 5
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2023-05-25",
+      "exit_date": "2023-05-30",
+      "entry_price": 399.3064,
+      "exit_price": 405.9189,
+      "qty": 30.167,
+      "pnl": 199.48,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2023-05-26",
+      "exit_date": "2023-05-31",
+      "entry_price": 181.1005,
+      "exit_price": 182.2988,
+      "qty": 66.5959,
+      "pnl": 79.8,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2023-05-31",
+      "exit_date": "2023-06-05",
+      "entry_price": 34.8168,
+      "exit_price": 36.7445,
+      "qty": 346.8556,
+      "pnl": 668.65,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2023-06-08",
+      "exit_date": "2023-06-12",
+      "entry_price": 80.1922,
+      "exit_price": 81.8204,
+      "qty": 151.5937,
+      "pnl": 246.83,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2023-06-23",
+      "exit_date": "2023-06-28",
+      "entry_price": 174.9899,
+      "exit_price": 176.9619,
+      "qty": 69.6398,
+      "pnl": 137.33,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2023-06-23",
+      "exit_date": "2023-06-30",
+      "entry_price": 179.6898,
+      "exit_price": 177.6012,
+      "qty": 67.8183,
+      "pnl": -141.65,
+      "reason": "time_stop",
+      "bars_held": 5
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2023-06-30",
+      "exit_date": "2023-07-03",
+      "entry_price": 177.7788,
+      "exit_price": 178.5207,
+      "qty": 68.5444,
+      "pnl": 50.85,
+      "reason": "signal",
+      "bars_held": 1
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2023-07-07",
+      "exit_date": "2023-07-10",
+      "entry_price": 36.0205,
+      "exit_price": 36.8441,
+      "qty": 338.469,
+      "pnl": 278.76,
+      "reason": "signal",
+      "bars_held": 1
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2023-07-07",
+      "exit_date": "2023-07-11",
+      "entry_price": 177.1292,
+      "exit_price": 182.271,
+      "qty": 68.8302,
+      "pnl": 353.91,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2023-07-07",
+      "exit_date": "2023-07-13",
+      "entry_price": 88.2446,
+      "exit_price": 90.0497,
+      "qty": 138.1596,
+      "pnl": 249.39,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2023-07-28",
+      "exit_date": "2023-08-03",
+      "entry_price": 88.4404,
+      "exit_price": 85.7443,
+      "qty": 139.0506,
+      "pnl": -374.9,
+      "reason": "stop_loss",
+      "bars_held": 4
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2023-08-04",
+      "exit_date": "2023-08-08",
+      "entry_price": 435.5593,
+      "exit_price": 432.5754,
+      "qty": 28.176,
+      "pnl": -84.08,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2023-08-03",
+      "exit_date": "2023-08-09",
+      "entry_price": 84.928,
+      "exit_price": 86.3494,
+      "qty": 144.2717,
+      "pnl": 205.07,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2023-08-04",
+      "exit_date": "2023-08-09",
+      "entry_price": 84.9119,
+      "exit_price": 82.3234,
+      "qty": 144.5299,
+      "pnl": -374.12,
+      "reason": "stop_loss",
+      "bars_held": 3
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2023-08-03",
+      "exit_date": "2023-08-10",
+      "entry_price": 366.1418,
+      "exit_price": 364.8219,
+      "qty": 33.4644,
+      "pnl": -44.17,
+      "reason": "time_stop",
+      "bars_held": 5
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2023-08-10",
+      "exit_date": "2023-08-15",
+      "entry_price": 83.1786,
+      "exit_price": 82.9287,
+      "qty": 146.672,
+      "pnl": -36.65,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2023-08-09",
+      "exit_date": "2023-08-16",
+      "entry_price": 186.703,
+      "exit_price": 181.0113,
+      "qty": 65.3748,
+      "pnl": -372.09,
+      "reason": "stop_loss",
+      "bars_held": 5
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2023-08-10",
+      "exit_date": "2023-08-17",
+      "entry_price": 178.3091,
+      "exit_price": 176.4417,
+      "qty": 68.4204,
+      "pnl": -127.77,
+      "reason": "time_stop",
+      "bars_held": 5
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2023-08-16",
+      "exit_date": "2023-08-18",
+      "entry_price": 181.979,
+      "exit_price": 176.4314,
+      "qty": 66.7411,
+      "pnl": -370.26,
+      "reason": "stop_loss",
+      "bars_held": 2
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2023-08-17",
+      "exit_date": "2023-08-22",
+      "entry_price": 176.6183,
+      "exit_price": 175.7421,
+      "qty": 68.5353,
+      "pnl": -60.05,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2023-08-17",
+      "exit_date": "2023-08-22",
+      "entry_price": 426.3209,
+      "exit_price": 425.9141,
+      "qty": 28.3931,
+      "pnl": -11.55,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2023-08-18",
+      "exit_date": "2023-08-22",
+      "entry_price": 349.7218,
+      "exit_price": 360.4751,
+      "qty": 34.5216,
+      "pnl": 371.22,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2023-08-16",
+      "exit_date": "2023-08-23",
+      "entry_price": 84.1161,
+      "exit_price": 84.0498,
+      "qty": 144.3896,
+      "pnl": -9.56,
+      "reason": "time_stop",
+      "bars_held": 5
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2023-08-18",
+      "exit_date": "2023-08-24",
+      "entry_price": 176.3839,
+      "exit_price": 179.1474,
+      "qty": 68.447,
+      "pnl": 189.16,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2023-08-25",
+      "exit_date": "2023-08-28",
+      "entry_price": 39.943,
+      "exit_price": 40.1545,
+      "qty": 304.5771,
+      "pnl": 64.44,
+      "reason": "signal",
+      "bars_held": 1
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2023-09-06",
+      "exit_date": "2023-09-11",
+      "entry_price": 84.1983,
+      "exit_price": 83.7655,
+      "qty": 144.5807,
+      "pnl": -62.58,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2023-09-07",
+      "exit_date": "2023-09-12",
+      "entry_price": 178.3992,
+      "exit_price": 177.0214,
+      "qty": 68.2261,
+      "pnl": -94.0,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2023-09-08",
+      "exit_date": "2023-09-12",
+      "entry_price": 429.9351,
+      "exit_price": 431.4845,
+      "qty": 28.317,
+      "pnl": 43.87,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2023-09-08",
+      "exit_date": "2023-09-12",
+      "entry_price": 366.2107,
+      "exit_price": 369.0506,
+      "qty": 33.2444,
+      "pnl": 94.41,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2023-09-11",
+      "exit_date": "2023-09-15",
+      "entry_price": 179.3363,
+      "exit_price": 178.7025,
+      "qty": 68.0046,
+      "pnl": -43.1,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2023-09-18",
+      "exit_date": "2023-09-25",
+      "entry_price": 83.0887,
+      "exit_price": 80.5557,
+      "qty": 146.4229,
+      "pnl": -370.88,
+      "reason": "stop_loss",
+      "bars_held": 5
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2023-09-21",
+      "exit_date": "2023-09-27",
+      "entry_price": 422.5297,
+      "exit_price": 409.6489,
+      "qty": 28.7117,
+      "pnl": -369.83,
+      "reason": "stop_loss",
+      "bars_held": 4
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2023-09-21",
+      "exit_date": "2023-09-28",
+      "entry_price": 355.6896,
+      "exit_price": 348.7454,
+      "qty": 34.1072,
+      "pnl": -236.85,
+      "reason": "time_stop",
+      "bars_held": 5
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2023-09-21",
+      "exit_date": "2023-09-28",
+      "entry_price": 172.7925,
+      "exit_price": 171.0884,
+      "qty": 70.2089,
+      "pnl": -119.64,
+      "reason": "signal",
+      "bars_held": 5
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2023-09-21",
+      "exit_date": "2023-09-28",
+      "entry_price": 81.1174,
+      "exit_price": 79.365,
+      "qty": 149.5556,
+      "pnl": -262.09,
+      "reason": "time_stop",
+      "bars_held": 5
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2023-09-27",
+      "exit_date": "2023-10-02",
+      "entry_price": 175.3576,
+      "exit_price": 170.0119,
+      "qty": 68.5162,
+      "pnl": -366.27,
+      "reason": "stop_loss",
+      "bars_held": 3
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2023-09-28",
+      "exit_date": "2023-10-05",
+      "entry_price": 78.4085,
+      "exit_price": 77.2241,
+      "qty": 152.8593,
+      "pnl": -181.06,
+      "reason": "time_stop",
+      "bars_held": 5
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2023-10-02",
+      "exit_date": "2023-10-09",
+      "entry_price": 170.3151,
+      "exit_price": 171.0944,
+      "qty": 70.1728,
+      "pnl": 54.69,
+      "reason": "signal",
+      "bars_held": 5
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2023-10-04",
+      "exit_date": "2023-10-09",
+      "entry_price": 409.3118,
+      "exit_price": 414.2407,
+      "qty": 29.1479,
+      "pnl": 143.67,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2023-10-04",
+      "exit_date": "2023-10-09",
+      "entry_price": 166.3189,
+      "exit_price": 166.9591,
+      "qty": 71.7331,
+      "pnl": 45.92,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2023-10-05",
+      "exit_date": "2023-10-10",
+      "entry_price": 38.9698,
+      "exit_price": 40.8424,
+      "qty": 306.2485,
+      "pnl": 573.48,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2023-10-16",
+      "exit_date": "2023-10-18",
+      "entry_price": 167.0289,
+      "exit_price": 168.708,
+      "qty": 72.0559,
+      "pnl": 120.99,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2023-10-20",
+      "exit_date": "2023-10-24",
+      "entry_price": 74.5005,
+      "exit_price": 75.7264,
+      "qty": 161.7431,
+      "pnl": 198.28,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2023-10-20",
+      "exit_date": "2023-10-25",
+      "entry_price": 354.3686,
+      "exit_price": 351.2962,
+      "qty": 34.004,
+      "pnl": -104.47,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2023-10-20",
+      "exit_date": "2023-10-26",
+      "entry_price": 413.1036,
+      "exit_price": 400.5101,
+      "qty": 29.1693,
+      "pnl": -367.34,
+      "reason": "stop_loss",
+      "bars_held": 4
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2023-10-24",
+      "exit_date": "2023-10-26",
+      "entry_price": 41.0446,
+      "exit_price": 39.7934,
+      "qty": 294.5414,
+      "pnl": -368.54,
+      "reason": "stop_loss",
+      "bars_held": 2
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2023-10-23",
+      "exit_date": "2023-10-30",
+      "entry_price": 80.1677,
+      "exit_price": 79.6206,
+      "qty": 150.1299,
+      "pnl": -82.14,
+      "reason": "time_stop",
+      "bars_held": 5
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2023-10-23",
+      "exit_date": "2023-10-30",
+      "entry_price": 161.1157,
+      "exit_price": 159.1378,
+      "qty": 74.7014,
+      "pnl": -147.76,
+      "reason": "time_stop",
+      "bars_held": 5
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2023-10-27",
+      "exit_date": "2023-11-01",
+      "entry_price": 341.5231,
+      "exit_price": 346.3917,
+      "qty": 34.8214,
+      "pnl": 169.53,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2023-10-27",
+      "exit_date": "2023-11-01",
+      "entry_price": 401.6699,
+      "exit_price": 406.1222,
+      "qty": 29.6072,
+      "pnl": 131.82,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2023-10-26",
+      "exit_date": "2023-11-02",
+      "entry_price": 39.9242,
+      "exit_price": 39.2441,
+      "qty": 298.9167,
+      "pnl": -203.31,
+      "reason": "time_stop",
+      "bars_held": 5
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2023-11-09",
+      "exit_date": "2023-11-14",
+      "entry_price": 38.4349,
+      "exit_price": 38.8433,
+      "qty": 311.0988,
+      "pnl": 127.04,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2023-11-09",
+      "exit_date": "2023-11-15",
+      "entry_price": 181.0705,
+      "exit_price": 181.939,
+      "qty": 66.0354,
+      "pnl": 57.35,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2023-11-30",
+      "exit_date": "2023-12-01",
+      "entry_price": 39.0712,
+      "exit_price": 38.9124,
+      "qty": 306.5989,
+      "pnl": -48.69,
+      "reason": "signal",
+      "bars_held": 1
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2023-12-06",
+      "exit_date": "2023-12-12",
+      "entry_price": 38.0891,
+      "exit_price": 37.572,
+      "qty": 314.3508,
+      "pnl": -162.55,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2023-12-12",
+      "exit_date": "2023-12-14",
+      "entry_price": 183.9319,
+      "exit_price": 188.7656,
+      "qty": 64.9906,
+      "pnl": 314.14,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2024-01-03",
+      "exit_date": "2024-01-09",
+      "entry_price": 91.5934,
+      "exit_price": 92.2704,
+      "qty": 130.9215,
+      "pnl": 88.64,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2024-01-03",
+      "exit_date": "2024-01-09",
+      "entry_price": 395.2606,
+      "exit_price": 396.8206,
+      "qty": 30.3383,
+      "pnl": 47.33,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2024-01-04",
+      "exit_date": "2024-01-09",
+      "entry_price": 189.4286,
+      "exit_price": 189.5221,
+      "qty": 63.1631,
+      "pnl": 5.9,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2024-01-04",
+      "exit_date": "2024-01-09",
+      "entry_price": 455.9856,
+      "exit_price": 459.0025,
+      "qty": 26.2396,
+      "pnl": 79.16,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2024-01-04",
+      "exit_date": "2024-01-11",
+      "entry_price": 189.1745,
+      "exit_price": 187.926,
+      "qty": 63.2479,
+      "pnl": -78.97,
+      "reason": "time_stop",
+      "bars_held": 5
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2024-01-10",
+      "exit_date": "2024-01-16",
+      "entry_price": 38.4131,
+      "exit_price": 38.3654,
+      "qty": 312.533,
+      "pnl": -14.91,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2024-01-11",
+      "exit_date": "2024-01-16",
+      "entry_price": 188.114,
+      "exit_price": 189.0554,
+      "qty": 63.7624,
+      "pnl": 60.03,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2024-01-18",
+      "exit_date": "2024-01-19",
+      "entry_price": 461.5455,
+      "exit_price": 464.6249,
+      "qty": 26.0411,
+      "pnl": 80.19,
+      "reason": "signal",
+      "bars_held": 1
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2024-01-17",
+      "exit_date": "2024-01-22",
+      "entry_price": 183.6401,
+      "exit_price": 189.327,
+      "qty": 65.4215,
+      "pnl": 372.05,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2024-01-17",
+      "exit_date": "2024-01-23",
+      "entry_price": 85.7597,
+      "exit_price": 85.0309,
+      "qty": 140.0892,
+      "pnl": -102.09,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2024-02-14",
+      "exit_date": "2024-02-16",
+      "entry_price": 83.9438,
+      "exit_price": 84.0234,
+      "qty": 143.5251,
+      "pnl": 11.43,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2024-02-13",
+      "exit_date": "2024-02-20",
+      "entry_price": 185.4427,
+      "exit_price": 187.866,
+      "qty": 65.0121,
+      "pnl": 157.55,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2024-02-21",
+      "exit_date": "2024-02-23",
+      "entry_price": 97.9255,
+      "exit_price": 102.1778,
+      "qty": 123.3213,
+      "pnl": 524.4,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2024-02-22",
+      "exit_date": "2024-02-23",
+      "entry_price": 429.4171,
+      "exit_price": 434.0826,
+      "qty": 28.2432,
+      "pnl": 131.77,
+      "reason": "signal",
+      "bars_held": 1
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2024-03-13",
+      "exit_date": "2024-03-20",
+      "entry_price": 86.2147,
+      "exit_price": 84.8526,
+      "qty": 140.9857,
+      "pnl": -192.04,
+      "reason": "time_stop",
+      "bars_held": 5
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2024-04-05",
+      "exit_date": "2024-04-08",
+      "entry_price": 502.4882,
+      "exit_price": 506.5622,
+      "qty": 24.1465,
+      "pnl": 98.37,
+      "reason": "signal",
+      "bars_held": 1
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2024-04-05",
+      "exit_date": "2024-04-09",
+      "entry_price": 432.2512,
+      "exit_price": 437.929,
+      "qty": 28.0701,
+      "pnl": 159.38,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2024-04-05",
+      "exit_date": "2024-04-09",
+      "entry_price": 101.2634,
+      "exit_price": 102.2824,
+      "qty": 119.8196,
+      "pnl": 122.09,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2024-04-03",
+      "exit_date": "2024-04-10",
+      "entry_price": 83.5342,
+      "exit_price": 83.3959,
+      "qty": 145.2338,
+      "pnl": -20.1,
+      "reason": "signal",
+      "bars_held": 5
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2024-04-15",
+      "exit_date": "2024-04-16",
+      "entry_price": 45.326,
+      "exit_price": 43.9443,
+      "qty": 268.613,
+      "pnl": -371.16,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2024-04-18",
+      "exit_date": "2024-04-19",
+      "entry_price": 422.0679,
+      "exit_price": 409.2012,
+      "qty": 28.6238,
+      "pnl": -368.29,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2024-04-16",
+      "exit_date": "2024-04-22",
+      "entry_price": 44.6034,
+      "exit_price": 44.2869,
+      "qty": 271.9665,
+      "pnl": -86.07,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2024-04-17",
+      "exit_date": "2024-04-22",
+      "entry_price": 81.3466,
+      "exit_price": 81.0915,
+      "qty": 148.6376,
+      "pnl": -37.91,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2024-04-16",
+      "exit_date": "2024-04-23",
+      "entry_price": 190.2521,
+      "exit_price": 190.8929,
+      "qty": 63.7608,
+      "pnl": 40.86,
+      "reason": "signal",
+      "bars_held": 5
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2024-04-16",
+      "exit_date": "2024-04-23",
+      "entry_price": 493.1897,
+      "exit_price": 489.6134,
+      "qty": 24.5963,
+      "pnl": -87.96,
+      "reason": "signal",
+      "bars_held": 5
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2024-04-19",
+      "exit_date": "2024-04-24",
+      "entry_price": 417.8422,
+      "exit_price": 423.3366,
+      "qty": 28.8367,
+      "pnl": 158.44,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2024-04-22",
+      "exit_date": "2024-04-24",
+      "entry_price": 95.8347,
+      "exit_price": 97.999,
+      "qty": 125.7306,
+      "pnl": 272.12,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2024-04-24",
+      "exit_date": "2024-04-29",
+      "entry_price": 214.8674,
+      "exit_price": 215.912,
+      "qty": 56.3956,
+      "pnl": 58.91,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2024-04-26",
+      "exit_date": "2024-04-30",
+      "entry_price": 80.779,
+      "exit_price": 80.8537,
+      "qty": 150.1557,
+      "pnl": 11.22,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2024-05-01",
+      "exit_date": "2024-05-07",
+      "entry_price": 213.0665,
+      "exit_price": 214.4127,
+      "qty": 56.9117,
+      "pnl": 76.62,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2024-05-02",
+      "exit_date": "2024-05-07",
+      "entry_price": 43.4772,
+      "exit_price": 43.7994,
+      "qty": 278.9147,
+      "pnl": 89.87,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2024-05-23",
+      "exit_date": "2024-05-29",
+      "entry_price": 43.4255,
+      "exit_price": 43.1524,
+      "qty": 279.6963,
+      "pnl": -76.39,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2024-05-24",
+      "exit_date": "2024-05-31",
+      "entry_price": 200.4101,
+      "exit_price": 200.3662,
+      "qty": 60.51,
+      "pnl": -2.65,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2024-05-24",
+      "exit_date": "2024-05-31",
+      "entry_price": 217.0685,
+      "exit_price": 217.6611,
+      "qty": 55.8663,
+      "pnl": 33.11,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2024-05-30",
+      "exit_date": "2024-06-03",
+      "entry_price": 82.3021,
+      "exit_price": 83.4584,
+      "qty": 147.3532,
+      "pnl": 170.38,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2024-05-31",
+      "exit_date": "2024-06-03",
+      "entry_price": 511.4057,
+      "exit_price": 516.1929,
+      "qty": 23.7649,
+      "pnl": 113.77,
+      "reason": "signal",
+      "bars_held": 1
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2024-05-31",
+      "exit_date": "2024-06-06",
+      "entry_price": 103.9556,
+      "exit_price": 106.5608,
+      "qty": 116.9107,
+      "pnl": 304.58,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2024-06-14",
+      "exit_date": "2024-06-20",
+      "entry_price": 41.5766,
+      "exit_price": 41.6757,
+      "qty": 293.7009,
+      "pnl": 29.1,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2024-06-25",
+      "exit_date": "2024-06-27",
+      "entry_price": 471.8827,
+      "exit_price": 475.4214,
+      "qty": 25.8848,
+      "pnl": 91.6,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2024-06-25",
+      "exit_date": "2024-06-28",
+      "entry_price": 110.8677,
+      "exit_price": 112.2844,
+      "qty": 110.1727,
+      "pnl": 156.08,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2024-07-02",
+      "exit_date": "2024-07-05",
+      "entry_price": 83.8446,
+      "exit_price": 85.2294,
+      "qty": 146.0358,
+      "pnl": 202.24,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2024-07-09",
+      "exit_date": "2024-07-12",
+      "entry_price": 41.9389,
+      "exit_price": 42.9083,
+      "qty": 292.5346,
+      "pnl": 283.57,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2024-07-18",
+      "exit_date": "2024-07-23",
+      "entry_price": 112.2384,
+      "exit_price": 111.3056,
+      "qty": 109.6114,
+      "pnl": -102.24,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2024-07-18",
+      "exit_date": "2024-07-24",
+      "entry_price": 481.2595,
+      "exit_price": 466.5883,
+      "qty": 25.5634,
+      "pnl": -375.04,
+      "reason": "stop_loss",
+      "bars_held": 4
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2024-07-22",
+      "exit_date": "2024-07-24",
+      "entry_price": 541.8739,
+      "exit_price": 537.2795,
+      "qty": 22.6745,
+      "pnl": -104.17,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2024-07-24",
+      "exit_date": "2024-07-26",
+      "entry_price": 42.8424,
+      "exit_price": 43.3147,
+      "qty": 285.531,
+      "pnl": 134.85,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2024-07-24",
+      "exit_date": "2024-07-29",
+      "entry_price": 85.6106,
+      "exit_price": 86.5226,
+      "qty": 142.8893,
+      "pnl": 130.32,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2024-07-25",
+      "exit_date": "2024-07-30",
+      "entry_price": 530.4582,
+      "exit_price": 534.7345,
+      "qty": 23.0892,
+      "pnl": 98.74,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2024-07-26",
+      "exit_date": "2024-07-30",
+      "entry_price": 107.1069,
+      "exit_price": 103.8418,
+      "qty": 114.4572,
+      "pnl": -373.72,
+      "reason": "stop_loss",
+      "bars_held": 2
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2024-07-26",
+      "exit_date": "2024-07-31",
+      "entry_price": 220.07,
+      "exit_price": 223.6181,
+      "qty": 55.7057,
+      "pnl": 197.65,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2024-07-25",
+      "exit_date": "2024-08-01",
+      "entry_price": 459.6413,
+      "exit_price": 467.1432,
+      "qty": 26.6465,
+      "pnl": 199.9,
+      "reason": "signal",
+      "bars_held": 5
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2024-08-05",
+      "exit_date": "2024-08-09",
+      "entry_price": 194.2081,
+      "exit_price": 202.9843,
+      "qty": 63.2278,
+      "pnl": 554.9,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2024-08-05",
+      "exit_date": "2024-08-09",
+      "entry_price": 40.9172,
+      "exit_price": 42.0955,
+      "qty": 300.1029,
+      "pnl": 353.61,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2024-08-06",
+      "exit_date": "2024-08-09",
+      "entry_price": 508.7735,
+      "exit_price": 518.6315,
+      "qty": 24.2435,
+      "pnl": 238.99,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2024-08-06",
+      "exit_date": "2024-08-09",
+      "entry_price": 433.3843,
+      "exit_price": 442.3681,
+      "qty": 28.4607,
+      "pnl": 255.68,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2024-08-06",
+      "exit_date": "2024-08-09",
+      "entry_price": 99.1797,
+      "exit_price": 101.137,
+      "qty": 124.3645,
+      "pnl": 243.42,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2024-08-30",
+      "exit_date": "2024-09-04",
+      "entry_price": 90.618,
+      "exit_price": 91.008,
+      "qty": 137.6874,
+      "pnl": 53.7,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2024-09-05",
+      "exit_date": "2024-09-06",
+      "entry_price": 41.8206,
+      "exit_price": 40.5457,
+      "qty": 298.4984,
+      "pnl": -380.56,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2024-09-06",
+      "exit_date": "2024-09-10",
+      "entry_price": 41.2909,
+      "exit_price": 40.0321,
+      "qty": 301.2224,
+      "pnl": -379.16,
+      "reason": "stop_loss",
+      "bars_held": 2
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2024-09-06",
+      "exit_date": "2024-09-11",
+      "entry_price": 207.9764,
+      "exit_price": 201.6362,
+      "qty": 59.8036,
+      "pnl": -379.16,
+      "reason": "stop_loss",
+      "bars_held": 3
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2024-09-09",
+      "exit_date": "2024-09-11",
+      "entry_price": 102.1586,
+      "exit_price": 104.3453,
+      "qty": 121.3865,
+      "pnl": 265.43,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2024-09-09",
+      "exit_date": "2024-09-11",
+      "entry_price": 533.6919,
+      "exit_price": 537.123,
+      "qty": 23.2356,
+      "pnl": 79.72,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2024-09-09",
+      "exit_date": "2024-09-11",
+      "entry_price": 449.075,
+      "exit_price": 455.4092,
+      "qty": 27.6138,
+      "pnl": 174.91,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2024-09-12",
+      "exit_date": "2024-09-16",
+      "entry_price": 40.0562,
+      "exit_price": 40.7865,
+      "qty": 309.7929,
+      "pnl": 226.22,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2024-09-23",
+      "exit_date": "2024-09-30",
+      "entry_price": 91.6761,
+      "exit_price": 91.7146,
+      "qty": 135.6546,
+      "pnl": 5.23,
+      "reason": "signal",
+      "bars_held": 5
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2024-09-27",
+      "exit_date": "2024-10-01",
+      "entry_price": 40.9737,
+      "exit_price": 41.4568,
+      "qty": 303.5266,
+      "pnl": 146.65,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2024-10-04",
+      "exit_date": "2024-10-07",
+      "entry_price": 215.9334,
+      "exit_price": 215.0781,
+      "qty": 57.6776,
+      "pnl": -49.33,
+      "reason": "signal",
+      "bars_held": 1
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2024-10-07",
+      "exit_date": "2024-10-14",
+      "entry_price": 88.6856,
+      "exit_price": 86.7874,
+      "qty": 140.3676,
+      "pnl": -266.45,
+      "reason": "time_stop",
+      "bars_held": 5
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2024-10-09",
+      "exit_date": "2024-10-14",
+      "entry_price": 241.2806,
+      "exit_price": 245.0374,
+      "qty": 51.5562,
+      "pnl": 193.69,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2024-10-14",
+      "exit_date": "2024-10-16",
+      "entry_price": 86.8742,
+      "exit_price": 88.9794,
+      "qty": 143.194,
+      "pnl": 301.46,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2024-10-16",
+      "exit_date": "2024-10-23",
+      "entry_price": 43.0627,
+      "exit_price": 42.8957,
+      "qty": 289.7182,
+      "pnl": -48.36,
+      "reason": "time_stop",
+      "bars_held": 5
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2024-10-22",
+      "exit_date": "2024-10-25",
+      "entry_price": 86.51,
+      "exit_price": 86.7407,
+      "qty": 144.2043,
+      "pnl": 33.27,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2024-10-23",
+      "exit_date": "2024-10-29",
+      "entry_price": 216.6621,
+      "exit_price": 217.144,
+      "qty": 57.5094,
+      "pnl": 27.71,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2024-10-24",
+      "exit_date": "2024-10-29",
+      "entry_price": 570.0542,
+      "exit_price": 569.3567,
+      "qty": 21.8695,
+      "pnl": -15.25,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2024-10-29",
+      "exit_date": "2024-11-05",
+      "entry_price": 42.4474,
+      "exit_price": 42.8862,
+      "qty": 293.91,
+      "pnl": 128.97,
+      "reason": "signal",
+      "bars_held": 5
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2024-11-01",
+      "exit_date": "2024-11-06",
+      "entry_price": 561.5424,
+      "exit_price": 578.5376,
+      "qty": 22.1865,
+      "pnl": 377.06,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2024-11-01",
+      "exit_date": "2024-11-06",
+      "entry_price": 110.2885,
+      "exit_price": 114.5314,
+      "qty": 112.9643,
+      "pnl": 479.29,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2024-11-01",
+      "exit_date": "2024-11-06",
+      "entry_price": 481.906,
+      "exit_price": 496.3579,
+      "qty": 25.8529,
+      "pnl": 373.62,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2024-11-07",
+      "exit_date": "2024-11-12",
+      "entry_price": 248.4141,
+      "exit_price": 240.8412,
+      "qty": 50.8779,
+      "pnl": -385.29,
+      "reason": "stop_loss",
+      "bars_held": 3
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2024-11-13",
+      "exit_date": "2024-11-19",
+      "entry_price": 241.4307,
+      "exit_price": 242.6286,
+      "qty": 52.1581,
+      "pnl": 62.48,
+      "reason": "signal",
+      "bars_held": 4
+    },
+    {
+      "ticker": "QQQ",
+      "entry_date": "2024-11-18",
+      "exit_date": "2024-11-21",
+      "entry_price": 494.4425,
+      "exit_price": 501.9902,
+      "qty": 25.4639,
+      "pnl": 192.19,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2024-11-18",
+      "exit_date": "2024-11-21",
+      "entry_price": 113.3769,
+      "exit_price": 115.5713,
+      "qty": 111.0493,
+      "pnl": 243.69,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2024-11-18",
+      "exit_date": "2024-11-21",
+      "entry_price": 576.1873,
+      "exit_price": 582.6616,
+      "qty": 21.8513,
+      "pnl": 141.47,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2024-11-18",
+      "exit_date": "2024-11-21",
+      "entry_price": 225.7114,
+      "exit_price": 228.3779,
+      "qty": 55.7811,
+      "pnl": 148.74,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2024-12-05",
+      "exit_date": "2024-12-12",
+      "entry_price": 44.1501,
+      "exit_price": 42.8042,
+      "qty": 287.365,
+      "pnl": -386.77,
+      "reason": "stop_loss",
+      "bars_held": 5
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2024-12-13",
+      "exit_date": "2024-12-16",
+      "entry_price": 42.8719,
+      "exit_price": 41.5649,
+      "qty": 294.2573,
+      "pnl": -384.58,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2024-12-16",
+      "exit_date": "2024-12-17",
+      "entry_price": 42.4331,
+      "exit_price": 41.1395,
+      "qty": 296.3178,
+      "pnl": -383.31,
+      "reason": "stop_loss",
+      "bars_held": 1
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2024-12-16",
+      "exit_date": "2024-12-18",
+      "entry_price": 229.3449,
+      "exit_price": 222.3533,
+      "qty": 54.8243,
+      "pnl": -383.31,
+      "reason": "stop_loss",
+      "bars_held": 2
+    },
+    {
+      "ticker": "TLT",
+      "entry_date": "2024-12-12",
+      "exit_date": "2024-12-19",
+      "entry_price": 86.1537,
+      "exit_price": 83.5273,
+      "qty": 146.7234,
+      "pnl": -385.35,
+      "reason": "stop_loss",
+      "bars_held": 5
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2024-12-17",
+      "exit_date": "2024-12-19",
+      "entry_price": 41.3028,
+      "exit_price": 40.0436,
+      "qty": 303.2025,
+      "pnl": -381.77,
+      "reason": "stop_loss",
+      "bars_held": 2
+    },
+    {
+      "ticker": "GLD",
+      "entry_date": "2024-12-19",
+      "exit_date": "2024-12-23",
+      "entry_price": 239.7898,
+      "exit_price": 241.4792,
+      "qty": 51.7561,
+      "pnl": 87.44,
+      "reason": "signal",
+      "bars_held": 2
+    },
+    {
+      "ticker": "XLE",
+      "entry_date": "2024-12-19",
+      "exit_date": "2024-12-24",
+      "entry_price": 40.511,
+      "exit_price": 40.4401,
+      "qty": 306.3504,
+      "pnl": -21.73,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "SPY",
+      "entry_date": "2024-12-19",
+      "exit_date": "2024-12-24",
+      "entry_price": 581.2395,
+      "exit_price": 587.2432,
+      "qty": 21.3519,
+      "pnl": 128.19,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "XLK",
+      "entry_date": "2024-12-19",
+      "exit_date": "2024-12-24",
+      "entry_price": 116.2967,
+      "exit_price": 118.5137,
+      "qty": 106.7148,
+      "pnl": 236.59,
+      "reason": "signal",
+      "bars_held": 3
+    },
+    {
+      "ticker": "IWM",
+      "entry_date": "2024-12-19",
+      "exit_date": "2024-12-26",
+      "entry_price": 220.4855,
+      "exit_price": 219.4462,
+      "qty": 56.2875,
+      "pnl": -58.5,
+      "reason": "signal",
+      "bars_held": 4
+    }
+  ],
+  "equity_curve": [
+    {
+      "date": "2021-01-05",
+      "equity": 100000.0
+    },
+    {
+      "date": "2021-01-06",
+      "equity": 100000.0
+    },
+    {
+      "date": "2021-01-07",
+      "equity": 99995.5836778241
+    },
+    {
+      "date": "2021-01-08",
+      "equity": 99956.8668317516
+    },
+    {
+      "date": "2021-01-11",
+      "equity": 99991.00452898421
+    },
+    {
+      "date": "2021-01-12",
+      "equity": 100059.50427160962
+    },
+    {
+      "date": "2021-01-13",
+      "equity": 100141.61216568296
+    },
+    {
+      "date": "2021-01-14",
+      "equity": 100123.7876771102
+    },
+    {
+      "date": "2021-01-15",
+      "equity": 99974.0792018039
+    },
+    {
+      "date": "2021-01-19",
+      "equity": 100063.04784644878
+    },
+    {
+      "date": "2021-01-20",
+      "equity": 100258.34305156139
+    },
+    {
+      "date": "2021-01-21",
+      "equity": 100232.79801485565
+    },
+    {
+      "date": "2021-01-22",
+      "equity": 100232.79801485565
+    },
+    {
+      "date": "2021-01-25",
+      "equity": 100232.79801485565
+    },
+    {
+      "date": "2021-01-26",
+      "equity": 99866.21562484282
+    },
+    {
+      "date": "2021-01-27",
+      "equity": 99895.99921356862
+    },
+    {
+      "date": "2021-01-28",
+      "equity": 99828.15390182621
+    },
+    {
+      "date": "2021-01-29",
+      "equity": 98999.04539582151
+    },
+    {
+      "date": "2021-02-01",
+      "equity": 99827.82956893877
+    },
+    {
+      "date": "2021-02-02",
+      "equity": 100249.87011755291
+    },
+    {
+      "date": "2021-02-03",
+      "equity": 100262.88390707862
+    },
+    {
+      "date": "2021-02-04",
+      "equity": 100230.88958661338
+    },
+    {
+      "date": "2021-02-05",
+      "equity": 100183.16535790206
+    },
+    {
+      "date": "2021-02-08",
+      "equity": 100356.6904057948
+    },
+    {
+      "date": "2021-02-09",
+      "equity": 100433.97537465127
+    },
+    {
+      "date": "2021-02-10",
+      "equity": 100467.20854548056
+    },
+    {
+      "date": "2021-02-11",
+      "equity": 100467.20854548056
+    },
+    {
+      "date": "2021-02-12",
+      "equity": 100467.20854548056
+    },
+    {
+      "date": "2021-02-16",
+      "equity": 100467.20854548056
+    },
+    {
+      "date": "2021-02-17",
+      "equity": 100399.35601829526
+    },
+    {
+      "date": "2021-02-18",
+      "equity": 100349.91722018456
+    },
+    {
+      "date": "2021-02-19",
+      "equity": 100381.91382540988
+    },
+    {
+      "date": "2021-02-22",
+      "equity": 100094.66394050706
+    },
+    {
+      "date": "2021-02-23",
+      "equity": 100004.81448653308
+    },
+    {
+      "date": "2021-02-24",
+      "equity": 100344.08264352527
+    },
+    {
+      "date": "2021-02-25",
+      "equity": 99363.69694110412
+    },
+    {
+      "date": "2021-02-26",
+      "equity": 99567.20933951678
+    },
+    {
+      "date": "2021-03-01",
+      "equity": 99701.08571078487
+    },
+    {
+      "date": "2021-03-02",
+      "equity": 99783.68218081933
+    },
+    {
+      "date": "2021-03-03",
+      "equity": 99612.46358949073
+    },
+    {
+      "date": "2021-03-04",
+      "equity": 99612.46358949073
+    },
+    {
+      "date": "2021-03-05",
+      "equity": 99567.57737537332
+    },
+    {
+      "date": "2021-03-08",
+      "equity": 99444.10663936476
+    },
+    {
+      "date": "2021-03-09",
+      "equity": 99694.78989104323
+    },
+    {
+      "date": "2021-03-10",
+      "equity": 99705.22666566382
+    },
+    {
+      "date": "2021-03-11",
+      "equity": 99705.22666566382
+    },
+    {
+      "date": "2021-03-12",
+      "equity": 99705.22666566382
+    },
+    {
+      "date": "2021-03-15",
+      "equity": 99731.66467005899
+    },
+    {
+      "date": "2021-03-16",
+      "equity": 99683.47428390454
+    },
+    {
+      "date": "2021-03-17",
+      "equity": 99716.2077490378
+    },
+    {
+      "date": "2021-03-18",
+      "equity": 99109.74315365872
+    },
+    {
+      "date": "2021-03-19",
+      "equity": 99183.72229619122
+    },
+    {
+      "date": "2021-03-22",
+      "equity": 99145.98777070307
+    },
+    {
+      "date": "2021-03-23",
+      "equity": 98957.45321082337
+    },
+    {
+      "date": "2021-03-24",
+      "equity": 98827.35286871027
+    },
+    {
+      "date": "2021-03-25",
+      "equity": 99091.06955203984
+    },
+    {
+      "date": "2021-03-26",
+      "equity": 99314.40398859554
+    },
+    {
+      "date": "2021-03-29",
+      "equity": 99217.74597720464
+    },
+    {
+      "date": "2021-03-30",
+      "equity": 99217.74597720464
+    },
+    {
+      "date": "2021-03-31",
+      "equity": 99354.84568004424
+    },
+    {
+      "date": "2021-04-01",
+      "equity": 99506.92863636254
+    },
+    {
+      "date": "2021-04-05",
+      "equity": 99466.21599897197
+    },
+    {
+      "date": "2021-04-06",
+      "equity": 99466.21599897197
+    },
+    {
+      "date": "2021-04-07",
+      "equity": 99466.21599897197
+    },
+    {
+      "date": "2021-04-08",
+      "equity": 99466.21599897197
+    },
+    {
+      "date": "2021-04-09",
+      "equity": 99466.21599897197
+    },
+    {
+      "date": "2021-04-12",
+      "equity": 99466.21599897197
+    },
+    {
+      "date": "2021-04-13",
+      "equity": 99492.74441471492
+    },
+    {
+      "date": "2021-04-14",
+      "equity": 99825.1787629869
+    },
+    {
+      "date": "2021-04-15",
+      "equity": 99834.01779178569
+    },
+    {
+      "date": "2021-04-16",
+      "equity": 99834.01779178569
+    },
+    {
+      "date": "2021-04-19",
+      "equity": 99834.01779178569
+    },
+    {
+      "date": "2021-04-20",
+      "equity": 99834.01779178569
+    },
+    {
+      "date": "2021-04-21",
+      "equity": 100433.61047415469
+    },
+    {
+      "date": "2021-04-22",
+      "equity": 100325.08500329152
+    },
+    {
+      "date": "2021-04-23",
+      "equity": 100435.88440397909
+    },
+    {
+      "date": "2021-04-26",
+      "equity": 100518.33883684
+    },
+    {
+      "date": "2021-04-27",
+      "equity": 100558.5338643125
+    },
+    {
+      "date": "2021-04-28",
+      "equity": 100559.46262906649
+    },
+    {
+      "date": "2021-04-29",
+      "equity": 100523.79769824498
+    },
+    {
+      "date": "2021-04-30",
+      "equity": 100551.63841218733
+    },
+    {
+      "date": "2021-05-03",
+      "equity": 100454.94383212131
+    },
+    {
+      "date": "2021-05-04",
+      "equity": 100136.43031745334
+    },
+    {
+      "date": "2021-05-05",
+      "equity": 99985.35630890932
+    },
+    {
+      "date": "2021-05-06",
+      "equity": 100194.13804797345
+    },
+    {
+      "date": "2021-05-07",
+      "equity": 100393.97938431293
+    },
+    {
+      "date": "2021-05-10",
+      "equity": 100272.35822829224
+    },
+    {
+      "date": "2021-05-11",
+      "equity": 100249.69331096129
+    },
+    {
+      "date": "2021-05-12",
+      "equity": 100123.49534204583
+    },
+    {
+      "date": "2021-05-13",
+      "equity": 100355.35083763217
+    },
+    {
+      "date": "2021-05-14",
+      "equity": 101479.06844495377
+    },
+    {
+      "date": "2021-05-17",
+      "equity": 101183.24369020037
+    },
+    {
+      "date": "2021-05-18",
+      "equity": 101183.24369020037
+    },
+    {
+      "date": "2021-05-19",
+      "equity": 101183.24369020037
+    },
+    {
+      "date": "2021-05-20",
+      "equity": 101183.24369020037
+    },
+    {
+      "date": "2021-05-21",
+      "equity": 101183.24369020037
+    },
+    {
+      "date": "2021-05-24",
+      "equity": 101183.24369020037
+    },
+    {
+      "date": "2021-05-25",
+      "equity": 101183.24369020037
+    },
+    {
+      "date": "2021-05-26",
+      "equity": 101183.24369020037
+    },
+    {
+      "date": "2021-05-27",
+      "equity": 101183.24369020037
+    },
+    {
+      "date": "2021-05-28",
+      "equity": 101183.24369020037
+    },
+    {
+      "date": "2021-06-01",
+      "equity": 101183.24369020037
+    },
+    {
+      "date": "2021-06-02",
+      "equity": 101183.24369020037
+    },
+    {
+      "date": "2021-06-03",
+      "equity": 101183.24369020037
+    },
+    {
+      "date": "2021-06-04",
+      "equity": 101183.24369020037
+    },
+    {
+      "date": "2021-06-07",
+      "equity": 101183.24369020037
+    },
+    {
+      "date": "2021-06-08",
+      "equity": 101183.24369020037
+    },
+    {
+      "date": "2021-06-09",
+      "equity": 101183.24369020037
+    },
+    {
+      "date": "2021-06-10",
+      "equity": 101183.24369020037
+    },
+    {
+      "date": "2021-06-11",
+      "equity": 101183.24369020037
+    },
+    {
+      "date": "2021-06-14",
+      "equity": 101183.24369020037
+    },
+    {
+      "date": "2021-06-15",
+      "equity": 101183.24369020037
+    },
+    {
+      "date": "2021-06-16",
+      "equity": 100981.78376871483
+    },
+    {
+      "date": "2021-06-17",
+      "equity": 100722.34658016737
+    },
+    {
+      "date": "2021-06-18",
+      "equity": 100564.97585174296
+    },
+    {
+      "date": "2021-06-21",
+      "equity": 101485.65504817426
+    },
+    {
+      "date": "2021-06-22",
+      "equity": 101447.80791705492
+    },
+    {
+      "date": "2021-06-23",
+      "equity": 101438.00892818574
+    },
+    {
+      "date": "2021-06-24",
+      "equity": 101494.2242126485
+    },
+    {
+      "date": "2021-06-25",
+      "equity": 101494.2242126485
+    },
+    {
+      "date": "2021-06-28",
+      "equity": 101494.2242126485
+    },
+    {
+      "date": "2021-06-29",
+      "equity": 101494.2242126485
+    },
+    {
+      "date": "2021-06-30",
+      "equity": 101566.54547282372
+    },
+    {
+      "date": "2021-07-01",
+      "equity": 101608.70770573546
+    },
+    {
+      "date": "2021-07-02",
+      "equity": 101687.58429299778
+    },
+    {
+      "date": "2021-07-06",
+      "equity": 101687.58429299778
+    },
+    {
+      "date": "2021-07-07",
+      "equity": 101687.58429299778
+    },
+    {
+      "date": "2021-07-08",
+      "equity": 101956.19496518977
+    },
+    {
+      "date": "2021-07-09",
+      "equity": 102478.85797879471
+    },
+    {
+      "date": "2021-07-12",
+      "equity": 102277.62781930897
+    },
+    {
+      "date": "2021-07-13",
+      "equity": 102277.62781930897
+    },
+    {
+      "date": "2021-07-14",
+      "equity": 102277.62781930897
+    },
+    {
+      "date": "2021-07-15",
+      "equity": 102215.04585548895
+    },
+    {
+      "date": "2021-07-16",
+      "equity": 101293.95482618891
+    },
+    {
+      "date": "2021-07-19",
+      "equity": 101167.28668528375
+    },
+    {
+      "date": "2021-07-20",
+      "equity": 102136.66799119793
+    },
+    {
+      "date": "2021-07-21",
+      "equity": 102938.30027474333
+    },
+    {
+      "date": "2021-07-22",
+      "equity": 102939.3086384288
+    },
+    {
+      "date": "2021-07-23",
+      "equity": 102939.3086384288
+    },
+    {
+      "date": "2021-07-26",
+      "equity": 102939.3086384288
+    },
+    {
+      "date": "2021-07-27",
+      "equity": 102939.3086384288
+    },
+    {
+      "date": "2021-07-28",
+      "equity": 102939.3086384288
+    },
+    {
+      "date": "2021-07-29",
+      "equity": 102939.3086384288
+    },
+    {
+      "date": "2021-07-30",
+      "equity": 102939.3086384288
+    },
+    {
+      "date": "2021-08-02",
+      "equity": 102939.3086384288
+    },
+    {
+      "date": "2021-08-03",
+      "equity": 102939.3086384288
+    },
+    {
+      "date": "2021-08-04",
+      "equity": 102939.3086384288
+    },
+    {
+      "date": "2021-08-05",
+      "equity": 102939.3086384288
+    },
+    {
+      "date": "2021-08-06",
+      "equity": 102939.3086384288
+    },
+    {
+      "date": "2021-08-09",
+      "equity": 102754.25287308742
+    },
+    {
+      "date": "2021-08-10",
+      "equity": 102701.36194494332
+    },
+    {
+      "date": "2021-08-11",
+      "equity": 102862.76319088793
+    },
+    {
+      "date": "2021-08-12",
+      "equity": 102845.79238376912
+    },
+    {
+      "date": "2021-08-13",
+      "equity": 103106.27598755459
+    },
+    {
+      "date": "2021-08-16",
+      "equity": 103153.40357809272
+    },
+    {
+      "date": "2021-08-17",
+      "equity": 103118.45680639113
+    },
+    {
+      "date": "2021-08-18",
+      "equity": 102752.99075850635
+    },
+    {
+      "date": "2021-08-19",
+      "equity": 102601.59407122113
+    },
+    {
+      "date": "2021-08-20",
+      "equity": 103059.92758517704
+    },
+    {
+      "date": "2021-08-23",
+      "equity": 103698.0139416611
+    },
+    {
+      "date": "2021-08-24",
+      "equity": 103798.06508062934
+    },
+    {
+      "date": "2021-08-25",
+      "equity": 103798.06508062934
+    },
+    {
+      "date": "2021-08-26",
+      "equity": 103832.22503181643
+    },
+    {
+      "date": "2021-08-27",
+      "equity": 103917.20135770942
+    },
+    {
+      "date": "2021-08-30",
+      "equity": 103871.39452122571
+    },
+    {
+      "date": "2021-08-31",
+      "equity": 103871.39452122571
+    },
+    {
+      "date": "2021-09-01",
+      "equity": 103871.39452122571
+    },
+    {
+      "date": "2021-09-02",
+      "equity": 103871.39452122571
+    },
+    {
+      "date": "2021-09-03",
+      "equity": 103871.39452122571
+    },
+    {
+      "date": "2021-09-07",
+      "equity": 103871.39452122571
+    },
+    {
+      "date": "2021-09-08",
+      "equity": 103871.39452122571
+    },
+    {
+      "date": "2021-09-09",
+      "equity": 103880.21323903004
+    },
+    {
+      "date": "2021-09-10",
+      "equity": 103597.42593332198
+    },
+    {
+      "date": "2021-09-13",
+      "equity": 103509.52884660715
+    },
+    {
+      "date": "2021-09-14",
+      "equity": 103233.88287296085
+    },
+    {
+      "date": "2021-09-15",
+      "equity": 103646.67954129803
+    },
+    {
+      "date": "2021-09-16",
+      "equity": 103530.2102218746
+    },
+    {
+      "date": "2021-09-17",
+      "equity": 103517.1815330921
+    },
+    {
+      "date": "2021-09-20",
+      "equity": 103605.84474885801
+    },
+    {
+      "date": "2021-09-21",
+      "equity": 103391.69609385118
+    },
+    {
+      "date": "2021-09-22",
+      "equity": 103971.9450174566
+    },
+    {
+      "date": "2021-09-23",
+      "equity": 104363.9226831682
+    },
+    {
+      "date": "2021-09-24",
+      "equity": 104222.96055349956
+    },
+    {
+      "date": "2021-09-27",
+      "equity": 104243.24135740966
+    },
+    {
+      "date": "2021-09-28",
+      "equity": 104048.11221878078
+    },
+    {
+      "date": "2021-09-29",
+      "equity": 103924.84317565407
+    },
+    {
+      "date": "2021-09-30",
+      "equity": 103901.5237840797
+    },
+    {
+      "date": "2021-10-01",
+      "equity": 104353.81290709056
+    },
+    {
+      "date": "2021-10-04",
+      "equity": 103708.56187429308
+    },
+    {
+      "date": "2021-10-05",
+      "equity": 103837.97669815185
+    },
+    {
+      "date": "2021-10-06",
+      "equity": 103720.6148492501
+    },
+    {
+      "date": "2021-10-07",
+      "equity": 103720.6148492501
+    },
+    {
+      "date": "2021-10-08",
+      "equity": 103720.6148492501
+    },
+    {
+      "date": "2021-10-11",
+      "equity": 103720.6148492501
+    },
+    {
+      "date": "2021-10-12",
+      "equity": 103828.65330307558
+    },
+    {
+      "date": "2021-10-13",
+      "equity": 103880.78609244987
+    },
+    {
+      "date": "2021-10-14",
+      "equity": 103880.78609244987
+    },
+    {
+      "date": "2021-10-15",
+      "equity": 103880.78609244987
+    },
+    {
+      "date": "2021-10-18",
+      "equity": 103880.78609244987
+    },
+    {
+      "date": "2021-10-19",
+      "equity": 103880.78609244987
+    },
+    {
+      "date": "2021-10-20",
+      "equity": 103880.78609244987
+    },
+    {
+      "date": "2021-10-21",
+      "equity": 103880.78609244987
+    },
+    {
+      "date": "2021-10-22",
+      "equity": 103880.78609244987
+    },
+    {
+      "date": "2021-10-25",
+      "equity": 103880.78609244987
+    },
+    {
+      "date": "2021-10-26",
+      "equity": 103880.78609244987
+    },
+    {
+      "date": "2021-10-27",
+      "equity": 103880.78609244987
+    },
+    {
+      "date": "2021-10-28",
+      "equity": 103880.78609244987
+    },
+    {
+      "date": "2021-10-29",
+      "equity": 103880.78609244987
+    },
+    {
+      "date": "2021-11-01",
+      "equity": 103880.78609244987
+    },
+    {
+      "date": "2021-11-02",
+      "equity": 103880.78609244987
+    },
+    {
+      "date": "2021-11-03",
+      "equity": 103880.78609244987
+    },
+    {
+      "date": "2021-11-04",
+      "equity": 103880.78609244987
+    },
+    {
+      "date": "2021-11-05",
+      "equity": 103880.78609244987
+    },
+    {
+      "date": "2021-11-08",
+      "equity": 103880.78609244987
+    },
+    {
+      "date": "2021-11-09",
+      "equity": 103880.78609244987
+    },
+    {
+      "date": "2021-11-10",
+      "equity": 103880.78609244987
+    },
+    {
+      "date": "2021-11-11",
+      "equity": 103811.71437953782
+    },
+    {
+      "date": "2021-11-12",
+      "equity": 103942.15957705307
+    },
+    {
+      "date": "2021-11-15",
+      "equity": 103974.27806209946
+    },
+    {
+      "date": "2021-11-16",
+      "equity": 103918.39610375804
+    },
+    {
+      "date": "2021-11-17",
+      "equity": 104016.84055866252
+    },
+    {
+      "date": "2021-11-18",
+      "equity": 104063.9215914849
+    },
+    {
+      "date": "2021-11-19",
+      "equity": 104087.81961231449
+    },
+    {
+      "date": "2021-11-22",
+      "equity": 104268.58562382986
+    },
+    {
+      "date": "2021-11-23",
+      "equity": 104631.76010148699
+    },
+    {
+      "date": "2021-11-24",
+      "equity": 104558.05062713435
+    },
+    {
+      "date": "2021-11-26",
+      "equity": 104253.60835530474
+    },
+    {
+      "date": "2021-11-29",
+      "equity": 104157.89858571562
+    },
+    {
+      "date": "2021-11-30",
+      "equity": 103467.76251327193
+    },
+    {
+      "date": "2021-12-01",
+      "equity": 102571.26500550966
+    },
+    {
+      "date": "2021-12-02",
+      "equity": 102953.20210145524
+    },
+    {
+      "date": "2021-12-03",
+      "equity": 102797.78401434323
+    },
+    {
+      "date": "2021-12-06",
+      "equity": 103002.88416520433
+    },
+    {
+      "date": "2021-12-07",
+      "equity": 103175.74718427955
+    },
+    {
+      "date": "2021-12-08",
+      "equity": 103175.74718427955
+    },
+    {
+      "date": "2021-12-09",
+      "equity": 103159.61646360523
+    },
+    {
+      "date": "2021-12-10",
+      "equity": 103129.78443689052
+    },
+    {
+      "date": "2021-12-13",
+      "equity": 103312.08419771046
+    },
+    {
+      "date": "2021-12-14",
+      "equity": 103248.67753404386
+    },
+    {
+      "date": "2021-12-15",
+      "equity": 103437.30778563277
+    },
+    {
+      "date": "2021-12-16",
+      "equity": 103503.84068809182
+    },
+    {
+      "date": "2021-12-17",
+      "equity": 103160.30389191667
+    },
+    {
+      "date": "2021-12-20",
+      "equity": 103160.30389191667
+    },
+    {
+      "date": "2021-12-21",
+      "equity": 103378.24199287676
+    },
+    {
+      "date": "2021-12-22",
+      "equity": 103385.79901864052
+    },
+    {
+      "date": "2021-12-23",
+      "equity": 103385.79901864052
+    },
+    {
+      "date": "2021-12-27",
+      "equity": 103385.79901864052
+    },
+    {
+      "date": "2021-12-28",
+      "equity": 103385.79901864052
+    },
+    {
+      "date": "2021-12-29",
+      "equity": 103385.79901864052
+    },
+    {
+      "date": "2021-12-30",
+      "equity": 103434.33572188213
+    },
+    {
+      "date": "2021-12-31",
+      "equity": 103458.75881758721
+    },
+    {
+      "date": "2022-01-03",
+      "equity": 103302.69774400632
+    },
+    {
+      "date": "2022-01-04",
+      "equity": 103302.69774400632
+    },
+    {
+      "date": "2022-01-05",
+      "equity": 103191.63260779988
+    },
+    {
+      "date": "2022-01-06",
+      "equity": 103332.4582946189
+    },
+    {
+      "date": "2022-01-07",
+      "equity": 102802.30571982512
+    },
+    {
+      "date": "2022-01-10",
+      "equity": 102310.3924582657
+    },
+    {
+      "date": "2022-01-11",
+      "equity": 102839.43288696953
+    },
+    {
+      "date": "2022-01-12",
+      "equity": 103071.92151839944
+    },
+    {
+      "date": "2022-01-13",
+      "equity": 103071.92151839944
+    },
+    {
+      "date": "2022-01-14",
+      "equity": 103071.92151839944
+    },
+    {
+      "date": "2022-01-18",
+      "equity": 103071.92151839944
+    },
+    {
+      "date": "2022-01-19",
+      "equity": 102629.26649069958
+    },
+    {
+      "date": "2022-01-20",
+      "equity": 101294.11566153105
+    },
+    {
+      "date": "2022-01-21",
+      "equity": 99949.60677466978
+    },
+    {
+      "date": "2022-01-24",
+      "equity": 100879.44095238319
+    },
+    {
+      "date": "2022-01-25",
+      "equity": 100479.03920014875
+    },
+    {
+      "date": "2022-01-26",
+      "equity": 100452.44039559143
+    },
+    {
+      "date": "2022-01-27",
+      "equity": 99918.22428758905
+    },
+    {
+      "date": "2022-01-28",
+      "equity": 101152.31148913965
+    },
+    {
+      "date": "2022-01-31",
+      "equity": 101615.80433196526
+    },
+    {
+      "date": "2022-02-01",
+      "equity": 101646.12245356124
+    },
+    {
+      "date": "2022-02-02",
+      "equity": 101647.99927905409
+    },
+    {
+      "date": "2022-02-03",
+      "equity": 101647.99927905409
+    },
+    {
+      "date": "2022-02-04",
+      "equity": 101647.99927905409
+    },
+    {
+      "date": "2022-02-07",
+      "equity": 101658.57932261059
+    },
+    {
+      "date": "2022-02-08",
+      "equity": 101576.95789263071
+    },
+    {
+      "date": "2022-02-09",
+      "equity": 101599.77328248558
+    },
+    {
+      "date": "2022-02-10",
+      "equity": 101406.69166611157
+    },
+    {
+      "date": "2022-02-11",
+      "equity": 101583.98047760026
+    },
+    {
+      "date": "2022-02-14",
+      "equity": 101479.66938584067
+    },
+    {
+      "date": "2022-02-15",
+      "equity": 101479.66938584067
+    },
+    {
+      "date": "2022-02-16",
+      "equity": 101479.66938584067
+    },
+    {
+      "date": "2022-02-17",
+      "equity": 101479.66938584067
+    },
+    {
+      "date": "2022-02-18",
+      "equity": 101479.66938584067
+    },
+    {
+      "date": "2022-02-22",
+      "equity": 101479.66938584067
+    },
+    {
+      "date": "2022-02-23",
+      "equity": 100028.14846958063
+    },
+    {
+      "date": "2022-02-24",
+      "equity": 102710.47637147398
+    },
+    {
+      "date": "2022-02-25",
+      "equity": 103378.43857586994
+    },
+    {
+      "date": "2022-02-28",
+      "equity": 103110.56471005829
+    },
+    {
+      "date": "2022-03-01",
+      "equity": 103110.56471005829
+    },
+    {
+      "date": "2022-03-02",
+      "equity": 103110.56471005829
+    },
+    {
+      "date": "2022-03-03",
+      "equity": 103110.56471005829
+    },
+    {
+      "date": "2022-03-04",
+      "equity": 103110.56471005829
+    },
+    {
+      "date": "2022-03-07",
+      "equity": 103110.56471005829
+    },
+    {
+      "date": "2022-03-08",
+      "equity": 102961.7860820168
+    },
+    {
+      "date": "2022-03-09",
+      "equity": 104572.50395661805
+    },
+    {
+      "date": "2022-03-10",
+      "equity": 103834.56943353712
+    },
+    {
+      "date": "2022-03-11",
+      "equity": 103882.1152496007
+    },
+    {
+      "date": "2022-03-14",
+      "equity": 103590.0692631772
+    },
+    {
+      "date": "2022-03-15",
+      "equity": 103568.74768652774
+    },
+    {
+      "date": "2022-03-16",
+      "equity": 103486.97585344009
+    },
+    {
+      "date": "2022-03-17",
+      "equity": 103878.17640901683
+    },
+    {
+      "date": "2022-03-18",
+      "equity": 103890.84300352249
+    },
+    {
+      "date": "2022-03-21",
+      "equity": 103776.26050900342
+    },
+    {
+      "date": "2022-03-22",
+      "equity": 103695.92153761929
+    },
+    {
+      "date": "2022-03-23",
+      "equity": 103695.92153761929
+    },
+    {
+      "date": "2022-03-24",
+      "equity": 103695.92153761929
+    },
+    {
+      "date": "2022-03-25",
+      "equity": 103695.92153761929
+    },
+    {
+      "date": "2022-03-28",
+      "equity": 103695.92153761929
+    },
+    {
+      "date": "2022-03-29",
+      "equity": 103695.92153761929
+    },
+    {
+      "date": "2022-03-30",
+      "equity": 103695.92153761929
+    },
+    {
+      "date": "2022-03-31",
+      "equity": 103695.92153761929
+    },
+    {
+      "date": "2022-04-01",
+      "equity": 103695.92153761929
+    },
+    {
+      "date": "2022-04-04",
+      "equity": 103695.92153761929
+    },
+    {
+      "date": "2022-04-05",
+      "equity": 103695.92153761929
+    },
+    {
+      "date": "2022-04-06",
+      "equity": 103790.04296912793
+    },
+    {
+      "date": "2022-04-07",
+      "equity": 103648.9868594424
+    },
+    {
+      "date": "2022-04-08",
+      "equity": 103415.39643563938
+    },
+    {
+      "date": "2022-04-11",
+      "equity": 102839.72664509731
+    },
+    {
+      "date": "2022-04-12",
+      "equity": 102436.41221688915
+    },
+    {
+      "date": "2022-04-13",
+      "equity": 103275.73276778171
+    },
+    {
+      "date": "2022-04-14",
+      "equity": 102579.0087443107
+    },
+    {
+      "date": "2022-04-18",
+      "equity": 102396.20272191755
+    },
+    {
+      "date": "2022-04-19",
+      "equity": 102501.44145390873
+    },
+    {
+      "date": "2022-04-20",
+      "equity": 102791.58662514837
+    },
+    {
+      "date": "2022-04-21",
+      "equity": 102702.06452971401
+    },
+    {
+      "date": "2022-04-22",
+      "equity": 102702.06452971401
+    },
+    {
+      "date": "2022-04-25",
+      "equity": 103439.40908076036
+    },
+    {
+      "date": "2022-04-26",
+      "equity": 101760.05078879162
+    },
+    {
+      "date": "2022-04-27",
+      "equity": 102088.55994066523
+    },
+    {
+      "date": "2022-04-28",
+      "equity": 103648.62462894394
+    },
+    {
+      "date": "2022-04-29",
+      "equity": 102862.35318522087
+    },
+    {
+      "date": "2022-05-02",
+      "equity": 102623.17027651524
+    },
+    {
+      "date": "2022-05-03",
+      "equity": 102514.38125031217
+    },
+    {
+      "date": "2022-05-04",
+      "equity": 102702.62959147137
+    },
+    {
+      "date": "2022-05-05",
+      "equity": 102495.0927548341
+    },
+    {
+      "date": "2022-05-06",
+      "equity": 102495.0927548341
+    },
+    {
+      "date": "2022-05-09",
+      "equity": 102686.09992914875
+    },
+    {
+      "date": "2022-05-10",
+      "equity": 102172.97593575492
+    },
+    {
+      "date": "2022-05-11",
+      "equity": 100878.9893070407
+    },
+    {
+      "date": "2022-05-12",
+      "equity": 100919.28448288149
+    },
+    {
+      "date": "2022-05-13",
+      "equity": 101501.78675952688
+    },
+    {
+      "date": "2022-05-16",
+      "equity": 101508.08839388924
+    },
+    {
+      "date": "2022-05-17",
+      "equity": 101432.81543518661
+    },
+    {
+      "date": "2022-05-18",
+      "equity": 101629.39749383117
+    },
+    {
+      "date": "2022-05-19",
+      "equity": 101807.58014809537
+    },
+    {
+      "date": "2022-05-20",
+      "equity": 101807.58014809537
+    },
+    {
+      "date": "2022-05-23",
+      "equity": 101807.58014809537
+    },
+    {
+      "date": "2022-05-24",
+      "equity": 101807.58014809537
+    },
+    {
+      "date": "2022-05-25",
+      "equity": 101807.58014809537
+    },
+    {
+      "date": "2022-05-26",
+      "equity": 101807.58014809537
+    },
+    {
+      "date": "2022-05-27",
+      "equity": 101807.58014809537
+    },
+    {
+      "date": "2022-05-31",
+      "equity": 101807.58014809537
+    },
+    {
+      "date": "2022-06-01",
+      "equity": 101802.89209644857
+    },
+    {
+      "date": "2022-06-02",
+      "equity": 101953.21455523135
+    },
+    {
+      "date": "2022-06-03",
+      "equity": 101888.91852782243
+    },
+    {
+      "date": "2022-06-06",
+      "equity": 101888.91852782243
+    },
+    {
+      "date": "2022-06-07",
+      "equity": 101937.18842099322
+    },
+    {
+      "date": "2022-06-08",
+      "equity": 101828.42752412157
+    },
+    {
+      "date": "2022-06-09",
+      "equity": 101868.94477253236
+    },
+    {
+      "date": "2022-06-10",
+      "equity": 101793.23853778609
+    },
+    {
+      "date": "2022-06-13",
+      "equity": 100745.83111009009
+    },
+    {
+      "date": "2022-06-14",
+      "equity": 100363.61953503355
+    },
+    {
+      "date": "2022-06-15",
+      "equity": 101194.62031590549
+    },
+    {
+      "date": "2022-06-16",
+      "equity": 99097.13338712559
+    },
+    {
+      "date": "2022-06-17",
+      "equity": 98552.17895219276
+    },
+    {
+      "date": "2022-06-21",
+      "equity": 99138.53196011635
+    },
+    {
+      "date": "2022-06-22",
+      "equity": 98766.86631354003
+    },
+    {
+      "date": "2022-06-23",
+      "equity": 98766.86631354003
+    },
+    {
+      "date": "2022-06-24",
+      "equity": 98766.86631354003
+    },
+    {
+      "date": "2022-06-27",
+      "equity": 98766.86631354003
+    },
+    {
+      "date": "2022-06-28",
+      "equity": 98766.86631354003
+    },
+    {
+      "date": "2022-06-29",
+      "equity": 98766.86631354003
+    },
+    {
+      "date": "2022-06-30",
+      "equity": 98687.56551693648
+    },
+    {
+      "date": "2022-07-01",
+      "equity": 98677.78174635975
+    },
+    {
+      "date": "2022-07-05",
+      "equity": 98228.10056126749
+    },
+    {
+      "date": "2022-07-06",
+      "equity": 97883.67772891246
+    },
+    {
+      "date": "2022-07-07",
+      "equity": 97890.11833178547
+    },
+    {
+      "date": "2022-07-08",
+      "equity": 97895.12841757412
+    },
+    {
+      "date": "2022-07-11",
+      "equity": 97832.86598047492
+    },
+    {
+      "date": "2022-07-12",
+      "equity": 97789.92753599034
+    },
+    {
+      "date": "2022-07-13",
+      "equity": 97835.92035136503
+    },
+    {
+      "date": "2022-07-14",
+      "equity": 97798.68786754477
+    },
+    {
+      "date": "2022-07-15",
+      "equity": 98033.02936859414
+    },
+    {
+      "date": "2022-07-18",
+      "equity": 98541.21917029895
+    },
+    {
+      "date": "2022-07-19",
+      "equity": 98546.02567178186
+    },
+    {
+      "date": "2022-07-20",
+      "equity": 98552.62676264544
+    },
+    {
+      "date": "2022-07-21",
+      "equity": 98552.62676264544
+    },
+    {
+      "date": "2022-07-22",
+      "equity": 98552.62676264544
+    },
+    {
+      "date": "2022-07-25",
+      "equity": 98552.62676264544
+    },
+    {
+      "date": "2022-07-26",
+      "equity": 98552.62676264544
+    },
+    {
+      "date": "2022-07-27",
+      "equity": 98552.62676264544
+    },
+    {
+      "date": "2022-07-28",
+      "equity": 98552.62676264544
+    },
+    {
+      "date": "2022-07-29",
+      "equity": 98552.62676264544
+    },
+    {
+      "date": "2022-08-01",
+      "equity": 98552.62676264544
+    },
+    {
+      "date": "2022-08-02",
+      "equity": 98552.62676264544
+    },
+    {
+      "date": "2022-08-03",
+      "equity": 98552.62676264544
+    },
+    {
+      "date": "2022-08-04",
+      "equity": 98552.62676264544
+    },
+    {
+      "date": "2022-08-05",
+      "equity": 98946.35950512959
+    },
+    {
+      "date": "2022-08-08",
+      "equity": 99009.90129834815
+    },
+    {
+      "date": "2022-08-09",
+      "equity": 99225.6106838252
+    },
+    {
+      "date": "2022-08-10",
+      "equity": 99247.7692017296
+    },
+    {
+      "date": "2022-08-11",
+      "equity": 99247.7692017296
+    },
+    {
+      "date": "2022-08-12",
+      "equity": 99288.35732671371
+    },
+    {
+      "date": "2022-08-15",
+      "equity": 99278.01933620567
+    },
+    {
+      "date": "2022-08-16",
+      "equity": 99327.658830976
+    },
+    {
+      "date": "2022-08-17",
+      "equity": 99231.73192230664
+    },
+    {
+      "date": "2022-08-18",
+      "equity": 99231.73192230664
+    },
+    {
+      "date": "2022-08-19",
+      "equity": 99158.14494032614
+    },
+    {
+      "date": "2022-08-22",
+      "equity": 98892.18795439156
+    },
+    {
+      "date": "2022-08-23",
+      "equity": 98863.46985484418
+    },
+    {
+      "date": "2022-08-24",
+      "equity": 98891.33287592632
+    },
+    {
+      "date": "2022-08-25",
+      "equity": 99677.12844187004
+    },
+    {
+      "date": "2022-08-26",
+      "equity": 99167.15932716694
+    },
+    {
+      "date": "2022-08-29",
+      "equity": 99167.15932716694
+    },
+    {
+      "date": "2022-08-30",
+      "equity": 99167.15932716694
+    },
+    {
+      "date": "2022-08-31",
+      "equity": 98515.6131579143
+    },
+    {
+      "date": "2022-09-01",
+      "equity": 97969.14541827081
+    },
+    {
+      "date": "2022-09-02",
+      "equity": 97536.83736667404
+    },
+    {
+      "date": "2022-09-06",
+      "equity": 97147.61505375302
+    },
+    {
+      "date": "2022-09-07",
+      "equity": 98145.92909759594
+    },
+    {
+      "date": "2022-09-08",
+      "equity": 97748.24302388167
+    },
+    {
+      "date": "2022-09-09",
+      "equity": 97748.24302388167
+    },
+    {
+      "date": "2022-09-12",
+      "equity": 97748.24302388167
+    },
+    {
+      "date": "2022-09-13",
+      "equity": 97748.24302388167
+    },
+    {
+      "date": "2022-09-14",
+      "equity": 97748.24302388167
+    },
+    {
+      "date": "2022-09-15",
+      "equity": 97748.24302388167
+    },
+    {
+      "date": "2022-09-16",
+      "equity": 97831.82983759328
+    },
+    {
+      "date": "2022-09-19",
+      "equity": 97840.92716642938
+    },
+    {
+      "date": "2022-09-20",
+      "equity": 97773.46119071127
+    },
+    {
+      "date": "2022-09-21",
+      "equity": 97828.039380302
+    },
+    {
+      "date": "2022-09-22",
+      "equity": 97127.98511719097
+    },
+    {
+      "date": "2022-09-23",
+      "equity": 95349.90153902848
+    },
+    {
+      "date": "2022-09-26",
+      "equity": 94753.35051302884
+    },
+    {
+      "date": "2022-09-27",
+      "equity": 94907.44554836051
+    },
+    {
+      "date": "2022-09-28",
+      "equity": 96334.94385555491
+    },
+    {
+      "date": "2022-09-29",
+      "equity": 95167.90325101445
+    },
+    {
+      "date": "2022-09-30",
+      "equity": 95167.90325101445
+    },
+    {
+      "date": "2022-10-03",
+      "equity": 95423.43512249249
+    },
+    {
+      "date": "2022-10-04",
+      "equity": 95653.93062831787
+    },
+    {
+      "date": "2022-10-05",
+      "equity": 95653.93062831787
+    },
+    {
+      "date": "2022-10-06",
+      "equity": 95653.93062831787
+    },
+    {
+      "date": "2022-10-07",
+      "equity": 95653.93062831787
+    },
+    {
+      "date": "2022-10-10",
+      "equity": 95524.90495579266
+    },
+    {
+      "date": "2022-10-11",
+      "equity": 95338.47029663352
+    },
+    {
+      "date": "2022-10-12",
+      "equity": 95359.58173531828
+    },
+    {
+      "date": "2022-10-13",
+      "equity": 96296.2359030722
+    },
+    {
+      "date": "2022-10-14",
+      "equity": 96329.52084862099
+    },
+    {
+      "date": "2022-10-17",
+      "equity": 96438.48868935781
+    },
+    {
+      "date": "2022-10-18",
+      "equity": 96519.39367391508
+    },
+    {
+      "date": "2022-10-19",
+      "equity": 96307.9200409918
+    },
+    {
+      "date": "2022-10-20",
+      "equity": 95996.55553050367
+    },
+    {
+      "date": "2022-10-21",
+      "equity": 95947.91827903964
+    },
+    {
+      "date": "2022-10-24",
+      "equity": 95794.12577852015
+    },
+    {
+      "date": "2022-10-25",
+      "equity": 96126.3244799839
+    },
+    {
+      "date": "2022-10-26",
+      "equity": 96204.38739604759
+    },
+    {
+      "date": "2022-10-27",
+      "equity": 96204.38739604759
+    },
+    {
+      "date": "2022-10-28",
+      "equity": 96204.38739604759
+    },
+    {
+      "date": "2022-10-31",
+      "equity": 96204.38739604759
+    },
+    {
+      "date": "2022-11-01",
+      "equity": 96171.61269046064
+    },
+    {
+      "date": "2022-11-02",
+      "equity": 96091.34644399662
+    },
+    {
+      "date": "2022-11-03",
+      "equity": 95931.69959052787
+    },
+    {
+      "date": "2022-11-04",
+      "equity": 96383.35410213933
+    },
+    {
+      "date": "2022-11-07",
+      "equity": 96649.70791261015
+    },
+    {
+      "date": "2022-11-08",
+      "equity": 96999.83876519094
+    },
+    {
+      "date": "2022-11-09",
+      "equity": 97037.82594133691
+    },
+    {
+      "date": "2022-11-10",
+      "equity": 97512.33095729646
+    },
+    {
+      "date": "2022-11-11",
+      "equity": 97530.75215676494
+    },
+    {
+      "date": "2022-11-14",
+      "equity": 97530.75215676494
+    },
+    {
+      "date": "2022-11-15",
+      "equity": 97530.75215676494
+    },
+    {
+      "date": "2022-11-16",
+      "equity": 97530.75215676494
+    },
+    {
+      "date": "2022-11-17",
+      "equity": 97530.75215676494
+    },
+    {
+      "date": "2022-11-18",
+      "equity": 97530.75215676494
+    },
+    {
+      "date": "2022-11-21",
+      "equity": 97530.75215676494
+    },
+    {
+      "date": "2022-11-22",
+      "equity": 97719.76731713
+    },
+    {
+      "date": "2022-11-23",
+      "equity": 97570.70232781445
+    },
+    {
+      "date": "2022-11-25",
+      "equity": 97548.25654699276
+    },
+    {
+      "date": "2022-11-28",
+      "equity": 97548.25654699276
+    },
+    {
+      "date": "2022-11-29",
+      "equity": 97548.25654699276
+    },
+    {
+      "date": "2022-11-30",
+      "equity": 98135.54232102683
+    },
+    {
+      "date": "2022-12-01",
+      "equity": 98141.1431617293
+    },
+    {
+      "date": "2022-12-02",
+      "equity": 98141.1431617293
+    },
+    {
+      "date": "2022-12-05",
+      "equity": 98141.1431617293
+    },
+    {
+      "date": "2022-12-06",
+      "equity": 97897.3490963945
+    },
+    {
+      "date": "2022-12-07",
+      "equity": 97706.26035918065
+    },
+    {
+      "date": "2022-12-08",
+      "equity": 98161.15074116852
+    },
+    {
+      "date": "2022-12-09",
+      "equity": 97250.56856129176
+    },
+    {
+      "date": "2022-12-12",
+      "equity": 98263.70939945246
+    },
+    {
+      "date": "2022-12-13",
+      "equity": 100083.6044949034
+    },
+    {
+      "date": "2022-12-14",
+      "equity": 100083.6044949034
+    },
+    {
+      "date": "2022-12-15",
+      "equity": 100083.6044949034
+    },
+    {
+      "date": "2022-12-16",
+      "equity": 100083.6044949034
+    },
+    {
+      "date": "2022-12-19",
+      "equity": 99430.80618136299
+    },
+    {
+      "date": "2022-12-20",
+      "equity": 99519.34714447444
+    },
+    {
+      "date": "2022-12-21",
+      "equity": 100300.13401083682
+    },
+    {
+      "date": "2022-12-22",
+      "equity": 99323.6358036939
+    },
+    {
+      "date": "2022-12-23",
+      "equity": 99148.14217649456
+    },
+    {
+      "date": "2022-12-27",
+      "equity": 98883.64397884147
+    },
+    {
+      "date": "2022-12-28",
+      "equity": 98813.98115441036
+    },
+    {
+      "date": "2022-12-29",
+      "equity": 99285.20147551398
+    },
+    {
+      "date": "2022-12-30",
+      "equity": 98888.90954308014
+    },
+    {
+      "date": "2023-01-03",
+      "equity": 99113.25770519348
+    },
+    {
+      "date": "2023-01-04",
+      "equity": 99314.98073431259
+    },
+    {
+      "date": "2023-01-05",
+      "equity": 99314.98073431259
+    },
+    {
+      "date": "2023-01-06",
+      "equity": 99314.98073431259
+    },
+    {
+      "date": "2023-01-09",
+      "equity": 99314.98073431259
+    },
+    {
+      "date": "2023-01-10",
+      "equity": 99314.98073431259
+    },
+    {
+      "date": "2023-01-11",
+      "equity": 99314.98073431259
+    },
+    {
+      "date": "2023-01-12",
+      "equity": 99314.98073431259
+    },
+    {
+      "date": "2023-01-13",
+      "equity": 99314.98073431259
+    },
+    {
+      "date": "2023-01-17",
+      "equity": 99314.98073431259
+    },
+    {
+      "date": "2023-01-18",
+      "equity": 99314.98073431259
+    },
+    {
+      "date": "2023-01-19",
+      "equity": 99314.98073431259
+    },
+    {
+      "date": "2023-01-20",
+      "equity": 99485.51912205895
+    },
+    {
+      "date": "2023-01-23",
+      "equity": 99505.11313198869
+    },
+    {
+      "date": "2023-01-24",
+      "equity": 99505.11313198869
+    },
+    {
+      "date": "2023-01-25",
+      "equity": 99505.11313198869
+    },
+    {
+      "date": "2023-01-26",
+      "equity": 99505.11313198869
+    },
+    {
+      "date": "2023-01-27",
+      "equity": 99505.11313198869
+    },
+    {
+      "date": "2023-01-30",
+      "equity": 99505.11313198869
+    },
+    {
+      "date": "2023-01-31",
+      "equity": 99505.11313198869
+    },
+    {
+      "date": "2023-02-01",
+      "equity": 99505.11313198869
+    },
+    {
+      "date": "2023-02-02",
+      "equity": 99505.11313198869
+    },
+    {
+      "date": "2023-02-03",
+      "equity": 99423.26912757057
+    },
+    {
+      "date": "2023-02-06",
+      "equity": 99343.65619185902
+    },
+    {
+      "date": "2023-02-07",
+      "equity": 99738.12959298937
+    },
+    {
+      "date": "2023-02-08",
+      "equity": 99805.06529204256
+    },
+    {
+      "date": "2023-02-09",
+      "equity": 99596.69610974842
+    },
+    {
+      "date": "2023-02-10",
+      "equity": 99486.01808076688
+    },
+    {
+      "date": "2023-02-13",
+      "equity": 99534.02535606352
+    },
+    {
+      "date": "2023-02-14",
+      "equity": 99506.69100788597
+    },
+    {
+      "date": "2023-02-15",
+      "equity": 99447.25899577039
+    },
+    {
+      "date": "2023-02-16",
+      "equity": 99470.0048037068
+    },
+    {
+      "date": "2023-02-17",
+      "equity": 99650.8508897571
+    },
+    {
+      "date": "2023-02-21",
+      "equity": 99358.07711275584
+    },
+    {
+      "date": "2023-02-22",
+      "equity": 99237.17799927687
+    },
+    {
+      "date": "2023-02-23",
+      "equity": 99786.30843179385
+    },
+    {
+      "date": "2023-02-24",
+      "equity": 99218.09945403528
+    },
+    {
+      "date": "2023-02-27",
+      "equity": 99323.07050480471
+    },
+    {
+      "date": "2023-02-28",
+      "equity": 99333.65450855765
+    },
+    {
+      "date": "2023-03-01",
+      "equity": 99379.05108917294
+    },
+    {
+      "date": "2023-03-02",
+      "equity": 99379.05108917294
+    },
+    {
+      "date": "2023-03-03",
+      "equity": 99379.05108917294
+    },
+    {
+      "date": "2023-03-06",
+      "equity": 99379.05108917294
+    },
+    {
+      "date": "2023-03-07",
+      "equity": 99379.05108917294
+    },
+    {
+      "date": "2023-03-08",
+      "equity": 99379.05108917294
+    },
+    {
+      "date": "2023-03-09",
+      "equity": 99379.05108917294
+    },
+    {
+      "date": "2023-03-10",
+      "equity": 98775.74743535825
+    },
+    {
+      "date": "2023-03-13",
+      "equity": 98736.92508105576
+    },
+    {
+      "date": "2023-03-14",
+      "equity": 99543.38413710397
+    },
+    {
+      "date": "2023-03-15",
+      "equity": 98509.84928545862
+    },
+    {
+      "date": "2023-03-16",
+      "equity": 99063.49090923509
+    },
+    {
+      "date": "2023-03-17",
+      "equity": 98732.32493149095
+    },
+    {
+      "date": "2023-03-20",
+      "equity": 98973.35614537886
+    },
+    {
+      "date": "2023-03-21",
+      "equity": 99398.5169383765
+    },
+    {
+      "date": "2023-03-22",
+      "equity": 99400.06428537107
+    },
+    {
+      "date": "2023-03-23",
+      "equity": 99400.06428537107
+    },
+    {
+      "date": "2023-03-24",
+      "equity": 99400.06428537107
+    },
+    {
+      "date": "2023-03-27",
+      "equity": 99400.06428537107
+    },
+    {
+      "date": "2023-03-28",
+      "equity": 99400.06428537107
+    },
+    {
+      "date": "2023-03-29",
+      "equity": 99400.06428537107
+    },
+    {
+      "date": "2023-03-30",
+      "equity": 99400.06428537107
+    },
+    {
+      "date": "2023-03-31",
+      "equity": 99400.06428537107
+    },
+    {
+      "date": "2023-04-03",
+      "equity": 99400.06428537107
+    },
+    {
+      "date": "2023-04-04",
+      "equity": 99400.06428537107
+    },
+    {
+      "date": "2023-04-05",
+      "equity": 99400.06428537107
+    },
+    {
+      "date": "2023-04-06",
+      "equity": 99400.06428537107
+    },
+    {
+      "date": "2023-04-10",
+      "equity": 99400.06428537107
+    },
+    {
+      "date": "2023-04-11",
+      "equity": 99400.06428537107
+    },
+    {
+      "date": "2023-04-12",
+      "equity": 99400.06428537107
+    },
+    {
+      "date": "2023-04-13",
+      "equity": 99727.29089717823
+    },
+    {
+      "date": "2023-04-14",
+      "equity": 99587.45069607344
+    },
+    {
+      "date": "2023-04-17",
+      "equity": 99513.9892160779
+    },
+    {
+      "date": "2023-04-18",
+      "equity": 99556.31079967617
+    },
+    {
+      "date": "2023-04-19",
+      "equity": 99544.87555467233
+    },
+    {
+      "date": "2023-04-20",
+      "equity": 99646.67999691571
+    },
+    {
+      "date": "2023-04-21",
+      "equity": 99696.62728524605
+    },
+    {
+      "date": "2023-04-24",
+      "equity": 99887.23675563827
+    },
+    {
+      "date": "2023-04-25",
+      "equity": 99333.78801126685
+    },
+    {
+      "date": "2023-04-26",
+      "equity": 99439.9630166308
+    },
+    {
+      "date": "2023-04-27",
+      "equity": 100408.88696763157
+    },
+    {
+      "date": "2023-04-28",
+      "equity": 100460.0064257268
+    },
+    {
+      "date": "2023-05-01",
+      "equity": 100440.07195494005
+    },
+    {
+      "date": "2023-05-02",
+      "equity": 100440.07195494005
+    },
+    {
+      "date": "2023-05-03",
+      "equity": 100359.77842273409
+    },
+    {
+      "date": "2023-05-04",
+      "equity": 100226.39533633829
+    },
+    {
+      "date": "2023-05-05",
+      "equity": 100651.4045177276
+    },
+    {
+      "date": "2023-05-08",
+      "equity": 100655.34286858366
+    },
+    {
+      "date": "2023-05-09",
+      "equity": 100553.82296210341
+    },
+    {
+      "date": "2023-05-10",
+      "equity": 100592.00054001386
+    },
+    {
+      "date": "2023-05-11",
+      "equity": 100719.9708989869
+    },
+    {
+      "date": "2023-05-12",
+      "equity": 100654.79722170201
+    },
+    {
+      "date": "2023-05-15",
+      "equity": 100716.1133154518
+    },
+    {
+      "date": "2023-05-16",
+      "equity": 100418.72226548096
+    },
+    {
+      "date": "2023-05-17",
+      "equity": 100634.32202564203
+    },
+    {
+      "date": "2023-05-18",
+      "equity": 100399.76407967944
+    },
+    {
+      "date": "2023-05-19",
+      "equity": 100492.57759461433
+    },
+    {
+      "date": "2023-05-22",
+      "equity": 100421.5543154597
+    },
+    {
+      "date": "2023-05-23",
+      "equity": 100470.49169898406
+    },
+    {
+      "date": "2023-05-24",
+      "equity": 100412.14971746884
+    },
+    {
+      "date": "2023-05-25",
+      "equity": 100373.75484588271
+    },
+    {
+      "date": "2023-05-26",
+      "equity": 100492.61684961403
+    },
+    {
+      "date": "2023-05-30",
+      "equity": 100619.42828564554
+    },
+    {
+      "date": "2023-05-31",
+      "equity": 100607.03526634588
+    },
+    {
+      "date": "2023-06-01",
+      "equity": 100756.46246140337
+    },
+    {
+      "date": "2023-06-02",
+      "equity": 101127.6639969174
+    },
+    {
+      "date": "2023-06-05",
+      "equity": 101305.31423043736
+    },
+    {
+      "date": "2023-06-06",
+      "equity": 101305.31423043736
+    },
+    {
+      "date": "2023-06-07",
+      "equity": 101305.31423043736
+    },
+    {
+      "date": "2023-06-08",
+      "equity": 101412.83020710168
+    },
+    {
+      "date": "2023-06-09",
+      "equity": 101473.71081448007
+    },
+    {
+      "date": "2023-06-12",
+      "equity": 101552.14031758242
+    },
+    {
+      "date": "2023-06-13",
+      "equity": 101552.14031758242
+    },
+    {
+      "date": "2023-06-14",
+      "equity": 101552.14031758242
+    },
+    {
+      "date": "2023-06-15",
+      "equity": 101552.14031758242
+    },
+    {
+      "date": "2023-06-16",
+      "equity": 101552.14031758242
+    },
+    {
+      "date": "2023-06-20",
+      "equity": 101552.14031758242
+    },
+    {
+      "date": "2023-06-21",
+      "equity": 101552.14031758242
+    },
+    {
+      "date": "2023-06-22",
+      "equity": 101552.14031758242
+    },
+    {
+      "date": "2023-06-23",
+      "equity": 101431.53824668936
+    },
+    {
+      "date": "2023-06-26",
+      "equity": 101464.69048362947
+    },
+    {
+      "date": "2023-06-27",
+      "equity": 101584.9423532276
+    },
+    {
+      "date": "2023-06-28",
+      "equity": 101526.04112797877
+    },
+    {
+      "date": "2023-06-29",
+      "equity": 101513.1554857656
+    },
+    {
+      "date": "2023-06-30",
+      "equity": 101581.48759584752
+    },
+    {
+      "date": "2023-07-03",
+      "equity": 101598.67107492778
+    },
+    {
+      "date": "2023-07-05",
+      "equity": 101598.67107492778
+    },
+    {
+      "date": "2023-07-06",
+      "equity": 101598.67107492778
+    },
+    {
+      "date": "2023-07-07",
+      "equity": 102006.93003643502
+    },
+    {
+      "date": "2023-07-10",
+      "equity": 102194.59118177561
+    },
+    {
+      "date": "2023-07-11",
+      "equity": 102291.59988836893
+    },
+    {
+      "date": "2023-07-12",
+      "equity": 102427.97917700592
+    },
+    {
+      "date": "2023-07-13",
+      "equity": 102480.73072913548
+    },
+    {
+      "date": "2023-07-14",
+      "equity": 102480.73072913548
+    },
+    {
+      "date": "2023-07-17",
+      "equity": 102480.73072913548
+    },
+    {
+      "date": "2023-07-18",
+      "equity": 102480.73072913548
+    },
+    {
+      "date": "2023-07-19",
+      "equity": 102480.73072913548
+    },
+    {
+      "date": "2023-07-20",
+      "equity": 102480.73072913548
+    },
+    {
+      "date": "2023-07-21",
+      "equity": 102480.73072913548
+    },
+    {
+      "date": "2023-07-24",
+      "equity": 102480.73072913548
+    },
+    {
+      "date": "2023-07-25",
+      "equity": 102480.73072913548
+    },
+    {
+      "date": "2023-07-26",
+      "equity": 102480.73072913548
+    },
+    {
+      "date": "2023-07-27",
+      "equity": 102480.73072913548
+    },
+    {
+      "date": "2023-07-28",
+      "equity": 102525.28398578655
+    },
+    {
+      "date": "2023-07-31",
+      "equity": 102554.95975792981
+    },
+    {
+      "date": "2023-08-01",
+      "equity": 102352.22287737834
+    },
+    {
+      "date": "2023-08-02",
+      "equity": 102222.02524080644
+    },
+    {
+      "date": "2023-08-03",
+      "equity": 102110.75996517413
+    },
+    {
+      "date": "2023-08-04",
+      "equity": 102025.05350925121
+    },
+    {
+      "date": "2023-08-07",
+      "equity": 102146.73697677806
+    },
+    {
+      "date": "2023-08-08",
+      "equity": 102013.20955459875
+    },
+    {
+      "date": "2023-08-09",
+      "equity": 101625.56604384122
+    },
+    {
+      "date": "2023-08-10",
+      "equity": 101521.13975211958
+    },
+    {
+      "date": "2023-08-11",
+      "equity": 101448.95814156353
+    },
+    {
+      "date": "2023-08-14",
+      "equity": 101582.61214359886
+    },
+    {
+      "date": "2023-08-15",
+      "equity": 101348.97901149442
+    },
+    {
+      "date": "2023-08-16",
+      "equity": 101004.75667574942
+    },
+    {
+      "date": "2023-08-17",
+      "equity": 100641.52444170622
+    },
+    {
+      "date": "2023-08-18",
+      "equity": 100854.90633168127
+    },
+    {
+      "date": "2023-08-21",
+      "equity": 100982.84618211727
+    },
+    {
+      "date": "2023-08-22",
+      "equity": 101161.38154514185
+    },
+    {
+      "date": "2023-08-23",
+      "equity": 101422.88421140815
+    },
+    {
+      "date": "2023-08-24",
+      "equity": 101380.98894986257
+    },
+    {
+      "date": "2023-08-25",
+      "equity": 101419.49582543135
+    },
+    {
+      "date": "2023-08-28",
+      "equity": 101445.4279146161
+    },
+    {
+      "date": "2023-08-29",
+      "equity": 101445.4279146161
+    },
+    {
+      "date": "2023-08-30",
+      "equity": 101445.4279146161
+    },
+    {
+      "date": "2023-08-31",
+      "equity": 101445.4279146161
+    },
+    {
+      "date": "2023-09-01",
+      "equity": 101445.4279146161
+    },
+    {
+      "date": "2023-09-05",
+      "equity": 101445.4279146161
+    },
+    {
+      "date": "2023-09-06",
+      "equity": 101395.37717148679
+    },
+    {
+      "date": "2023-09-07",
+      "equity": 101403.1329232489
+    },
+    {
+      "date": "2023-09-08",
+      "equity": 101477.21501059746
+    },
+    {
+      "date": "2023-09-11",
+      "equity": 101565.44781765377
+    },
+    {
+      "date": "2023-09-12",
+      "equity": 101349.98373207741
+    },
+    {
+      "date": "2023-09-13",
+      "equity": 101270.36869652136
+    },
+    {
+      "date": "2023-09-14",
+      "equity": 101440.12590397387
+    },
+    {
+      "date": "2023-09-15",
+      "equity": 101384.04023437997
+    },
+    {
+      "date": "2023-09-18",
+      "equity": 101461.77709566633
+    },
+    {
+      "date": "2023-09-19",
+      "equity": 101371.41565851083
+    },
+    {
+      "date": "2023-09-20",
+      "equity": 101409.39543474973
+    },
+    {
+      "date": "2023-09-21",
+      "equity": 100698.1373132614
+    },
+    {
+      "date": "2023-09-22",
+      "equity": 100767.00264522205
+    },
+    {
+      "date": "2023-09-25",
+      "equity": 100788.31597223727
+    },
+    {
+      "date": "2023-09-26",
+      "equity": 100056.66507448057
+    },
+    {
+      "date": "2023-09-27",
+      "equity": 100037.5485456605
+    },
+    {
+      "date": "2023-09-28",
+      "equity": 100017.90724338253
+    },
+    {
+      "date": "2023-09-29",
+      "equity": 99897.31523537464
+    },
+    {
+      "date": "2023-10-02",
+      "equity": 99549.12165238542
+    },
+    {
+      "date": "2023-10-03",
+      "equity": 99258.2546205154
+    },
+    {
+      "date": "2023-10-04",
+      "equity": 99497.33252696964
+    },
+    {
+      "date": "2023-10-05",
+      "equity": 99546.4730626322
+    },
+    {
+      "date": "2023-10-06",
+      "equity": 99936.94953067816
+    },
+    {
+      "date": "2023-10-09",
+      "equity": 100290.14057249826
+    },
+    {
+      "date": "2023-10-10",
+      "equity": 100295.17450991318
+    },
+    {
+      "date": "2023-10-11",
+      "equity": 100295.17450991318
+    },
+    {
+      "date": "2023-10-12",
+      "equity": 100295.17450991318
+    },
+    {
+      "date": "2023-10-13",
+      "equity": 100295.17450991318
+    },
+    {
+      "date": "2023-10-16",
+      "equity": 100378.81640868011
+    },
+    {
+      "date": "2023-10-17",
+      "equity": 100514.00040349021
+    },
+    {
+      "date": "2023-10-18",
+      "equity": 100416.16179583769
+    },
+    {
+      "date": "2023-10-19",
+      "equity": 100416.16179583769
+    },
+    {
+      "date": "2023-10-20",
+      "equity": 100136.11050975617
+    },
+    {
+      "date": "2023-10-23",
+      "equity": 100328.00476214162
+    },
+    {
+      "date": "2023-10-24",
+      "equity": 100538.89606367375
+    },
+    {
+      "date": "2023-10-25",
+      "equity": 99914.20307091261
+    },
+    {
+      "date": "2023-10-26",
+      "equity": 99460.66890923472
+    },
+    {
+      "date": "2023-10-27",
+      "equity": 98951.6152930253
+    },
+    {
+      "date": "2023-10-30",
+      "equity": 99430.1363369722
+    },
+    {
+      "date": "2023-10-31",
+      "equity": 99600.90880117883
+    },
+    {
+      "date": "2023-11-01",
+      "equity": 99619.17246288295
+    },
+    {
+      "date": "2023-11-02",
+      "equity": 99642.22944000666
+    },
+    {
+      "date": "2023-11-03",
+      "equity": 99642.22944000666
+    },
+    {
+      "date": "2023-11-06",
+      "equity": 99642.22944000666
+    },
+    {
+      "date": "2023-11-07",
+      "equity": 99642.22944000666
+    },
+    {
+      "date": "2023-11-08",
+      "equity": 99642.22944000666
+    },
+    {
+      "date": "2023-11-09",
+      "equity": 99540.66116136807
+    },
+    {
+      "date": "2023-11-10",
+      "equity": 99540.3742216726
+    },
+    {
+      "date": "2023-11-13",
+      "equity": 99692.42869733699
+    },
+    {
+      "date": "2023-11-14",
+      "equity": 99838.57805187393
+    },
+    {
+      "date": "2023-11-15",
+      "equity": 99826.62489023419
+    },
+    {
+      "date": "2023-11-16",
+      "equity": 99826.62489023419
+    },
+    {
+      "date": "2023-11-17",
+      "equity": 99826.62489023419
+    },
+    {
+      "date": "2023-11-20",
+      "equity": 99826.62489023419
+    },
+    {
+      "date": "2023-11-21",
+      "equity": 99826.62489023419
+    },
+    {
+      "date": "2023-11-22",
+      "equity": 99826.62489023419
+    },
+    {
+      "date": "2023-11-24",
+      "equity": 99826.62489023419
+    },
+    {
+      "date": "2023-11-27",
+      "equity": 99826.62489023419
+    },
+    {
+      "date": "2023-11-28",
+      "equity": 99826.62489023419
+    },
+    {
+      "date": "2023-11-29",
+      "equity": 99826.62489023419
+    },
+    {
+      "date": "2023-11-30",
+      "equity": 99798.03189132511
+    },
+    {
+      "date": "2023-12-01",
+      "equity": 99777.93409534347
+    },
+    {
+      "date": "2023-12-04",
+      "equity": 99777.93409534347
+    },
+    {
+      "date": "2023-12-05",
+      "equity": 99777.93409534347
+    },
+    {
+      "date": "2023-12-06",
+      "equity": 99670.54475441956
+    },
+    {
+      "date": "2023-12-07",
+      "equity": 99589.41845064615
+    },
+    {
+      "date": "2023-12-08",
+      "equity": 99716.90161444458
+    },
+    {
+      "date": "2023-12-11",
+      "equity": 99731.38738373171
+    },
+    {
+      "date": "2023-12-12",
+      "equity": 99586.66215889782
+    },
+    {
+      "date": "2023-12-13",
+      "equity": 99855.72320915968
+    },
+    {
+      "date": "2023-12-14",
+      "equity": 99929.52430873831
+    },
+    {
+      "date": "2023-12-15",
+      "equity": 99929.52430873831
+    },
+    {
+      "date": "2023-12-18",
+      "equity": 99929.52430873831
+    },
+    {
+      "date": "2023-12-19",
+      "equity": 99929.52430873831
+    },
+    {
+      "date": "2023-12-20",
+      "equity": 99929.52430873831
+    },
+    {
+      "date": "2023-12-21",
+      "equity": 99929.52430873831
+    },
+    {
+      "date": "2023-12-22",
+      "equity": 99929.52430873831
+    },
+    {
+      "date": "2023-12-26",
+      "equity": 99929.52430873831
+    },
+    {
+      "date": "2023-12-27",
+      "equity": 99929.52430873831
+    },
+    {
+      "date": "2023-12-28",
+      "equity": 99929.52430873831
+    },
+    {
+      "date": "2023-12-29",
+      "equity": 99929.52430873831
+    },
+    {
+      "date": "2024-01-02",
+      "equity": 99929.52430873831
+    },
+    {
+      "date": "2024-01-03",
+      "equity": 99856.68175606366
+    },
+    {
+      "date": "2024-01-04",
+      "equity": 99663.88860761242
+    },
+    {
+      "date": "2024-01-05",
+      "equity": 99657.85724647004
+    },
+    {
+      "date": "2024-01-08",
+      "equity": 100493.18046572416
+    },
+    {
+      "date": "2024-01-09",
+      "equity": 100071.83686409773
+    },
+    {
+      "date": "2024-01-10",
+      "equity": 99897.59280759335
+    },
+    {
+      "date": "2024-01-11",
+      "equity": 99939.51548732829
+    },
+    {
+      "date": "2024-01-12",
+      "equity": 100190.61559480889
+    },
+    {
+      "date": "2024-01-16",
+      "equity": 100116.70322798978
+    },
+    {
+      "date": "2024-01-17",
+      "equity": 100199.74809300152
+    },
+    {
+      "date": "2024-01-18",
+      "equity": 100216.38021813214
+    },
+    {
+      "date": "2024-01-19",
+      "equity": 100394.61200038958
+    },
+    {
+      "date": "2024-01-22",
+      "equity": 100569.28046373297
+    },
+    {
+      "date": "2024-01-23",
+      "equity": 100466.85425086279
+    },
+    {
+      "date": "2024-01-24",
+      "equity": 100466.85425086279
+    },
+    {
+      "date": "2024-01-25",
+      "equity": 100466.85425086279
+    },
+    {
+      "date": "2024-01-26",
+      "equity": 100466.85425086279
+    },
+    {
+      "date": "2024-01-29",
+      "equity": 100466.85425086279
+    },
+    {
+      "date": "2024-01-30",
+      "equity": 100466.85425086279
+    },
+    {
+      "date": "2024-01-31",
+      "equity": 100466.85425086279
+    },
+    {
+      "date": "2024-02-01",
+      "equity": 100466.85425086279
+    },
+    {
+      "date": "2024-02-02",
+      "equity": 100466.85425086279
+    },
+    {
+      "date": "2024-02-05",
+      "equity": 100466.85425086279
+    },
+    {
+      "date": "2024-02-06",
+      "equity": 100466.85425086279
+    },
+    {
+      "date": "2024-02-07",
+      "equity": 100466.85425086279
+    },
+    {
+      "date": "2024-02-08",
+      "equity": 100466.85425086279
+    },
+    {
+      "date": "2024-02-09",
+      "equity": 100466.85425086279
+    },
+    {
+      "date": "2024-02-12",
+      "equity": 100466.85425086279
+    },
+    {
+      "date": "2024-02-13",
+      "equity": 100407.51883456872
+    },
+    {
+      "date": "2024-02-14",
+      "equity": 100462.18839310901
+    },
+    {
+      "date": "2024-02-15",
+      "equity": 100605.42846913183
+    },
+    {
+      "date": "2024-02-16",
+      "equity": 100536.61804128632
+    },
+    {
+      "date": "2024-02-20",
+      "equity": 100635.82851653194
+    },
+    {
+      "date": "2024-02-21",
+      "equity": 100671.12737748314
+    },
+    {
+      "date": "2024-02-22",
+      "equity": 101161.27001095092
+    },
+    {
+      "date": "2024-02-23",
+      "equity": 101291.9931627085
+    },
+    {
+      "date": "2024-02-26",
+      "equity": 101291.9931627085
+    },
+    {
+      "date": "2024-02-27",
+      "equity": 101291.9931627085
+    },
+    {
+      "date": "2024-02-28",
+      "equity": 101291.9931627085
+    },
+    {
+      "date": "2024-02-29",
+      "equity": 101291.9931627085
+    },
+    {
+      "date": "2024-03-01",
+      "equity": 101291.9931627085
+    },
+    {
+      "date": "2024-03-04",
+      "equity": 101291.9931627085
+    },
+    {
+      "date": "2024-03-05",
+      "equity": 101291.9931627085
+    },
+    {
+      "date": "2024-03-06",
+      "equity": 101291.9931627085
+    },
+    {
+      "date": "2024-03-07",
+      "equity": 101291.9931627085
+    },
+    {
+      "date": "2024-03-08",
+      "equity": 101291.9931627085
+    },
+    {
+      "date": "2024-03-11",
+      "equity": 101291.9931627085
+    },
+    {
+      "date": "2024-03-12",
+      "equity": 101291.9931627085
+    },
+    {
+      "date": "2024-03-13",
+      "equity": 101275.63360711979
+    },
+    {
+      "date": "2024-03-14",
+      "equity": 101089.2174086418
+    },
+    {
+      "date": "2024-03-15",
+      "equity": 101085.36233181125
+    },
+    {
+      "date": "2024-03-18",
+      "equity": 101049.36619728737
+    },
+    {
+      "date": "2024-03-19",
+      "equity": 101082.79048786545
+    },
+    {
+      "date": "2024-03-20",
+      "equity": 101099.9485012826
+    },
+    {
+      "date": "2024-03-21",
+      "equity": 101099.9485012826
+    },
+    {
+      "date": "2024-03-22",
+      "equity": 101099.9485012826
+    },
+    {
+      "date": "2024-03-25",
+      "equity": 101099.9485012826
+    },
+    {
+      "date": "2024-03-26",
+      "equity": 101099.9485012826
+    },
+    {
+      "date": "2024-03-27",
+      "equity": 101099.9485012826
+    },
+    {
+      "date": "2024-03-28",
+      "equity": 101099.9485012826
+    },
+    {
+      "date": "2024-04-01",
+      "equity": 101099.9485012826
+    },
+    {
+      "date": "2024-04-02",
+      "equity": 101099.9485012826
+    },
+    {
+      "date": "2024-04-03",
+      "equity": 101194.86779121513
+    },
+    {
+      "date": "2024-04-04",
+      "equity": 101282.56075994091
+    },
+    {
+      "date": "2024-04-05",
+      "equity": 101374.78022280673
+    },
+    {
+      "date": "2024-04-08",
+      "equity": 101373.71552362727
+    },
+    {
+      "date": "2024-04-09",
+      "equity": 101602.61204696611
+    },
+    {
+      "date": "2024-04-10",
+      "equity": 101459.69396911914
+    },
+    {
+      "date": "2024-04-11",
+      "equity": 101459.69396911914
+    },
+    {
+      "date": "2024-04-12",
+      "equity": 101459.69396911914
+    },
+    {
+      "date": "2024-04-15",
+      "equity": 101282.26806631344
+    },
+    {
+      "date": "2024-04-16",
+      "equity": 100994.113822976
+    },
+    {
+      "date": "2024-04-17",
+      "equity": 100809.35572109993
+    },
+    {
+      "date": "2024-04-18",
+      "equity": 100583.2179365426
+    },
+    {
+      "date": "2024-04-19",
+      "equity": 100187.89740637744
+    },
+    {
+      "date": "2024-04-22",
+      "equity": 100420.17651299498
+    },
+    {
+      "date": "2024-04-23",
+      "equity": 100812.08178690192
+    },
+    {
+      "date": "2024-04-24",
+      "equity": 100966.89702312548
+    },
+    {
+      "date": "2024-04-25",
+      "equity": 101039.0832739759
+    },
+    {
+      "date": "2024-04-26",
+      "equity": 101071.12426676223
+    },
+    {
+      "date": "2024-04-29",
+      "equity": 101132.85527401605
+    },
+    {
+      "date": "2024-04-30",
+      "equity": 101049.85258546559
+    },
+    {
+      "date": "2024-05-01",
+      "equity": 101091.02859578571
+    },
+    {
+      "date": "2024-05-02",
+      "equity": 101035.63313110403
+    },
+    {
+      "date": "2024-05-03",
+      "equity": 101027.26480259858
+    },
+    {
+      "date": "2024-05-06",
+      "equity": 101250.24679265465
+    },
+    {
+      "date": "2024-05-07",
+      "equity": 101216.33695228666
+    },
+    {
+      "date": "2024-05-08",
+      "equity": 101216.33695228666
+    },
+    {
+      "date": "2024-05-09",
+      "equity": 101216.33695228666
+    },
+    {
+      "date": "2024-05-10",
+      "equity": 101216.33695228666
+    },
+    {
+      "date": "2024-05-13",
+      "equity": 101216.33695228666
+    },
+    {
+      "date": "2024-05-14",
+      "equity": 101216.33695228666
+    },
+    {
+      "date": "2024-05-15",
+      "equity": 101216.33695228666
+    },
+    {
+      "date": "2024-05-16",
+      "equity": 101216.33695228666
+    },
+    {
+      "date": "2024-05-17",
+      "equity": 101216.33695228666
+    },
+    {
+      "date": "2024-05-20",
+      "equity": 101216.33695228666
+    },
+    {
+      "date": "2024-05-21",
+      "equity": 101216.33695228666
+    },
+    {
+      "date": "2024-05-22",
+      "equity": 101216.33695228666
+    },
+    {
+      "date": "2024-05-23",
+      "equity": 101039.72567866945
+    },
+    {
+      "date": "2024-05-24",
+      "equity": 101025.03147472462
+    },
+    {
+      "date": "2024-05-28",
+      "equity": 101258.59127079158
+    },
+    {
+      "date": "2024-05-29",
+      "equity": 100925.7026940874
+    },
+    {
+      "date": "2024-05-30",
+      "equity": 101088.65236118571
+    },
+    {
+      "date": "2024-05-31",
+      "equity": 101338.14517830232
+    },
+    {
+      "date": "2024-06-03",
+      "equity": 101462.33056446763
+    },
+    {
+      "date": "2024-06-04",
+      "equity": 101487.72817739172
+    },
+    {
+      "date": "2024-06-05",
+      "equity": 101758.44100709302
+    },
+    {
+      "date": "2024-06-06",
+      "equity": 101759.13461574692
+    },
+    {
+      "date": "2024-06-07",
+      "equity": 101759.13461574692
+    },
+    {
+      "date": "2024-06-10",
+      "equity": 101759.13461574692
+    },
+    {
+      "date": "2024-06-11",
+      "equity": 101759.13461574692
+    },
+    {
+      "date": "2024-06-12",
+      "equity": 101759.13461574692
+    },
+    {
+      "date": "2024-06-13",
+      "equity": 101759.13461574692
+    },
+    {
+      "date": "2024-06-14",
+      "equity": 101675.89028180423
+    },
+    {
+      "date": "2024-06-17",
+      "equity": 101707.57126834126
+    },
+    {
+      "date": "2024-06-18",
+      "equity": 101758.54183811585
+    },
+    {
+      "date": "2024-06-20",
+      "equity": 101788.23746957784
+    },
+    {
+      "date": "2024-06-21",
+      "equity": 101788.23746957784
+    },
+    {
+      "date": "2024-06-24",
+      "equity": 101788.23746957784
+    },
+    {
+      "date": "2024-06-25",
+      "equity": 101994.41189997467
+    },
+    {
+      "date": "2024-06-26",
+      "equity": 102005.63076097198
+    },
+    {
+      "date": "2024-06-27",
+      "equity": 101999.05872713937
+    },
+    {
+      "date": "2024-06-28",
+      "equity": 102035.91691166544
+    },
+    {
+      "date": "2024-07-01",
+      "equity": 102035.91691166544
+    },
+    {
+      "date": "2024-07-02",
+      "equity": 102020.35064341844
+    },
+    {
+      "date": "2024-07-03",
+      "equity": 102180.9552949549
+    },
+    {
+      "date": "2024-07-05",
+      "equity": 102238.1592318081
+    },
+    {
+      "date": "2024-07-08",
+      "equity": 102238.1592318081
+    },
+    {
+      "date": "2024-07-09",
+      "equity": 102245.85866460795
+    },
+    {
+      "date": "2024-07-10",
+      "equity": 102328.84486401899
+    },
+    {
+      "date": "2024-07-11",
+      "equity": 102457.47263615792
+    },
+    {
+      "date": "2024-07-12",
+      "equity": 102521.73035046396
+    },
+    {
+      "date": "2024-07-15",
+      "equity": 102521.73035046396
+    },
+    {
+      "date": "2024-07-16",
+      "equity": 102521.73035046396
+    },
+    {
+      "date": "2024-07-17",
+      "equity": 102521.73035046396
+    },
+    {
+      "date": "2024-07-18",
+      "equity": 102224.18713227319
+    },
+    {
+      "date": "2024-07-19",
+      "equity": 101926.26606842215
+    },
+    {
+      "date": "2024-07-22",
+      "equity": 102419.60788462815
+    },
+    {
+      "date": "2024-07-23",
+      "equity": 102300.16855496587
+    },
+    {
+      "date": "2024-07-24",
+      "equity": 101755.6939148386
+    },
+    {
+      "date": "2024-07-25",
+      "equity": 101842.73056541506
+    },
+    {
+      "date": "2024-07-26",
+      "equity": 102175.09951882655
+    },
+    {
+      "date": "2024-07-29",
+      "equity": 102218.88789428808
+    },
+    {
+      "date": "2024-07-30",
+      "equity": 101897.39802132305
+    },
+    {
+      "date": "2024-07-31",
+      "equity": 102316.01123150263
+    },
+    {
+      "date": "2024-08-01",
+      "equity": 102327.99981750749
+    },
+    {
+      "date": "2024-08-02",
+      "equity": 102327.99981750749
+    },
+    {
+      "date": "2024-08-05",
+      "equity": 102575.30639325979
+    },
+    {
+      "date": "2024-08-06",
+      "equity": 102912.71244627377
+    },
+    {
+      "date": "2024-08-07",
+      "equity": 102395.30736816573
+    },
+    {
+      "date": "2024-08-08",
+      "equity": 104079.5817241561
+    },
+    {
+      "date": "2024-08-09",
+      "equity": 103974.61128623948
+    },
+    {
+      "date": "2024-08-12",
+      "equity": 103974.61128623948
+    },
+    {
+      "date": "2024-08-13",
+      "equity": 103974.61128623948
+    },
+    {
+      "date": "2024-08-14",
+      "equity": 103974.61128623948
+    },
+    {
+      "date": "2024-08-15",
+      "equity": 103974.61128623948
+    },
+    {
+      "date": "2024-08-16",
+      "equity": 103974.61128623948
+    },
+    {
+      "date": "2024-08-19",
+      "equity": 103974.61128623948
+    },
+    {
+      "date": "2024-08-20",
+      "equity": 103974.61128623948
+    },
+    {
+      "date": "2024-08-21",
+      "equity": 103974.61128623948
+    },
+    {
+      "date": "2024-08-22",
+      "equity": 103974.61128623948
+    },
+    {
+      "date": "2024-08-23",
+      "equity": 103974.61128623948
+    },
+    {
+      "date": "2024-08-26",
+      "equity": 103974.61128623948
+    },
+    {
+      "date": "2024-08-27",
+      "equity": 103974.61128623948
+    },
+    {
+      "date": "2024-08-28",
+      "equity": 103974.61128623948
+    },
+    {
+      "date": "2024-08-29",
+      "equity": 103974.61128623948
+    },
+    {
+      "date": "2024-08-30",
+      "equity": 103816.44938327998
+    },
+    {
+      "date": "2024-09-03",
+      "equity": 104017.9287732223
+    },
+    {
+      "date": "2024-09-04",
+      "equity": 104028.31012818577
+    },
+    {
+      "date": "2024-09-05",
+      "equity": 103837.1926678865
+    },
+    {
+      "date": "2024-09-06",
+      "equity": 103216.63557288304
+    },
+    {
+      "date": "2024-09-09",
+      "equity": 103447.34175253287
+    },
+    {
+      "date": "2024-09-10",
+      "equity": 103513.5934131594
+    },
+    {
+      "date": "2024-09-11",
+      "equity": 103409.49294128167
+    },
+    {
+      "date": "2024-09-12",
+      "equity": 103466.27289627079
+    },
+    {
+      "date": "2024-09-13",
+      "equity": 103536.57853352667
+    },
+    {
+      "date": "2024-09-16",
+      "equity": 103635.71412382736
+    },
+    {
+      "date": "2024-09-17",
+      "equity": 103635.71412382736
+    },
+    {
+      "date": "2024-09-18",
+      "equity": 103635.71412382736
+    },
+    {
+      "date": "2024-09-19",
+      "equity": 103635.71412382736
+    },
+    {
+      "date": "2024-09-20",
+      "equity": 103635.71412382736
+    },
+    {
+      "date": "2024-09-23",
+      "equity": 103650.95177125883
+    },
+    {
+      "date": "2024-09-24",
+      "equity": 103648.42749704205
+    },
+    {
+      "date": "2024-09-25",
+      "equity": 103544.94777859599
+    },
+    {
+      "date": "2024-09-26",
+      "equity": 103573.97227475638
+    },
+    {
+      "date": "2024-09-27",
+      "equity": 103817.32128856386
+    },
+    {
+      "date": "2024-09-30",
+      "equity": 103908.18975135138
+    },
+    {
+      "date": "2024-10-01",
+      "equity": 103787.5897756229
+    },
+    {
+      "date": "2024-10-02",
+      "equity": 103787.5897756229
+    },
+    {
+      "date": "2024-10-03",
+      "equity": 103787.5897756229
+    },
+    {
+      "date": "2024-10-04",
+      "equity": 103773.41838170977
+    },
+    {
+      "date": "2024-10-07",
+      "equity": 103712.39003211878
+    },
+    {
+      "date": "2024-10-08",
+      "equity": 103733.346868888
+    },
+    {
+      "date": "2024-10-09",
+      "equity": 103650.72258670458
+    },
+    {
+      "date": "2024-10-10",
+      "equity": 103693.50638691803
+    },
+    {
+      "date": "2024-10-11",
+      "equity": 103780.34938458758
+    },
+    {
+      "date": "2024-10-14",
+      "equity": 103756.83432110111
+    },
+    {
+      "date": "2024-10-15",
+      "equity": 103909.18001282748
+    },
+    {
+      "date": "2024-10-16",
+      "equity": 103949.66771357707
+    },
+    {
+      "date": "2024-10-17",
+      "equity": 104009.05383433483
+    },
+    {
+      "date": "2024-10-18",
+      "equity": 103967.61926677372
+    },
+    {
+      "date": "2024-10-21",
+      "equity": 103930.33136101115
+    },
+    {
+      "date": "2024-10-22",
+      "equity": 103908.68631324651
+    },
+    {
+      "date": "2024-10-23",
+      "equity": 103783.35620083385
+    },
+    {
+      "date": "2024-10-24",
+      "equity": 103867.80014858348
+    },
+    {
+      "date": "2024-10-25",
+      "equity": 103854.67895815878
+    },
+    {
+      "date": "2024-10-28",
+      "equity": 104095.20324748565
+    },
+    {
+      "date": "2024-10-29",
+      "equity": 103795.55721142316
+    },
+    {
+      "date": "2024-10-30",
+      "equity": 103823.57768449804
+    },
+    {
+      "date": "2024-10-31",
+      "equity": 103900.63510663167
+    },
+    {
+      "date": "2024-11-01",
+      "equity": 103926.93485618601
+    },
+    {
+      "date": "2024-11-04",
+      "equity": 104069.955510572
+    },
+    {
+      "date": "2024-11-05",
+      "equity": 104610.80236324757
+    },
+    {
+      "date": "2024-11-06",
+      "equity": 105323.25873998129
+    },
+    {
+      "date": "2024-11-07",
+      "equity": 105386.1364850892
+    },
+    {
+      "date": "2024-11-08",
+      "equity": 105300.15347694041
+    },
+    {
+      "date": "2024-11-11",
+      "equity": 105004.04369437424
+    },
+    {
+      "date": "2024-11-12",
+      "equity": 104937.9651948587
+    },
+    {
+      "date": "2024-11-13",
+      "equity": 104739.7307639778
+    },
+    {
+      "date": "2024-11-14",
+      "equity": 104707.39222209068
+    },
+    {
+      "date": "2024-11-15",
+      "equity": 104685.48593002652
+    },
+    {
+      "date": "2024-11-18",
+      "equity": 105009.00127505559
+    },
+    {
+      "date": "2024-11-19",
+      "equity": 105419.08316171714
+    },
+    {
+      "date": "2024-11-20",
+      "equity": 105421.51485681074
+    },
+    {
+      "date": "2024-11-21",
+      "equity": 105726.5442554542
+    },
+    {
+      "date": "2024-11-22",
+      "equity": 105726.5442554542
+    },
+    {
+      "date": "2024-11-25",
+      "equity": 105726.5442554542
+    },
+    {
+      "date": "2024-11-26",
+      "equity": 105726.5442554542
+    },
+    {
+      "date": "2024-11-27",
+      "equity": 105726.5442554542
+    },
+    {
+      "date": "2024-11-29",
+      "equity": 105726.5442554542
+    },
+    {
+      "date": "2024-12-02",
+      "equity": 105726.5442554542
+    },
+    {
+      "date": "2024-12-03",
+      "equity": 105726.5442554542
+    },
+    {
+      "date": "2024-12-04",
+      "equity": 105726.5442554542
+    },
+    {
+      "date": "2024-12-05",
+      "equity": 105722.94310415459
+    },
+    {
+      "date": "2024-12-06",
+      "equity": 105507.8753727882
+    },
+    {
+      "date": "2024-12-09",
+      "equity": 105487.32690687489
+    },
+    {
+      "date": "2024-12-10",
+      "equity": 105402.39580559108
+    },
+    {
+      "date": "2024-12-11",
+      "equity": 105422.94317529387
+    },
+    {
+      "date": "2024-12-12",
+      "equity": 105256.25101986836
+    },
+    {
+      "date": "2024-12-13",
+      "equity": 105027.74485788334
+    },
+    {
+      "date": "2024-12-16",
+      "equity": 104609.119621094
+    },
+    {
+      "date": "2024-12-17",
+      "equity": 104354.34032750642
+    },
+    {
+      "date": "2024-12-18",
+      "equity": 103513.3038570208
+    },
+    {
+      "date": "2024-12-19",
+      "equity": 102739.9876059961
+    },
+    {
+      "date": "2024-12-20",
+      "equity": 103434.72898825064
+    },
+    {
+      "date": "2024-12-23",
+      "equity": 103653.11204780314
+    },
+    {
+      "date": "2024-12-24",
+      "equity": 103853.52157109685
+    },
+    {
+      "date": "2024-12-26",
+      "equity": 103793.44527181024
+    },
+    {
+      "date": "2024-12-27",
+      "equity": 103793.44527181024
+    },
+    {
+      "date": "2024-12-30",
+      "equity": 103793.44527181024
+    }
+  ]
+}

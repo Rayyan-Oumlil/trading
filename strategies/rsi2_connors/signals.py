@@ -43,13 +43,14 @@ def calculate_signals(
     overbought_threshold: float = 70.0,
     regime_filter_period: int = 200,
     short_ma_exit: int = 5,
+    use_regime_filter: bool = True,
 ) -> pd.DataFrame:
     """
     Compute entry and exit signals for the RSI(2) Connors strategy.
 
     Entry rule (long_entry=True means: enter long at next-day open):
         rsi(2)[t] < oversold_threshold
-        AND close[t] > sma(close, regime_filter_period)[t]
+        AND (close[t] > sma(close, regime_filter_period)[t]  -- only if use_regime_filter)
         AND volume[t] > 0
 
     Exit rule (long_exit=True means: exit at next-day open):
@@ -60,6 +61,9 @@ def calculate_signals(
     ----------
     df : OHLCV DataFrame with columns [open, high, low, close, volume].
          Index must be a DatetimeIndex.
+    use_regime_filter : when False, skips the 200-DMA regime gate entirely.
+                        Thesis: Connors original has no regime filter — more trades,
+                        higher drawdown risk in bear markets.
 
     Returns
     -------
@@ -79,9 +83,13 @@ def calculate_signals(
     rsi_overbought = (out["rsi"] > overbought_threshold).fillna(False).astype(bool)
     above_short_ma = (out["close"] > out["sma_short"]).fillna(False).astype(bool)
     volume_ok = (out["volume"] > 0).fillna(False).astype(bool)
-    has_warmup = out["sma_regime"].notna() & out["rsi"].notna() & out["sma_short"].notna()
+    has_warmup = out["rsi"].notna() & out["sma_short"].notna()
 
-    out["long_entry"] = (rsi_oversold & regime_ok & volume_ok & has_warmup).astype(bool)
+    entry_condition = rsi_oversold & volume_ok & has_warmup
+    if use_regime_filter:
+        entry_condition = entry_condition & regime_ok & out["sma_regime"].notna()
+
+    out["long_entry"] = entry_condition.astype(bool)
     out["long_exit"] = (rsi_overbought | above_short_ma).fillna(False).astype(bool)
 
     return out

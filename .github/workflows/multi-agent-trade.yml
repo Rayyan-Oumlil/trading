@@ -1,0 +1,121 @@
+name: multi-agent-trade
+
+# Active multi-instrument RSI(2) strategy with 3-agent research layer.
+# Universe: SPY, QQQ, IWM, GLD, XLK, XLE
+# Strategy: strategies/rsi2_multi/STRATEGY.md
+#
+# Two crons:
+#   premarket  -> 13:30 UTC (9:30 AM ET) — agents scan, queue signals
+#   eod        -> 21:00 UTC (5:00 PM ET) — execute entries/exits, journal
+#
+# Manual dispatch available for both modes.
+
+on:
+  schedule:
+    - cron: '30 13 * * 1-5'   # premarket 9:30 AM ET
+    - cron: '0 21 * * 1-5'    # EOD 5:00 PM ET
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'premarket | eod'
+        required: true
+        default: 'eod'
+        type: choice
+        options:
+          - premarket
+          - eod
+
+permissions:
+  contents: write
+
+concurrency:
+  group: multi-agent-trade
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      ALPACA_API_KEY:      ${{ secrets.ALPACA_API_KEY }}
+      ALPACA_API_SECRET:   ${{ secrets.ALPACA_API_SECRET }}
+      ALPACA_PAPER_TRADE:  ${{ secrets.ALPACA_PAPER_TRADE }}
+      ANTHROPIC_API_KEY:   ${{ secrets.ANTHROPIC_API_KEY }}
+      PYTHONUNBUFFERED:    '1'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Verify secrets and paper-mode flag
+        shell: bash
+        run: |
+          if [ -z "$ALPACA_API_KEY" ] || [ -z "$ALPACA_API_SECRET" ]; then
+            echo "::error ::ALPACA_API_KEY / ALPACA_API_SECRET missing."
+            exit 1
+          fi
+          if [ "$ALPACA_PAPER_TRADE" != "true" ]; then
+            echo "::error ::ALPACA_PAPER_TRADE must be 'true'. Live trading not authorized."
+            exit 1
+          fi
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "::error ::ANTHROPIC_API_KEY missing — agents cannot run."
+            exit 1
+          fi
+          echo "All secrets verified. Paper mode confirmed."
+
+      - name: Determine mode
+        id: mode
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "mode=${{ github.event.inputs.mode }}" >> "$GITHUB_OUTPUT"
+          elif [ "${{ github.event.schedule }}" = "30 13 * * 1-5" ]; then
+            echo "mode=premarket" >> "$GITHUB_OUTPUT"
+          else
+            echo "mode=eod" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Run multi-agent signal
+        run: python run_signal_multi.py ${{ steps.mode.outputs.mode }}
+
+      - name: Commit memory + journal updates
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add memory/ journal/
+          if git diff --cached --quiet; then
+            echo "No state changes to commit."
+          else
+            git commit -m "multi: ${{ steps.mode.outputs.mode }} $(date -u +%Y-%m-%dT%H:%MZ)"
+            for i in 1 2 3; do
+              if git push; then exit 0; fi
+              git pull --rebase --autostash
+            done
+            git push
+          fi
+
+      - name: Show portfolio tail (self-test)
+        if: always()
+        shell: bash
+        run: |
+          echo "::group::multi-portfolio-state"
+          cat memory/multi-portfolio-state.md || true
+          echo "::endgroup::"
+          echo "::group::confidence-log tail"
+          tail -n 5 memory/confidence-log.md || true
+          echo "::endgroup::"

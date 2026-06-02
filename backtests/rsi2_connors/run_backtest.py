@@ -59,13 +59,14 @@ def run_backtest(
     df: pd.DataFrame,
     initial_equity: float = 100_000.0,
     use_hard_stop: bool = False,
+    use_regime_filter: bool = True,
 ) -> dict:
     """Replay RSI(2) Connors with no look-ahead.
 
     Entry on next-day open after long_entry=True on signal bar.
     Exit on next-day open after long_exit=True OR time stop OR (optional) hard stop.
     """
-    signals = calculate_signals(df)
+    signals = calculate_signals(df, use_regime_filter=use_regime_filter)
 
     cash = initial_equity
     position = 0.0
@@ -233,14 +234,20 @@ def main() -> None:
         action="store_true",
         help="Apply a 5% hard stop (variant for sensitivity testing). Off by default per Connors original.",
     )
+    parser.add_argument(
+        "--no-regime-filter",
+        action="store_true",
+        help="Remove the 200-DMA regime filter. More trades, higher drawdown risk in bear markets.",
+    )
     args = parser.parse_args()
 
     print(f"Fetching {args.ticker} {args.start} -> {args.end}...")
     df = fetch_data(args.ticker, args.start, args.end)
     print(f"Loaded {len(df)} bars")
 
-    print(f"Running backtest (use_hard_stop={args.use_hard_stop})...")
-    stats = run_backtest(df, use_hard_stop=args.use_hard_stop)
+    use_regime = not args.no_regime_filter
+    print(f"Running backtest (use_hard_stop={args.use_hard_stop}, use_regime_filter={use_regime})...")
+    stats = run_backtest(df, use_hard_stop=args.use_hard_stop, use_regime_filter=use_regime)
     bh = benchmark_buy_hold(df)
 
     run_id = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
