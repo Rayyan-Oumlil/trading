@@ -39,6 +39,12 @@ From any new Claude Code session in this folder, the bot will read `CLAUDE.md` a
 
 Claude will route to research, strategy design, backtest, paper review, or journal based on my answer and the workspace state.
 
-## Stage today
+## Active strategies
 
-Stage 0 — Foundations. See [ROADMAP.md](ROADMAP.md).
+| Strategy | Stage | OOS Sharpe | Max DD | Trades/yr | Notes |
+|----------|-------|-----------|--------|-----------|-------|
+| [ma-crossover](strategies/ma_crossover/STRATEGY.md) | Paper (Gate 2 soft-pass) | 0.65 | -12.4% | 3.0 | 0 fills in 14 days; kill-switch drill pending |
+| [rsi2-multi](strategies/rsi2_multi/STRATEGY.md) | Backtest passed | 0.76 | -5.59% | 72 | 6 ETFs, no hard stop; all 3 gates green |
+| [rsi2-connors](strategies/rsi2_connors/STRATEGY.md) | Rejected | 0.31 | — | 6.8 | Sharpe < 0.5, too few trades |
+
+No live trading. Gate 2 paper requirement: 2+ weeks green with backtest params unchanged. See [ROADMAP.md](ROADMAP.md).
