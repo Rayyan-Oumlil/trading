@@ -67,3 +67,4 @@ The point of this log: after 4+ weeks, sort by confidence and check whether high
 2026-06-12 | 0BUY+3SELL | 6/10 | entered=[] closed=['SPY', 'QQQ', 'XLK'] [multi] [multi]2026-06-12 | HOLD | 7/10 | position aligned with regime; fast-slow margin +3.05%
 
 2026-06-15 | SCAN | 6/10 | entries=[] exits=[] [multi] [multi]
+2026-06-15 | HOLD | 6/10 | entered=[] closed=[] [multi] [multi]
