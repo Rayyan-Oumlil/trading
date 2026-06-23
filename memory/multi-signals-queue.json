@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-22T18:02:13.998390+00:00",
+  "timestamp": "2026-06-23T16:08:38.666541+00:00",
   "entries": [],
   "exits": [],
   "decision": {
@@ -23,51 +23,43 @@
   },
   "signals": {
     "SPY": {
-      "rsi_now": 49.22,
-      "rsi_prev": 62.27,
-      "close_now": 744.62,
-      "close_prev": 746.74,
-      "sma5_prev": 745.39,
-      "exit_signal": true
-    },
-    "QQQ": {
-      "rsi_now": 60.74,
-      "rsi_prev": 74.39,
-      "close_now": 737.3,
-      "close_prev": 740.62,
-      "sma5_prev": 731.67,
-      "exit_signal": true
+      "rsi_now": 19.35,
+      "rsi_prev": 48.13,
+      "close_now": 736.7,
+      "close_prev": 744.39,
+      "sma5_prev": 746.3,
+      "exit_signal": false
     },
     "IWM": {
-      "rsi_now": 86.68,
-      "rsi_prev": 78.1,
-      "close_now": 298.25,
-      "close_prev": 295.59,
-      "sma5_prev": 292.89,
+      "rsi_now": 65.63,
+      "rsi_prev": 86.54,
+      "close_now": 297.11,
+      "close_prev": 298.18,
+      "sma5_prev": 294.07,
       "exit_signal": true
     },
     "GLD": {
-      "rsi_now": 13.12,
-      "rsi_prev": 23.17,
-      "close_now": 383.96,
-      "close_prev": 387.12,
-      "sma5_prev": 391.29,
+      "rsi_now": 5.6,
+      "rsi_prev": 14.36,
+      "close_now": 379.39,
+      "close_prev": 384.59,
+      "sma5_prev": 390.9,
       "exit_signal": false
     },
     "XLK": {
-      "rsi_now": 81.51,
-      "rsi_prev": 79.36,
-      "close_now": 191.94,
-      "close_prev": 191.44,
-      "sma5_prev": 188.05,
+      "rsi_now": 24.15,
+      "rsi_prev": 83.05,
+      "close_now": 185.76,
+      "close_prev": 192.15,
+      "sma5_prev": 189.34,
       "exit_signal": true
     },
     "XLE": {
-      "rsi_now": 7.76,
-      "rsi_prev": 2.67,
-      "close_now": 53.81,
-      "close_prev": 53.77,
-      "sma5_prev": 55.38,
+      "rsi_now": 62.02,
+      "rsi_prev": 46.92,
+      "close_now": 54.35,
+      "close_prev": 54.06,
+      "sma5_prev": 54.37,
       "exit_signal": false
     }
   }
