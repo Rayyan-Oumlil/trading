@@ -1,10 +1,18 @@
 {
-  "timestamp": "2026-06-23T16:08:38.666541+00:00",
-  "entries": [],
-  "exits": [],
+  "timestamp": "2026-06-24T15:40:55.556322+00:00",
+  "entries": [
+    "GLD"
+  ],
+  "exits": [
+    "XLE"
+  ],
   "decision": {
-    "final_entries": [],
-    "final_exits": [],
+    "final_entries": [
+      "GLD"
+    ],
+    "final_exits": [
+      "XLE"
+    ],
     "veto": false,
     "kill": false,
     "confidence": 6,
@@ -23,44 +31,44 @@
   },
   "signals": {
     "SPY": {
-      "rsi_now": 19.35,
-      "rsi_prev": 48.13,
-      "close_now": 736.7,
-      "close_prev": 744.39,
-      "sma5_prev": 746.3,
+      "rsi_now": 49.2,
+      "rsi_prev": 15.58,
+      "close_now": 738.87,
+      "close_prev": 733.58,
+      "sma5_prev": 742.43,
       "exit_signal": false
     },
     "IWM": {
-      "rsi_now": 65.63,
-      "rsi_prev": 86.54,
-      "close_now": 297.11,
-      "close_prev": 298.18,
-      "sma5_prev": 294.07,
+      "rsi_now": 75.86,
+      "rsi_prev": 46.74,
+      "close_now": 299.07,
+      "close_prev": 295.32,
+      "sma5_prev": 294.21,
       "exit_signal": true
     },
     "GLD": {
-      "rsi_now": 5.6,
-      "rsi_prev": 14.36,
-      "close_now": 379.39,
-      "close_prev": 384.59,
-      "sma5_prev": 390.9,
+      "rsi_now": 1.58,
+      "rsi_prev": 4.51,
+      "close_now": 367.52,
+      "close_prev": 377.32,
+      "sma5_prev": 387.05,
       "exit_signal": false
     },
     "XLK": {
-      "rsi_now": 24.15,
-      "rsi_prev": 83.05,
-      "close_now": 185.76,
-      "close_prev": 192.15,
-      "sma5_prev": 189.34,
-      "exit_signal": true
+      "rsi_now": 26.15,
+      "rsi_prev": 20.57,
+      "close_now": 184.59,
+      "close_prev": 184.19,
+      "sma5_prev": 187.87,
+      "exit_signal": false
     },
     "XLE": {
-      "rsi_now": 62.02,
-      "rsi_prev": 46.92,
-      "close_now": 54.35,
-      "close_prev": 54.06,
-      "sma5_prev": 54.37,
-      "exit_signal": false
+      "rsi_now": 22.73,
+      "rsi_prev": 65.51,
+      "close_now": 53.38,
+      "close_prev": 54.46,
+      "sma5_prev": 54.23,
+      "exit_signal": true
     }
   }
 }
