@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-29T16:44:50.957126+00:00",
+  "timestamp": "2026-06-30T16:02:02.628683+00:00",
   "entries": [],
   "exits": [],
   "decision": {
@@ -22,44 +22,52 @@
     }
   },
   "signals": {
+    "SPY": {
+      "rsi_now": 86.44,
+      "rsi_prev": 77.83,
+      "close_now": 746.07,
+      "close_prev": 741.0,
+      "sma5_prev": 734.22,
+      "exit_signal": true
+    },
     "QQQ": {
-      "rsi_now": 69.3,
-      "rsi_prev": 20.29,
-      "close_now": 720.55,
-      "close_prev": 706.52,
-      "sma5_prev": 717.02,
-      "exit_signal": false
+      "rsi_now": 85.18,
+      "rsi_prev": 73.42,
+      "close_now": 734.53,
+      "close_prev": 724.08,
+      "sma5_prev": 714.25,
+      "exit_signal": true
     },
     "IWM": {
-      "rsi_now": 29.45,
-      "rsi_prev": 86.86,
-      "close_now": 296.76,
-      "close_prev": 299.83,
-      "sma5_prev": 297.79,
+      "rsi_now": 72.18,
+      "rsi_prev": 56.18,
+      "close_now": 299.67,
+      "close_prev": 298.97,
+      "sma5_prev": 297.94,
       "exit_signal": true
     },
     "GLD": {
-      "rsi_now": 30.92,
-      "rsi_prev": 59.32,
-      "close_now": 368.98,
-      "close_prev": 373.63,
-      "sma5_prev": 374.18,
+      "rsi_now": 42.44,
+      "rsi_prev": 29.68,
+      "close_now": 369.7,
+      "close_prev": 368.58,
+      "sma5_prev": 370.98,
       "exit_signal": false
     },
     "XLK": {
-      "rsi_now": 61.6,
-      "rsi_prev": 17.71,
-      "close_now": 184.44,
-      "close_prev": 181.11,
-      "sma5_prev": 185.01,
-      "exit_signal": false
+      "rsi_now": 84.36,
+      "rsi_prev": 66.76,
+      "close_now": 189.47,
+      "close_prev": 185.41,
+      "sma5_prev": 183.67,
+      "exit_signal": true
     },
     "XLE": {
-      "rsi_now": 56.35,
-      "rsi_prev": 40.39,
-      "close_now": 54.0,
-      "close_prev": 53.84,
-      "sma5_prev": 54.0,
+      "rsi_now": 42.61,
+      "rsi_prev": 25.34,
+      "close_now": 53.69,
+      "close_prev": 53.58,
+      "sma5_prev": 53.91,
       "exit_signal": false
     }
   }
