@@ -1,27 +1,18 @@
 # Multi-Instrument Portfolio State
 
-Last updated: 2026-07-09T22:15:28.184762+00:00
+Last updated: 2026-07-10T21:54:30.470515+00:00
 
-**Equity:**       $20,397.73
-**Cash:**         $17,951.09
+**Equity:**       $20,386.22
+**Cash:**         $20,386.22
 **Peak equity:**  $20,398.96
-**Positions:**    1 / 5
+**Positions:**    0 / 5
 
 ```json
 {
-  "positions": {
-    "IWM": {
-      "qty": 8.2312,
-      "entry_price": 297.3886,
-      "entry_date": "2026-07-09",
-      "bars_held": 0,
-      "market_value": 2446.64,
-      "unrealized_pl": -1.22
-    }
-  },
-  "cash": 17951.085169958813,
-  "equity": 20397.725169958812,
+  "positions": {},
+  "cash": 20386.219881514815,
+  "equity": 20386.219881514815,
   "peak_equity": 20398.96042040774,
-  "last_updated": "2026-07-09T22:15:28.184762+00:00"
+  "last_updated": "2026-07-10T21:54:30.470515+00:00"
 }
 ```
