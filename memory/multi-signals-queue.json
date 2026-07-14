@@ -1,9 +1,13 @@
 {
-  "timestamp": "2026-07-13T16:03:05.705204+00:00",
-  "entries": [],
+  "timestamp": "2026-07-14T15:07:17.036717+00:00",
+  "entries": [
+    "GLD"
+  ],
   "exits": [],
   "decision": {
-    "final_entries": [],
+    "final_entries": [
+      "GLD"
+    ],
     "final_exits": [],
     "veto": false,
     "kill": false,
@@ -23,51 +27,51 @@
   },
   "signals": {
     "SPY": {
-      "rsi_now": 44.83,
-      "rsi_prev": 86.41,
-      "close_now": 751.25,
-      "close_prev": 754.95,
-      "sma5_prev": 750.21,
-      "exit_signal": true
+      "rsi_now": 61.65,
+      "rsi_prev": 35.29,
+      "close_now": 752.53,
+      "close_prev": 749.17,
+      "sma5_prev": 749.79,
+      "exit_signal": false
     },
     "QQQ": {
-      "rsi_now": 29.27,
-      "rsi_prev": 80.66,
-      "close_now": 715.21,
-      "close_prev": 725.51,
-      "sma5_prev": 718.5,
-      "exit_signal": true
+      "rsi_now": 59.99,
+      "rsi_prev": 24.1,
+      "close_now": 720.55,
+      "close_prev": 711.74,
+      "sma5_prev": 716.28,
+      "exit_signal": false
     },
     "IWM": {
-      "rsi_now": 24.02,
-      "rsi_prev": 45.8,
-      "close_now": 294.03,
-      "close_prev": 295.99,
-      "sma5_prev": 296.36,
+      "rsi_now": 50.59,
+      "rsi_prev": 21.19,
+      "close_now": 294.87,
+      "close_prev": 293.48,
+      "sma5_prev": 295.28,
       "exit_signal": false
     },
     "GLD": {
-      "rsi_now": 11.01,
-      "rsi_prev": 48.56,
-      "close_now": 368.59,
-      "close_prev": 377.01,
-      "sma5_prev": 377.85,
+      "rsi_now": 61.97,
+      "rsi_prev": 9.7,
+      "close_now": 375.61,
+      "close_prev": 367.13,
+      "sma5_prev": 374.85,
       "exit_signal": false
     },
     "XLK": {
-      "rsi_now": 30.83,
-      "rsi_prev": 80.19,
-      "close_now": 182.58,
-      "close_prev": 185.78,
-      "sma5_prev": 183.06,
-      "exit_signal": true
+      "rsi_now": 57.42,
+      "rsi_prev": 24.66,
+      "close_now": 183.78,
+      "close_prev": 181.28,
+      "sma5_prev": 182.6,
+      "exit_signal": false
     },
     "XLE": {
-      "rsi_now": 89.48,
-      "rsi_prev": 63.36,
+      "rsi_now": 72.24,
+      "rsi_prev": 90.83,
       "close_now": 56.46,
-      "close_prev": 55.08,
-      "sma5_prev": 54.65,
+      "close_prev": 56.74,
+      "sma5_prev": 55.38,
       "exit_signal": true
     }
   }
