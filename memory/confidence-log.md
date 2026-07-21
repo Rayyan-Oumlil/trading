@@ -143,3 +143,5 @@ The point of this log: after 4+ weeks, sort by confidence and check whether high
 
 2026-07-20 | SCAN | 6/10 | entries=['QQQ', 'XLK'] exits=[] [multi] [multi]
 2026-07-20 | 2BUY+0SELL | 6/10 | entered=['QQQ', 'XLK'] closed=[] [multi] [multi]2026-07-20 | HOLD | 7/10 | position aligned with regime; fast-slow margin +0.77%
+
+2026-07-21 | SCAN | 6/10 | entries=['SPY', 'IWM'] exits=[] [multi] [multi]
