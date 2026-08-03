@@ -171,4 +171,4 @@ The point of this log: after 4+ weeks, sort by confidence and check whether high
 2026-07-31 | SCAN | 6/10 | entries=[] exits=['SPY', 'QQQ', 'XLK'] [multi] [multi]
 2026-07-31 | 0BUY+3SELL | 6/10 | entered=[] closed=['QQQ', 'XLK', 'SPY'] [multi] [multi]
 2026-08-03 | SCAN | 6/10 | entries=[] exits=[] [multi] [multi]
-2026-08-03 | HOLD | 6/10 | entered=[] closed=[] [multi] [multi]
+2026-08-03 | HOLD | 6/10 | entered=[] closed=[] [multi] [multi]2026-08-03 | FLAT | 5/10 | awaiting cross-up; fast-slow margin -0.23%
