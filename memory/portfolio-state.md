@@ -1,10 +1,10 @@
 # Portfolio State
 
-Last updated: 2026-08-03T22:16:32.452118+00:00
+Last updated: 2026-08-04T22:21:13.702329+00:00
 
-**Equity:**       $103,415.69
-**Cash:**         $103,415.69
-**Buying power:** $413,662.76
+**Equity:**       $103,415.67
+**Cash:**         $103,415.67
+**Buying power:** $413,662.68
 **Status:**       AccountStatus.ACTIVE
 
 ## Open positions
