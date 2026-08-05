@@ -177,4 +177,4 @@ The point of this log: after 4+ weeks, sort by confidence and check whether high
 2026-08-04 | HOLD | 6/10 | entered=[] closed=[] [multi] [multi]2026-08-04 | FLAT | 5/10 | awaiting cross-up; fast-slow margin -0.00%
 
 2026-08-05 | SCAN | 6/10 | entries=[] exits=[] [multi] [multi]
-2026-08-05 | HOLD | 6/10 | entered=[] closed=[] [multi] [multi]
+2026-08-05 | HOLD | 6/10 | entered=[] closed=[] [multi] [multi]2026-08-05 | BUY | 7/10 | cross-up confirmed; fast-slow margin +0.23%
