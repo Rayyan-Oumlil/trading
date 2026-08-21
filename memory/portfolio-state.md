@@ -1,15 +1,16 @@
 # Portfolio State
 
-Last updated: 2026-08-20T21:41:59.615414+00:00
+Last updated: 2026-08-21T21:36:42.747643+00:00
 
-**Equity:**       $102,572.98
-**Cash:**         $2,716.09
-**Buying power:** $287,993.61
+**Equity:**       $102,906.03
+**Cash:**         $229.51
+**Buying power:** $288,412.30
 **Status:**       AccountStatus.ACTIVE
 
 ## Open positions
 
 | Symbol | Qty | Market Value | Unrealized P&L |
 |--------|-----|--------------|----------------|
-| QQQ | 3.45 | $2,453.50 | -$7.63 |
-| SPY | 127.63 | $97,403.39 | -$835.05 |
+| QQQ | 3.45 | $2,460.13 | -$1.00 |
+| SPY | 127.63 | $97,741.61 | -$496.83 |
+| XLK | 13.50 | $2,474.79 | -$11.78 |
