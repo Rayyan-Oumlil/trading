@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-08-24T14:09:32.482529+00:00",
+  "timestamp": "2026-08-25T14:12:19.153688+00:00",
   "entries": [],
   "exits": [],
   "decision": {
@@ -23,52 +23,52 @@
   },
   "signals": {
     "SPY": {
-      "rsi_now": 26.22,
-      "rsi_prev": 46.52,
-      "close_now": 762.7,
-      "close_prev": 765.72,
-      "sma5_prev": 767.5,
+      "rsi_now": 55.81,
+      "rsi_prev": 29.5,
+      "close_now": 765.3,
+      "close_prev": 763.47,
+      "sma5_prev": 765.66,
       "exit_signal": false
     },
     "QQQ": {
-      "rsi_now": 9.62,
-      "rsi_prev": 36.93,
-      "close_now": 703.08,
-      "close_prev": 713.44,
-      "sma5_prev": 717.57,
+      "rsi_now": 50.8,
+      "rsi_prev": 12.51,
+      "close_now": 710.51,
+      "close_prev": 706.32,
+      "sma5_prev": 712.86,
       "exit_signal": false
     },
     "IWM": {
-      "rsi_now": 32.39,
-      "rsi_prev": 51.63,
-      "close_now": 298.38,
-      "close_prev": 299.96,
-      "sma5_prev": 300.73,
+      "rsi_now": 44.65,
+      "rsi_prev": 29.53,
+      "close_now": 298.61,
+      "close_prev": 297.97,
+      "sma5_prev": 299.51,
       "exit_signal": false
     },
     "GLD": {
-      "rsi_now": 95.94,
-      "rsi_prev": 93.08,
-      "close_now": 428.29,
-      "close_prev": 423.36,
-      "sma5_prev": 411.3,
+      "rsi_now": 63.71,
+      "rsi_prev": 95.32,
+      "close_now": 424.13,
+      "close_prev": 426.69,
+      "sma5_prev": 415.54,
       "exit_signal": true
     },
     "XLK": {
-      "rsi_now": 2.87,
-      "rsi_prev": 17.1,
-      "close_now": 179.18,
-      "close_prev": 183.31,
-      "sma5_prev": 185.2,
+      "rsi_now": 47.42,
+      "rsi_prev": 3.48,
+      "close_now": 181.76,
+      "close_prev": 180.05,
+      "sma5_prev": 183.14,
       "exit_signal": false
     },
     "XLE": {
-      "rsi_now": 26.69,
-      "rsi_prev": 68.86,
-      "close_now": 63.29,
-      "close_prev": 63.64,
-      "sma5_prev": 63.45,
-      "exit_signal": true
+      "rsi_now": 8.65,
+      "rsi_prev": 20.1,
+      "close_now": 62.61,
+      "close_prev": 63.11,
+      "sma5_prev": 63.55,
+      "exit_signal": false
     }
   }
 }
