@@ -235,4 +235,4 @@ The point of this log: after 4+ weeks, sort by confidence and check whether high
 2026-09-01 | 2BUY+0SELL | 6/10 | entered=['IWM', 'GLD'] closed=[] [multi] [multi]2026-09-01 | HOLD | 7/10 | position aligned with regime; fast-slow margin +1.52%
 
 2026-09-02 | SCAN | 6/10 | entries=['SPY'] exits=[] [multi] [multi]
-2026-09-02 | 1BUY+0SELL | 6/10 | entered=['SPY'] closed=[] [multi] [multi]
+2026-09-02 | 1BUY+0SELL | 6/10 | entered=['SPY'] closed=[] [multi] [multi]2026-09-02 | HOLD | 7/10 | position aligned with regime; fast-slow margin +1.39%
