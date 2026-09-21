@@ -1,14 +1,10 @@
 {
-  "timestamp": "2026-09-18T17:08:14.332504+00:00",
+  "timestamp": "2026-09-21T18:50:56.712796+00:00",
   "entries": [],
-  "exits": [
-    "QQQ"
-  ],
+  "exits": [],
   "decision": {
     "final_entries": [],
-    "final_exits": [
-      "QQQ"
-    ],
+    "final_exits": [],
     "veto": false,
     "kill": false,
     "confidence": 6,
@@ -27,51 +23,51 @@
   },
   "signals": {
     "SPY": {
-      "rsi_now": 48.85,
-      "rsi_prev": 73.62,
-      "close_now": 759.51,
-      "close_prev": 762.6,
-      "sma5_prev": 759.84,
+      "rsi_now": 95.07,
+      "rsi_prev": 77.28,
+      "close_now": 774.42,
+      "close_prev": 761.69,
+      "sma5_prev": 757.82,
       "exit_signal": true
     },
     "QQQ": {
-      "rsi_now": 85.76,
-      "rsi_prev": 85.51,
-      "close_now": 717.05,
-      "close_prev": 716.92,
-      "sma5_prev": 710.05,
+      "rsi_now": 97.91,
+      "rsi_prev": 91.0,
+      "close_now": 741.19,
+      "close_prev": 721.45,
+      "sma5_prev": 711.36,
       "exit_signal": true
     },
     "IWM": {
-      "rsi_now": 21.3,
-      "rsi_prev": 53.14,
-      "close_now": 283.19,
-      "close_prev": 285.43,
-      "sma5_prev": 285.96,
+      "rsi_now": 71.96,
+      "rsi_prev": 28.16,
+      "close_now": 286.31,
+      "close_prev": 284.1,
+      "sma5_prev": 285.15,
       "exit_signal": false
     },
     "GLD": {
-      "rsi_now": 86.85,
-      "rsi_prev": 76.2,
-      "close_now": 402.17,
-      "close_prev": 398.36,
-      "sma5_prev": 395.17,
+      "rsi_now": 51.11,
+      "rsi_prev": 85.1,
+      "close_now": 398.67,
+      "close_prev": 401.17,
+      "sma5_prev": 395.65,
       "exit_signal": true
     },
     "XLK": {
-      "rsi_now": 87.38,
-      "rsi_prev": 87.23,
-      "close_now": 188.09,
-      "close_prev": 188.06,
-      "sma5_prev": 185.54,
+      "rsi_now": 97.7,
+      "rsi_prev": 92.07,
+      "close_now": 194.57,
+      "close_prev": 189.6,
+      "sma5_prev": 185.92,
       "exit_signal": true
     },
     "XLE": {
-      "rsi_now": 38.35,
-      "rsi_prev": 44.3,
-      "close_now": 64.33,
-      "close_prev": 64.48,
-      "sma5_prev": 64.82,
+      "rsi_now": 10.91,
+      "rsi_prev": 37.48,
+      "close_now": 62.97,
+      "close_prev": 64.31,
+      "sma5_prev": 64.66,
       "exit_signal": false
     }
   }
