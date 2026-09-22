@@ -275,3 +275,5 @@ The point of this log: after 4+ weeks, sort by confidence and check whether high
 
 2026-09-21 | SCAN | 6/10 | entries=[] exits=[] [multi] [multi]
 2026-09-21 | HOLD | 6/10 | entered=[] closed=[] [multi] [multi]2026-09-22 | SELL | 6/10 | regime flipped bearish; fast-slow margin +nan%
+
+2026-09-22 | SCAN | 6/10 | entries=[] exits=['IWM'] [multi] [multi]
