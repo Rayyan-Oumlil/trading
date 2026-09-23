@@ -280,4 +280,4 @@ The point of this log: after 4+ weeks, sort by confidence and check whether high
 2026-09-22 | 0BUY+1SELL | 6/10 | entered=[] closed=['IWM'] [multi] [multi]2026-09-22 | BUY | 7/10 | cross-up confirmed; fast-slow margin +0.35%
 
 2026-09-23 | SCAN | 6/10 | entries=[] exits=[] [multi] [multi]
-2026-09-23 | HOLD | 6/10 | entered=[] closed=[] [multi] [multi]
+2026-09-23 | HOLD | 6/10 | entered=[] closed=[] [multi] [multi]2026-09-23 | HOLD | 7/10 | position aligned with regime; fast-slow margin +0.40%
