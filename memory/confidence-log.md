@@ -293,3 +293,5 @@ The point of this log: after 4+ weeks, sort by confidence and check whether high
 
 2026-09-29 | SCAN | 6/10 | entries=['GLD'] exits=[] [multi] [multi]
 2026-09-30 | 1BUY+0SELL | 6/10 | entered=['GLD'] closed=[] [multi] [multi]2026-09-30 | FLAT | 5/10 | awaiting cross-up; fast-slow margin +nan%
+
+2026-09-30 | SCAN | 6/10 | entries=['IWM'] exits=[] [multi] [multi]
