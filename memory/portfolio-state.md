@@ -1,12 +1,14 @@
 # Portfolio State
 
-Last updated: 2026-09-30T00:25:50.964948+00:00
+Last updated: 2026-10-01T00:32:26.567204+00:00
 
-**Equity:**       $103,441.79
-**Cash:**         $103,441.79
-**Buying power:** $411,227.06
+**Equity:**       $103,408.06
+**Cash:**         $100,894.91
+**Buying power:** $408,115.52
 **Status:**       AccountStatus.ACTIVE
 
 ## Open positions
 
-None.
+| Symbol | Qty | Market Value | Unrealized P&L |
+|--------|-----|--------------|----------------|
+| GLD | 6.62 | $2,513.15 | -$31.71 |
