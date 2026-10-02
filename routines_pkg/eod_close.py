@@ -9,7 +9,7 @@ Skips execution if the kill switch is active.
 from __future__ import annotations
 
 import sys
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -21,6 +21,7 @@ load_dotenv(PROJECT_ROOT / ".env")
 
 from paper_trading.alpaca_client import AlpacaClient  # noqa: E402
 from paper_trading.kill_switch import is_halted  # noqa: E402
+from paper_trading.market_calendar import last_completed_session  # noqa: E402
 
 JOURNAL_DIR = PROJECT_ROOT / "journal"
 PORTFOLIO_STATE = PROJECT_ROOT / "memory" / "portfolio-state.md"
@@ -149,7 +150,9 @@ def main() -> int:
     account = client.get_account()
     positions = client.get_positions()
 
-    date_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    now = datetime.now(timezone.utc)
+    session = last_completed_session(now, client.get_calendar(now.date() - timedelta(days=10), now.date()))
+    date_str = session.isoformat()
     journal_path = write_journal_entry(date_str, account, positions, JOURNAL_DIR)
     write_portfolio_state(account, positions, PORTFOLIO_STATE)
 

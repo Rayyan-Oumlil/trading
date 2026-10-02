@@ -1,10 +1,12 @@
 import math
+from datetime import date, time
 
 import numpy as np
 import pandas as pd
 import pytest
 
 import run_signal
+from paper_trading.alpaca_client import OrderResult
 
 
 def _bars(n: int = 80, last_close_nan: bool = False) -> pd.DataFrame:
@@ -39,3 +41,70 @@ def test_current_regime_is_finite_and_bullish_after_nan_row_dropped():
 def test_current_regime_refuses_nan_instead_of_reporting_bearish():
     with pytest.raises(RuntimeError):
         run_signal.current_regime(_bars(last_close_nan=True))
+
+
+
+class FakeClient:
+    def __init__(self, positions=(), open_order=False, status="OrderStatus.ACCEPTED"):
+        self.positions = list(positions)
+        self.open_order = open_order
+        self.status = status
+        self.orders: list[tuple[str, float, str]] = []
+
+    def get_calendar(self, start, end):
+        return [(date(2026, 10, 1), time(16, 0)), (date(2026, 10, 2), time(16, 0))]
+
+    def get_account(self):
+        return {"status": "ACTIVE", "equity": 100_000.0, "buying_power": 100_000.0, "cash": 100_000.0}
+
+    def get_positions(self):
+        return self.positions
+
+    def has_open_order(self, symbol):
+        return self.open_order
+
+    def place_market_order(self, symbol, qty, side):
+        self.orders.append((symbol, qty, side))
+        return OrderResult(order_id="o-1", status=self.status, filled_avg_price=None)
+
+
+@pytest.fixture
+def wired(monkeypatch, tmp_path):
+    def _wire(client):
+        log = tmp_path / "confidence-log.md"
+        monkeypatch.setattr(run_signal, "CONFIDENCE_LOG", log)
+        monkeypatch.setattr(run_signal, "is_halted", lambda: False)
+        monkeypatch.setattr(run_signal, "AlpacaClient", lambda: client)
+        monkeypatch.setattr(run_signal, "get_daily_bars", lambda symbol, lookback_days, last_session: _bars())
+        return log
+    return _wire
+
+
+def test_main_buys_and_dates_log_by_session(wired):
+    client = FakeClient()
+    log = wired(client)
+    assert run_signal.main() == 0
+    assert client.orders and client.orders[0][2] == "buy"
+    assert log.read_text().startswith("2026-10-02 | BUY |")
+
+
+def test_main_skips_duplicate_run_when_order_pending(wired):
+    client = FakeClient(open_order=True)
+    log = wired(client)
+    assert run_signal.main() == 0
+    assert client.orders == []
+    assert "| PENDING |" in log.read_text()
+
+
+def test_main_raises_on_rejected_order(wired):
+    wired(FakeClient(status="OrderStatus.REJECTED"))
+    with pytest.raises(RuntimeError, match="REJECTED"):
+        run_signal.main()
+
+
+def test_main_refuses_foreign_positions(wired):
+    client = FakeClient(positions=[{"symbol": "GLD", "qty": 1.0, "market_value": 1.0, "unrealized_pl": 0.0}])
+    wired(client)
+    with pytest.raises(RuntimeError, match="GLD"):
+        run_signal.main()
+    assert client.orders == []
