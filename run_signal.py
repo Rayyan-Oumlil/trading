@@ -31,7 +31,7 @@ from paper_trading.alpaca_client import AlpacaClient  # noqa: E402
 from paper_trading.guards import assert_only_expected_positions, order_failed  # noqa: E402
 from paper_trading.kill_switch import is_halted       # noqa: E402
 from paper_trading.market_calendar import last_completed_session  # noqa: E402
-from paper_trading.market_data import get_daily_bars  # noqa: E402
+from paper_trading.market_data import SIP_DELAY, get_daily_bars  # noqa: E402
 from strategies.ma_crossover.signals import calculate_signals  # noqa: E402
 
 TICKER = "SPY"
@@ -90,7 +90,8 @@ def main() -> int:
 
     client = AlpacaClient()
     now = datetime.now(timezone.utc)
-    session = last_completed_session(now, client.get_calendar(now.date() - CALENDAR_WINDOW, now.date()))
+    # A session only counts once its full bar is servable (SIP data lags 16 min); otherwise we'd trade a partial bar.
+    session = last_completed_session(now - SIP_DELAY, client.get_calendar(now.date() - CALENDAR_WINDOW, now.date()))
 
     print(f"Fetching {TICKER} bars through session {session}...")
     df = clean_bars(get_daily_bars(TICKER, lookback_days=LOOKBACK_DAYS, last_session=session))

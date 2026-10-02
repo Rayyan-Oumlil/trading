@@ -108,3 +108,24 @@ def test_main_refuses_foreign_positions(wired):
     with pytest.raises(RuntimeError, match="GLD"):
         run_signal.main()
     assert client.orders == []
+
+
+def test_run_just_after_close_uses_previous_session_not_partial_bar(wired, monkeypatch):
+    from datetime import datetime, timezone
+
+    class JustAfterClose(datetime):
+        @classmethod
+        def now(cls, tz=None):
+            return datetime(2026, 10, 2, 20, 10, tzinfo=timezone.utc)  # 16:10 EDT, inside SIP delay
+
+    seen = {}
+
+    def fake_bars(symbol, lookback_days, last_session):
+        seen["session"] = last_session
+        return _bars()
+
+    wired(FakeClient())
+    monkeypatch.setattr(run_signal, "datetime", JustAfterClose)
+    monkeypatch.setattr(run_signal, "get_daily_bars", fake_bars)
+    run_signal.main()
+    assert seen["session"] == date(2026, 10, 1)

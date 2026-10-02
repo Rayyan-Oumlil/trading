@@ -120,7 +120,7 @@ jobs:
           fi
 
       - name: Alert on trade or halt
-        if: success()
+        if: success() && steps.mode.outputs.mode == 'eod'
         shell: bash
         run: |
           last="$(tail -n 1 memory/confidence-log.md)"
