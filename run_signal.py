@@ -12,6 +12,7 @@ Paper trading only. Never touches live account.
 """
 from __future__ import annotations
 
+import math
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -52,7 +53,15 @@ def fetch_bars(ticker: str, lookback: int = 120) -> pd.DataFrame:
     if isinstance(df.columns, pd.MultiIndex):
         df.columns = df.columns.get_level_values(0)
     df.columns = [str(c).lower() for c in df.columns]
-    return df
+    return clean_bars(df)
+
+
+def clean_bars(df: pd.DataFrame) -> pd.DataFrame:
+    """Drop incomplete rows (yfinance can append a NaN-close bar) and require a full SMA window."""
+    cleaned = df.dropna(subset=["close"])
+    if len(cleaned) < SLOW:
+        raise RuntimeError(f"Only {len(cleaned)} valid bars for {TICKER}; need {SLOW}")
+    return cleaned
 
 
 def current_regime(df: pd.DataFrame) -> tuple[float, float, bool]:
@@ -61,6 +70,9 @@ def current_regime(df: pd.DataFrame) -> tuple[float, float, bool]:
     last = out.iloc[-1]
     sma_fast = float(last["sma_fast"])
     sma_slow = float(last["sma_slow"])
+    # NaN compares False, which used to read as "bearish" and liquidate the position.
+    if math.isnan(sma_fast) or math.isnan(sma_slow):
+        raise RuntimeError(f"SMA is NaN (fast={sma_fast}, slow={sma_slow}); refusing to trade")
     return sma_fast, sma_slow, sma_fast > sma_slow
 
 

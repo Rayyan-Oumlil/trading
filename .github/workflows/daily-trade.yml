@@ -54,6 +54,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Run tests (no trading on a red suite)
+        run: python -m pytest -q
+
       - name: Determine mode
         id: mode
         shell: bash
