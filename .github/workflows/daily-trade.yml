@@ -36,6 +36,8 @@ jobs:
       ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
       ALPACA_API_SECRET: ${{ secrets.ALPACA_API_SECRET }}
       ALPACA_PAPER_TRADE: ${{ secrets.ALPACA_PAPER_TRADE }}
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
       PYTHONUNBUFFERED: '1'
     steps:
       - name: Checkout
@@ -97,6 +99,7 @@ jobs:
           python -m routines_pkg.eod_close
 
       - name: Commit memory + journal updates
+        if: always()
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
@@ -115,6 +118,19 @@ jobs:
             done
             git push
           fi
+
+      - name: Alert on trade or halt
+        if: success()
+        shell: bash
+        run: |
+          last="$(tail -n 1 memory/confidence-log.md)"
+          if echo "$last" | grep -qE '\| (BUY|SELL|HALT|PENDING) \|'; then
+            python -m paper_trading.notify "daily-trade ${{ steps.mode.outputs.mode }}: $last"
+          fi
+
+      - name: Alert on failure
+        if: failure()
+        run: python -m paper_trading.notify "daily-trade ${{ steps.mode.outputs.mode }} FAILED - ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
 
       - name: Surface confidence-log tail (self-test)
         if: always()
