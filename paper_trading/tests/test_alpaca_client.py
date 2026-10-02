@@ -119,3 +119,19 @@ class TestGetCalendar:
             mock_tc.return_value.get_calendar.return_value = [day]
             result = AlpacaClient().get_calendar(date(2026, 11, 20), date(2026, 11, 27))
         assert result == [(date(2026, 11, 27), time(13, 0))]
+
+
+class TestHasOpenOrder:
+    def test_true_when_open_order_exists(self, monkeypatch: pytest.MonkeyPatch) -> None:
+        monkeypatch.setenv("ALPACA_API_KEY", "k")
+        monkeypatch.setenv("ALPACA_API_SECRET", "s")
+        with patch("paper_trading.alpaca_client.TradingClient") as mock_tc:
+            mock_tc.return_value.get_orders.return_value = [MagicMock()]
+            assert AlpacaClient().has_open_order("SPY") is True
+
+    def test_false_when_none(self, monkeypatch: pytest.MonkeyPatch) -> None:
+        monkeypatch.setenv("ALPACA_API_KEY", "k")
+        monkeypatch.setenv("ALPACA_API_SECRET", "s")
+        with patch("paper_trading.alpaca_client.TradingClient") as mock_tc:
+            mock_tc.return_value.get_orders.return_value = []
+            assert AlpacaClient().has_open_order("SPY") is False

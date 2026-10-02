@@ -6,8 +6,8 @@ from dataclasses import dataclass
 from datetime import date, datetime, time
 
 from alpaca.trading.client import TradingClient
-from alpaca.trading.enums import OrderSide, TimeInForce
-from alpaca.trading.requests import GetCalendarRequest, MarketOrderRequest
+from alpaca.trading.enums import OrderSide, QueryOrderStatus, TimeInForce
+from alpaca.trading.requests import GetCalendarRequest, GetOrdersRequest, MarketOrderRequest
 
 _VALID_SIDES = {"buy", "sell"}
 
@@ -76,3 +76,7 @@ class AlpacaClient:
     def get_calendar(self, start: date, end: date) -> list[tuple[date, time]]:
         days = self._client.get_calendar(GetCalendarRequest(start=start, end=end))
         return [(d.date, d.close.time() if isinstance(d.close, datetime) else d.close) for d in days]
+
+    def has_open_order(self, symbol: str) -> bool:
+        orders = self._client.get_orders(GetOrdersRequest(status=QueryOrderStatus.OPEN, symbols=[symbol]))
+        return len(orders) > 0
