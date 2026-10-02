@@ -2,7 +2,7 @@
 name: rsi2-multi
 version: 1
 created: 2026-06-01
-stage: backtest
+stage: rejected
 author: rayyan
 ---
 
@@ -104,6 +104,7 @@ If multiple tickers signal on the same day: rank by RSI value (lowest RSI = most
 | 2026-06-01 | OOS 2022-2024, no-stop, 6 instruments | **Sharpe 0.760, DD -5.59%, 72 trades/yr, +14.74%, win 62.9%** — ALL GATES PASS |
 | 2026-06-01 | OOS 2022-2024, 3% stop, 6 instruments | Sharpe 0.325, DD -8.65% — stop kills mean-reversion |
 | 2026-06-01 | OOS 2022-2024, 3% stop, 7 instr (incl TLT) | Sharpe 0.215 — TLT dragged by rate hike cycle |
+| 2026-10-02 | Live-paper review (2026-06-02 → 10-02) | **REJECTED.** Executes signal-close t at open t+2 (backtest: t+1); shared the ma-crossover Alpaca account and sold 3.26 SPY it never owned after a rejected buy (07-21/07-23); claimed Sharpe 0.760 has no results file — the only file on disk says 0.215; §5 and §11 contradict each other on stop and time-stop. Workflow disabled, GLD/IWM flattened. See `journal/2026-10-02.md`. |
 
 ## 13. Multi-Agent Research Layer
 

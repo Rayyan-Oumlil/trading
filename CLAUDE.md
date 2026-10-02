@@ -81,6 +81,8 @@ Apply the seven lessons from [PRINCIPLES.md](PRINCIPLES.md) on every task:
 
 ### Rejected experiments (do not retry without a new thesis)
 
+- **rsi2-multi (6-ETF RSI(2))** — rejected 2026-10-02 after 4 months live-paper. Deployed 2026-06-01 in violation of the rsi2-connors rejection below. Execution lagged its backtest by a full session, it shared ma-crossover's Alpaca account (sold SPY it never owned), and its headline Sharpe 0.760 was never saved — the only results file says 0.215. Workflow `multi-agent-trade` disabled; positions flattened. See `strategies/rsi2_multi/STRATEGY.md §12`.
+
 - **VIX25 regime gate** — rejected 2026-05-05. Filtered exactly one OOS trade and that trade was a +$1,763 winner (Nov-Dec 2022 reversal). High-VIX cross-ups on broad indices are reversal entries, not noise. See `journal/2026-05-05.md`. No re-tuning at thresholds 20/30 — the frame is wrong, not the number.
 - **RSI(2) Connors mean-reversion** — rejected 2026-05-07. IS Sharpe 0.42, OOS Sharpe 0.31 (both below 0.5 bar). 200-DMA filter blocks too much of 2022 (bear) and RSI<10 readings too rare in 2023-24 (steady bull). Hard-stop variant strictly worse — confirms Connors original. Correlation 0.187 with ma-crossover OOS is genuinely low, BUT absolute return too weak (5% in 3 years) to be a useful diversifier on its own. See `strategies/rsi2_connors/STRATEGY.md §12`. Do not retry — the next strategy candidate is C (sector momentum) or D (crypto MA), not another mean-reversion variant.
 

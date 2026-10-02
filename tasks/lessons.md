@@ -13,3 +13,10 @@
 - **Stale-clone trap.** Before declaring "the routine is broken" or "memory is empty," run `git fetch && git log origin/master ^master` to see what is on remote that you have not pulled. A local working tree where `git status` shows `deleted: .github/workflows/<name>.yml` looks identical to a real automation outage but may just be an uncommitted local deletion of a file that is alive and well on origin. Symptoms that this is happening: portfolio-state.md timestamp is days old, journal/ has no recent entries, but the broker account state has clearly evolved. Always check the remote first. The correct first command of any "is the loop alive?" diagnosis is `git fetch`, not `git log` of the local branch.
 
 - **Pre-committed decision rules save money.** The VIX25 gate experiment had a written rule before any backtest ran: *"keep if Sharpe up AND drawdown down AND trades/year ≥ 3."* Result: the gate filtered out exactly one OOS trade and that trade was a +$1,763 winner. Without the pre-committed rule it would have been tempting to ship the filter (the metrics looked roughly equivalent at a glance). The rule made the discard decision automatic, no negotiation. Always write the keep/discard rule before you run the experiment, and put it in the journal in the same paragraph as the hypothesis.
+
+## 2026-10-02
+
+- **No results file, no deploy.** A strategy goes live only from a results file on disk produced by a committed script. rsi2-multi shipped on a quoted "Sharpe 0.760" that was never saved; the file on disk said 0.215.
+- **One strategy per broker account.** Two strategies trading one Alpaca account (both touching SPY) let a rejected order become a phantom position that later sold shares belonging to the other strategy.
+- **NaN is not a signal.** Any comparison with NaN is False; `NaN > NaN` read as "bearish" liquidated ~$98k of SPY twice. Indicators must raise on NaN, never fall through to a branch.
+- **An alarm nobody hears is not an alarm.** The daily-reflection routine flagged the NaN SELL on 09-29, but pushed to an unmerged branch with notifications off. Every detector needs a delivery path to the phone.
