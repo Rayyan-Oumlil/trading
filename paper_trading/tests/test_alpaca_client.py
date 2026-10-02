@@ -105,3 +105,17 @@ class TestGetPositions:
         assert positions[0]["symbol"] == "SPY"
         assert positions[0]["qty"] == 10.0
         assert positions[0]["market_value"] == 4500.0
+
+
+class TestGetCalendar:
+    def test_returns_date_and_close_time(self, monkeypatch: pytest.MonkeyPatch) -> None:
+        from datetime import date, datetime, time
+        monkeypatch.setenv("ALPACA_API_KEY", "k")
+        monkeypatch.setenv("ALPACA_API_SECRET", "s")
+        day = MagicMock()
+        day.date = date(2026, 11, 27)
+        day.close = datetime(2026, 11, 27, 13, 0)
+        with patch("paper_trading.alpaca_client.TradingClient") as mock_tc:
+            mock_tc.return_value.get_calendar.return_value = [day]
+            result = AlpacaClient().get_calendar(date(2026, 11, 20), date(2026, 11, 27))
+        assert result == [(date(2026, 11, 27), time(13, 0))]

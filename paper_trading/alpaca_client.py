@@ -3,10 +3,11 @@ from __future__ import annotations
 
 import os
 from dataclasses import dataclass
+from datetime import date, datetime, time
 
 from alpaca.trading.client import TradingClient
 from alpaca.trading.enums import OrderSide, TimeInForce
-from alpaca.trading.requests import MarketOrderRequest
+from alpaca.trading.requests import GetCalendarRequest, MarketOrderRequest
 
 _VALID_SIDES = {"buy", "sell"}
 
@@ -71,3 +72,7 @@ class AlpacaClient:
             }
             for p in positions
         ]
+
+    def get_calendar(self, start: date, end: date) -> list[tuple[date, time]]:
+        days = self._client.get_calendar(GetCalendarRequest(start=start, end=end))
+        return [(d.date, d.close.time() if isinstance(d.close, datetime) else d.close) for d in days]
