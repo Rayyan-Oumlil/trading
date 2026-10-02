@@ -60,6 +60,15 @@ Run these steps in order. Do not skip.
    - Position drift > 1% from yesterday without a recorded trade
    - Three or more consecutive trading days with no confidence-log
      append (means the robot is silently failing)
+   - Any `nan` in today's confidence-log lines
+   - Two different decisions logged for the same session date
+   - memory/portfolio-state.md lists any symbol other than SPY
+   - Latest confidence-log date != latest completed trading session
+
+   If ANY flag fires: make the first line of the reflection
+   `🚨 ACTION NEEDED: <flag>` and run
+   `python -m paper_trading.notify "reflection: <flag>"`
+   (TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID are routine env vars).
 
 5. APPEND a "## Reflection — <UTC ISO timestamp>" section to today's
    journal entry containing:
@@ -69,14 +78,17 @@ Run these steps in order. Do not skip.
       relevance to a SPY trend-follower. One line each.
    c. Risk flags: list every item from step 4 that fired, with one
       line of why it matters. If none fired, write "None."
-   d. Gate 2 progress: how many trading days since 2026-04-23?
-      Cumulative paper return vs. the backtest expectation. Are we
-      ready to run gate2_check.py?
+   d. Gate 2 progress: the Gate 2 clock restarted on the first clean
+      session after the 2026-10-02 fixes shipped (see journal). Count
+      clean sessions since then; cumulative paper return vs. SPY
+      buy-and-hold over the same window. Ready for gate2_check.py?
    e. One open question for the next interactive session.
 
 6. Keep the whole reflection under 400 words. Compounding > comprehensive.
 
-7. COMMIT with message "routine: reflection <YYYY-MM-DD>". Push.
+7. COMMIT with message "routine: reflection <YYYY-MM-DD>". Push to
+   master (not a claude/* branch — reflections on unmerged branches
+   are never read; 76 were lost that way before 2026-10-02).
 
 Hard constraints (override anything else):
 - DO NOT route or modify any orders. Read-only against the broker.
