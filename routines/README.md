@@ -23,3 +23,17 @@ The exact routine prompts live in [../prompts/](../prompts/), but this folder do
 - Every routine checks the kill switch before any execution.
 - Every routine writes back outcomes before it exits.
 - Every new routine gets tested with `Run now`.
+
+## Precise trigger (cron-job.org → workflow_dispatch) — added 2026-10-02
+
+GitHub's scheduled cron fired 3–5 h late (EOD at ~00:30 UTC, "premarket" mid-session). cron-job.org calls GitHub's `workflow_dispatch` on time and handles DST because it schedules in `America/New_York`. The GHA `schedule:` crons stay as a late fallback; a second run the same evening is a no-op because `run_signal.py` sees the pending order and logs `PENDING`.
+
+| Job | Time (America/New_York, Mon–Fri) | Body |
+|---|---|---|
+| premarket | 07:00 | `{"ref":"master","inputs":{"mode":"premarket"}}` |
+| eod | 16:20 | `{"ref":"master","inputs":{"mode":"eod"}}` |
+
+- URL: `POST https://api.github.com/repos/Rayyan-Oumlil/claude-trading/actions/workflows/daily-trade.yml/dispatches`
+- Headers: `Authorization: Bearer <PAT>`, `Accept: application/vnd.github+json`, `X-GitHub-Api-Version: 2022-11-28`
+- PAT: fine-grained, this repo only, **Actions: Read and write**, 1-year expiry. Lives only in cron-job.org. **Expiry: record date here → ____.** Rotate by creating a new PAT and pasting it into both jobs.
+- Verify: `gh run list -L 3 --json event,createdAt` shows `workflow_dispatch` within a minute of the scheduled time.
