@@ -14,6 +14,8 @@ Format: `<flag code> | <session> | <why it is safe> | <who/when>`
 
 ## Open threads
 
+- [x] 2026-10-02 — Telegram alerts live (@Trader20062_bot); failure-alert fire drill passed 00:02Z 10-03.
+
 - [ ] 2026-10-02 — GLD 6.62 / IWM 8.97 sells queued (rsi2-multi wind-down). Expect fills Mon 2026-10-05 open; expect `foreign_position_closing` alert until then.
 - [ ] 2026-10-02 — First EOD after fills should BUY ~95% cash SPY (regime bullish since ~09-24). Confirm it happened once, not twice.
 - [ ] 2026-10-02 — Gate 2 clock restarts on the first clean session after 165bbe4. Count clean sessions from there.

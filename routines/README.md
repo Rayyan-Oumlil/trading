@@ -37,3 +37,8 @@ GitHub's scheduled cron fired 3–5 h late (EOD at ~00:30 UTC, "premarket" mid-s
 - Headers: `Authorization: Bearer <PAT>`, `Accept: application/vnd.github+json`, `X-GitHub-Api-Version: 2022-11-28`
 - PAT: fine-grained, this repo only, **Actions: Read and write**, 1-year expiry. Lives only in cron-job.org. **Expiry: record date here → ____.** Rotate by creating a new PAT and pasting it into both jobs.
 - Verify: `gh run list -L 3 --json event,createdAt` shows `workflow_dispatch` within a minute of the scheduled time.
+
+### Active trigger (2026-10-02): Windows Task Scheduler instead of cron-job.org
+
+Registered on Rayyan's PC (timezone Eastern, DST-aware): `ClaudeTrading-Dispatch-Premarket` (Mon–Fri 07:00) and `ClaudeTrading-Dispatch-EOD` (Mon–Fri 16:20), each running `gh workflow run daily-trade.yml -R Rayyan-Oumlil/claude-trading -f mode=<mode>` with the local `gh` login — no PAT. `StartWhenAvailable` catches up after sleep. If the PC is off, the GHA cron fallback still runs (late); a duplicate the same evening logs `PENDING`. Move to cron-job.org (above) if the PC is often off at 16:20.
+Remove: `Unregister-ScheduledTask -TaskName 'ClaudeTrading-Dispatch-*' -Confirm:$false`
