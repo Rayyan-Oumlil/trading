@@ -15,7 +15,7 @@ The LLM gets the brake, never the gas (PRINCIPLES #6, ROADMAP "halt power" escal
 ## Setup (Claude Code → Routines → daily-reflection → Edit)
 
 1. **Name:** `trading-desk`.
-2. **Instructions:** paste the prompt below.
+2. **Instructions:** open [trading-desk.prompt.txt](trading-desk.prompt.txt), Ctrl+A, Ctrl+C, paste. Paste nothing else from this doc.
 3. **Trigger:** Custom cron `55 0 * * 1-6` (UTC). = 8:55 PM EDT / 7:55 PM EST, Sunday–Friday evenings in New York.
    The app allows one schedule per routine, so Sunday's LAB run rides the same cron; the prompt picks the mode from the New York date.
 4. **Environment** (cloud icon → add environment): name `trading-desk`, network **Trusted**, **no API credentials, no environment variables**, setup script:
