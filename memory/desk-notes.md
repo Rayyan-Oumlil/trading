@@ -1,5 +1,7 @@
 # Desk Notes — trading-desk routine memory
 
+> Routine PAUSED 2026-10-03. The **Acknowledged** list below is still live: `routines_pkg/auto_halt.py` reads it every night — a halt flag listed here (code | session) does not stop the robot.
+
 The trading-desk routine reads this file first and rewrites it last, every run.
 Humans may edit any section. The routine may edit **Open threads** and **Halt log** only;
 **Acknowledged** is written by Rayyan (or an interactive session) — the routine never adds to it.

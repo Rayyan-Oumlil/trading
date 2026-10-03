@@ -1,3 +1,8 @@
+> **PAUSED 2026-10-03 by Rayyan.** The robot trades without it. The brake moved to GitHub:
+> `routines_pkg/auto_halt.py` runs after every EOD snapshot and writes `.HALT` on unacknowledged halt flags.
+> Disabled with it: workflows `desk-merge`, `desk-branch-pushed`, `desk-notify`.
+> To resume: toggle the routine Active in the Claude app, then `gh workflow enable desk-merge desk-branch-pushed desk-notify` (one at a time).
+
 # Routine — Trading Desk (replaces daily-reflection, 2026-10-02)
 
 One Claude Code routine that runs the desk around the deterministic robot. It **never trades**. It audits, decides whether to halt, briefs Rayyan, keeps the desk's memory, and runs the research pipeline.
