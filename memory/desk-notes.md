@@ -14,6 +14,10 @@ Format: `<flag code> | <session> | <why it is safe> | <who/when>`
 
 ## Open threads
 
+- [x] 2026-10-03 — ANSWERED by Rayyan/interactive: the `2026-10-02 | FLAT | … +nan%` line was written by the OLD yfinance code (GHA run 00:46 UTC, before 1ebcce4..165bbe4 deployed). New code raises on NaN instead of logging. Not a regression.
+- [x] 2026-10-03 — ANSWERED: the multi-asset scanner (rsi2-multi) is NOT sanctioned — rejected and workflow disabled 2026-10-02. Every `[multi]` log line is historical. The live robot is SPY ma-crossover only, until a crypto-trend sleeve is approved (backtest PASSED 2026-10-03, see research/queue.md).
+- [x] 2026-10-03 — The 20:28 ET `daily-trade eod FAILED` was the foreign-position guard refusing to trade while GLD/IWM sells are queued. Expected until Monday's open fills; not a bug.
+
 - [x] 2026-10-02 — Telegram alerts live (@Trader20062_bot); failure-alert fire drill passed 00:02Z 10-03.
 
 - [ ] 2026-10-02 — GLD 6.62 / IWM 8.97 sells queued (rsi2-multi wind-down). Expect fills Mon 2026-10-05 open; expect `foreign_position_closing` alert until then.
