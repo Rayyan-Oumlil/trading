@@ -43,3 +43,12 @@ def test_desk_merge_runs_masters_definition_not_the_branch():
     assert "routines_pkg.desk_merge_guard" in runs and "paper_trading.notify" in runs
     checkout = next(s for s in _steps(path) if s.get("uses", "").startswith("actions/checkout"))
     assert checkout["with"]["ref"] == "master"
+
+
+def test_eod_sends_daily_pnl_report():
+    steps = _steps(WORKFLOW)
+    names = [s["name"] for s in steps]
+    report = steps[names.index("Send daily P&L report")]
+    assert "mode == 'eod'" in report["if"] and "always()" in report["if"]
+    assert "paper_trading.notify" in report["run"]
+    assert "--report" in steps[names.index("Build desk snapshot")]["run"]

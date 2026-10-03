@@ -86,3 +86,39 @@ def test_foreign_position_being_closed_is_alert_not_halt():
     positions = [{"symbol": "SPY"}, {"symbol": "GLD"}]
     flags = integrity_flags(["2026-10-02 | HOLD | 7/10 | x"], positions, {"SPY"}, SESSION, closing={"GLD"})
     assert _codes(flags) == {("foreign_position_closing", "alert")}
+
+
+def test_daily_report_shows_day_pnl_and_vs_spy():
+    from routines_pkg.desk_snapshot import daily_report
+    snap = {
+        "session": "2026-10-05",
+        "account": {"equity": 104_120.50},
+        "performance": {"day_change": 683.11, "day_change_pct": 0.66, "account_return_pct": 4.12,
+                        "spy_return_pct": 9.50, "vs_spy_pct": -5.38, "current_drawdown_pct": -1.9},
+        "positions": [{"symbol": "SPY", "qty": 125.4, "market_value": 96_500.0, "unrealized_pl": 312.4}],
+        "flags": [],
+    }
+    text = daily_report(snap)
+    assert text.splitlines()[0] == "📈 2026-10-05 · Equity $104,120.50 · Today +$683.11 (+0.66%)"
+    assert "Since start +4.12% vs SPY +9.50% (−5.38 pts)" in text
+    assert "SPY 125.4 sh · $96,500 · unrealized +$312" in text
+
+
+def test_daily_report_red_day_and_flat_book():
+    from routines_pkg.desk_snapshot import daily_report
+    snap = {
+        "session": "2026-10-06", "account": {"equity": 99_000.0},
+        "performance": {"day_change": -1000.0, "day_change_pct": -1.0, "account_return_pct": -1.0,
+                        "spy_return_pct": -2.0, "vs_spy_pct": 1.0, "current_drawdown_pct": -3.0},
+        "positions": [], "flags": [{"code": "x", "severity": "alert", "detail": "d"}],
+    }
+    text = daily_report(snap)
+    assert text.startswith("📉 2026-10-06 · Equity $99,000.00 · Today −$1,000.00 (−1.00%)")
+    assert "(+1.00 pts)" in text and "Positions: none (cash)" in text and "⚠️ 1 flag" in text
+
+
+def test_performance_includes_day_change():
+    equity = [(date(2026, 10, 1), 100_000.0), (date(2026, 10, 2), 101_000.0)]
+    spy = pd.Series([700.0, 707.0], index=pd.to_datetime(["2026-10-01", "2026-10-02"]))
+    perf = performance(equity, spy)
+    assert perf["day_change"] == 1000.0 and round(perf["day_change_pct"], 2) == 1.0

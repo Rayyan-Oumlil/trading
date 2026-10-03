@@ -100,7 +100,17 @@ jobs:
 
       - name: Build desk snapshot
         if: always() && steps.mode.outputs.mode == 'eod'
-        run: python -m routines_pkg.desk_snapshot > /dev/null
+        run: python -m routines_pkg.desk_snapshot --report > "$RUNNER_TEMP/daily-report.txt"
+
+      - name: Send daily P&L report
+        if: always() && steps.mode.outputs.mode == 'eod'
+        shell: bash
+        run: |
+          if [ -s "$RUNNER_TEMP/daily-report.txt" ]; then
+            python -m paper_trading.notify "$(cat "$RUNNER_TEMP/daily-report.txt")"
+          else
+            python -m paper_trading.notify "📉 daily P&L report unavailable — desk snapshot failed (see run ${{ github.run_id }})"
+          fi
 
       - name: Commit memory + journal updates
         if: always()

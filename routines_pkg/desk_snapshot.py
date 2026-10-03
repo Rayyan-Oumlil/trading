@@ -86,7 +86,40 @@ def performance(equity: list[tuple[date, float]], spy_closes: pd.Series) -> dict
         "vs_spy_pct": float(account_ret - spy_ret),
         "current_drawdown_pct": float(drawdown.iloc[-1] * 100),
         "max_drawdown_pct": float(drawdown.min() * 100),
+        "day_change": float(values.iloc[-1] - values.iloc[-2]) if len(values) > 1 else 0.0,
+        "day_change_pct": float((values.iloc[-1] / values.iloc[-2] - 1) * 100) if len(values) > 1 else 0.0,
     }
+
+
+def _money(x: float, decimals: int = 2) -> str:
+    return f"{'−' if x < 0 else '+'}${abs(x):,.{decimals}f}"
+
+
+def _pct(x: float) -> str:
+    return f"{'−' if x < 0 else '+'}{abs(x):.2f}"
+
+
+def daily_report(snapshot: dict) -> str:
+    """Plain-language end-of-day P&L message for Telegram."""
+    perf = snapshot["performance"]
+    icon = "📈" if perf["day_change"] >= 0 else "📉"
+    lines = [
+        f"{icon} {snapshot['session']} · Equity ${snapshot['account']['equity']:,.2f} · "
+        f"Today {_money(perf['day_change'])} ({_pct(perf['day_change_pct'])}%)",
+        f"Since start {_pct(perf['account_return_pct'])}% vs SPY {_pct(perf['spy_return_pct'])}% "
+        f"({_pct(perf['vs_spy_pct'])} pts) · drawdown {perf['current_drawdown_pct']:.1f}%",
+    ]
+    if snapshot["positions"]:
+        lines += [
+            f"{p['symbol']} {p['qty']:g} sh · ${p['market_value']:,.0f} · unrealized {_money(p['unrealized_pl'], 0)}"
+            for p in snapshot["positions"]
+        ]
+    else:
+        lines.append("Positions: none (cash)")
+    if snapshot["flags"]:
+        n = len(snapshot["flags"])
+        lines.append(f"⚠️ {n} flag{'s' if n > 1 else ''} — the desk will review tonight")
+    return "\n".join(lines)
 
 
 def fill_deviations(orders: list[dict], closes: pd.Series, symbol: str, limit_pct: float) -> list[dict]:
@@ -151,9 +184,10 @@ def build() -> dict:
 
 
 def main() -> int:
+    sys.stdout.reconfigure(encoding="utf-8")  # emoji in the report; Windows consoles default to cp1252
     snapshot = build()
     SNAPSHOT_FILE.write_text(json.dumps(snapshot, indent=2, default=str) + "\n", encoding="utf-8")
-    print(json.dumps(snapshot, indent=2, default=str))
+    print(daily_report(snapshot) if "--report" in sys.argv else json.dumps(snapshot, indent=2, default=str))
     return 0
 
 
