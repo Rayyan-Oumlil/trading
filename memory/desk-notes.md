@@ -14,19 +14,13 @@ Format: `<flag code> | <session> | <why it is safe> | <who/when>`
 
 ## Open threads
 
-- [ ] 2026-10-03 — crypto-trend sleeves LIVE on paper (BTC 5%, ETH 5%). Expect first buys at the Sat 10-03 20:10 ET run; SPY re-entry with session 10-05 (fills Tue 10-06). Confirm each happens exactly once.
-
-- [x] 2026-10-03 — ANSWERED by Rayyan/interactive: the `2026-10-02 | FLAT | … +nan%` line was written by the OLD yfinance code (GHA run 00:46 UTC, before 1ebcce4..165bbe4 deployed). New code raises on NaN instead of logging. Not a regression.
-- [x] 2026-10-03 — ANSWERED: the multi-asset scanner (rsi2-multi) is NOT sanctioned — rejected and workflow disabled 2026-10-02. Every `[multi]` log line is historical. The live robot is SPY ma-crossover only, until a crypto-trend sleeve is approved (backtest PASSED 2026-10-03, see research/queue.md).
-- [x] 2026-10-03 — The 20:28 ET `daily-trade eod FAILED` was the foreign-position guard refusing to trade while GLD/IWM sells are queued. Expected until Monday's open fills; not a bug.
-
-- [x] 2026-10-02 — Telegram alerts live (@Trader20062_bot); failure-alert fire drill passed 00:02Z 10-03.
-
-- [ ] 2026-10-02 — GLD 6.62 / IWM 8.97 sells queued (rsi2-multi wind-down). Expect fills Mon 2026-10-05 open; expect `foreign_position_closing` alert until then.
-- [ ] 2026-10-02 — First EOD after fills should BUY ~95% cash SPY (regime bullish since ~09-24). Confirm it happened once, not twice.
-- [ ] 2026-10-02 — Desk 10-02: FLAT log line still prints margin +nan%; confirm it predates the fix. Multi-asset vs STRATEGY.md question open (see brief).
-- [ ] 2026-10-02 — Gate 2 clock restarts on the first clean session after 165bbe4. Count clean sessions from there.
-- [ ] 2026-10-02 — Deferred from review: next-open order rejections are not detected by the robot (Phase 2 reconciliation).
+- [ ] 2026-10-03 — crypto-trend sleeves on paper (BTC 5%, ETH 5%). First buys expected at the Sat 10-03 20:10 ET run. Confirm each happens exactly once.
+- [ ] 2026-10-02 — GLD 6.62 / IWM 8.97 sells queued (rsi2-multi wind-down). Expect fills Mon 10-05 open; `foreign_position_closing` alert until then.
+- [ ] 2026-10-02 — SPY re-entry with session 10-05 (Mon 20:10 ET run, fills Tue 10-06), sized at 85.5% of equity. Confirm exactly one BUY and that cash stays >= 0 after crypto + SPY.
+- [ ] 2026-10-02 — Gate 2 clock restarts on the first clean session after 165bbe4. 0 counted as of 10-02; first candidate is session 10-05.
+- [ ] 2026-10-02 — Deferred from review: the robot does not detect a next-open order rejection (Phase 2 reconciliation).
+- [x] 2026-10-03 — Closed: the 10-02 `+nan%` FLAT line was written by the old yfinance code, before the fix (acknowledged). Multi-asset question answered: rsi2-multi rejected; `[multi]` lines are historical. 20:28 ET `eod FAILED` was the foreign-position guard (expected).
+- [x] 2026-10-03 — Note: desk fired twice for session 10-02 (00:26Z, 00:57Z). The second run appended only an update.
 
 ## Halt log
 

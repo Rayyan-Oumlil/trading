@@ -1,1 +1,1 @@
-🟠 Desk 2026-10-02: -5.74pp vs SPY, HOLD/FLAT, 2 flags. NaN halt acknowledged (no halt); GLD/IWM sells fill Mon open.
+🟠 Desk 2026-10-02 (update): -5.74pp vs SPY, FLAT/HOLD, 2 flags (NaN acked, no halt). 140 tests pass; GLD/IWM sells Mon open, SPY re-entry Tue.
