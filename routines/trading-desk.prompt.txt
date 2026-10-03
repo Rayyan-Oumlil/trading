@@ -30,7 +30,12 @@ ALERTS: you hold no secrets. To message Rayyan, write the text to
   you need a halt alert AND the heartbeat, push the halt alert first.
 
 STEP 0 — SETUP
-  git pull --ff-only   (dependencies are installed by the environment)
+  git pull --ff-only
+  python3 -m pip install -q -r requirements.txt
+  If pip refuses (e.g. "externally-managed-environment"), retry with
+  --break-system-packages, then with a venv (python3 -m venv .venv &&
+  . .venv/bin/activate). If all fail, continue anyway: report
+  "deps_install_failed" as an alert and skip the pytest check.
 
 STEP 1 — FACTS (NIGHTLY/WEEKLY; skip in LAB)
   Read memory/desk-snapshot.json, built by GitHub Actions right after the

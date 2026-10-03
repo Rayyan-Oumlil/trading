@@ -21,8 +21,9 @@ The LLM gets the brake, never the gas (PRINCIPLES #6, ROADMAP "halt power" escal
 4. **Environment** (cloud icon → add environment): name `trading-desk`, network **Trusted**, **no API credentials, no environment variables**, setup script:
    ```
    #!/bin/bash
-   pip install -q -r requirements.txt
+   exit 0
    ```
+   (Dependencies are installed by the prompt's STEP 0. A failing setup script kills the session before Claude starts — first test run 2026-10-02 died exactly that way.)
    The routine holds **no secrets**. GitHub Actions (which has the Alpaca + Telegram secrets) builds `memory/desk-snapshot.json` after every EOD run; the routine reads it. To alert, the routine commits `memory/desk-alert.txt` and `.github/workflows/desk-notify.yml` forwards it to Telegram.
 5. **Branches:** the app only lets routines push `claude/*` branches. `.github/workflows/desk-merge.yml` auto-merges them into master when every changed path is desk output (`routines_pkg/desk_merge_guard.py`); code changes wait for review and ping Telegram. Behavior → Auto-fix PRs: off.
 6. **Notifications:** on.
@@ -66,7 +67,12 @@ ALERTS: you hold no secrets. To message Rayyan, write the text to
   you need a halt alert AND the heartbeat, push the halt alert first.
 
 STEP 0 — SETUP
-  git pull --ff-only   (dependencies are installed by the environment)
+  git pull --ff-only
+  python3 -m pip install -q -r requirements.txt
+  If pip refuses (e.g. "externally-managed-environment"), retry with
+  --break-system-packages, then with a venv (python3 -m venv .venv &&
+  . .venv/bin/activate). If all fail, continue anyway: report
+  "deps_install_failed" as an alert and skip the pytest check.
 
 STEP 1 — FACTS (NIGHTLY/WEEKLY; skip in LAB)
   Read memory/desk-snapshot.json, built by GitHub Actions right after the
