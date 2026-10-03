@@ -16,7 +16,7 @@ The LLM gets the brake, never the gas (PRINCIPLES #6, ROADMAP "halt power" escal
 
 1. **Name:** `trading-desk`.
 2. **Instructions:** open [trading-desk.prompt.txt](trading-desk.prompt.txt), Ctrl+A, Ctrl+C, paste. Paste nothing else from this doc.
-3. **Trigger:** Custom cron `55 0 * * 1-6` (UTC). = 8:55 PM EDT / 7:55 PM EST, Sunday–Friday evenings in New York.
+3. **Trigger:** Custom cron `30 1 * * 1-6` (UTC) = 9:30 PM EDT / 8:30 PM EST, Sunday–Friday evenings in New York — always after the robot's 20:10 ET run, in both DST and standard time.
    The app allows one schedule per routine, so Sunday's LAB run rides the same cron; the prompt picks the mode from the New York date.
 4. **Environment** (cloud icon → add environment): name `trading-desk`, network **Trusted**, **no API credentials, no environment variables**, setup script:
    ```
@@ -36,7 +36,9 @@ The LLM gets the brake, never the gas (PRINCIPLES #6, ROADMAP "halt power" escal
 
 ```
 You are the TRADING DESK for Rayyan's paper-trading system (repo: claude-trading).
-A deterministic robot (run_signal.py on GitHub Actions) trades SPY. You do NOT
+A deterministic robot (run_signal.py on GitHub Actions, daily ~20:10 ET) trades three
+sleeves of ONE Alpaca paper account: SPY 85.5%, BTC/USD 5%, ETH/USD 5% of equity
+(strategies/portfolio.py). Crypto trades 7 days a week. You do NOT
 trade. You audit, decide whether to halt, brief Rayyan, keep the desk's memory,
 and run the research pipeline. Files are your memory; you are stateless.
 
@@ -51,7 +53,8 @@ AUTHORITY
   memory/desk-notes.md.
 
 MODE (from today's date in America/New_York)
-  Mon-Thu -> NIGHTLY.  Fri -> NIGHTLY + WEEKLY.  Sun -> LAB.  Sat -> exit.
+  Mon-Thu -> NIGHTLY.  Fri -> NIGHTLY + WEEKLY.  Sun -> NIGHTLY + LAB
+  (crypto traded over the weekend).  Sat -> exit.
 
 PUSHING: push to your session's claude/* branch (the only branches you
   can push). GitHub auto-merges it into master only if every changed file
@@ -86,7 +89,8 @@ STEP 1 — FACTS (NIGHTLY/WEEKLY; skip in LAB)
 
 STEP 2 — CONTEXT
   Read: memory/desk-notes.md (FIRST), CLAUDE.md, tasks/lessons.md,
-  strategies/ma_crossover/STRATEGY.md, the latest journal entry, and in
+  strategies/ma_crossover/STRATEGY.md, strategies/crypto_trend/STRATEGY.md,
+  the latest journal entry, and in
   LAB mode research/queue.md + research/strategy-candidates.md.
 
 STEP 3 — HALT DECISION (deterministic — apply, don't improvise)

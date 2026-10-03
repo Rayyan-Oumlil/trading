@@ -80,7 +80,7 @@ Apply the seven lessons from [PRINCIPLES.md](PRINCIPLES.md) on every task:
 - [ma-crossover](strategies/ma_crossover/STRATEGY.md) — stage: **paper** (entered 2026-04-23). Backtest: IS Sharpe 0.82, OOS Sharpe 0.65, OOS DD -12.4%, OOS trades/year 3.02. **Gate 2: SOFT-PASS** as of 2026-05-07 (21% relative spread vs SPY×95% expectation; 0 fills in 14 days; kill-switch drill not yet run). Re-run target 2026-05-21. Tool: `backtests/ma_crossover/gate2_check.py --carry-in`.
 - [rsi2-connors](strategies/rsi2_connors/STRATEGY.md) — stage: **rejected** (specced + backtested 2026-05-07). Fails 2/3 standalone OOS gates (Sharpe 0.31 < 0.5; trades/year 6.8 < 15). Correlation with ma-crossover OOS is 0.187 (genuinely diversifying), but absolute performance too weak to paper-trade. Hard-stop variant strictly worse → confirms Connors original framing. No re-tuning per §7.
 
-- [crypto-trend](research/queue.md) — stage: **backtest PASSED** 2026-10-03 (BTC/ETH SMA10/50, 50/50 sleeves). CAGR 38.0% vs 19.7% hold, Sharpe 0.94 vs 0.61, MaxDD −60.5% vs −87.9%; recent window also passes. Next: paper as a small sleeve in the single Alpaca account (one robot owns the account; strategies emit targets).
+- [crypto-trend](strategies/crypto_trend/STRATEGY.md) — stage: **paper** (entered 2026-10-03) as BTC 5% + ETH 5% sleeves of the single account. Backtest PASSED (CAGR 38.0% vs 19.7% hold, Sharpe 0.94 vs 0.61, MaxDD −60.5% vs −87.9%). `run_signal.py` is the only order-placer for all sleeves; ma-crossover now sizes at 85.5% of equity.
 
 ### Rejected experiments (do not retry without a new thesis)
 

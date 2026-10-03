@@ -45,6 +45,7 @@ Execute on **next-day open** (bar t+1). No look-ahead bias.
 
 - **Method:** fixed % of equity
 - **Per-trade size:** 95% of current equity (fully invested or flat — single instrument)
+- **2026-10-03 change:** with the crypto sleeves, SPY buys **85.5% of equity** (90% sleeve × 95% invested). Code previously bought 95% of *cash*; equity-based sizing stops sleeves from starving each other. Signal and exits unchanged. See `journal/2026-10-03.md`.
 - **Max concurrent positions:** 1
 
 ## 7. Execution Assumptions (backtest)
