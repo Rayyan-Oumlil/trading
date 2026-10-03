@@ -11,7 +11,6 @@ Usage: python -m routines_pkg.desk_snapshot
 from __future__ import annotations
 
 import json
-import re
 import sys
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
@@ -27,6 +26,7 @@ from paper_trading.alpaca_client import AlpacaClient  # noqa: E402
 from paper_trading.kill_switch import halt_reason  # noqa: E402
 from paper_trading.market_calendar import last_completed_session  # noqa: E402
 from paper_trading.market_data import SIP_DELAY, get_daily_bars  # noqa: E402
+from strategies.portfolio import split_log_lines  # noqa: E402,F401
 
 TICKER = "SPY"
 ALLOWED = {TICKER}
@@ -37,14 +37,6 @@ TRADE_DECISIONS = {"BUY", "SELL"}
 OPEN_STATUSES = {"new", "accepted", "pending_new", "partially_filled"}
 CONFIDENCE_LOG = PROJECT_ROOT / "memory" / "confidence-log.md"
 SNAPSHOT_FILE = PROJECT_ROOT / "memory" / "desk-snapshot.json"
-
-_ENTRY = re.compile(r"\d{4}-\d{2}-\d{2} \|.*?(?=\d{4}-\d{2}-\d{2} \||\n|$)")
-
-
-def split_log_lines(text: str) -> list[str]:
-    """Confidence-log entries, including ones glued together by the old multi writer."""
-    return [m.group(0).strip() for m in _ENTRY.finditer(text)]
-
 
 def _flag(code: str, severity: str, detail: str) -> dict:
     return {"code": code, "severity": severity, "detail": detail}

@@ -67,6 +67,18 @@ class FakeClient:
         self.orders.append((symbol, qty, side))
         return OrderResult(order_id="o-1", status=self.status, filled_avg_price=None)
 
+    def place_notional_buy(self, symbol, notional):
+        self.orders.append((symbol, notional, "buy-notional"))
+        return OrderResult(order_id="o-2", status=self.status, filled_avg_price=None)
+
+
+crypto_bars = {"df": _bars()}
+
+
+@pytest.fixture(autouse=True)
+def _rising_crypto():
+    crypto_bars["df"] = _bars()
+
 
 @pytest.fixture
 def wired(monkeypatch, tmp_path):
@@ -76,6 +88,7 @@ def wired(monkeypatch, tmp_path):
         monkeypatch.setattr(run_signal, "is_halted", lambda: False)
         monkeypatch.setattr(run_signal, "AlpacaClient", lambda: client)
         monkeypatch.setattr(run_signal, "get_daily_bars", lambda symbol, lookback_days, last_session: _bars())
+        monkeypatch.setattr(run_signal, "get_crypto_daily_bars", lambda symbol, lookback_days, last_day: crypto_bars["df"])
         return log
     return _wire
 
@@ -129,3 +142,48 @@ def test_run_just_after_close_uses_previous_session_not_partial_bar(wired, monke
     monkeypatch.setattr(run_signal, "get_daily_bars", fake_bars)
     run_signal.main()
     assert seen["session"] == date(2026, 10, 1)
+
+
+def _falling() -> pd.DataFrame:
+    df = _bars()
+    return df.assign(close=df["close"].values[::-1])
+
+
+def test_crypto_sleeves_buy_5pct_of_equity_by_notional(wired):
+    client = FakeClient()
+    log = wired(client)
+    run_signal.main()
+    assert ("BTC/USD", 5000.0, "buy-notional") in client.orders
+    assert ("ETH/USD", 5000.0, "buy-notional") in client.orders
+    spy = next(o for o in client.orders if o[0] == "SPY")
+    assert spy[2] == "buy" and spy[1] == round(100_000 * 0.855 / _bars()["close"].iloc[-1], 2)
+    assert "| BUY | 7/10 | BTC/USD:" in log.read_text()
+
+
+def test_crypto_downtrend_sells_full_position(wired):
+    crypto_bars["df"] = _falling()
+    held = [{"symbol": "SPY", "qty": 100.0, "market_value": 1.0, "unrealized_pl": 0.0},
+            {"symbol": "BTCUSD", "qty": 0.0612, "market_value": 1.0, "unrealized_pl": 0.0}]
+    client = FakeClient(positions=held)
+    log = wired(client)
+    run_signal.main()
+    assert client.orders == [("BTC/USD", 0.0612, "sell")]
+    text = log.read_text()
+    assert "| SELL | 6/10 | BTC/USD:" in text and "| FLAT | 5/10 | ETH/USD:" in text and "| HOLD | 7/10 | SPY:" in text
+
+
+def test_second_run_same_day_places_nothing(wired):
+    client = FakeClient()
+    wired(client)
+    run_signal.main()
+    first = list(client.orders)
+    run_signal.main()
+    assert client.orders == first
+
+
+def test_crypto_positions_are_not_foreign(wired):
+    held = [{"symbol": "ETHUSD", "qty": 1.0, "market_value": 1.0, "unrealized_pl": 0.0}]
+    client = FakeClient(positions=held)
+    wired(client)
+    run_signal.main()
+    assert ("ETH/USD", 5000.0, "buy-notional") not in client.orders

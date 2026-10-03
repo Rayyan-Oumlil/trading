@@ -4,6 +4,7 @@ only says "long or flat". See plans/2026-10-03-crypto-sleeve.md.
 """
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass
 from datetime import date
 
@@ -24,6 +25,12 @@ SLEEVES = (
 )
 ALLOWED_POSITIONS = {position_symbol(s.symbol) for s in SLEEVES}
 _NOT_A_DECISION = {"HALT"}
+_ENTRY = re.compile(r"\d{4}-\d{2}-\d{2} \|.*?(?=\d{4}-\d{2}-\d{2} \||\n|$)")
+
+
+def split_log_lines(text: str) -> list[str]:
+    """Confidence-log entries, including ones glued together by the old multi writer."""
+    return [m.group(0).strip() for m in _ENTRY.finditer(text)]
 
 
 def decide(want_long: bool, held_qty: float) -> str:
