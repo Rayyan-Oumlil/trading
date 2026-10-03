@@ -1,0 +1,170 @@
+{
+  "run_date": "2026-10-02",
+  "git_sha": "6bb7f1df7a1b0d7c63709ecffb5af21b74674798",
+  "data_source": "yfinance auto_adjust",
+  "spec": "research/queue.md pre-registration 2026-10-03",
+  "results": [
+    {
+      "name": "sector_momentum",
+      "strategy": {
+        "full": {
+          "start": "2005-01-03",
+          "end": "2026-10-01",
+          "cagr_pct": 11.376590910824213,
+          "sharpe": 0.6211393733188394,
+          "max_drawdown_pct": -65.25907309774041,
+          "total_return_pct": 940.7811233037728
+        },
+        "recent": {
+          "start": "2022-01-03",
+          "end": "2026-10-01",
+          "cagr_pct": 16.845062399314713,
+          "sharpe": 0.9936167704472024,
+          "max_drawdown_pct": -23.944899268797027,
+          "total_return_pct": 109.22109990607032
+        }
+      },
+      "benchmark": {
+        "full": {
+          "start": "2005-01-03",
+          "end": "2026-10-01",
+          "cagr_pct": 10.875051698852989,
+          "sharpe": 0.6422054624579667,
+          "max_drawdown_pct": -55.18943454445411,
+          "total_return_pct": 843.5059826948323
+        },
+        "recent": {
+          "start": "2022-01-03",
+          "end": "2026-10-01",
+          "cagr_pct": 11.894457970573313,
+          "sharpe": 0.7377572886734871,
+          "max_drawdown_pct": -24.496370102217536,
+          "total_return_pct": 70.391607514882
+        }
+      },
+      "regimes": {
+        "2008": {
+          "strategy_pct": -45.865130703956325,
+          "benchmark_pct": -36.23681698273078
+        },
+        "2020": {
+          "strategy_pct": 41.219795558346206,
+          "benchmark_pct": 17.235221191396487
+        },
+        "2022": {
+          "strategy_pct": -4.478877596873843,
+          "benchmark_pct": -18.646389088369887
+        }
+      },
+      "rebalances": 262,
+      "passed": false
+    },
+    {
+      "name": "dual_momentum",
+      "strategy": {
+        "full": {
+          "start": "2005-01-03",
+          "end": "2026-10-01",
+          "cagr_pct": 8.6761957176543,
+          "sharpe": 0.6083108130506925,
+          "max_drawdown_pct": -33.71725063561865,
+          "total_return_pct": 510.3914632479822
+        },
+        "recent": {
+          "start": "2022-01-03",
+          "end": "2026-10-01",
+          "cagr_pct": 6.157716082278375,
+          "sharpe": 0.46749802962086984,
+          "max_drawdown_pct": -23.29117865759265,
+          "total_return_pct": 32.75816058788364
+        }
+      },
+      "benchmark": {
+        "full": {
+          "start": "2005-01-03",
+          "end": "2026-10-01",
+          "cagr_pct": 10.875051698852989,
+          "sharpe": 0.6422054624579667,
+          "max_drawdown_pct": -55.18943454445411,
+          "total_return_pct": 843.5059826948323
+        },
+        "recent": {
+          "start": "2022-01-03",
+          "end": "2026-10-01",
+          "cagr_pct": 11.894457970573313,
+          "sharpe": 0.7377572886734871,
+          "max_drawdown_pct": -24.496370102217536,
+          "total_return_pct": 70.391607514882
+        }
+      },
+      "regimes": {
+        "2008": {
+          "strategy_pct": -2.6620132247240025,
+          "benchmark_pct": -36.23681698273078
+        },
+        "2020": {
+          "strategy_pct": 1.2747154137574768,
+          "benchmark_pct": 17.235221191396487
+        },
+        "2022": {
+          "strategy_pct": -17.525052387349316,
+          "benchmark_pct": -18.646389088369887
+        }
+      },
+      "rebalances": 262,
+      "passed": false
+    },
+    {
+      "name": "crypto_trend",
+      "strategy": {
+        "full": {
+          "start": "2018-01-01",
+          "end": "2026-10-03",
+          "cagr_pct": 38.00308180048957,
+          "sharpe": 0.9354233845473816,
+          "max_drawdown_pct": -60.454097136041106,
+          "total_return_pct": 1576.6167466478255
+        },
+        "recent": {
+          "start": "2022-01-01",
+          "end": "2026-10-03",
+          "cagr_pct": 16.044946709420984,
+          "sharpe": 0.5941308251702517,
+          "max_drawdown_pct": -41.451288057690974,
+          "total_return_pct": 102.84420469233346
+        }
+      },
+      "benchmark": {
+        "full": {
+          "start": "2018-01-01",
+          "end": "2026-10-03",
+          "cagr_pct": 19.69511309341687,
+          "sharpe": 0.6107716623133749,
+          "max_drawdown_pct": -87.88694812793985,
+          "total_return_pct": 382.3872179274086
+        },
+        "recent": {
+          "start": "2022-01-01",
+          "end": "2026-10-03",
+          "cagr_pct": 3.032499983609571,
+          "sharpe": 0.333941194469278,
+          "max_drawdown_pct": -69.29031352623069,
+          "total_return_pct": 15.25648498858474
+        }
+      },
+      "regimes": {
+        "2020": {
+          "strategy_pct": 350.3645817026073,
+          "benchmark_pct": 341.99027015032436
+        },
+        "2022": {
+          "strategy_pct": -33.42332827574438,
+          "benchmark_pct": -67.020965515776
+        }
+      },
+      "rebalances": 148,
+      "passed": true,
+      "corr_with_spy": 0.17438869094191706
+    }
+  ]
+}
