@@ -20,3 +20,7 @@
 - **One strategy per broker account.** Two strategies trading one Alpaca account (both touching SPY) let a rejected order become a phantom position that later sold shares belonging to the other strategy.
 - **NaN is not a signal.** Any comparison with NaN is False; `NaN > NaN` read as "bearish" liquidated ~$98k of SPY twice. Indicators must raise on NaN, never fall through to a branch.
 - **An alarm nobody hears is not an alarm.** The daily-reflection routine flagged the NaN SELL on 09-29, but pushed to an unmerged branch with notifications off. Every detector needs a delivery path to the phone.
+
+## 2026-10-03
+
+- **Verify the path to live money on day one.** Alpaca was chosen 2026-04 for easy paper trading, and Public.com was named as the live broker — neither accepts Canadian residents, discovered only 5 months later. Before building on a broker, confirm (with a source) that the user's country/province can open a LIVE account with API order placement. For Canada: IBKR is the realistic equities path (US-listed products only via API; Canadian-listed products are blocked by CIRO rule); crypto via Kraken/Coinbase or US-listed ETFs.
