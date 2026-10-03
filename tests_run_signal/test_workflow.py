@@ -77,3 +77,13 @@ def test_runs_sync_to_latest_master_before_trading():
     sync = steps[names.index("Sync to latest master")]
     assert "git pull --ff-only" in sync["run"]
     assert names.index("Sync to latest master") < names.index("Run signal then EOD routine")
+
+
+def test_auto_halt_runs_after_a_fresh_snapshot_and_commits_halt():
+    steps = _steps(WORKFLOW)
+    names = [s["name"] for s in steps]
+    brake = steps[names.index("Auto-halt (deterministic brake)")]
+    assert "steps.snapshot.outcome == 'success'" in brake["if"]
+    assert "routines_pkg.auto_halt" in brake["run"]
+    assert names.index("Build desk snapshot") < names.index("Auto-halt (deterministic brake)") < names.index("Commit memory + journal updates")
+    assert ".HALT" in steps[names.index("Commit memory + journal updates")]["run"]
