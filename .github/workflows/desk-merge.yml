@@ -64,12 +64,15 @@ jobs:
             if git push origin master; then break; fi
             git pull --no-edit origin master
           done
-          git push origin --delete "$BRANCH"
 
       - name: Forward desk alert
         if: steps.guard.outputs.merge == 'yes'
         shell: bash
         run: |
           if grep -qx "memory/desk-alert.txt" changed.txt; then
-            python -m paper_trading.notify "$(git show "origin/$BRANCH:memory/desk-alert.txt")"
+            python -m paper_trading.notify "$(cat memory/desk-alert.txt)"
           fi
+
+      - name: Delete merged branch
+        if: steps.guard.outputs.merge == 'yes'
+        run: git push origin --delete "$BRANCH"
