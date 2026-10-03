@@ -16,9 +16,8 @@ The LLM gets the brake, never the gas (PRINCIPLES #6, ROADMAP "halt power" escal
 
 1. **Name:** `trading-desk`.
 2. **Instructions:** paste the prompt below.
-3. **Triggers:**
-   - Weekdays **9:00 PM** America/New_York (after the robot, even when GHA cron is late).
-   - Add another trigger: **Sunday 10:00 AM** (research lab).
+3. **Trigger:** Custom cron `55 0 * * 1-6` (UTC). = 8:55 PM EDT / 7:55 PM EST, Sunday–Friday evenings in New York.
+   The app allows one schedule per routine, so Sunday's LAB run rides the same cron; the prompt picks the mode from the New York date.
 4. **Environment** (cloud icon → Default → edit):
    - Env vars: `ALPACA_API_KEY`, `ALPACA_API_SECRET`, `ALPACA_PAPER_TRADE=true`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`.
    - Network access must allow: `api.alpaca.markets`, `paper-api.alpaca.markets`, `data.alpaca.markets`, `api.telegram.org` (plus the default package registries for `pip`).
