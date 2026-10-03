@@ -16,6 +16,7 @@ Paper trading only. Never touches live account.
 from __future__ import annotations
 
 import math
+import os
 import sys
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
@@ -50,7 +51,26 @@ REASONS = {
     "FLAT": "awaiting cross-up",
 }
 
-CONFIDENCE_LOG = PROJECT_ROOT / "memory" / "confidence-log.md"
+BROKER = os.environ.get("BROKER", "alpaca").lower()  # "alpaca" (paper reference) or "ibkr" (IB Gateway)
+
+
+def confidence_log_path(broker: str) -> Path:
+    """Each broker keeps its own decision log, so a mirror run never sees the other's lines as 'already decided'."""
+    name = "confidence-log.md" if broker == "alpaca" else f"confidence-log-{broker}.md"
+    return PROJECT_ROOT / "memory" / name
+
+
+CONFIDENCE_LOG = confidence_log_path(BROKER)
+
+
+def make_client():
+    if BROKER == "alpaca":
+        return AlpacaClient()
+    if BROKER == "ibkr":
+        from brokers.ibkr import IbkrBroker  # imported lazily: GitHub Actions runs never need IB Gateway
+
+        return IbkrBroker.connect(calendar_source=AlpacaClient().get_calendar)
+    raise ValueError(f"Unknown BROKER {BROKER!r}; expected 'alpaca' or 'ibkr'")
 
 
 def append_confidence(session: date, decision: str, score: int, reason: str) -> None:
@@ -145,7 +165,7 @@ def main() -> int:
         append_confidence(datetime.now(timezone.utc).date(), "HALT", 0, "kill switch active")
         return 0
 
-    client = AlpacaClient()
+    client = make_client()
     now = datetime.now(timezone.utc)
     # A session only counts once its full bar is servable (SIP data lags 16 min); otherwise we'd trade a partial bar.
     days = {
@@ -160,7 +180,11 @@ def main() -> int:
     print(f"Account equity: ${account['equity']:,.2f}   Cash: ${account['cash']:,.2f}   Positions: {held or 'none'}")
 
     budget = {"cash": account["cash"]}
+    supports = getattr(client, "supports", lambda symbol: True)
     for sleeve in SLEEVES:
+        if not supports(sleeve.symbol):
+            print(f"\n{sleeve.symbol}: not tradable on {BROKER}; skipped.")
+            continue
         run_sleeve(client, sleeve, days[sleeve.clock], account["equity"], held, read_log_lines(), budget)
     return 0
 

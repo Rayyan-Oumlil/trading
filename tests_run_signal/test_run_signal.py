@@ -209,3 +209,42 @@ def test_spy_buy_is_capped_at_cash_and_says_so(wired):
     spy = next(o for o in client.orders if o[0] == "SPY")
     assert spy[1] == round(50_000 * 0.99 / _bars()["close"].iloc[-1], 2)
     assert "capped at cash" in log.read_text()
+
+
+def test_unsupported_sleeves_are_skipped(wired):
+    client = FakeClient()
+    client.supports = lambda symbol: "/" not in symbol
+    log = wired(client)
+    run_signal.main()
+    assert [o[0] for o in client.orders] == ["SPY"]
+    assert "BTC/USD" not in log.read_text()
+
+
+def test_each_broker_has_its_own_confidence_log():
+    assert run_signal.confidence_log_path("alpaca").name == "confidence-log.md"
+    assert run_signal.confidence_log_path("ibkr").name == "confidence-log-ibkr.md"
+
+
+def test_make_client_ibkr_uses_the_alpaca_market_calendar(monkeypatch):
+    import sys
+    from types import SimpleNamespace
+
+    captured = {}
+
+    class FakeIbkr:
+        @classmethod
+        def connect(cls, calendar_source):
+            captured["calendar"] = calendar_source
+            return "ibkr-client"
+
+    monkeypatch.setattr(run_signal, "BROKER", "ibkr")
+    monkeypatch.setattr(run_signal, "AlpacaClient", lambda: SimpleNamespace(get_calendar="alpaca-calendar"))
+    monkeypatch.setitem(sys.modules, "brokers.ibkr", SimpleNamespace(IbkrBroker=FakeIbkr))
+    assert run_signal.make_client() == "ibkr-client"
+    assert captured["calendar"] == "alpaca-calendar"
+
+
+def test_unknown_broker_fails_loudly(monkeypatch):
+    monkeypatch.setattr(run_signal, "BROKER", "robinhood")
+    with pytest.raises(ValueError, match="robinhood"):
+        run_signal.make_client()
