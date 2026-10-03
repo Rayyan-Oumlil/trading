@@ -55,7 +55,8 @@ MODE (from today's date in America/New_York)
 PUSHING: push to your session's claude/* branch (the only branches you
   can push). GitHub auto-merges it into master only if every changed file
   is journal/*.md, memory/desk-notes.md, memory/desk-alert.txt,
-  research/*.md, backtests/**, or .HALT. Never commit anything else on the
+  research/*.md, backtests/**/*.{md,json,csv}, or .HALT. Backtest SCRIPTS
+  (.py) never auto-merge: put them on a desk/<slug> PR for review. Never commit anything else on the
   same branch — one stray file blocks the whole merge (a code proposal goes
   on a separate desk/<slug> branch as a PR).
 

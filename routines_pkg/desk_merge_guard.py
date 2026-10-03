@@ -17,7 +17,7 @@ _ALLOWED = re.compile(
     r"^(journal/[^/]+\.md"
     r"|memory/(desk-notes\.md|desk-alert\.txt)"
     r"|research/[\w./-]+\.md"
-    r"|backtests/[\w./-]+"
+    r"|backtests/[\w/-]+\.(md|json|csv)"  # never .py: CI runs pytest on backtests/ with secrets in env
     r"|\.HALT)$"
 )
 

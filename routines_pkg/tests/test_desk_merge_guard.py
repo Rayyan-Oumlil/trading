@@ -3,7 +3,7 @@ from routines_pkg.desk_merge_guard import blocked_paths
 
 def test_desk_output_paths_are_mergeable():
     paths = ["journal/2026-10-05.md", "memory/desk-notes.md", "memory/desk-alert.txt",
-             "research/queue.md", "backtests/momentum/results/run.json", ".HALT"]
+             "research/queue.md", "backtests/momentum/results/run.json", "backtests/registry.md", ".HALT"]
     assert blocked_paths(paths) == []
 
 
@@ -24,3 +24,8 @@ def test_lookalike_paths_are_blocked():
 
 def test_empty_diff_is_mergeable():
     assert blocked_paths([]) == []
+
+
+def test_python_under_backtests_is_blocked_because_ci_runs_it_with_secrets():
+    paths = ["backtests/momentum/backtest.py", "backtests/test_leak.py", "backtests/conftest.py", "backtests/momentum/results/x.py"]
+    assert blocked_paths(paths) == paths

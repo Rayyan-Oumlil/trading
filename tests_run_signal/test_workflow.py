@@ -32,10 +32,14 @@ def test_desk_alert_file_is_forwarded_to_telegram():
     assert any("paper_trading.notify" in s.get("run", "") for s in _steps(path))
 
 
-def test_desk_branches_merge_only_through_the_guard():
+def test_desk_merge_runs_masters_definition_not_the_branch():
     path = WORKFLOW.parent / "desk-merge.yml"
     doc = yaml.safe_load(path.read_text(encoding="utf-8"))
     on = doc[True] if True in doc else doc["on"]
-    assert on["push"]["branches"] == ["claude/**"]
+    assert "push" not in on, "push-triggered workflows run the pushed branch's YAML"
+    assert on["workflow_run"]["workflows"] == ["desk-branch-pushed"]
     runs = " ".join(s.get("run", "") for s in _steps(path))
+    assert "--no-renames" in runs
     assert "routines_pkg.desk_merge_guard" in runs and "paper_trading.notify" in runs
+    checkout = next(s for s in _steps(path) if s.get("uses", "").startswith("actions/checkout"))
+    assert checkout["with"]["ref"] == "master"

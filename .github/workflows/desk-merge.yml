@@ -1,14 +1,14 @@
 name: desk-merge
 
-# The trading-desk routine can only push to claude/* branches. This merges a
-# branch into master when every changed path is desk output (journal, desk
-# memory, research, backtests, .HALT) — see routines_pkg/desk_merge_guard.py.
-# Anything else waits for Rayyan. Pushes made here use GITHUB_TOKEN, which does
-# not trigger desk-notify, so this workflow forwards desk-alert.txt itself.
+# Merges a trading-desk claude/* branch into master when every changed path is
+# desk output (routines_pkg/desk_merge_guard.py). Triggered via workflow_run so
+# the YAML and the guard come from master, never from the branch under review.
+# GITHUB_TOKEN pushes don't trigger desk-notify, so alerts are forwarded here.
 
 on:
-  push:
-    branches: ['claude/**']
+  workflow_run:
+    workflows: [desk-branch-pushed]
+    types: [completed]
 
 permissions:
   contents: write
@@ -24,11 +24,12 @@ jobs:
     env:
       TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
       TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-      BRANCH: ${{ github.ref_name }}
+      BRANCH: ${{ github.event.workflow_run.head_branch }}
     steps:
-      - name: Checkout
+      - name: Checkout master (trusted code only)
         uses: actions/checkout@v4
         with:
+          ref: master
           fetch-depth: 0
 
       - name: Setup Python
@@ -40,10 +41,14 @@ jobs:
         id: guard
         shell: bash
         run: |
-          git diff --name-only origin/master...HEAD > changed.txt
-          cat changed.txt
-          if ! python -m routines_pkg.desk_merge_guard < changed.txt > blocked.txt; then
-            python -m paper_trading.notify "🟠 $BRANCH not auto-merged — needs your review: $(tr '\n' ' ' < blocked.txt)"
+          case "$BRANCH" in claude/*) ;; *) echo "not a claude/* branch: $BRANCH"; exit 1 ;; esac
+          if ! git fetch origin "refs/heads/$BRANCH:refs/remotes/origin/$BRANCH"; then
+            echo "branch already merged or deleted"; echo "merge=no" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          git diff --no-renames --name-only "origin/master...origin/$BRANCH" > "$RUNNER_TEMP/changed.txt"
+          cat "$RUNNER_TEMP/changed.txt"
+          if ! python -m routines_pkg.desk_merge_guard < "$RUNNER_TEMP/changed.txt" > "$RUNNER_TEMP/blocked.txt"; then
+            python -m paper_trading.notify "🟠 $BRANCH not auto-merged — needs your review: $(tr '\n' ' ' < "$RUNNER_TEMP/blocked.txt")"
             echo "merge=no" >> "$GITHUB_OUTPUT"
           else
             echo "merge=yes" >> "$GITHUB_OUTPUT"
@@ -55,7 +60,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git checkout master
           if ! git merge --no-edit "origin/$BRANCH"; then
             python -m paper_trading.notify "🔴 $BRANCH conflicts with master — desk output not merged."
             exit 1
@@ -69,7 +73,7 @@ jobs:
         if: steps.guard.outputs.merge == 'yes'
         shell: bash
         run: |
-          if grep -qx "memory/desk-alert.txt" changed.txt; then
+          if grep -qx "memory/desk-alert.txt" "$RUNNER_TEMP/changed.txt"; then
             python -m paper_trading.notify "$(cat memory/desk-alert.txt)"
           fi
 

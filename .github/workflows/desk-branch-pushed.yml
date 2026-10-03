@@ -1,0 +1,19 @@
+name: desk-branch-pushed
+
+# Deliberately does nothing. A push-triggered workflow runs the YAML from the
+# pushed branch, so it cannot be trusted to guard a merge. Its only job is to
+# complete, which fires desk-merge.yml via workflow_run — and workflow_run
+# always runs the definition (and the guard code) from master.
+
+on:
+  push:
+    branches: ['claude/**']
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "claude branch pushed; desk-merge (from master) takes it from here"
