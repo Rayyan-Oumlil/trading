@@ -1,0 +1,32 @@
+name: desk-notify
+
+# The trading-desk routine holds no secrets. To alert Rayyan it commits
+# memory/desk-alert.txt; this workflow forwards the file to Telegram.
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - memory/desk-alert.txt
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Forward desk alert
+        run: python -m paper_trading.notify "$(cat memory/desk-alert.txt)"

@@ -18,15 +18,18 @@ The LLM gets the brake, never the gas (PRINCIPLES #6, ROADMAP "halt power" escal
 2. **Instructions:** paste the prompt below.
 3. **Trigger:** Custom cron `55 0 * * 1-6` (UTC). = 8:55 PM EDT / 7:55 PM EST, Sunday–Friday evenings in New York.
    The app allows one schedule per routine, so Sunday's LAB run rides the same cron; the prompt picks the mode from the New York date.
-4. **Environment** (cloud icon → Default → edit):
-   - Env vars: `ALPACA_API_KEY`, `ALPACA_API_SECRET`, `ALPACA_PAPER_TRADE=true`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`.
-   - Network access must allow: `api.alpaca.markets`, `paper-api.alpaca.markets`, `data.alpaca.markets`, `api.telegram.org` (plus the default package registries for `pip`).
+4. **Environment** (cloud icon → add environment): name `trading-desk`, network **Trusted**, **no API credentials, no environment variables**, setup script:
+   ```
+   #!/bin/bash
+   pip install -q -r requirements.txt
+   ```
+   The routine holds **no secrets**. GitHub Actions (which has the Alpaca + Telegram secrets) builds `memory/desk-snapshot.json` after every EOD run; the routine reads it. To alert, the routine commits `memory/desk-alert.txt` and `.github/workflows/desk-notify.yml` forwards it to Telegram.
 5. **Behavior:** allow pushes to `master` (unrestricted branch pushes). Without this, output lands on unmerged `claude/*` branches and is never read — that is how 76 reflections were lost.
 6. **Notifications:** on.
 7. **Model:** Opus 5.5.
 8. Save → **Run now** → expect: a `desk:` commit on master, a Desk Brief in today's journal, a Telegram heartbeat.
 
-**Known risk:** Alpaca paper keys can place orders; there are no read-only keys. Defense in depth: the prompt forbids it, `desk_snapshot.py` only calls read methods, and the robot halts on any foreign position and no-ops on any open order it didn't expect.
+**Why no secrets:** Alpaca has no read-only keys — any key that can read can trade. Keeping keys out of the routine makes "the desk never trades" a fact, not a promise.
 
 ## Routine prompt
 
@@ -49,17 +52,23 @@ AUTHORITY
 MODE (from today's date in America/New_York)
   Mon-Thu -> NIGHTLY.  Fri -> NIGHTLY + WEEKLY.  Sun -> LAB.  Sat -> exit.
 
+ALERTS: you hold no secrets. To message Rayyan, write the text to
+  memory/desk-alert.txt (overwrite, <= 3 lines), commit and push to master;
+  a GitHub workflow forwards it to Telegram. One alert file per push — if
+  you need a halt alert AND the heartbeat, push the halt alert first.
+
 STEP 0 — SETUP
-  git pull --ff-only
-  pip install -q -r requirements.txt
+  git pull --ff-only   (dependencies are installed by the environment)
 
 STEP 1 — FACTS (NIGHTLY/WEEKLY; skip in LAB)
-  python -m routines_pkg.desk_snapshot
-  This writes memory/desk-snapshot.json: session, account, positions, open
-  and recent orders, performance vs SPY since 2026-04-23, robot log lines for
-  the session, and flags with severity "halt" or "alert".
-  If the script fails: send Telegram "🚨 desk snapshot failed: <error>",
-  write that in the journal, skip STEP 3, continue.
+  Read memory/desk-snapshot.json, built by GitHub Actions right after the
+  robot's EOD run: session, account, positions, open and recent orders,
+  performance vs SPY since 2026-04-23, robot log lines for the session,
+  flags with severity "halt" or "alert".
+  FRESHNESS: if generated_at is more than 20 hours old, the robot or the
+  snapshot did not run today. That is an alert ("snapshot_stale"): report
+  it, skip STEP 3, continue. Check `git log -3 --format=%s` for the last
+  routine commits to say which part failed.
 
 STEP 2 — CONTEXT
   Read: memory/desk-notes.md (FIRST), CLAUDE.md, tasks/lessons.md,
@@ -72,8 +81,8 @@ STEP 3 — HALT DECISION (deterministic — apply, don't improvise)
       it was reviewed: do not halt on it.
     - Otherwise HALT:
         python -c "from paper_trading.kill_switch import create_halt; create_halt('desk: <code> <session>: <detail>')"
-        git add .HALT && git commit -m "halt: <code> <session>" && git push
-        python -m paper_trading.notify "🚨 HALTED by desk: <code> — <detail>. Robot will not trade until you clear .HALT."
+        write memory/desk-alert.txt: "🚨 HALTED by desk: <code> — <detail>. Robot will not trade until you clear .HALT."
+        git add -f .HALT memory/desk-alert.txt && git commit -m "halt: <code> <session>" && git push
         Append to desk-notes.md Halt log.
   If .HALT already exists, say so in the brief and do not create another.
   Never halt for anything that is not a "halt" flag. Alerts are reported only.
@@ -85,7 +94,7 @@ STEP 4 — DESK ANALYSIS
        the session? Does its decision match the regime implied by the
        data? Does the broker position match the decision (allowing for
        orders queued for next open)? Run `python -m pytest -q` and report
-       the result. Any red GitHub run you can see?
+       the result.
     b) RISK OFFICER (agents/risk-manager.md): drawdown vs STRATEGY.md §10
        kill conditions, exposure, event risk in the next 5 sessions.
     c) MARKET ANALYST (agents/sentiment.md): SPY/VIX move today; FOMC, CPI,
@@ -123,12 +132,13 @@ STEP 8 — MEMORY
   add new ones, keep it under 60 lines. Never touch Acknowledged.
 
 STEP 9 — HEARTBEAT (every run, even all-green)
-  python -m paper_trading.notify "<verdict emoji> Desk <session>: <account vs SPY>, <decision>, <flags count>. <one-line headline>"
+  Write memory/desk-alert.txt:
+  "<🟢|🟠|🔴> Desk <session>: <account vs SPY>, <decision>, <n> flags. <one-line headline>"
   Silence means the desk is broken.
 
 STEP 10 — COMMIT
-  git add journal memory research backtests .HALT 2>/dev/null
+  git add journal memory research backtests
   git commit -m "desk: <mode> <session>" && git push
-  If push to master is rejected, push to desk/<session> and include the
-  branch URL in a second Telegram message.
+  If push to master is rejected, push to desk/<session>; the heartbeat will
+  not arrive — that silence is the signal.
 ```

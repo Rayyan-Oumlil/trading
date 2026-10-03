@@ -98,6 +98,10 @@ jobs:
           python run_signal.py
           python -m routines_pkg.eod_close
 
+      - name: Build desk snapshot
+        if: always() && steps.mode.outputs.mode == 'eod'
+        run: python -m routines_pkg.desk_snapshot > /dev/null
+
       - name: Commit memory + journal updates
         if: always()
         shell: bash
