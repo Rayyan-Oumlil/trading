@@ -1,0 +1,75 @@
+name: desk-merge
+
+# The trading-desk routine can only push to claude/* branches. This merges a
+# branch into master when every changed path is desk output (journal, desk
+# memory, research, backtests, .HALT) — see routines_pkg/desk_merge_guard.py.
+# Anything else waits for Rayyan. Pushes made here use GITHUB_TOKEN, which does
+# not trigger desk-notify, so this workflow forwards desk-alert.txt itself.
+
+on:
+  push:
+    branches: ['claude/**']
+
+permissions:
+  contents: write
+
+concurrency:
+  group: desk-merge
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      BRANCH: ${{ github.ref_name }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Guard changed paths
+        id: guard
+        shell: bash
+        run: |
+          git diff --name-only origin/master...HEAD > changed.txt
+          cat changed.txt
+          if ! python -m routines_pkg.desk_merge_guard < changed.txt > blocked.txt; then
+            python -m paper_trading.notify "🟠 $BRANCH not auto-merged — needs your review: $(tr '\n' ' ' < blocked.txt)"
+            echo "merge=no" >> "$GITHUB_OUTPUT"
+          else
+            echo "merge=yes" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Merge into master
+        if: steps.guard.outputs.merge == 'yes'
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout master
+          if ! git merge --no-edit "origin/$BRANCH"; then
+            python -m paper_trading.notify "🔴 $BRANCH conflicts with master — desk output not merged."
+            exit 1
+          fi
+          for i in 1 2 3; do
+            if git push origin master; then break; fi
+            git pull --no-edit origin master
+          done
+          git push origin --delete "$BRANCH"
+
+      - name: Forward desk alert
+        if: steps.guard.outputs.merge == 'yes'
+        shell: bash
+        run: |
+          if grep -qx "memory/desk-alert.txt" changed.txt; then
+            python -m paper_trading.notify "$(git show "origin/$BRANCH:memory/desk-alert.txt")"
+          fi

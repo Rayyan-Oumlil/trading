@@ -30,3 +30,12 @@ def test_desk_alert_file_is_forwarded_to_telegram():
     on = doc[True] if True in doc else doc["on"]  # PyYAML parses bare `on` as True
     assert on["push"]["paths"] == ["memory/desk-alert.txt"]
     assert any("paper_trading.notify" in s.get("run", "") for s in _steps(path))
+
+
+def test_desk_branches_merge_only_through_the_guard():
+    path = WORKFLOW.parent / "desk-merge.yml"
+    doc = yaml.safe_load(path.read_text(encoding="utf-8"))
+    on = doc[True] if True in doc else doc["on"]
+    assert on["push"]["branches"] == ["claude/**"]
+    runs = " ".join(s.get("run", "") for s in _steps(path))
+    assert "routines_pkg.desk_merge_guard" in runs and "paper_trading.notify" in runs

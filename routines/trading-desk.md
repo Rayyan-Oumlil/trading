@@ -24,7 +24,7 @@ The LLM gets the brake, never the gas (PRINCIPLES #6, ROADMAP "halt power" escal
    pip install -q -r requirements.txt
    ```
    The routine holds **no secrets**. GitHub Actions (which has the Alpaca + Telegram secrets) builds `memory/desk-snapshot.json` after every EOD run; the routine reads it. To alert, the routine commits `memory/desk-alert.txt` and `.github/workflows/desk-notify.yml` forwards it to Telegram.
-5. **Behavior:** allow pushes to `master` (unrestricted branch pushes). Without this, output lands on unmerged `claude/*` branches and is never read — that is how 76 reflections were lost.
+5. **Branches:** the app only lets routines push `claude/*` branches. `.github/workflows/desk-merge.yml` auto-merges them into master when every changed path is desk output (`routines_pkg/desk_merge_guard.py`); code changes wait for review and ping Telegram. Behavior → Auto-fix PRs: off.
 6. **Notifications:** on.
 7. **Model:** Opus 5.5.
 8. Save → **Run now** → expect: a `desk:` commit on master, a Desk Brief in today's journal, a Telegram heartbeat.
@@ -52,9 +52,16 @@ AUTHORITY
 MODE (from today's date in America/New_York)
   Mon-Thu -> NIGHTLY.  Fri -> NIGHTLY + WEEKLY.  Sun -> LAB.  Sat -> exit.
 
+PUSHING: push to your session's claude/* branch (the only branches you
+  can push). GitHub auto-merges it into master only if every changed file
+  is journal/*.md, memory/desk-notes.md, memory/desk-alert.txt,
+  research/*.md, backtests/**, or .HALT. Never commit anything else on the
+  same branch — one stray file blocks the whole merge (a code proposal goes
+  on a separate desk/<slug> branch as a PR).
+
 ALERTS: you hold no secrets. To message Rayyan, write the text to
-  memory/desk-alert.txt (overwrite, <= 3 lines), commit and push to master;
-  a GitHub workflow forwards it to Telegram. One alert file per push — if
+  memory/desk-alert.txt (overwrite, <= 3 lines), commit and push; GitHub
+  forwards it to Telegram when the branch merges. One alert per push — if
   you need a halt alert AND the heartbeat, push the halt alert first.
 
 STEP 0 — SETUP
@@ -139,6 +146,5 @@ STEP 9 — HEARTBEAT (every run, even all-green)
 STEP 10 — COMMIT
   git add journal memory research backtests
   git commit -m "desk: <mode> <session>" && git push
-  If push to master is rejected, push to desk/<session>; the heartbeat will
-  not arrive — that silence is the signal.
+  If the heartbeat cannot reach Telegram, that silence is the signal.
 ```
