@@ -1,25 +1,25 @@
 {
-  "generated_at": "2026-10-02T23:58:47.891325+00:00",
+  "generated_at": "2026-10-03T00:28:47.550040+00:00",
   "session": "2026-10-02",
   "halted": null,
   "account": {
     "status": "AccountStatus.ACTIVE",
-    "equity": 103451.2,
-    "buying_power": 407750.31,
+    "equity": 103447.56,
+    "buying_power": 407740.13,
     "cash": 98405.8
   },
   "positions": [
     {
       "symbol": "GLD",
       "qty": 6.62,
-      "market_value": 2519.444234,
-      "unrealized_pl": -25.416166
+      "market_value": 2516.5268,
+      "unrealized_pl": -28.3336
     },
     {
       "symbol": "IWM",
       "qty": 8.97,
-      "market_value": 2525.952,
-      "unrealized_pl": 36.8667
+      "market_value": 2525.2344,
+      "unrealized_pl": 36.1491
     }
   ],
   "open_orders": [
@@ -113,7 +113,9 @@
     "spy_return_pct": 9.187379412098506,
     "vs_spy_pct": -5.744899412098503,
     "current_drawdown_pct": -2.537506708394388,
-    "max_drawdown_pct": -4.54215773621085
+    "max_drawdown_pct": -4.54215773621085,
+    "day_change": 26.419999999998254,
+    "day_change_pct": 0.025547289270155815
   },
   "robot_log_today": [
     "2026-10-02 | HOLD | 6/10 | entered=[] closed=[] [multi] [multi]",
