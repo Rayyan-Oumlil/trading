@@ -1,15 +1,16 @@
 name: daily-trade
 
-# GitHub Actions cron is UTC and best-effort (can lag 5-15 min on free tier).
-# Two crons:
-#   premarket  -> 11:00 UTC weekdays (~07:00 ET DST / 06:00 ET standard)
-#   eod        -> 21:15 UTC weekdays (~17:15 ET DST / 16:15 ET standard, after 16:00 ET close)
+# GitHub Actions cron is UTC and best-effort (observed 3-5 h late). It is the
+# FALLBACK: the on-time trigger is a Windows scheduled task (routines/README.md).
+#   premarket  -> 11:00 UTC weekdays
+#   eod        -> 00:20 UTC every day: after the 00:00 UTC crypto close; SPY's
+#                 session closed hours earlier, so SPY orders queue for the next open.
 #
 # Manual `workflow_dispatch` lets us trigger any mode from the Actions tab.
 on:
   schedule:
     - cron: '0 11 * * 1-5'    # premarket
-    - cron: '15 21 * * 1-5'   # eod (after market close)
+    - cron: '20 0 * * *'      # eod (daily; crypto trades 7 days)
   workflow_dispatch:
     inputs:
       mode:
@@ -91,6 +92,12 @@ jobs:
         if: steps.mode.outputs.mode == 'premarket'
         run: python -m routines_pkg.premarket
 
+      - name: Mark confidence-log length
+        id: logmark
+        if: steps.mode.outputs.mode == 'eod'
+        shell: bash
+        run: echo "lines=$(wc -l < memory/confidence-log.md)" >> "$GITHUB_OUTPUT"
+
       - name: Run signal then EOD routine
         if: steps.mode.outputs.mode == 'eod'
         run: |
@@ -134,12 +141,13 @@ jobs:
           fi
 
       - name: Alert on trade or halt
-        if: success() && steps.mode.outputs.mode == 'eod'
+        if: always() && steps.mode.outputs.mode == 'eod' && steps.logmark.outputs.lines != ''
         shell: bash
         run: |
-          last="$(tail -n 1 memory/confidence-log.md)"
-          if echo "$last" | grep -qE '\| (BUY|SELL|HALT|PENDING) \|'; then
-            python -m paper_trading.notify "daily-trade ${{ steps.mode.outputs.mode }}: $last"
+          new="$(tail -n +$(( ${{ steps.logmark.outputs.lines }} + 1 )) memory/confidence-log.md | grep -E '\| (BUY|SELL|HALT|PENDING) \|' || true)"
+          if [ -n "$new" ]; then
+            python -m paper_trading.notify "daily-trade eod:
+          $new"
           fi
 
       - name: Alert on failure

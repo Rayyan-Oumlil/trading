@@ -52,3 +52,20 @@ def test_eod_sends_daily_pnl_report():
     assert "mode == 'eod'" in report["if"] and "always()" in report["if"]
     assert "paper_trading.notify" in report["run"]
     assert "--report" in steps[names.index("Build desk snapshot")]["run"]
+
+
+def test_eod_runs_every_day_for_crypto():
+    doc = yaml.safe_load(WORKFLOW.read_text(encoding="utf-8"))
+    on = doc[True] if True in doc else doc["on"]
+    crons = [c["cron"] for c in on["schedule"]]
+    assert "20 0 * * *" in crons  # daily, after the 00:00 UTC crypto close
+
+
+def test_trade_alert_covers_only_lines_written_this_run():
+    steps = _steps(WORKFLOW)
+    names = [s["name"] for s in steps]
+    mark = steps[names.index("Mark confidence-log length")]
+    assert names.index("Mark confidence-log length") < names.index("Run signal then EOD routine")
+    assert "GITHUB_OUTPUT" in mark["run"]
+    alert = steps[names.index("Alert on trade or halt")]
+    assert "steps.logmark.outputs.lines" in alert["run"] and "tail -n 1" not in alert["run"]

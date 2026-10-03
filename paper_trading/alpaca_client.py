@@ -111,6 +111,10 @@ class AlpacaClient:
         days = self._client.get_calendar(GetCalendarRequest(start=start, end=end))
         return [(d.date, d.close.time() if isinstance(d.close, datetime) else d.close) for d in days]
 
+    def get_open_orders(self) -> list[dict]:
+        orders = self._client.get_orders(GetOrdersRequest(status=QueryOrderStatus.OPEN))
+        return [{"symbol": o.symbol, "side": o.side.value, "qty": float(o.qty)} for o in orders]
+
     def has_open_order(self, symbol: str) -> bool:
         orders = self._client.get_orders(GetOrdersRequest(status=QueryOrderStatus.OPEN, symbols=[symbol]))
         return len(orders) > 0

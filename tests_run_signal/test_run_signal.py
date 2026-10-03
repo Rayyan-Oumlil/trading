@@ -50,6 +50,7 @@ class FakeClient:
         self.open_order = open_order
         self.status = status
         self.orders: list[tuple[str, float, str]] = []
+        self.open_orders: list[dict] = []
 
     def get_calendar(self, start, end):
         return [(date(2026, 10, 1), time(16, 0)), (date(2026, 10, 2), time(16, 0))]
@@ -62,6 +63,9 @@ class FakeClient:
 
     def has_open_order(self, symbol):
         return self.open_order
+
+    def get_open_orders(self):
+        return list(self.open_orders)
 
     def place_market_order(self, symbol, qty, side):
         self.orders.append((symbol, qty, side))
@@ -187,3 +191,11 @@ def test_crypto_positions_are_not_foreign(wired):
     wired(client)
     run_signal.main()
     assert ("ETH/USD", 5000.0, "buy-notional") not in client.orders
+
+
+def test_winding_down_position_does_not_block_the_robot(wired):
+    client = FakeClient(positions=[{"symbol": "GLD", "qty": 6.62, "market_value": 1.0, "unrealized_pl": 0.0}])
+    client.open_orders = [{"symbol": "GLD", "side": "sell", "qty": 6.62}]
+    wired(client)
+    assert run_signal.main() == 0
+    assert ("BTC/USD", 5000.0, "buy-notional") in client.orders

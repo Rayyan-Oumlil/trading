@@ -206,3 +206,14 @@ def test_position_symbol_strips_crypto_slash():
     from paper_trading.alpaca_client import position_symbol
     assert position_symbol("BTC/USD") == "BTCUSD"
     assert position_symbol("SPY") == "SPY"
+
+
+def test_get_open_orders_normalized(monkeypatch: pytest.MonkeyPatch) -> None:
+    from alpaca.trading.enums import OrderSide
+    monkeypatch.setenv("ALPACA_API_KEY", "k")
+    monkeypatch.setenv("ALPACA_API_SECRET", "s")
+    o = MagicMock()
+    o.symbol, o.side, o.qty = "GLD", OrderSide.SELL, "6.62"
+    with patch("paper_trading.alpaca_client.TradingClient") as mock_tc:
+        mock_tc.return_value.get_orders.return_value = [o]
+        assert AlpacaClient().get_open_orders() == [{"symbol": "GLD", "side": "sell", "qty": 6.62}]

@@ -148,7 +148,7 @@ def main() -> int:
 
     account = client.get_account()
     positions = client.get_positions()
-    assert_only_expected_positions(positions, allowed=ALLOWED_POSITIONS)
+    assert_only_expected_positions(positions, allowed=ALLOWED_POSITIONS, open_orders=client.get_open_orders())
     held = {p["symbol"]: p["qty"] for p in positions}
     print(f"Account equity: ${account['equity']:,.2f}   Cash: ${account['cash']:,.2f}   Positions: {held or 'none'}")
 
