@@ -167,3 +167,42 @@ class TestReadOnlyHistory:
         with patch("paper_trading.alpaca_client.TradingClient") as mock_tc:
             mock_tc.return_value.get_portfolio_history.return_value = hist
             assert AlpacaClient().get_equity_history() == [(date(2026, 6, 26), 103000.0)]
+
+
+class TestCryptoOrders:
+    def _setup(self, monkeypatch: pytest.MonkeyPatch) -> MagicMock:
+        monkeypatch.setenv("ALPACA_API_KEY", "k")
+        monkeypatch.setenv("ALPACA_API_SECRET", "s")
+        order = MagicMock()
+        order.id, order.status, order.filled_avg_price = "o-1", "accepted", None
+        return order
+
+    def test_crypto_order_uses_gtc_equity_uses_day(self, monkeypatch: pytest.MonkeyPatch) -> None:
+        from alpaca.trading.enums import TimeInForce
+        order = self._setup(monkeypatch)
+        with patch("paper_trading.alpaca_client.TradingClient") as mock_tc:
+            mock_tc.return_value.submit_order.return_value = order
+            client = AlpacaClient()
+            client.place_market_order("BTC/USD", qty=0.01, side="sell")
+            client.place_market_order("SPY", qty=1, side="buy")
+            reqs = [c.args[0] for c in mock_tc.return_value.submit_order.call_args_list]
+        assert reqs[0].time_in_force == TimeInForce.GTC
+        assert reqs[1].time_in_force == TimeInForce.DAY
+
+    def test_notional_buy(self, monkeypatch: pytest.MonkeyPatch) -> None:
+        order = self._setup(monkeypatch)
+        with patch("paper_trading.alpaca_client.TradingClient") as mock_tc:
+            mock_tc.return_value.submit_order.return_value = order
+            client = AlpacaClient()
+            result = client.place_notional_buy("ETH/USD", 5172.38)
+            req = mock_tc.return_value.submit_order.call_args.args[0]
+            with pytest.raises(ValueError, match="notional must be > 0"):
+                client.place_notional_buy("ETH/USD", 0)
+        assert req.notional == 5172.38 and req.symbol == "ETH/USD"
+        assert result.order_id == "o-1"
+
+
+def test_position_symbol_strips_crypto_slash():
+    from paper_trading.alpaca_client import position_symbol
+    assert position_symbol("BTC/USD") == "BTCUSD"
+    assert position_symbol("SPY") == "SPY"

@@ -18,6 +18,20 @@ from alpaca.trading.requests import (
 _VALID_SIDES = {"buy", "sell"}
 
 
+def is_crypto(symbol: str) -> bool:
+    return "/" in symbol
+
+
+def position_symbol(symbol: str) -> str:
+    """Alpaca orders use 'BTC/USD'; positions report 'BTCUSD'."""
+    return symbol.replace("/", "")
+
+
+def _time_in_force(symbol: str) -> TimeInForce:
+    # Alpaca rejects DAY for crypto; equities keep DAY so after-hours orders queue for the next open.
+    return TimeInForce.GTC if is_crypto(symbol) else TimeInForce.DAY
+
+
 @dataclass(frozen=True)
 class OrderResult:
     order_id: str
@@ -55,8 +69,22 @@ class AlpacaClient:
             symbol=symbol,
             qty=qty,
             side=order_side,
-            time_in_force=TimeInForce.DAY,
+            time_in_force=_time_in_force(symbol),
         )
+        return self._submit(req)
+
+    def place_notional_buy(self, symbol: str, notional: float) -> OrderResult:
+        if notional <= 0:
+            raise ValueError("notional must be > 0")
+        req = MarketOrderRequest(
+            symbol=symbol,
+            notional=round(notional, 2),
+            side=OrderSide.BUY,
+            time_in_force=_time_in_force(symbol),
+        )
+        return self._submit(req)
+
+    def _submit(self, req: MarketOrderRequest) -> OrderResult:
         order = self._client.submit_order(req)
         filled_price: float | None = None
         if order.filled_avg_price is not None:
