@@ -122,3 +122,21 @@ def test_performance_includes_day_change():
     spy = pd.Series([700.0, 707.0], index=pd.to_datetime(["2026-10-01", "2026-10-02"]))
     perf = performance(equity, spy)
     assert perf["day_change"] == 1000.0 and round(perf["day_change_pct"], 2) == 1.0
+
+
+def test_different_symbols_same_session_are_not_a_conflict():
+    lines = ["2026-10-02 | HOLD | 7/10 | SPY: aligned", "2026-10-02 | BUY | 7/10 | BTC/USD: cross-up",
+             "2026-10-02 | FLAT | 5/10 | ETH/USD: awaiting"]
+    positions = [{"symbol": "SPY"}, {"symbol": "BTCUSD"}]
+    assert integrity_flags(lines, positions, {"SPY", "BTCUSD", "ETHUSD"}, SESSION) == []
+
+
+def test_same_crypto_symbol_two_decisions_is_halt():
+    lines = ["2026-10-02 | HOLD | 7/10 | SPY: aligned", "2026-10-02 | BUY | 7/10 | BTC/USD: x",
+             "2026-10-02 | SELL | 6/10 | BTC/USD: y"]
+    assert ("conflicting_decisions", "halt") in _codes(integrity_flags(lines, [], {"SPY"}, SESSION))
+
+
+def test_snapshot_allows_every_sleeve_symbol():
+    from routines_pkg.desk_snapshot import ALLOWED
+    assert ALLOWED == {"SPY", "BTCUSD", "ETHUSD"}

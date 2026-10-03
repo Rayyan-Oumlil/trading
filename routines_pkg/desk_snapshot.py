@@ -26,10 +26,10 @@ from paper_trading.alpaca_client import AlpacaClient  # noqa: E402
 from paper_trading.kill_switch import halt_reason  # noqa: E402
 from paper_trading.market_calendar import last_completed_session  # noqa: E402
 from paper_trading.market_data import SIP_DELAY, get_daily_bars  # noqa: E402
-from strategies.portfolio import split_log_lines  # noqa: E402,F401
+from strategies.portfolio import ALLOWED_POSITIONS, log_symbol, split_log_lines  # noqa: E402,F401
 
 TICKER = "SPY"
-ALLOWED = {TICKER}
+ALLOWED = ALLOWED_POSITIONS
 PAPER_START = date(2026, 4, 23)
 BACKTEST_MAX_DD_PCT = -12.4  # strategies/ma_crossover/STRATEGY.md: OOS max DD
 FILL_DEVIATION_LIMIT_PCT = 2.0  # STRATEGY.md §10 kill condition
@@ -54,9 +54,13 @@ def integrity_flags(
         flags.append(_flag("robot_silent", "alert", f"no confidence-log entry for session {session}"))
     if any("nan" in line.lower() for line in today):
         flags.append(_flag("nan_in_log", "halt", "NaN in today's decision — data integrity failure"))
-    acted = [d for d in decisions if d != "PENDING"]
-    if len(set(acted)) > 1 or sum(d in TRADE_DECISIONS for d in acted) > 1:
-        flags.append(_flag("conflicting_decisions", "halt", f"session {session} logged {decisions}"))
+    by_symbol: dict[str, list[str]] = {}
+    for line, decision in zip(today, decisions):
+        if decision not in {"PENDING", "HALT"}:
+            by_symbol.setdefault(log_symbol(line), []).append(decision)
+    for symbol, acted in by_symbol.items():
+        if len(set(acted)) > 1 or sum(d in TRADE_DECISIONS for d in acted) > 1:
+            flags.append(_flag("conflicting_decisions", "halt", f"{symbol} on {session} logged {acted}"))
     foreign = sorted(p["symbol"] for p in positions if p["symbol"] not in allowed)
     unmanaged = [s for s in foreign if s not in closing]
     if unmanaged:
