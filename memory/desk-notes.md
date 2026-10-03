@@ -18,6 +18,7 @@ Format: `<flag code> | <session> | <why it is safe> | <who/when>`
 
 - [ ] 2026-10-02 — GLD 6.62 / IWM 8.97 sells queued (rsi2-multi wind-down). Expect fills Mon 2026-10-05 open; expect `foreign_position_closing` alert until then.
 - [ ] 2026-10-02 — First EOD after fills should BUY ~95% cash SPY (regime bullish since ~09-24). Confirm it happened once, not twice.
+- [ ] 2026-10-02 — Desk 10-02: FLAT log line still prints margin +nan%; confirm it predates the fix. Multi-asset vs STRATEGY.md question open (see brief).
 - [ ] 2026-10-02 — Gate 2 clock restarts on the first clean session after 165bbe4. Count clean sessions from there.
 - [ ] 2026-10-02 — Deferred from review: next-open order rejections are not detected by the robot (Phase 2 reconciliation).
 

@@ -1,1 +1,1 @@
-🟢 desk-merge hardened: benign desk branch merged.
+🟠 Desk 2026-10-02: -5.74pp vs SPY, HOLD/FLAT, 2 flags. NaN halt acknowledged (no halt); GLD/IWM sells fill Mon open.
