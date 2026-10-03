@@ -1,3 +1,5 @@
+> **SUPERSEDED 2026-10-02 by [trading-desk.md](trading-desk.md).** Kept for history.
+
 # Routine — Daily Reflection
 
 Schedule: weekdays after the deterministic GHA cron has finished.

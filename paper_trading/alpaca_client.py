@@ -4,10 +4,16 @@ from __future__ import annotations
 import os
 from dataclasses import dataclass
 from datetime import date, datetime, time
+from zoneinfo import ZoneInfo
 
 from alpaca.trading.client import TradingClient
 from alpaca.trading.enums import OrderSide, QueryOrderStatus, TimeInForce
-from alpaca.trading.requests import GetCalendarRequest, GetOrdersRequest, MarketOrderRequest
+from alpaca.trading.requests import (
+    GetCalendarRequest,
+    GetOrdersRequest,
+    GetPortfolioHistoryRequest,
+    MarketOrderRequest,
+)
 
 _VALID_SIDES = {"buy", "sell"}
 
@@ -80,3 +86,29 @@ class AlpacaClient:
     def has_open_order(self, symbol: str) -> bool:
         orders = self._client.get_orders(GetOrdersRequest(status=QueryOrderStatus.OPEN, symbols=[symbol]))
         return len(orders) > 0
+
+    def get_recent_orders(self, after: datetime) -> list[dict]:
+        """All orders (any status) submitted after `after`. Read-only."""
+        orders = self._client.get_orders(GetOrdersRequest(status=QueryOrderStatus.ALL, after=after, limit=500))
+        return [
+            {
+                "symbol": o.symbol,
+                "side": o.side.value,
+                "status": o.status.value,
+                "qty": float(o.qty),
+                "filled_avg_price": float(o.filled_avg_price) if o.filled_avg_price else None,
+                "submitted_at": o.submitted_at.isoformat() if o.submitted_at else None,
+                "filled_at": o.filled_at.isoformat() if o.filled_at else None,
+            }
+            for o in orders
+        ]
+
+    def get_equity_history(self, period: str = "1A") -> list[tuple[date, float]]:
+        """Daily account equity, dated by New York session. Read-only."""
+        hist = self._client.get_portfolio_history(GetPortfolioHistoryRequest(period=period, timeframe="1D"))
+        new_york = ZoneInfo("America/New_York")
+        return [
+            (datetime.fromtimestamp(ts, new_york).date(), float(eq))
+            for ts, eq in zip(hist.timestamp, hist.equity)
+            if eq
+        ]

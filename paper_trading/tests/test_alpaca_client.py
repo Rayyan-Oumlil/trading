@@ -135,3 +135,35 @@ class TestHasOpenOrder:
         with patch("paper_trading.alpaca_client.TradingClient") as mock_tc:
             mock_tc.return_value.get_orders.return_value = []
             assert AlpacaClient().has_open_order("SPY") is False
+
+
+class TestReadOnlyHistory:
+    def _client(self, monkeypatch: pytest.MonkeyPatch):
+        monkeypatch.setenv("ALPACA_API_KEY", "k")
+        monkeypatch.setenv("ALPACA_API_SECRET", "s")
+
+    def test_recent_orders_normalized(self, monkeypatch: pytest.MonkeyPatch) -> None:
+        from datetime import datetime, timezone
+        from alpaca.trading.enums import OrderSide, OrderStatus
+        self._client(monkeypatch)
+        o = MagicMock()
+        o.symbol, o.side, o.status = "SPY", OrderSide.BUY, OrderStatus.FILLED
+        o.qty, o.filled_qty, o.filled_avg_price = "125.05", "125.05", "772.66"
+        o.submitted_at = datetime(2026, 9, 23, 8, 0, tzinfo=timezone.utc)
+        o.filled_at = datetime(2026, 9, 23, 13, 31, tzinfo=timezone.utc)
+        with patch("paper_trading.alpaca_client.TradingClient") as mock_tc:
+            mock_tc.return_value.get_orders.return_value = [o]
+            [row] = AlpacaClient().get_recent_orders(after=datetime(2026, 9, 20, tzinfo=timezone.utc))
+        assert row == {"symbol": "SPY", "side": "buy", "status": "filled", "qty": 125.05,
+                       "filled_avg_price": 772.66, "submitted_at": "2026-09-23T08:00:00+00:00",
+                       "filled_at": "2026-09-23T13:31:00+00:00"}
+
+    def test_equity_history_skips_empty_points(self, monkeypatch: pytest.MonkeyPatch) -> None:
+        from datetime import date
+        self._client(monkeypatch)
+        hist = MagicMock()
+        hist.timestamp = [1782360000, 1782446400]  # 2026-06-25, 2026-06-26 04:00 UTC
+        hist.equity = [None, 103000.0]
+        with patch("paper_trading.alpaca_client.TradingClient") as mock_tc:
+            mock_tc.return_value.get_portfolio_history.return_value = hist
+            assert AlpacaClient().get_equity_history() == [(date(2026, 6, 26), 103000.0)]

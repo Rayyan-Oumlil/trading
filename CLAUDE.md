@@ -73,6 +73,7 @@ Apply the seven lessons from [PRINCIPLES.md](PRINCIPLES.md) on every task:
 - **Python libs preferred:** pandas, numpy, TA-Lib, vectorbt / backtrader. Battle-tested before hand-rolled.
 - **Secrets:** `.env` only, never committed. Remote routines use environment variables.
 - **Logs:** every session ends with a dated entry in `journal/`.
+- **Trading desk (2026-10-02):** Claude Code routine `trading-desk` ([routines/trading-desk.md](routines/trading-desk.md)) audits the robot nightly via `routines_pkg/desk_snapshot.py`, may write `.HALT` on Python-computed halt flags only, never trades. Memory: [memory/desk-notes.md](memory/desk-notes.md). Research pipeline: [research/queue.md](research/queue.md) (Rayyan approves, Sunday lab executes).
 
 ## 6. Active Strategies
 

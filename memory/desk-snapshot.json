@@ -1,0 +1,136 @@
+{
+  "generated_at": "2026-10-02T23:58:47.891325+00:00",
+  "session": "2026-10-02",
+  "halted": null,
+  "account": {
+    "status": "AccountStatus.ACTIVE",
+    "equity": 103451.2,
+    "buying_power": 407750.31,
+    "cash": 98405.8
+  },
+  "positions": [
+    {
+      "symbol": "GLD",
+      "qty": 6.62,
+      "market_value": 2519.444234,
+      "unrealized_pl": -25.416166
+    },
+    {
+      "symbol": "IWM",
+      "qty": 8.97,
+      "market_value": 2525.952,
+      "unrealized_pl": 36.8667
+    }
+  ],
+  "open_orders": [
+    {
+      "symbol": "IWM",
+      "side": "sell",
+      "status": "accepted",
+      "qty": 8.97,
+      "filled_avg_price": null,
+      "submitted_at": "2026-10-02T23:36:07.163947+00:00",
+      "filled_at": null
+    },
+    {
+      "symbol": "GLD",
+      "side": "sell",
+      "status": "accepted",
+      "qty": 6.62,
+      "filled_avg_price": null,
+      "submitted_at": "2026-10-02T23:36:07.133529+00:00",
+      "filled_at": null
+    }
+  ],
+  "recent_orders": [
+    {
+      "symbol": "IWM",
+      "side": "sell",
+      "status": "accepted",
+      "qty": 8.97,
+      "filled_avg_price": null,
+      "submitted_at": "2026-10-02T23:36:07.163947+00:00",
+      "filled_at": null
+    },
+    {
+      "symbol": "GLD",
+      "side": "sell",
+      "status": "accepted",
+      "qty": 6.62,
+      "filled_avg_price": null,
+      "submitted_at": "2026-10-02T23:36:07.133529+00:00",
+      "filled_at": null
+    },
+    {
+      "symbol": "IWM",
+      "side": "buy",
+      "status": "filled",
+      "qty": 8.97,
+      "filled_avg_price": 277.49,
+      "submitted_at": "2026-10-01T08:00:25.327376+00:00",
+      "filled_at": "2026-10-01T13:30:57.156523+00:00"
+    },
+    {
+      "symbol": "GLD",
+      "side": "buy",
+      "status": "filled",
+      "qty": 6.62,
+      "filled_avg_price": 384.42,
+      "submitted_at": "2026-09-30T08:00:26.985957+00:00",
+      "filled_at": "2026-09-30T13:32:05.745962+00:00"
+    },
+    {
+      "symbol": "SPY",
+      "side": "sell",
+      "status": "filled",
+      "qty": 125.05,
+      "filled_avg_price": 765.98,
+      "submitted_at": "2026-09-29T08:00:19.495999+00:00",
+      "filled_at": "2026-09-29T13:31:51.446682+00:00"
+    },
+    {
+      "symbol": "SPY",
+      "side": "buy",
+      "status": "filled",
+      "qty": 125.05,
+      "filled_avg_price": 772.66,
+      "submitted_at": "2026-09-23T08:00:40.987654+00:00",
+      "filled_at": "2026-09-23T13:31:12.449170+00:00"
+    },
+    {
+      "symbol": "IWM",
+      "side": "sell",
+      "status": "filled",
+      "qty": 8.66,
+      "filled_avg_price": 285.592333,
+      "submitted_at": "2026-09-23T08:00:40.984302+00:00",
+      "filled_at": "2026-09-23T13:32:11.649236+00:00"
+    }
+  ],
+  "performance": {
+    "start": "2026-04-23",
+    "account_return_pct": 3.4424800000000033,
+    "spy_return_pct": 9.187379412098506,
+    "vs_spy_pct": -5.744899412098503,
+    "current_drawdown_pct": -2.537506708394388,
+    "max_drawdown_pct": -4.54215773621085
+  },
+  "robot_log_today": [
+    "2026-10-02 | HOLD | 6/10 | entered=[] closed=[] [multi] [multi]",
+    "2026-10-02 | FLAT | 5/10 | awaiting cross-up; fast-slow margin +nan%",
+    "2026-10-02 | SCAN | 6/10 | entries=[] exits=[] [multi] [multi]"
+  ],
+  "flags": [
+    {
+      "code": "nan_in_log",
+      "severity": "halt",
+      "detail": "NaN in today's decision \u2014 data integrity failure"
+    },
+    {
+      "code": "foreign_position_closing",
+      "severity": "alert",
+      "detail": "winding down with sell orders queued: ['GLD', 'IWM']"
+    }
+  ],
+  "halt_recommended": true
+}
