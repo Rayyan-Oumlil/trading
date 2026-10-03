@@ -217,3 +217,23 @@ def test_get_open_orders_normalized(monkeypatch: pytest.MonkeyPatch) -> None:
     with patch("paper_trading.alpaca_client.TradingClient") as mock_tc:
         mock_tc.return_value.get_orders.return_value = [o]
         assert AlpacaClient().get_open_orders() == [{"symbol": "GLD", "side": "sell", "qty": 6.62}]
+
+
+def test_notional_orders_have_null_qty_and_do_not_crash(monkeypatch: pytest.MonkeyPatch) -> None:
+    from datetime import datetime, timezone
+    from alpaca.trading.enums import OrderSide, OrderStatus
+    monkeypatch.setenv("ALPACA_API_KEY", "k")
+    monkeypatch.setenv("ALPACA_API_SECRET", "s")
+    o = MagicMock()
+    o.symbol, o.side, o.status = "BTC/USD", OrderSide.BUY, OrderStatus.FILLED
+    o.qty, o.filled_qty, o.notional, o.filled_avg_price = None, "0.0612", "5172.38", "84500.0"
+    o.submitted_at = o.filled_at = datetime(2026, 10, 4, 0, 11, tzinfo=timezone.utc)
+    with patch("paper_trading.alpaca_client.TradingClient") as mock_tc:
+        mock_tc.return_value.get_orders.return_value = [o]
+        client = AlpacaClient()
+        assert client.get_open_orders()[0]["qty"] == 0.0612
+        assert client.get_recent_orders(after=datetime(2026, 10, 1, tzinfo=timezone.utc))[0]["qty"] == 0.0612
+    o.filled_qty = "0"
+    with patch("paper_trading.alpaca_client.TradingClient") as mock_tc:
+        mock_tc.return_value.get_orders.return_value = [o]
+        assert AlpacaClient().get_open_orders()[0]["qty"] == 0.0

@@ -1,6 +1,8 @@
 """Hard pre/post-trade checks. Each one raises or returns a bool — never logs and continues."""
 from __future__ import annotations
 
+from paper_trading.alpaca_client import position_symbol
+
 _FAILED = {"rejected", "canceled", "expired", "suspended"}
 
 
@@ -13,7 +15,8 @@ def assert_only_expected_positions(positions: list[dict], allowed: set[str], ope
     selling: dict[str, float] = {}
     for o in open_orders:
         if o["side"] == "sell":
-            selling[o["symbol"]] = selling.get(o["symbol"], 0.0) + o["qty"]
+            sym = position_symbol(o["symbol"])  # orders say BTC/USD, positions say BTCUSD
+            selling[sym] = selling.get(sym, 0.0) + o["qty"]
     foreign = sorted(
         p["symbol"] for p in positions
         if p["symbol"] not in allowed and selling.get(p["symbol"], 0.0) < p.get("qty", float("inf"))

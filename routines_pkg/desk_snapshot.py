@@ -26,13 +26,16 @@ from paper_trading.alpaca_client import AlpacaClient  # noqa: E402
 from paper_trading.kill_switch import halt_reason  # noqa: E402
 from paper_trading.market_calendar import last_completed_session  # noqa: E402
 from paper_trading.market_data import SIP_DELAY, get_daily_bars  # noqa: E402
-from strategies.portfolio import ALLOWED_POSITIONS, log_symbol, split_log_lines  # noqa: E402,F401
+from paper_trading.alpaca_client import is_crypto, position_symbol  # noqa: E402
+from paper_trading.crypto_data import get_crypto_daily_bars, last_completed_day  # noqa: E402
+from strategies.portfolio import ALLOWED_POSITIONS, SLEEVES, log_symbol, split_log_lines  # noqa: E402,F401
 
 TICKER = "SPY"
 ALLOWED = ALLOWED_POSITIONS
 PAPER_START = date(2026, 4, 23)
 BACKTEST_MAX_DD_PCT = -12.4  # strategies/ma_crossover/STRATEGY.md: OOS max DD
 FILL_DEVIATION_LIMIT_PCT = 2.0  # STRATEGY.md §10 kill condition
+CRYPTO_FILL_DEVIATION_LIMIT_PCT = 5.0  # crypto_trend/STRATEGY.md §10
 TRADE_DECISIONS = {"BUY", "SELL"}
 OPEN_STATUSES = {"new", "accepted", "pending_new", "partially_filled"}
 CONFIDENCE_LOG = PROJECT_ROOT / "memory" / "confidence-log.md"
@@ -43,15 +46,25 @@ def _flag(code: str, severity: str, detail: str) -> dict:
 
 
 def integrity_flags(
-    log_lines: list[str], positions: list[dict], allowed: set[str], session: date, closing: set[str] = frozenset()
+    log_lines: list[str], positions: list[dict], allowed: set[str], session: date, closing: set[str] = frozenset(),
+    crypto_day: date | None = None,
 ) -> list[dict]:
-    robot = [line for line in log_lines if "[multi]" not in line]
-    today = [line for line in robot if line.startswith(session.isoformat())]
+    """SPY lines are checked on the US session; crypto lines on their UTC day (crypto_day, if given)."""
+
+    def audit_day(symbol: str | None) -> date:
+        return crypto_day if crypto_day and symbol and is_crypto(symbol) else session
+
+    robot = [line for line in log_lines if log_symbol(line) is not None]
+    today = [line for line in robot if line.startswith(audit_day(log_symbol(line)).isoformat())]
     decisions = [line.split("|")[1].strip() for line in today]
     flags: list[dict] = []
 
-    if not today:
-        flags.append(_flag("robot_silent", "alert", f"no confidence-log entry for session {session}"))
+    if not any(log_symbol(line) == TICKER for line in today):
+        flags.append(_flag("robot_silent", "alert", f"no SPY confidence-log entry for session {session}"))
+    if crypto_day:
+        for sleeve in SLEEVES:
+            if is_crypto(sleeve.symbol) and not any(log_symbol(line) == sleeve.symbol for line in today):
+                flags.append(_flag("robot_silent", "alert", f"no {sleeve.symbol} entry for UTC day {crypto_day}"))
     if any("nan" in line.lower() for line in today):
         flags.append(_flag("nan_in_log", "halt", "NaN in today's decision — data integrity failure"))
     by_symbol: dict[str, list[str]] = {}
@@ -107,7 +120,7 @@ def daily_report(snapshot: dict) -> str:
     ]
     if snapshot["positions"]:
         lines += [
-            f"{p['symbol']} {p['qty']:g} sh · ${p['market_value']:,.0f} · unrealized {_money(p['unrealized_pl'], 0)}"
+            f"{p['symbol']} {p['qty']:g} {'coins' if p['symbol'].endswith('USD') else 'sh'} · ${p['market_value']:,.0f} · unrealized {_money(p['unrealized_pl'], 0)}"
             for p in snapshot["positions"]
         ]
     else:
@@ -159,11 +172,16 @@ def build() -> dict:
     spy = spy[spy.index >= pd.Timestamp(PAPER_START)]
     log_lines = split_log_lines(CONFIDENCE_LOG.read_text(encoding="utf-8"))
 
+    crypto_day = last_completed_day(now)
     perf = performance(equity, spy)
     deviations = fill_deviations(orders, spy, TICKER, FILL_DEVIATION_LIMIT_PCT)
+    for sleeve in SLEEVES:
+        if is_crypto(sleeve.symbol):
+            closes = get_crypto_daily_bars(sleeve.symbol, lookback_days=20, last_day=crypto_day)["close"]
+            deviations += fill_deviations(orders, closes, sleeve.symbol, CRYPTO_FILL_DEVIATION_LIMIT_PCT)
     open_orders = [o for o in orders if o["status"] in OPEN_STATUSES]
-    closing = {o["symbol"] for o in open_orders if o["side"] == "sell"}
-    flags = integrity_flags(log_lines, positions, ALLOWED, session, closing) + risk_flags(perf, deviations)
+    closing = {position_symbol(o["symbol"]) for o in open_orders if o["side"] == "sell"}
+    flags = integrity_flags(log_lines, positions, ALLOWED, session, closing, crypto_day) + risk_flags(perf, deviations)
     return {
         "generated_at": now.isoformat(),
         "session": session.isoformat(),

@@ -140,3 +140,27 @@ def test_same_crypto_symbol_two_decisions_is_halt():
 def test_snapshot_allows_every_sleeve_symbol():
     from routines_pkg.desk_snapshot import ALLOWED
     assert ALLOWED == {"SPY", "BTCUSD", "ETHUSD"}
+
+
+def test_weekend_crypto_lines_are_audited_on_their_utc_day():
+    lines = ["2026-10-02 | HOLD | 7/10 | SPY: aligned",
+             "2026-10-04 | BUY | 7/10 | BTC/USD: x", "2026-10-04 | BUY | 7/10 | BTC/USD: x again",
+             "2026-10-04 | FLAT | 5/10 | ETH/USD: y"]
+    flags = integrity_flags(lines, [], {"SPY"}, SESSION, crypto_day=date(2026, 10, 4))
+    assert ("conflicting_decisions", "halt") in _codes(flags)
+
+
+def test_missing_crypto_line_for_its_day_is_robot_silent():
+    lines = ["2026-10-02 | HOLD | 7/10 | SPY: aligned", "2026-10-04 | FLAT | 5/10 | ETH/USD: y"]
+    flags = integrity_flags(lines, [], {"SPY"}, SESSION, crypto_day=date(2026, 10, 4))
+    assert any(f["code"] == "robot_silent" and "BTC/USD" in f["detail"] for f in flags)
+
+
+def test_daily_report_labels_crypto_in_coins_not_shares():
+    from routines_pkg.desk_snapshot import daily_report
+    snap = {"session": "2026-10-05", "account": {"equity": 1.0},
+            "performance": {"day_change": 0.0, "day_change_pct": 0.0, "account_return_pct": 0.0,
+                            "spy_return_pct": 0.0, "vs_spy_pct": 0.0, "current_drawdown_pct": 0.0},
+            "positions": [{"symbol": "BTCUSD", "qty": 0.0612, "market_value": 5172.0, "unrealized_pl": 10.0}],
+            "flags": []}
+    assert "BTCUSD 0.0612 coins" in daily_report(snap)

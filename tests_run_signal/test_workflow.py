@@ -69,3 +69,11 @@ def test_trade_alert_covers_only_lines_written_this_run():
     assert "GITHUB_OUTPUT" in mark["run"]
     alert = steps[names.index("Alert on trade or halt")]
     assert "steps.logmark.outputs.lines" in alert["run"] and "tail -n 1" not in alert["run"]
+
+
+def test_runs_sync_to_latest_master_before_trading():
+    steps = _steps(WORKFLOW)
+    names = [s["name"] for s in steps]
+    sync = steps[names.index("Sync to latest master")]
+    assert "git pull --ff-only" in sync["run"]
+    assert names.index("Sync to latest master") < names.index("Run signal then EOD routine")

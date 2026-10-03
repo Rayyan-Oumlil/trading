@@ -41,6 +41,7 @@ FAST = 10
 SLOW = 50
 LOOKBACK_DAYS = 120
 CALENDAR_WINDOW = timedelta(days=10)
+CASH_USE = 0.99  # leave 1% of cash for fees/slippage
 SCORES = {"BUY": 7, "HOLD": 7, "SELL": 6, "FLAT": 5}
 REASONS = {
     "BUY": "cross-up confirmed",
@@ -97,7 +98,7 @@ def place_checked(client: AlpacaClient, symbol: str, action: str, size: float) -
 
 
 def run_sleeve(client: AlpacaClient, sleeve: Sleeve, day: date, equity: float, held: dict[str, float],
-               log_lines: list[str]) -> None:
+               log_lines: list[str], budget: dict[str, float]) -> None:
     symbol = sleeve.symbol
     if already_decided(log_lines, day, symbol):
         print(f"\n{symbol}: already decided for {day}. Skipping.")
@@ -117,15 +118,21 @@ def run_sleeve(client: AlpacaClient, sleeve: Sleeve, day: date, equity: float, h
 
     held_qty = held.get(position_symbol(symbol), 0.0)
     action = decide(want_long, held_qty)
+    note = ""
     if action == "BUY":
         notional = equity * sleeve.weight
+        spendable = budget["cash"] * CASH_USE
+        if notional > spendable:  # never borrow: cap at cash and say so in the log + alert
+            note = f"; capped at cash ${spendable:,.2f} (wanted ${notional:,.2f})"
+            notional = spendable
         size = notional if is_crypto(symbol) else round(notional / last_close, 2)
+        budget["cash"] -= notional
         print(f"  BUY {symbol}: {'$' + format(size, ',.2f') if is_crypto(symbol) else str(size) + ' sh'}")
         place_checked(client, symbol, action, size)
     elif action == "SELL":
         print(f"  SELL {symbol}: {held_qty}")
         place_checked(client, symbol, action, held_qty)
-    append_confidence(day, action, SCORES[action], f"{symbol}: {REASONS[action]}; {margin}")
+    append_confidence(day, action, SCORES[action], f"{symbol}: {REASONS[action]}; {margin}{note}")
 
 
 def read_log_lines() -> list[str]:
@@ -152,8 +159,9 @@ def main() -> int:
     held = {p["symbol"]: p["qty"] for p in positions}
     print(f"Account equity: ${account['equity']:,.2f}   Cash: ${account['cash']:,.2f}   Positions: {held or 'none'}")
 
+    budget = {"cash": account["cash"]}
     for sleeve in SLEEVES:
-        run_sleeve(client, sleeve, days[sleeve.clock], account["equity"], held, read_log_lines())
+        run_sleeve(client, sleeve, days[sleeve.clock], account["equity"], held, read_log_lines(), budget)
     return 0
 
 

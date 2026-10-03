@@ -46,6 +46,11 @@ jobs:
         with:
           fetch-depth: 0
 
+      # A queued run checks out the commit from when it was triggered. If an earlier run
+      # pushed log lines meanwhile, trading on the stale log would lose them at push time.
+      - name: Sync to latest master
+        run: git pull --ff-only origin master
+
       - name: Setup Python
         uses: actions/setup-python@v5
         with:

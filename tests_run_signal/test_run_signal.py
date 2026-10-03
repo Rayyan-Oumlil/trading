@@ -199,3 +199,13 @@ def test_winding_down_position_does_not_block_the_robot(wired):
     wired(client)
     assert run_signal.main() == 0
     assert ("BTC/USD", 5000.0, "buy-notional") in client.orders
+
+
+def test_spy_buy_is_capped_at_cash_and_says_so(wired):
+    client = FakeClient()
+    client.get_account = lambda: {"status": "ACTIVE", "equity": 100_000.0, "buying_power": 1.0, "cash": 50_000.0}
+    log = wired(client)
+    run_signal.main()
+    spy = next(o for o in client.orders if o[0] == "SPY")
+    assert spy[1] == round(50_000 * 0.99 / _bars()["close"].iloc[-1], 2)
+    assert "capped at cash" in log.read_text()

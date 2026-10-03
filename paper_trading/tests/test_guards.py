@@ -35,3 +35,8 @@ def test_partial_or_buy_side_cover_still_raises():
         assert_only_expected_positions(positions, {"SPY"}, open_orders=[{"symbol": "GLD", "side": "sell", "qty": 3.0}])
     with pytest.raises(RuntimeError, match="GLD"):
         assert_only_expected_positions(positions, {"SPY"}, open_orders=[{"symbol": "GLD", "side": "buy", "qty": 6.62}])
+
+
+def test_crypto_wind_down_matches_order_symbol_to_position_symbol():
+    positions = [{"symbol": "SOLUSD", "qty": 3.0}]
+    assert_only_expected_positions(positions, {"SPY"}, open_orders=[{"symbol": "SOL/USD", "side": "sell", "qty": 3.0}])

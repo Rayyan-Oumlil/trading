@@ -32,6 +32,13 @@ def _time_in_force(symbol: str) -> TimeInForce:
     return TimeInForce.GTC if is_crypto(symbol) else TimeInForce.DAY
 
 
+def _order_qty(order) -> float:
+    # Notional (dollar-amount) orders come back with qty=None, even after filling.
+    if order.qty is not None:
+        return float(order.qty)
+    return float(order.filled_qty or 0)
+
+
 @dataclass(frozen=True)
 class OrderResult:
     order_id: str
@@ -113,7 +120,7 @@ class AlpacaClient:
 
     def get_open_orders(self) -> list[dict]:
         orders = self._client.get_orders(GetOrdersRequest(status=QueryOrderStatus.OPEN))
-        return [{"symbol": o.symbol, "side": o.side.value, "qty": float(o.qty)} for o in orders]
+        return [{"symbol": o.symbol, "side": o.side.value, "qty": _order_qty(o)} for o in orders]
 
     def has_open_order(self, symbol: str) -> bool:
         orders = self._client.get_orders(GetOrdersRequest(status=QueryOrderStatus.OPEN, symbols=[symbol]))
@@ -127,7 +134,7 @@ class AlpacaClient:
                 "symbol": o.symbol,
                 "side": o.side.value,
                 "status": o.status.value,
-                "qty": float(o.qty),
+                "qty": _order_qty(o),
                 "filled_avg_price": float(o.filled_avg_price) if o.filled_avg_price else None,
                 "submitted_at": o.submitted_at.isoformat() if o.submitted_at else None,
                 "filled_at": o.filled_at.isoformat() if o.filled_at else None,
