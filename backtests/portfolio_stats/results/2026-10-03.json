@@ -1,0 +1,41 @@
+{
+  "run_date": "2026-10-03",
+  "git_sha": "9104ec1ea4e215eec6aa646935f7bfaeaee9abfa",
+  "window": [
+    "2018-01-01",
+    "2026-10-03"
+  ],
+  "portfolio_v1": {
+    "cagr": 0.14826493690235298,
+    "vol": 0.17811088130100797,
+    "sharpe": 0.8649262456763774,
+    "max_drawdown": -0.2747265404730663,
+    "min_track_record_years_sharpe_gt_0": 3.6596311296497097
+  },
+  "spy_buy_hold": {
+    "cagr": 0.14494514003425896,
+    "vol": 0.18966599202297407,
+    "sharpe": 0.8083582715620677,
+    "max_drawdown": -0.33717280281106543
+  },
+  "spy_trend_sleeve_alone": {
+    "cagr": 0.08559660345666353,
+    "vol": 0.11497740775852752,
+    "sharpe": 0.7715306174177256,
+    "max_drawdown": -0.15113041808588112
+  },
+  "excess_vs_spy": {
+    "information_ratio": 0.0036444975431299616
+  },
+  "rolling_3m_return_minus_spy": {
+    "p05": -0.12497356032339596,
+    "median": -0.005307152229472756
+  },
+  "rolling_3m_worst_drawdown": {
+    "p05": -0.14161941708922454
+  },
+  "crypto_flips_per_year": {
+    "BTC-USD": 9.02557084766969,
+    "ETH-USD": 8.568579918673755
+  }
+}
