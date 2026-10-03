@@ -80,7 +80,12 @@ Apply the seven lessons from [PRINCIPLES.md](PRINCIPLES.md) on every task:
 - [ma-crossover](strategies/ma_crossover/STRATEGY.md) — stage: **paper** (entered 2026-04-23). Backtest: IS Sharpe 0.82, OOS Sharpe 0.65, OOS DD -12.4%, OOS trades/year 3.02. **Gate 2: SOFT-PASS** as of 2026-05-07 (21% relative spread vs SPY×95% expectation; 0 fills in 14 days; kill-switch drill not yet run). Re-run target 2026-05-21. Tool: `backtests/ma_crossover/gate2_check.py --carry-in`.
 - [rsi2-connors](strategies/rsi2_connors/STRATEGY.md) — stage: **rejected** (specced + backtested 2026-05-07). Fails 2/3 standalone OOS gates (Sharpe 0.31 < 0.5; trades/year 6.8 < 15). Correlation with ma-crossover OOS is 0.187 (genuinely diversifying), but absolute performance too weak to paper-trade. Hard-stop variant strictly worse → confirms Connors original framing. No re-tuning per §7.
 
+- [crypto-trend](research/queue.md) — stage: **backtest PASSED** 2026-10-03 (BTC/ETH SMA10/50, 50/50 sleeves). CAGR 38.0% vs 19.7% hold, Sharpe 0.94 vs 0.61, MaxDD −60.5% vs −87.9%; recent window also passes. Next: paper as a small sleeve in the single Alpaca account (one robot owns the account; strategies emit targets).
+
 ### Rejected experiments (do not retry without a new thesis)
+
+- **Sector momentum (C, 1-month, top-2 of 5)** — failed pre-registered test 2026-10-03: MaxDD −65.3% vs SPY −55.2%, Sharpe 0.62 vs 0.64.
+- **Dual momentum (GEM)** — failed 2026-10-03: Sharpe 0.61 vs 0.64 (full), 0.47 vs 0.74 (recent). Halves drawdowns — reuse only under a new pre-registered thesis.
 
 - **rsi2-multi (6-ETF RSI(2))** — rejected 2026-10-02 after 4 months live-paper. Deployed 2026-06-01 in violation of the rsi2-connors rejection below. Execution lagged its backtest by a full session, it shared ma-crossover's Alpaca account (sold SPY it never owned), and its headline Sharpe 0.760 was never saved — the only results file says 0.215. Workflow `multi-agent-trade` disabled; positions flattened. See `strategies/rsi2_multi/STRATEGY.md §12`.
 
