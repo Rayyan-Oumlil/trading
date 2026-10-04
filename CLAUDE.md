@@ -85,6 +85,8 @@ Apply the seven lessons from [PRINCIPLES.md](PRINCIPLES.md) on every task:
 
 ### Rejected experiments (do not retry without a new thesis)
 
+- **Intraday (noise-area SPY momentum, last-half-hour momentum, 5-min ORB on QQQ)** — all failed pre-registered tests 2026-10-04 on 2016–2026 minute data with realistic costs. Best one (noise area) had OOS Sharpe 0.58 vs SPY 1.35 and ~0% since its 2024 publication. See `research/queue.md` items 4–6.
+
 - **Sector momentum (C, 1-month, top-2 of 5)** — failed pre-registered test 2026-10-03: MaxDD −65.3% vs SPY −55.2%, Sharpe 0.62 vs 0.64.
 - **Dual momentum (GEM)** — failed 2026-10-03: Sharpe 0.61 vs 0.64 (full), 0.47 vs 0.74 (recent). Halves drawdowns — reuse only under a new pre-registered thesis.
 
