@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-10-03T18:39:59.895869+00:00",
+  "generated_at": "2026-10-04T00:10:33.460223+00:00",
   "session": "2026-10-02",
   "halted": null,
   "account": {
     "status": "AccountStatus.ACTIVE",
-    "equity": 103419.76,
+    "equity": 103418.57,
     "buying_power": 367166.57,
     "cash": 88262.41
   },
@@ -12,14 +12,14 @@
     {
       "symbol": "BTCUSD",
       "qty": 0.059568723,
-      "market_value": 5059.652483,
-      "unrealized_pl": -0.161729
+      "market_value": 5053.827139,
+      "unrealized_pl": -5.987073
     },
     {
       "symbol": "ETHUSD",
       "qty": 1.883248619,
-      "market_value": 5055.938735,
-      "unrealized_pl": -2.278731
+      "market_value": 5060.56776,
+      "unrealized_pl": 2.350294
     },
     {
       "symbol": "GLD",
@@ -61,7 +61,7 @@
       "status": "filled",
       "qty": 1.887968541,
       "filled_avg_price": 2685.9,
-      "submitted_at": "2026-10-03T18:39:58.459996+00:00",
+      "submitted_at": "2026-10-03T18:39:58.459997+00:00",
       "filled_at": "2026-10-03T18:39:58.461904+00:00"
     },
     {
@@ -70,8 +70,8 @@
       "status": "filled",
       "qty": 0.059718019,
       "filled_avg_price": 84940.787,
-      "submitted_at": "2026-10-03T18:39:58.231265+00:00",
-      "filled_at": "2026-10-03T18:39:58.233606+00:00"
+      "submitted_at": "2026-10-03T18:39:58.231266+00:00",
+      "filled_at": "2026-10-03T18:39:58.233607+00:00"
     },
     {
       "symbol": "IWM",

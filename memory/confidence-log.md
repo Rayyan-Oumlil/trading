@@ -303,3 +303,5 @@ The point of this log: after 4+ weeks, sort by confidence and check whether high
 2026-10-02 | SCAN | 6/10 | entries=[] exits=[] [multi] [multi]
 2026-10-02 | BUY | 7/10 | BTC/USD: cross-up confirmed; fast-slow margin +7.74%
 2026-10-02 | BUY | 7/10 | ETH/USD: cross-up confirmed; fast-slow margin +8.87%
+2026-10-03 | HOLD | 7/10 | BTC/USD: position aligned with regime; fast-slow margin +7.19%
+2026-10-03 | HOLD | 7/10 | ETH/USD: position aligned with regime; fast-slow margin +8.17%
