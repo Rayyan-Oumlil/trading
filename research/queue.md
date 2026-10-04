@@ -68,7 +68,7 @@ Approved by Rayyan 2026-10-04 ("i wanna test some intraday bot just to see how g
 - Metrics: CAGR, Sharpe (daily, rf = 0), max drawdown, trades/year, hit rate. Benchmark: SPY buy-and-hold over the same dates.
 - **PASS rule (all three), on the out-of-sample window with realistic costs:** Sharpe ≥ SPY Sharpe + 0.10 **and** max drawdown ≤ 80% of SPY's **and** total return > 0. Anything else = FAIL.
 
-## 4. SPY intraday momentum, "noise area" (Zarattini, Aziz & Barbon 2024) — status: `approved`
+## 4. SPY intraday momentum, "noise area" (Zarattini, Aziz & Barbon 2024) — status: `failed`
 
 - σ(HH:MM) = mean over the previous 14 sessions of |Close(HH:MM)/Open(09:30) − 1|.
 - UB = max(Open, prev Close) × (1 + σ); LB = min(Open, prev Close) × (1 − σ).
@@ -76,11 +76,25 @@ Approved by Rayyan 2026-10-04 ("i wanna test some intraday bot just to see how g
 - Trailing stop: long exits if price < max(UB, VWAP); short exits if price > min(LB, VWAP); after an exit, re-enter the other way if the opposite band is crossed. All flat at 16:00.
 - Size: shares = floor(equity × min(1, 2% / σ_SPY,14d) / Open), σ_SPY,14d = st. dev. of the last 14 daily returns. (Paper uses min(4, …); its 4× version is reported for information only.)
 
-## 5. Last-half-hour momentum (Gao, Han, Li & Zhou 2018) — status: `approved`
+## 5. Last-half-hour momentum (Gao, Han, Li & Zhou 2018) — status: `failed`
 
 - r₁ = SPY return from previous 16:00 close to 10:00. At 15:30 go long if r₁ > 0, short if r₁ < 0; exit at 16:00. Size 1×.
 
-## 6. 5-minute opening-range breakout on QQQ (Zarattini & Aziz 2023) — status: `approved`
+## 6. 5-minute opening-range breakout on QQQ (Zarattini & Aziz 2023) — status: `failed`
 
 - First 5-minute candle (09:30–09:35): up → long, down → short at 09:35 open; equal → no trade.
 - Stop at the other side of the candle; target = entry ± 10 × risk; otherwise exit at 16:00. Checked minute by minute (stop first if both hit in one bar). Size 1×.
+
+## Results — intraday, run once 2026-10-04 (code 509a4a0, `backtests/intraday/results/2026-10-04.json`)
+
+Data 2016-01-04 → 2026-10-02. Realistic costs ($0.01/share/side). SPY buy-and-hold out-of-sample: Sharpe 1.35, max DD −19.0%, +101%.
+
+| # | Strategy | In-sample Sharpe | OOS Sharpe | OOS total | OOS max DD | Post-publication total | Trades/yr | Verdict |
+|---|---|---|---|---|---|---|---|---|
+| 4 | Noise-area momentum, 1× | 0.93 | 0.58 | +11.8% | −9.2% | −2.3% | ~240 | **FAIL** |
+| 4 | (paper's 4× leverage, info only) | 0.85 | 0.82 | +48.6% | −20.3% | +0.1% | ~240 | — |
+| 5 | Last half hour | −0.59 | 0.09 | +1.0% | −7.5% | −0.7% | ~250 | **FAIL** |
+| 6 | 5-min ORB on QQQ, 1× | 0.70 | 0.08 | +1.4% | −10.5% | +6.2% | ~250 | **FAIL** |
+
+Reading: the noise-area replication matches the paper in-sample (Sharpe 1.07 with the paper's own costs, 2016–2022) and then fades — roughly zero since publication (May 2024). Last-half-hour momentum lost money 2016–2022. ORB worked in-sample and stopped in 2023, consistent with the independent replication that found it net-zero after costs. None is close to simply holding SPY. Do not retry these with new parameters (CLAUDE.md §7).
+
