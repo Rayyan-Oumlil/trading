@@ -40,3 +40,4 @@ Thumbs.db
 *.tmp
 tmp/
 .superpowers/
+backtests/intraday/cache/
