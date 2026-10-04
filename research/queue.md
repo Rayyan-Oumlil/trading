@@ -53,3 +53,34 @@ Notes (no re-runs, no tweaks — CLAUDE.md §7):
 - Sector momentum: strong since 2022 but −45.9% in 2008 vs SPY −36.2%. A 1-month look-back rotates into crashing sectors.
 - Dual momentum: fails Sharpe narrowly but cuts max DD by ~40% (2008: −2.7% vs −36.2%). Any reuse as a *risk overlay* is a **new thesis** needing its own pre-registration — not a re-run of this one.
 - Crypto trend: same SMA(10/50) as ma-crossover, not fitted to crypto. Correlation with SPY 0.17. **Max DD −60.5% is still huge** — sleeve size must assume a 60% drop can happen again.
+
+---
+
+## Pre-registration — 2026-10-04: intraday candidates (written and committed BEFORE any code or result)
+
+Approved by Rayyan 2026-10-04 ("i wanna test some intraday bot just to see how good it can get"). One run each. No parameter changes after results (CLAUDE.md §7). Research only: nothing here trades.
+
+**Common to all three**
+- Data: Alpaca SIP 1-minute bars (data-only key; Alpaca no longer trades anything), raw prices, regular session 09:30–16:00 ET only. Missing minutes forward-filled within the day. "Price at HH:MM" = close of the bar that ends at HH:MM.
+- Fills at the decision price, plus costs **per share, per side**: *paper* = $0.0035 commission + $0.001 slippage (the papers' own); *realistic* = $0.005 + $0.005 (IBKR fixed rate + half a cent of spread/impact). **Verdicts use realistic.**
+- Sizing: 1× equity at most (no leverage — Rayyan's no-borrowing rule). Flat every night.
+- Windows: in-sample 2016-01-01 → 2022-12-31; **out-of-sample 2023-01-01 → latest**; post-publication 2024-05-01 → latest (informational).
+- Metrics: CAGR, Sharpe (daily, rf = 0), max drawdown, trades/year, hit rate. Benchmark: SPY buy-and-hold over the same dates.
+- **PASS rule (all three), on the out-of-sample window with realistic costs:** Sharpe ≥ SPY Sharpe + 0.10 **and** max drawdown ≤ 80% of SPY's **and** total return > 0. Anything else = FAIL.
+
+## 4. SPY intraday momentum, "noise area" (Zarattini, Aziz & Barbon 2024) — status: `approved`
+
+- σ(HH:MM) = mean over the previous 14 sessions of |Close(HH:MM)/Open(09:30) − 1|.
+- UB = max(Open, prev Close) × (1 + σ); LB = min(Open, prev Close) × (1 − σ).
+- Decisions only at HH:00 / HH:30 from 10:00 to 15:30. Flat → long if price > UB, short if price < LB.
+- Trailing stop: long exits if price < max(UB, VWAP); short exits if price > min(LB, VWAP); after an exit, re-enter the other way if the opposite band is crossed. All flat at 16:00.
+- Size: shares = floor(equity × min(1, 2% / σ_SPY,14d) / Open), σ_SPY,14d = st. dev. of the last 14 daily returns. (Paper uses min(4, …); its 4× version is reported for information only.)
+
+## 5. Last-half-hour momentum (Gao, Han, Li & Zhou 2018) — status: `approved`
+
+- r₁ = SPY return from previous 16:00 close to 10:00. At 15:30 go long if r₁ > 0, short if r₁ < 0; exit at 16:00. Size 1×.
+
+## 6. 5-minute opening-range breakout on QQQ (Zarattini & Aziz 2023) — status: `approved`
+
+- First 5-minute candle (09:30–09:35): up → long, down → short at 09:35 open; equal → no trade.
+- Stop at the other side of the candle; target = entry ± 10 × risk; otherwise exit at 16:00. Checked minute by minute (stop first if both hit in one bar). Size 1×.
