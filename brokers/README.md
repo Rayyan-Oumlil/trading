@@ -1,18 +1,16 @@
 # Brokers
 
-`run_signal.py` executes on the broker named by `BROKER` (default `alpaca`).
-
-| BROKER | Where it runs | Account | Notes |
-|---|---|---|---|
-| `alpaca` | GitHub Actions (nightly) | Alpaca paper — the **reference** | unchanged |
-| `ibkr` | a machine running IB Gateway (your PC for now) | IBKR paper (`DU…`) — the **mirror** | logs to `memory/confidence-log-ibkr.md` |
+`run_signal.py` trades only through IBKR (`brokers/ibkr.py`) — Alpaca retired 2026-10-04.
+It runs on GitHub Actions (`.github/workflows/daily-trade.yml`), which starts IB Gateway in the
+`ghcr.io/gnzsnz/ib-gateway:stable` container logged into the **paper** account. Paper logins need no 2FA.
+Secrets: `IBKR_USERNAME`, `IBKR_PASSWORD` (paper credentials). Decisions log to `memory/confidence-log-ibkr.md`.
 
 ## IBKR adapter (`brokers/ibkr.py`) — what it does
 
 - US-listed stocks/ETFs only (API orders on Canadian-listed products are blocked for Canadian residents — CIRO rule).
 - Orders: market-on-open (MKT, TIF=OPG), **whole shares** only.
 - Account values in **USD** (base currency is CAD): equity = net liquidation ÷ USD rate; only **USD cash** can buy. Convert CAD→USD once in IBKR.
-- Crypto sleeves are skipped until the crypto-via-ETF test (roadmap idea 0) passes.
+- Crypto exposure goes through US spot ETFs (IBIT, ETHA); the signal stays on the coins.
 - **Live gate:** a non-paper account is refused unless `LIVE_TRADING=1` **and** `live-trading/ARMED` exist.
 
 ## Set up the IBKR paper account (once)

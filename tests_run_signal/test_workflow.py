@@ -5,28 +5,22 @@ import yaml
 WORKFLOW = Path(__file__).resolve().parents[1] / ".github" / "workflows" / "daily-trade.yml"
 
 
-def test_trade_alert_only_fires_in_eod_mode():
-    steps = yaml.safe_load(WORKFLOW.read_text(encoding="utf-8"))["jobs"]["run"]["steps"]
-    alert = next(s for s in steps if s["name"] == "Alert on trade or halt")
-    assert "mode == 'eod'" in alert["if"]
+def _doc(path: Path = WORKFLOW) -> dict:
+    return yaml.safe_load(path.read_text(encoding="utf-8"))
 
 
-def _steps(path: Path) -> list[dict]:
-    return yaml.safe_load(path.read_text(encoding="utf-8"))["jobs"]["run"]["steps"]
+def _steps(path: Path = WORKFLOW) -> list[dict]:
+    return _doc(path)["jobs"]["run"]["steps"]
 
 
-def test_eod_builds_desk_snapshot_even_when_signal_fails():
-    steps = _steps(WORKFLOW)
-    names = [s["name"] for s in steps]
-    snap = steps[names.index("Build desk snapshot")]
-    assert "always()" in snap["if"] and "mode == 'eod'" in snap["if"]
-    assert "routines_pkg.desk_snapshot" in snap["run"]
-    assert names.index("Build desk snapshot") < names.index("Commit memory + journal updates")
+def _named() -> tuple[list[str], list[dict]]:
+    steps = _steps()
+    return [s["name"] for s in steps], steps
 
 
 def test_desk_alert_file_is_forwarded_to_telegram():
     path = WORKFLOW.parent / "desk-notify.yml"
-    doc = yaml.safe_load(path.read_text(encoding="utf-8"))
+    doc = _doc(path)
     on = doc[True] if True in doc else doc["on"]  # PyYAML parses bare `on` as True
     assert on["push"]["paths"] == ["memory/desk-alert.txt"]
     assert any("paper_trading.notify" in s.get("run", "") for s in _steps(path))
@@ -34,7 +28,7 @@ def test_desk_alert_file_is_forwarded_to_telegram():
 
 def test_desk_merge_runs_masters_definition_not_the_branch():
     path = WORKFLOW.parent / "desk-merge.yml"
-    doc = yaml.safe_load(path.read_text(encoding="utf-8"))
+    doc = _doc(path)
     on = doc[True] if True in doc else doc["on"]
     assert "push" not in on, "push-triggered workflows run the pushed branch's YAML"
     assert on["workflow_run"]["workflows"] == ["desk-branch-pushed"]
@@ -45,45 +39,46 @@ def test_desk_merge_runs_masters_definition_not_the_branch():
     assert checkout["with"]["ref"] == "master"
 
 
-def test_eod_sends_daily_pnl_report():
-    steps = _steps(WORKFLOW)
-    names = [s["name"] for s in steps]
-    report = steps[names.index("Send daily P&L report")]
-    assert "mode == 'eod'" in report["if"] and "always()" in report["if"]
-    assert "paper_trading.notify" in report["run"]
-    assert "--report" in steps[names.index("Build desk snapshot")]["run"]
-
-
-def test_eod_runs_every_day_for_crypto():
-    doc = yaml.safe_load(WORKFLOW.read_text(encoding="utf-8"))
+def test_runs_every_evening():
+    doc = _doc()
     on = doc[True] if True in doc else doc["on"]
-    crons = [c["cron"] for c in on["schedule"]]
-    assert "20 0 * * *" in crons  # daily, after the 00:00 UTC crypto close
+    assert [c["cron"] for c in on["schedule"]] == ["20 0 * * *"]
 
 
-def test_trade_alert_covers_only_lines_written_this_run():
-    steps = _steps(WORKFLOW)
-    names = [s["name"] for s in steps]
-    mark = steps[names.index("Mark confidence-log length")]
-    assert names.index("Mark confidence-log length") < names.index("Run signal then EOD routine")
-    assert "GITHUB_OUTPUT" in mark["run"]
-    alert = steps[names.index("Alert on trade or halt")]
-    assert "steps.logmark.outputs.lines" in alert["run"] and "tail -n 1" not in alert["run"]
+def test_no_alpaca_anywhere_in_the_run():
+    text = WORKFLOW.read_text(encoding="utf-8")
+    assert "ALPACA_" not in text and "routines_pkg.premarket" not in text
 
 
-def test_runs_sync_to_latest_master_before_trading():
-    steps = _steps(WORKFLOW)
-    names = [s["name"] for s in steps]
-    sync = steps[names.index("Sync to latest master")]
-    assert "git pull --ff-only" in sync["run"]
-    assert names.index("Sync to latest master") < names.index("Run signal then EOD routine")
+def test_gateway_is_paper_only_and_always_stopped():
+    names, steps = _named()
+    start = steps[names.index("Start IB Gateway (paper)")]["run"]
+    assert "TRADING_MODE=paper" in start and "4002:4004" in start and "127.0.0.1:" in start
+    assert "always()" in steps[names.index("Stop IB Gateway")]["if"]
 
 
-def test_auto_halt_runs_after_a_fresh_snapshot_and_commits_halt():
-    steps = _steps(WORKFLOW)
-    names = [s["name"] for s in steps]
-    brake = steps[names.index("Auto-halt (deterministic brake)")]
-    assert "steps.snapshot.outcome == 'success'" in brake["if"]
-    assert "routines_pkg.auto_halt" in brake["run"]
-    assert names.index("Build desk snapshot") < names.index("Auto-halt (deterministic brake)") < names.index("Commit memory + journal updates")
+def test_order_of_operations():
+    names, _ = _named()
+    order = ["Sync to latest master", "Run tests (no trading on a red suite)", "Run the robot",
+             "Build snapshot + daily report", "Auto-halt (deterministic brake)",
+             "Send the daily report (once per evening)", "Commit memory + journal updates"]
+    assert [names.index(n) for n in order] == sorted(names.index(n) for n in order)
+
+
+def test_snapshot_and_report_run_even_when_the_robot_fails():
+    names, steps = _named()
+    assert "always()" in steps[names.index("Build snapshot + daily report")]["if"]
+    send = steps[names.index("Send the daily report (once per evening)")]
+    assert "steps.snapshot.outcome == 'success'" in send["if"]
+    assert send["env"]["ROBOT_OK"] == "${{ steps.robot.outcome == 'success' }}"
+
+
+def test_brake_commits_halt():
+    names, steps = _named()
+    assert "steps.snapshot.outcome == 'success'" in steps[names.index("Auto-halt (deterministic brake)")]["if"]
     assert ".HALT" in steps[names.index("Commit memory + journal updates")]["run"]
+
+
+def test_failure_or_timeout_alerts():
+    names, steps = _named()
+    assert steps[names.index("Alert on failure")]["if"] == "failure() || cancelled()"

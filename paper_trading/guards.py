@@ -1,7 +1,7 @@
 """Hard pre/post-trade checks. Each one raises or returns a bool — never logs and continues."""
 from __future__ import annotations
 
-from paper_trading.alpaca_client import position_symbol
+from paper_trading.order_types import position_symbol
 
 _FAILED = {"rejected", "canceled", "expired", "suspended"}
 

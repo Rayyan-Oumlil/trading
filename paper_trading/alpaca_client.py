@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 import os
-from dataclasses import dataclass
 from datetime import date, datetime, time
 from zoneinfo import ZoneInfo
 
@@ -15,16 +14,9 @@ from alpaca.trading.requests import (
     MarketOrderRequest,
 )
 
+from paper_trading.order_types import OrderResult, is_crypto, position_symbol  # noqa: F401  (re-exported)
+
 _VALID_SIDES = {"buy", "sell"}
-
-
-def is_crypto(symbol: str) -> bool:
-    return "/" in symbol
-
-
-def position_symbol(symbol: str) -> str:
-    """Alpaca orders use 'BTC/USD'; positions report 'BTCUSD'."""
-    return symbol.replace("/", "")
 
 
 def _time_in_force(symbol: str) -> TimeInForce:
@@ -37,13 +29,6 @@ def _order_qty(order) -> float:
     if order.qty is not None:
         return float(order.qty)
     return float(order.filled_qty or 0)
-
-
-@dataclass(frozen=True)
-class OrderResult:
-    order_id: str
-    status: str
-    filled_avg_price: float | None
 
 
 class AlpacaClient:
