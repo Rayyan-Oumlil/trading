@@ -1,6 +1,7 @@
 """
 The account's sleeves. One robot (run_signal.py) owns every order; each sleeve
-only says "long or flat". See plans/2026-10-03-crypto-sleeve.md.
+only says "long or flat". See plans/2026-10-03-crypto-sleeve.md and
+plans/2026-10-04-ibkr-paper.md (crypto now held through US spot ETFs).
 """
 from __future__ import annotations
 
@@ -8,20 +9,21 @@ import re
 from dataclasses import dataclass
 from datetime import date
 
-from paper_trading.alpaca_client import position_symbol
+from paper_trading.order_types import position_symbol
 
 
 @dataclass(frozen=True)
 class Sleeve:
-    symbol: str  # order symbol ("BTC/USD")
+    symbol: str  # what the robot buys (a US-listed ETF)
     weight: float  # fraction of account equity bought on a flat->long flip
-    clock: str  # "us_session" (SPY) or "utc_day" (crypto)
+    signal: str  # whose SMA(10/50) decides: the backtested series, not the ETF
+    clock: str  # last bar the signal reads: "us_session" (stocks) or "utc_day" (crypto)
 
 
 SLEEVES = (
-    Sleeve("SPY", 0.855, "us_session"),  # 90% sleeve x 95% invested (old 5% cash buffer kept)
-    Sleeve("BTC/USD", 0.05, "utc_day"),
-    Sleeve("ETH/USD", 0.05, "utc_day"),
+    Sleeve("SPY", 0.855, "SPY", "us_session"),  # 90% sleeve x 95% invested (old 5% cash buffer kept)
+    Sleeve("IBIT", 0.05, "BTC-USD", "utc_day"),  # iShares Bitcoin Trust
+    Sleeve("ETHA", 0.05, "ETH-USD", "utc_day"),  # iShares Ethereum Trust
 )
 ALLOWED_POSITIONS = {position_symbol(s.symbol) for s in SLEEVES}
 _NOT_A_DECISION = {"HALT"}

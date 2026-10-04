@@ -1,24 +1,25 @@
 """
-Portfolio executor — the ONE robot that places orders in the Alpaca paper account.
+Portfolio executor — the ONE robot that places orders, in the IBKR PAPER account.
 
-Sleeves (strategies/portfolio.py): SPY 85.5%, BTC/USD 5%, ETH/USD 5% of equity.
-Each sleeve runs SMA(10) > SMA(50) on completed bars:
-  - SPY on completed US sessions (orders queue for the next open)
-  - crypto on completed UTC days (orders fill immediately, 24/7)
+Sleeves (strategies/portfolio.py): SPY 85.5%, IBIT 5%, ETHA 5% of equity.
+Each sleeve runs SMA(10) > SMA(50) on the series it was backtested on:
+  - SPY on completed US sessions
+  - IBIT / ETHA on completed UTC days of BTC-USD / ETH-USD
 Per symbol it trades only on a flip: flat→long buys weight × equity, long→flat sells all.
+Orders are market-on-open, so they fill at the next US session's open.
 
 Refuses to trade (raises) on NaN/stale data, positions outside the sleeves, or a
-failed order. A symbol already decided for its session/day, or with an order
+failed order. A symbol already decided for its session, or with an order
 pending, is skipped — so reruns never double-trade.
 
-Paper trading only. Never touches live account.
+Alpaca was retired 2026-10-04 (plans/2026-10-04-ibkr-paper.md); its history
+stays in memory/confidence-log.md.
 """
 from __future__ import annotations
 
 import math
-import os
 import sys
-from datetime import date, datetime, timedelta, timezone
+from datetime import date, datetime, timezone
 from pathlib import Path
 
 import pandas as pd
@@ -28,12 +29,10 @@ PROJECT_ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(PROJECT_ROOT))
 load_dotenv(PROJECT_ROOT / ".env")
 
-from paper_trading.alpaca_client import AlpacaClient, is_crypto, position_symbol  # noqa: E402
-from paper_trading.crypto_data import get_crypto_daily_bars, last_completed_day  # noqa: E402
+from brokers.ibkr import IbkrBroker  # noqa: E402
 from paper_trading.guards import assert_only_expected_positions, order_failed  # noqa: E402
-from paper_trading.kill_switch import is_halted       # noqa: E402
-from paper_trading.market_calendar import last_completed_session  # noqa: E402
-from paper_trading.market_data import SIP_DELAY, get_daily_bars  # noqa: E402
+from paper_trading.kill_switch import is_halted  # noqa: E402
+from paper_trading.yahoo_data import fetch_daily, last_completed_day, last_completed_session, through  # noqa: E402
 from strategies.ma_crossover.signals import calculate_signals  # noqa: E402
 from strategies.portfolio import ALLOWED_POSITIONS, SLEEVES, Sleeve, already_decided, decide, split_log_lines  # noqa: E402
 
@@ -41,7 +40,6 @@ TICKER = "SPY"
 FAST = 10
 SLOW = 50
 LOOKBACK_DAYS = 120
-CALENDAR_WINDOW = timedelta(days=10)
 CASH_USE = 0.99  # leave 1% of cash for fees/slippage
 SCORES = {"BUY": 7, "HOLD": 7, "SELL": 6, "FLAT": 5}
 REASONS = {
@@ -50,31 +48,15 @@ REASONS = {
     "SELL": "regime flipped bearish",
     "FLAT": "awaiting cross-up",
 }
-
-BROKER = os.environ.get("BROKER", "alpaca").lower()  # "alpaca" (paper reference) or "ibkr" (IB Gateway)
-
-
-def confidence_log_path(broker: str) -> Path:
-    """Each broker keeps its own decision log, so a mirror run never sees the other's lines as 'already decided'."""
-    name = "confidence-log.md" if broker == "alpaca" else f"confidence-log-{broker}.md"
-    return PROJECT_ROOT / "memory" / name
+CONFIDENCE_LOG = PROJECT_ROOT / "memory" / "confidence-log-ibkr.md"
 
 
-CONFIDENCE_LOG = confidence_log_path(BROKER)
-
-
-def make_client():
-    if BROKER == "alpaca":
-        return AlpacaClient()
-    if BROKER == "ibkr":
-        from brokers.ibkr import IbkrBroker  # imported lazily: GitHub Actions runs never need IB Gateway
-
-        return IbkrBroker.connect(calendar_source=AlpacaClient().get_calendar)
-    raise ValueError(f"Unknown BROKER {BROKER!r}; expected 'alpaca' or 'ibkr'")
+def make_client() -> IbkrBroker:
+    return IbkrBroker.connect()
 
 
 def append_confidence(session: date, decision: str, score: int, reason: str) -> None:
-    """Append one line to memory/confidence-log.md, dated by trading session/day."""
+    """Append one line to the confidence log, dated by US trading session."""
     line = f"{session.isoformat()} | {decision} | {score}/10 | {reason}\n"
     CONFIDENCE_LOG.parent.mkdir(parents=True, exist_ok=True)
     with CONFIDENCE_LOG.open("a", encoding="utf-8") as fh:
@@ -101,58 +83,63 @@ def current_regime(df: pd.DataFrame) -> tuple[float, float, bool]:
     return sma_fast, sma_slow, sma_fast > sma_slow
 
 
-def fetch_bars(sleeve: Sleeve, day: date) -> pd.DataFrame:
-    if sleeve.clock == "utc_day":
-        return get_crypto_daily_bars(sleeve.symbol, lookback_days=LOOKBACK_DAYS, last_day=day)
-    return get_daily_bars(sleeve.symbol, lookback_days=LOOKBACK_DAYS, last_session=day)
-
-
-def place_checked(client: AlpacaClient, symbol: str, action: str, size: float) -> None:
-    if action == "BUY" and is_crypto(symbol):
-        result = client.place_notional_buy(symbol, size)
-    else:
-        result = client.place_market_order(symbol, size, "buy" if action == "BUY" else "sell")
+def place_checked(client: IbkrBroker, symbol: str, action: str, shares: float) -> None:
+    result = client.place_market_order(symbol, shares, "buy" if action == "BUY" else "sell")
     print(f"  Order ID: {result.order_id}  Status: {result.status}")
     if order_failed(result.status):
         raise RuntimeError(f"{symbol} {action} order {result.order_id} failed with status {result.status}")
 
 
-def run_sleeve(client: AlpacaClient, sleeve: Sleeve, day: date, equity: float, held: dict[str, float],
+def buy_shares(sleeve: Sleeve, equity: float, price: float, budget: dict[str, float]) -> tuple[int, str]:
+    """Whole shares for weight × equity, capped at USD cash (never borrow). Returns (shares, log note)."""
+    notional = equity * sleeve.weight
+    spendable = budget["cash"] * CASH_USE
+    note = ""
+    if notional > spendable:
+        note = f"; capped at USD cash ${spendable:,.2f} (wanted ${notional:,.2f})"
+        notional = spendable
+    shares = math.floor(notional / price)
+    if shares < 1:
+        raise RuntimeError(
+            f"{sleeve.symbol}: USD cash ${budget['cash']:,.2f} buys no share at ${price:,.2f}. "
+            "Convert CAD to USD in the paper account (the robot never borrows)."
+        )
+    budget["cash"] -= shares * price
+    return shares, note
+
+
+def run_sleeve(client: IbkrBroker, sleeve: Sleeve, days: dict[str, date], equity: float, held: dict[str, float],
                log_lines: list[str], budget: dict[str, float]) -> None:
-    symbol = sleeve.symbol
-    if already_decided(log_lines, day, symbol):
-        print(f"\n{symbol}: already decided for {day}. Skipping.")
+    symbol, session = sleeve.symbol, days["us_session"]
+    if already_decided(log_lines, session, symbol):
+        print(f"\n{symbol}: already decided for {session}. Skipping.")
         return
 
-    df = clean_bars(fetch_bars(sleeve, day), symbol)
-    sma_fast, sma_slow, want_long = current_regime(df)
-    last_close = float(df["close"].iloc[-1])
+    signal = clean_bars(through(fetch_daily(sleeve.signal, LOOKBACK_DAYS), days[sleeve.clock], sleeve.signal), sleeve.signal)
+    sma_fast, sma_slow, want_long = current_regime(signal)
     margin = f"fast-slow margin {(sma_fast - sma_slow) / sma_slow * 100:+.2f}%"
-    print(f"\n{symbol} as of {df.index[-1].date()}: close ${last_close:,.2f}  "
-          f"SMA({FAST}) {sma_fast:,.2f}  SMA({SLOW}) {sma_slow:,.2f}  -> {'LONG' if want_long else 'FLAT'}")
+    print(f"\n{symbol} ({sleeve.signal} as of {signal.index[-1].date()}): SMA({FAST}) {sma_fast:,.2f}  "
+          f"SMA({SLOW}) {sma_slow:,.2f}  -> {'LONG' if want_long else 'FLAT'}")
 
     if client.has_open_order(symbol):
         print(f"  PENDING — an order for {symbol} is already queued.")
-        append_confidence(day, "PENDING", 6, f"{symbol}: open order exists; duplicate run skipped")
+        append_confidence(session, "PENDING", 6, f"{symbol}: open order exists; duplicate run skipped")
         return
 
-    held_qty = held.get(position_symbol(symbol), 0.0)
+    held_qty = held.get(symbol, 0.0)
     action = decide(want_long, held_qty)
     note = ""
     if action == "BUY":
-        notional = equity * sleeve.weight
-        spendable = budget["cash"] * CASH_USE
-        if notional > spendable:  # never borrow: cap at cash and say so in the log + alert
-            note = f"; capped at cash ${spendable:,.2f} (wanted ${notional:,.2f})"
-            notional = spendable
-        size = notional if is_crypto(symbol) else round(notional / last_close, 2)
-        budget["cash"] -= notional
-        print(f"  BUY {symbol}: {'$' + format(size, ',.2f') if is_crypto(symbol) else str(size) + ' sh'}")
-        place_checked(client, symbol, action, size)
+        price = float(through(fetch_daily(symbol, 10), session, symbol)["close"].iloc[-1])
+        shares, note = buy_shares(sleeve, equity, price, budget)
+        print(f"  BUY {symbol}: {shares} sh (~${shares * price:,.2f} at last close ${price:,.2f})")
+        place_checked(client, symbol, action, shares)
+        note = f"; {shares} sh at open{note}"
     elif action == "SELL":
-        print(f"  SELL {symbol}: {held_qty}")
+        print(f"  SELL {symbol}: {held_qty:g} sh")
         place_checked(client, symbol, action, held_qty)
-    append_confidence(day, action, SCORES[action], f"{symbol}: {REASONS[action]}; {margin}{note}")
+        note = f"; {held_qty:g} sh at open"
+    append_confidence(session, action, SCORES[action], f"{symbol}: {REASONS[action]}; {margin}{note}")
 
 
 def read_log_lines() -> list[str]:
@@ -160,32 +147,36 @@ def read_log_lines() -> list[str]:
 
 
 def main() -> int:
+    now = datetime.now(timezone.utc)
+    days = {
+        "us_session": last_completed_session(fetch_daily(TICKER, 10).index, now),
+        "utc_day": last_completed_day(now),
+    }
     if is_halted():
         print("HALTED — kill switch active. No orders placed.")
-        append_confidence(datetime.now(timezone.utc).date(), "HALT", 0, "kill switch active")
+        append_confidence(days["us_session"], "HALT", 0, "kill switch active")
         return 0
 
     client = make_client()
-    now = datetime.now(timezone.utc)
-    # A session only counts once its full bar is servable (SIP data lags 16 min); otherwise we'd trade a partial bar.
-    days = {
-        "us_session": last_completed_session(now - SIP_DELAY, client.get_calendar(now.date() - CALENDAR_WINDOW, now.date())),
-        "utc_day": last_completed_day(now),
-    }
-
-    account = client.get_account()
-    positions = client.get_positions()
-    assert_only_expected_positions(positions, allowed=ALLOWED_POSITIONS, open_orders=client.get_open_orders())
-    held = {p["symbol"]: p["qty"] for p in positions}
-    print(f"Account equity: ${account['equity']:,.2f}   Cash: ${account['cash']:,.2f}   Positions: {held or 'none'}")
-
-    budget = {"cash": account["cash"]}
-    supports = getattr(client, "supports", lambda symbol: True)
-    for sleeve in SLEEVES:
-        if not supports(sleeve.symbol):
-            print(f"\n{sleeve.symbol}: not tradable on {BROKER}; skipped.")
-            continue
-        run_sleeve(client, sleeve, days[sleeve.clock], account["equity"], held, read_log_lines(), budget)
+    errors: list[str] = []
+    try:
+        account = client.get_account()
+        positions = client.get_positions()
+        assert_only_expected_positions(positions, allowed=ALLOWED_POSITIONS, open_orders=client.get_open_orders())
+        held = {p["symbol"]: p["qty"] for p in positions}
+        print(f"Account {client.account_id}: equity ${account['equity']:,.2f}   USD cash ${account['cash']:,.2f}   "
+              f"Positions: {held or 'none'}")
+        budget = {"cash": account["cash"]}
+        for sleeve in SLEEVES:
+            try:  # one sleeve's failure (e.g. no USD for a buy) must not skip another sleeve's sell
+                run_sleeve(client, sleeve, days, account["equity"], held, read_log_lines(), budget)
+            except Exception as exc:  # noqa: BLE001 — collected and re-raised below
+                print(f"  ERROR {sleeve.symbol}: {exc}")
+                errors.append(f"{sleeve.symbol}: {exc}")
+    finally:
+        client.disconnect()
+    if errors:
+        raise RuntimeError("; ".join(errors))
     return 0
 
 

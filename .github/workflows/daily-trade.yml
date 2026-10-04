@@ -1,25 +1,24 @@
 name: daily-trade
 
-# GitHub Actions cron is UTC and best-effort (observed 3-5 h late). It is the
-# FALLBACK: the on-time trigger is a Windows scheduled task (routines/README.md).
-#   premarket  -> 11:00 UTC weekdays
-#   eod        -> 00:20 UTC every day: after the 00:00 UTC crypto close; SPY's
-#                 session closed hours earlier, so SPY orders queue for the next open.
+# The robot, every evening, on the IBKR PAPER account (Alpaca retired 2026-10-04).
+# Starts IB Gateway in a container (paper logins need no 2FA), runs run_signal.py,
+# builds the snapshot, applies the brake, and sends ONE Telegram report per evening.
 #
-# Manual `workflow_dispatch` lets us trigger any mode from the Actions tab.
+# Triggers: the Windows task ClaudeTrading-Dispatch-EOD (20:10 New York, on time)
+# and this cron as the fallback (GitHub cron is best-effort, observed 3-5 h late).
+# A second run the same evening trades nothing (per-session idempotency) and
+# sends nothing (routines_pkg/send_report.py).
 on:
   schedule:
-    - cron: '0 11 * * 1-5'    # premarket
-    - cron: '20 0 * * *'      # eod (daily; crypto trades 7 days)
+    - cron: '20 0 * * *'      # 20:20 EDT / 19:20 EST, after the 16:00 close and the 00:00 UTC crypto close
   workflow_dispatch:
     inputs:
       mode:
-        description: 'premarket | eod'
+        description: 'eod (only mode left)'
         required: true
         default: 'eod'
         type: choice
         options:
-          - premarket
           - eod
 
 permissions:
@@ -32,11 +31,11 @@ concurrency:
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     env:
-      ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
-      ALPACA_API_SECRET: ${{ secrets.ALPACA_API_SECRET }}
-      ALPACA_PAPER_TRADE: ${{ secrets.ALPACA_PAPER_TRADE }}
+      IBKR_USERNAME: ${{ secrets.IBKR_USERNAME }}
+      IBKR_PASSWORD: ${{ secrets.IBKR_PASSWORD }}
+      IBKR_PORT: '4002'
       TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
       TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
       PYTHONUNBUFFERED: '1'
@@ -50,6 +49,24 @@ jobs:
       # pushed log lines meanwhile, trading on the stale log would lose them at push time.
       - name: Sync to latest master
         run: git pull --ff-only origin master
+
+      - name: Verify required secrets
+        shell: bash
+        run: |
+          for name in IBKR_USERNAME IBKR_PASSWORD TELEGRAM_BOT_TOKEN TELEGRAM_CHAT_ID; do
+            if [ -z "${!name}" ]; then echo "::error ::$name is not set as a repo secret."; exit 1; fi
+          done
+
+      # Pull + login take a minute or two; start now so it overlaps with pip and the tests.
+      # Paper only: TRADING_MODE=paper, and run_signal refuses any non-DU account (brokers/ibkr.py).
+      - name: Start IB Gateway (paper)
+        shell: bash
+        run: |
+          docker run -d --name ibgw -p 127.0.0.1:4002:4004 \
+            -e TWS_USERID="$IBKR_USERNAME" -e TWS_PASSWORD="$IBKR_PASSWORD" \
+            -e TRADING_MODE=paper -e READ_ONLY_API=no -e TWS_ACCEPT_INCOMING=accept \
+            -e TIME_ZONE=America/New_York \
+            ghcr.io/gnzsnz/ib-gateway:stable
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -65,70 +82,27 @@ jobs:
       - name: Run tests (no trading on a red suite)
         run: python -m pytest -q
 
-      - name: Determine mode
-        id: mode
-        shell: bash
-        run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            echo "mode=${{ github.event.inputs.mode }}" >> "$GITHUB_OUTPUT"
-          elif [ "${{ github.event.schedule }}" = "0 11 * * 1-5" ]; then
-            echo "mode=premarket" >> "$GITHUB_OUTPUT"
-          else
-            echo "mode=eod" >> "$GITHUB_OUTPUT"
-          fi
-          echo "Selected mode: $(cat "$GITHUB_OUTPUT" | grep mode=)"
+      - name: Run the robot
+        id: robot
+        timeout-minutes: 8
+        run: python run_signal.py
 
-      - name: Verify required secrets and paper-mode flag
-        shell: bash
-        run: |
-          if [ -z "$ALPACA_API_KEY" ] || [ -z "$ALPACA_API_SECRET" ]; then
-            echo "::error ::ALPACA_API_KEY / ALPACA_API_SECRET are not set as repo secrets."
-            exit 1
-          fi
-          # Paper-mode safety gate. The Python client constructor hardcodes paper=True,
-          # but this check guarantees no one flips the flag silently via repo secrets.
-          if [ "$ALPACA_PAPER_TRADE" != "true" ]; then
-            echo "::error ::ALPACA_PAPER_TRADE must be 'true' (got: '${ALPACA_PAPER_TRADE:-<unset>}'). Live trading is not authorized from this workflow."
-            exit 1
-          fi
-          echo "Paper mode confirmed: ALPACA_PAPER_TRADE=true"
-
-      - name: Run premarket routine
-        if: steps.mode.outputs.mode == 'premarket'
-        run: python -m routines_pkg.premarket
-
-      - name: Mark confidence-log length
-        id: logmark
-        if: steps.mode.outputs.mode == 'eod'
-        shell: bash
-        run: echo "lines=$(wc -l < memory/confidence-log.md)" >> "$GITHUB_OUTPUT"
-
-      - name: Run signal then EOD routine
-        if: steps.mode.outputs.mode == 'eod'
-        run: |
-          set -e
-          python run_signal.py
-          python -m routines_pkg.eod_close
-
-      - name: Build desk snapshot
+      - name: Build snapshot + daily report
         id: snapshot
-        if: always() && steps.mode.outputs.mode == 'eod'
+        if: always()
+        timeout-minutes: 5
         run: python -m routines_pkg.desk_snapshot --report > "$RUNNER_TEMP/daily-report.txt"
 
       # Unacknowledged "halt" flags write .HALT (robot stops next run) and text Rayyan.
       - name: Auto-halt (deterministic brake)
-        if: always() && steps.mode.outputs.mode == 'eod' && steps.snapshot.outcome == 'success'
+        if: always() && steps.snapshot.outcome == 'success'
         run: python -m routines_pkg.auto_halt
 
-      - name: Send daily P&L report
-        if: always() && steps.mode.outputs.mode == 'eod'
-        shell: bash
-        run: |
-          if [ -s "$RUNNER_TEMP/daily-report.txt" ]; then
-            python -m paper_trading.notify "$(cat "$RUNNER_TEMP/daily-report.txt")"
-          else
-            python -m paper_trading.notify "📉 daily P&L report unavailable — desk snapshot failed (see run ${{ github.run_id }})"
-          fi
+      - name: Send the daily report (once per evening)
+        if: always() && steps.snapshot.outcome == 'success'
+        env:
+          ROBOT_OK: ${{ steps.robot.outcome == 'success' }}
+        run: python -m routines_pkg.send_report "$RUNNER_TEMP/daily-report.txt"
 
       - name: Commit memory + journal updates
         if: always()
@@ -141,7 +115,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "No state changes to commit."
           else
-            git commit -m "routine: ${{ steps.mode.outputs.mode }} $(date -u +%Y-%m-%dT%H:%MZ)"
+            git commit -m "routine: ibkr eod $(date -u +%Y-%m-%dT%H:%MZ)"
             # Push with retry to handle the rare race with another routine.
             for i in 1 2 3; do
               if git push; then
@@ -152,24 +126,22 @@ jobs:
             git push
           fi
 
-      - name: Alert on trade or halt
-        if: always() && steps.mode.outputs.mode == 'eod' && steps.logmark.outputs.lines != ''
-        shell: bash
-        run: |
-          new="$(tail -n +$(( ${{ steps.logmark.outputs.lines }} + 1 )) memory/confidence-log.md | grep -E '\| (BUY|SELL|HALT|PENDING) \|' || true)"
-          if [ -n "$new" ]; then
-            python -m paper_trading.notify "daily-trade eod:
-          $new"
-          fi
+      - name: Gateway log (on failure)
+        if: failure() || cancelled()
+        run: docker logs --tail 80 ibgw 2>&1 | grep -v -i password || true
 
       - name: Alert on failure
-        if: failure()
-        run: python -m paper_trading.notify "daily-trade ${{ steps.mode.outputs.mode }} FAILED - ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+        if: failure() || cancelled()
+        run: python -m paper_trading.notify "🔥 daily-trade FAILED — no report tonight. ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+
+      - name: Stop IB Gateway
+        if: always()
+        run: docker rm -f ibgw || true
 
       - name: Surface confidence-log tail (self-test)
         if: always()
         shell: bash
         run: |
           echo "::group::confidence-log tail"
-          tail -n 5 memory/confidence-log.md || true
+          tail -n 5 memory/confidence-log-ibkr.md || true
           echo "::endgroup::"

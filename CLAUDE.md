@@ -62,8 +62,8 @@ Apply the seven lessons from [PRINCIPLES.md](PRINCIPLES.md) on every task:
 - **Data format:** OHLCV bars, timezone UTC, no dividend adjustment unless noted.
 - **Automation foundation:** `skills.md` in each routine folder defines exchange APIs, 16+ `/trade-*` commands, and 5-agent research workflows. See [tools/skills-template.md](tools/skills-template.md).
 - **Research system:** 5 agents in parallel (technical + fundamentals + sentiment + risk + thesis synthesis) for every stock/ticker analysis.
-- **Paper broker (equities):** Alpaca — free. See [tools/alpaca-setup.md](tools/alpaca-setup.md).
-- **Live broker candidate (equities):** Public.com — official Claude Desktop MCP. See [tools/public-com-setup.md](tools/public-com-setup.md).
+- **Paper broker (2026-10-04):** IBKR paper `DUR239224`, traded by `run_signal.py` from GitHub Actions through an IB Gateway container (paper logins need no 2FA). US-listed ETFs only — Canadian residents may not send API orders on Canadian-listed products (CIRO). See [plans/2026-10-04-ibkr-paper.md](plans/2026-10-04-ibkr-paper.md). Alpaca retired the same day; its history stays in `memory/confidence-log.md`.
+- **Live broker candidate:** IBKR Canada (account approved 2026-10-04). Public.com is not available in Canada.
 - **Crypto exchanges (futures + spot, with API encryption local):** Binance, Bybit, Blofin, OKX, WEX, Tubbit (2bit). Keys never leave machine.
 - **Crypto bot:** freqtrade, dry-run mode, docker-compose on port 8080.
 - **Charting:** TradingView Desktop via MCP + webhook integration for signal automation.
@@ -81,7 +81,7 @@ Apply the seven lessons from [PRINCIPLES.md](PRINCIPLES.md) on every task:
 - [ma-crossover](strategies/ma_crossover/STRATEGY.md) — stage: **paper** (entered 2026-04-23). Backtest: IS Sharpe 0.82, OOS Sharpe 0.65, OOS DD -12.4%, OOS trades/year 3.02. **Gate 2: SOFT-PASS** as of 2026-05-07 (21% relative spread vs SPY×95% expectation; 0 fills in 14 days; kill-switch drill not yet run). Re-run target 2026-05-21. Tool: `backtests/ma_crossover/gate2_check.py --carry-in`.
 - [rsi2-connors](strategies/rsi2_connors/STRATEGY.md) — stage: **rejected** (specced + backtested 2026-05-07). Fails 2/3 standalone OOS gates (Sharpe 0.31 < 0.5; trades/year 6.8 < 15). Correlation with ma-crossover OOS is 0.187 (genuinely diversifying), but absolute performance too weak to paper-trade. Hard-stop variant strictly worse → confirms Connors original framing. No re-tuning per §7.
 
-- [crypto-trend](strategies/crypto_trend/STRATEGY.md) — stage: **paper** (entered 2026-10-03) as BTC 5% + ETH 5% sleeves of the single account. Backtest PASSED (CAGR 38.0% vs 19.7% hold, Sharpe 0.94 vs 0.61, MaxDD −60.5% vs −87.9%). `run_signal.py` is the only order-placer for all sleeves; ma-crossover now sizes at 85.5% of equity.
+- [crypto-trend](strategies/crypto_trend/STRATEGY.md) — stage: **paper** (entered 2026-10-03) as BTC 5% + ETH 5% sleeves of the single account; since 2026-10-04 held through US spot ETFs IBIT / ETHA (signal still on the coins). Backtest PASSED (CAGR 38.0% vs 19.7% hold, Sharpe 0.94 vs 0.61, MaxDD −60.5% vs −87.9%). `run_signal.py` is the only order-placer for all sleeves; ma-crossover now sizes at 85.5% of equity.
 
 ### Rejected experiments (do not retry without a new thesis)
 

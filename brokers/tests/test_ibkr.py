@@ -1,4 +1,3 @@
-from datetime import date, time
 from types import SimpleNamespace
 
 import pytest
@@ -38,7 +37,7 @@ class FakeIB:
         return self._trades
 
     def qualifyContracts(self, *contracts):
-        return list(contracts)
+        return [] if contracts[0].symbol == "NOPE" else list(contracts)
 
     def placeOrder(self, contract, order):
         order.orderId = 7
@@ -49,8 +48,8 @@ class FakeIB:
         pass
 
 
-def _broker(ib, calendar=lambda s, e: []):
-    return IbkrBroker(ib, calendar_source=calendar)
+def _broker(ib):
+    return IbkrBroker(ib)
 
 
 def test_account_is_converted_to_usd_and_uses_only_usd_cash():
@@ -97,15 +96,6 @@ def test_ib_rejections_are_failures_for_the_guards(ib_status, expected):
     assert result.status == expected and order_failed(result.status)
 
 
-def test_crypto_is_not_supported_until_the_etf_test_passes():
-    broker = _broker(FakeIB())
-    assert broker.supports("SPY") and not broker.supports("BTC/USD")
-    with pytest.raises(NotImplementedError):
-        broker.place_notional_buy("BTC/USD", 500.0)
-    with pytest.raises(NotImplementedError):
-        broker.place_market_order("ETH/USD", 1.0, "sell")
-
-
 def test_open_orders_and_pending_check():
     trade = Trade(contract=Stock("SPY", "SMART", "USD"), order=SimpleNamespace(action="SELL", totalQuantity=5.0),
                   orderStatus=OrderStatus(status="PreSubmitted"))
@@ -114,9 +104,20 @@ def test_open_orders_and_pending_check():
     assert broker.has_open_order("SPY") and not broker.has_open_order("QQQ")
 
 
-def test_calendar_comes_from_the_injected_source():
-    cal = [(date(2026, 10, 2), time(16, 0))]
-    assert _broker(FakeIB(), calendar=lambda s, e: cal).get_calendar(date(2026, 9, 25), date(2026, 10, 2)) == cal
+def test_fills_are_reported_in_the_snapshot_order_shape():
+    from datetime import datetime, timezone
+    fill = SimpleNamespace(contract=Stock("IBIT", "SMART", "USD"),
+                           execution=SimpleNamespace(side="BOT", shares=100.0, price=47.9),
+                           time=datetime(2026, 10, 6, 13, 30, tzinfo=timezone.utc))
+    ib = FakeIB()
+    ib.fills = lambda: [fill]
+    assert _broker(ib).get_fills() == [{"symbol": "IBIT", "side": "buy", "qty": 100.0, "status": "filled",
+                                        "filled_avg_price": 47.9, "filled_at": "2026-10-06T13:30:00+00:00"}]
+
+
+def test_the_real_paper_account_id_passes_the_live_gate():
+    from brokers.ibkr import check_live_gate
+    check_live_gate("DUR239224", live_flag=None, armed=False)
 
 
 def test_paper_accounts_always_pass_the_live_gate():
@@ -134,3 +135,15 @@ def test_live_account_needs_both_keys(flag, armed):
 def test_live_account_with_both_keys_passes():
     from brokers.ibkr import check_live_gate
     check_live_gate("U1234567", live_flag="1", armed=True)
+
+
+def test_unknown_symbol_fails_before_ordering():
+    ib = FakeIB()
+    with pytest.raises(RuntimeError, match="does not recognise"):
+        _broker(ib).place_market_order("NOPE", 3, "buy")
+    assert ib.placed == []
+
+
+def test_order_stuck_in_flight_fails_loudly():
+    with pytest.raises(RuntimeError, match="unacknowledged"):
+        _broker(FakeIB(status="PendingSubmit")).place_market_order("SPY", 3, "buy")

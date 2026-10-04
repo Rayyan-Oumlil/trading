@@ -12,7 +12,7 @@ author: rayyan
 Crypto trends hard and crashes hard. Being long only while the 10-day average is above the 50-day keeps most of the trend and sidesteps the worst of the crashes. Same rule as ma-crossover, not fitted to crypto.
 
 ## 2. Universe
-BTC/USD and ETH/USD on Alpaca (24/7). Two independent 5% sleeves.
+Signal: BTC-USD and ETH-USD (24/7, UTC days). Since 2026-10-04 the position is held through US spot ETFs **IBIT** and **ETHA** in the IBKR paper account (was BTC/USD, ETH/USD coins on Alpaca). Two independent 5% sleeves.
 
 ## 3. Timeframe
 Daily bars, UTC days (Alpaca crypto bars close 00:00 UTC). Only completed days are used.
@@ -51,3 +51,6 @@ PASSED 2026-10-03: CAGR 38.0% vs 19.7% (50/50 hold), Sharpe 0.94 vs 0.61, MaxDD 
 |---|---|---|
 | 2026-10-03 | Backtest 2018-01-01→latest, pre-registered, run once | PASS (see §9). `backtests/candidates/results/2026-10-02.json` |
 | 2026-10-03 | Paper start | First buys expected Sat 2026-10-03 20:10 ET run (both coins long) |
+
+### 2026-10-04 — execution moved to ETFs (no signal change)
+Parameters, signal series and weights unchanged. Execution: market-on-open in whole IBIT/ETHA shares at the US session after the signal's UTC day; weekend flips act Monday evening. Expected cost vs backtest: ETF fee 0.25%/yr plus up to ~3 days of delay after weekend flips. This paper run is the crypto-via-ETF measurement (roadmap idea 0). See plans/2026-10-04-ibkr-paper.md.
