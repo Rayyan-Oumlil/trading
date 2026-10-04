@@ -57,6 +57,13 @@ def test_gateway_is_paper_only_and_always_stopped():
     assert "always()" in steps[names.index("Stop IB Gateway")]["if"]
 
 
+def test_gateway_image_is_pinned_and_password_not_on_the_command_line():
+    names, steps = _named()
+    start = steps[names.index("Start IB Gateway (paper)")]["run"]
+    assert "ib-gateway@sha256:" in start and ":stable" not in start
+    assert "--env-file" in start and '-e TWS_PASSWORD' not in start
+
+
 def test_order_of_operations():
     names, _ = _named()
     order = ["Sync to latest master", "Run tests (no trading on a red suite)", "Run the robot",
