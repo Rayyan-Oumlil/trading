@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-10-04T00:10:33.460223+00:00",
+  "generated_at": "2026-10-04T06:00:41.387353+00:00",
   "session": "2026-10-02",
   "halted": null,
   "account": {
     "status": "AccountStatus.ACTIVE",
-    "equity": 103418.57,
+    "equity": 103436.68,
     "buying_power": 367166.57,
     "cash": 88262.41
   },
@@ -12,14 +12,14 @@
     {
       "symbol": "BTCUSD",
       "qty": 0.059568723,
-      "market_value": 5053.827139,
-      "unrealized_pl": -5.987073
+      "market_value": 5056.925904,
+      "unrealized_pl": -2.888308
     },
     {
       "symbol": "ETHUSD",
       "qty": 1.883248619,
-      "market_value": 5060.56776,
-      "unrealized_pl": 2.350294
+      "market_value": 5075.586668,
+      "unrealized_pl": 17.369202
     },
     {
       "symbol": "GLD",
