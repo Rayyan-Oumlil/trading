@@ -59,14 +59,20 @@ jobs:
 
       # Pull + login take a minute or two; start now so it overlaps with pip and the tests.
       # Paper only: TRADING_MODE=paper, and run_signal refuses any non-DU account (brokers/ibkr.py).
+      # The image receives the paper password, so it is pinned by digest (= the `stable` tag on
+      # 2026-10-04, IB Gateway 10.50 + IBC 3.24.2). Bump it deliberately, never by tag.
+      # Credentials go through an env file (mode 600) so they never appear in the process list.
+      # READ_ONLY_API=no because the robot must place orders.
       - name: Start IB Gateway (paper)
         shell: bash
         run: |
-          docker run -d --name ibgw -p 127.0.0.1:4002:4004 \
-            -e TWS_USERID="$IBKR_USERNAME" -e TWS_PASSWORD="$IBKR_PASSWORD" \
+          umask 077
+          printf 'TWS_USERID=%s\nTWS_PASSWORD=%s\n' "$IBKR_USERNAME" "$IBKR_PASSWORD" > "$RUNNER_TEMP/ibgw.env"
+          docker run -d --name ibgw -p 127.0.0.1:4002:4004 --env-file "$RUNNER_TEMP/ibgw.env" \
             -e TRADING_MODE=paper -e READ_ONLY_API=no -e TWS_ACCEPT_INCOMING=accept \
             -e TIME_ZONE=America/New_York \
-            ghcr.io/gnzsnz/ib-gateway:stable
+            ghcr.io/gnzsnz/ib-gateway@sha256:e340626b5569d476bb96f891b5435ec9b9da517afd1e03c71e73fc50188477b1
+          rm -f "$RUNNER_TEMP/ibgw.env"
 
       - name: Setup Python
         uses: actions/setup-python@v5
