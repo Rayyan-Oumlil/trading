@@ -29,6 +29,7 @@ PAPER_PREFIXES = ("DU", "DF")  # IBKR paper account ids
 SETTLE_SECONDS = 2.0  # let IB report the first order status (or a rejection) before we read it
 SETTLE_MAX_SECONDS = 15.0  # keep waiting while the order is still in flight (PendingSubmit)
 _IN_FLIGHT = {"PendingSubmit", "ApiPending"}
+_ACCOUNT_TAGS = {"NetLiquidation", "ExchangeRate", "TotalCashValue", "CashBalance"}  # named in get_account errors
 CONNECT_WAIT_SECONDS = 240  # a freshly started Gateway container needs a minute or two to log in
 _STATUS = {  # IB order states -> the vocabulary paper_trading.guards understands
     "PendingSubmit": "pending_new",
@@ -101,7 +102,11 @@ class IbkrBroker:
         rates = {v.currency: float(v.value) for v in values if v.tag == "ExchangeRate"}  # base units per 1 currency
         net = next((v for v in values if v.tag == "NetLiquidation" and v.currency != "BASE"), None)
         if net is None or "USD" not in rates:
-            raise RuntimeError("IBKR account values lack NetLiquidation or the USD exchange rate")
+            received = sorted({f"{v.tag}/{v.currency}" for v in values if v.tag in _ACCOUNT_TAGS})
+            raise RuntimeError(
+                f"IBKR account values lack NetLiquidation or the USD exchange rate "
+                f"({len(values)} values received; relevant: {received or 'none'})"
+            )
         usd_cash = next((float(v.value) for v in values if v.tag == "TotalCashValue" and v.currency == "USD"), 0.0)
         return {
             "status": "ACTIVE",

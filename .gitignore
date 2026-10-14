@@ -41,3 +41,5 @@ Thumbs.db
 tmp/
 .superpowers/
 backtests/intraday/cache/
+
+.playwright-mcp/

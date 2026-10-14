@@ -68,6 +68,18 @@ def test_missing_exchange_rate_fails_loudly():
         _broker(FakeIB(values=values)).get_account()
 
 
+def test_missing_exchange_rate_error_names_what_was_received():
+    values = [v for v in _values() if not (v.tag == "ExchangeRate" and v.currency == "USD")]
+    with pytest.raises(RuntimeError, match=r"ExchangeRate/CAD.*NetLiquidation/CAD") as err:
+        _broker(FakeIB(values=values)).get_account()
+    assert "13700" not in str(err.value)  # names fields, never amounts
+
+
+def test_empty_account_values_say_none_received():
+    with pytest.raises(RuntimeError, match=r"0 values received; relevant: none"):
+        _broker(FakeIB(values=[])).get_account()
+
+
 def test_positions_are_normalized():
     item = PortfolioItem(Stock("SPY", "SMART", "USD"), 5.0, 770.0, 3850.0, 760.0, 50.0, 0.0, ACCT)
     flat = PortfolioItem(Stock("QQQ", "SMART", "USD"), 0.0, 700.0, 0.0, 0.0, 0.0, 12.0, ACCT)
