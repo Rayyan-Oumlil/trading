@@ -20,7 +20,7 @@ import os
 import time
 from pathlib import Path
 
-from ib_async import IB, MarketOrder, Stock
+from ib_async import IB, Forex, MarketOrder, Stock
 
 from paper_trading.order_types import OrderResult
 
@@ -97,6 +97,10 @@ class IbkrBroker:
     def disconnect(self) -> None:
         self._ib.disconnect()
 
+    def wait(self, seconds: float) -> None:
+        """Sleep while IB keeps streaming account and order updates."""
+        self._ib.sleep(seconds)
+
     def get_account(self) -> dict:
         values = self._ib.accountValues()
         rates = {v.currency: float(v.value) for v in values if v.tag == "ExchangeRate"}  # base units per 1 currency
@@ -160,6 +164,26 @@ class IbkrBroker:
         if not self._ib.qualifyContracts(contract):
             raise RuntimeError(f"{symbol}: IBKR does not recognise this as a US stock/ETF")
         trade = self._ib.placeOrder(contract, MarketOrder(side.upper(), shares, tif="OPG"))
+        return self._settle(trade, symbol)
+
+    def cash_by_currency(self) -> dict[str, float]:
+        """Cash per real currency (the BASE aggregate is left out)."""
+        return {
+            v.currency: float(v.value)
+            for v in self._ib.accountValues()
+            if v.tag == "TotalCashValue" and v.currency != "BASE"
+        }
+
+    def buy_usd_with_cad(self, usd: int) -> OrderResult:
+        """One-off CAD -> USD conversion: a market order for USD.CAD on IDEALPRO. Paper accounts only."""
+        if usd <= 0:
+            raise ValueError("usd must be positive")
+        if not self.account_id.startswith(PAPER_PREFIXES):
+            raise RuntimeError(f"{self.account_id} is not a paper account; convert live money by hand")
+        trade = self._ib.placeOrder(Forex("USDCAD"), MarketOrder("BUY", usd))
+        return self._settle(trade, "USD.CAD")
+
+    def _settle(self, trade, label: str) -> OrderResult:
         waited = 0.0
         while True:
             self._ib.sleep(SETTLE_SECONDS)
@@ -167,7 +191,7 @@ class IbkrBroker:
             if trade.orderStatus.status not in _IN_FLIGHT or waited >= SETTLE_MAX_SECONDS:
                 break
         if trade.orderStatus.status in _IN_FLIGHT:
-            raise RuntimeError(f"{symbol}: order {trade.order.orderId} still unacknowledged after {waited:.0f}s")
+            raise RuntimeError(f"{label}: order {trade.order.orderId} still unacknowledged after {waited:.0f}s")
         return _result(trade)
 
 

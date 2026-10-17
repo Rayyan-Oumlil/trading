@@ -47,6 +47,9 @@ class FakeIB:
     def sleep(self, seconds):
         pass
 
+    def managedAccounts(self):
+        return [ACCT]
+
 
 def _broker(ib):
     return IbkrBroker(ib)
@@ -159,3 +162,29 @@ def test_unknown_symbol_fails_before_ordering():
 def test_order_stuck_in_flight_fails_loudly():
     with pytest.raises(RuntimeError, match="unacknowledged"):
         _broker(FakeIB(status="PendingSubmit")).place_market_order("SPY", 3, "buy")
+
+
+def test_cash_by_currency_ignores_the_base_aggregate():
+    assert _broker(FakeIB(values=_values())).cash_by_currency() == {"USD": 2500.0}
+
+
+def test_buy_usd_with_cad_is_one_idealpro_market_order():
+    ib = FakeIB()
+    result = _broker(ib).buy_usd_with_cad(700_000)
+    contract, order = ib.placed[0]
+    assert (contract.symbol, contract.currency, contract.exchange) == ("USD", "CAD", "IDEALPRO")
+    assert (order.action, order.orderType, order.totalQuantity) == ("BUY", "MKT", 700_000)
+    assert result.status == "accepted"
+
+
+def test_buy_usd_with_cad_refuses_a_live_account():
+    ib = FakeIB()
+    ib.managedAccounts = lambda: ["U24590185"]
+    with pytest.raises(RuntimeError, match="paper"):
+        _broker(ib).buy_usd_with_cad(700_000)
+    assert ib.placed == []
+
+
+def test_buy_usd_with_cad_refuses_a_non_positive_amount():
+    with pytest.raises(ValueError):
+        _broker(FakeIB()).buy_usd_with_cad(0)

@@ -14,12 +14,13 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: 'eod (only mode left)'
+        description: 'eod = the robot; fx-convert = one-off CAD->USD in the paper account'
         required: true
         default: 'eod'
         type: choice
         options:
           - eod
+          - fx-convert
 
 permissions:
   contents: write   # required so the run can commit memory/journal updates back
@@ -88,14 +89,20 @@ jobs:
       - name: Run tests (no trading on a red suite)
         run: python -m pytest -q
 
+      - name: Convert CAD to USD (one-off, paper)
+        if: inputs.mode == 'fx-convert'
+        timeout-minutes: 5
+        run: python -m brokers.fx_convert
+
       - name: Run the robot
         id: robot
+        if: inputs.mode != 'fx-convert'
         timeout-minutes: 8
         run: python run_signal.py
 
       - name: Build snapshot + daily report
         id: snapshot
-        if: always()
+        if: always() && inputs.mode != 'fx-convert'
         timeout-minutes: 5
         run: python -m routines_pkg.desk_snapshot --report > "$RUNNER_TEMP/daily-report.txt"
 
