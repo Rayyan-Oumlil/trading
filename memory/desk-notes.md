@@ -16,6 +16,8 @@ Format: `<flag code> | <session> | <why it is safe> | <who/when>`
 
 ## Open threads
 
+- [ ] 2026-10-17 — Robot was down 10-05..10-14 (missing IBKR_PASSWORD). Fixed. Paper CAD->USD conversion queued for Sun 10-18 17:15 ET (693k USD). Confirm the 10-18 evening run sees USD cash and get_account succeeds.
+- [ ] 2026-10-17 — Rayyan decided to restart strategy work from Gate 1 (journal/2026-10-17.md). Old strategies keep running on paper only until replaced.
 - [ ] 2026-10-03 — TODO Rayyan: set up cron-job.org dispatch (steps in routines/README.md) so the 20:10 ET robot run never depends on the PC. Until then: PC task on time, GHA cron is a late backup.
 
 - [ ] 2026-10-03 — crypto-trend sleeves on paper (BTC 5%, ETH 5%). First buys expected at the Sat 10-03 20:10 ET run. Confirm each happens exactly once.
