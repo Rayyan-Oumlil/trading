@@ -180,7 +180,9 @@ class IbkrBroker:
             raise ValueError("usd must be positive")
         if not self.account_id.startswith(PAPER_PREFIXES):
             raise RuntimeError(f"{self.account_id} is not a paper account; convert live money by hand")
-        trade = self._ib.placeOrder(Forex("USDCAD"), MarketOrder("BUY", usd))
+        if self.has_open_order("USD"):
+            raise RuntimeError("A USD.CAD order is already open; wait for it to fill instead of converting twice")
+        trade = self._ib.placeOrder(Forex("USDCAD"), MarketOrder("BUY", usd, tif="GTC"))  # GTC: queues over weekends
         return self._settle(trade, "USD.CAD")
 
     def _settle(self, trade, label: str) -> OrderResult:

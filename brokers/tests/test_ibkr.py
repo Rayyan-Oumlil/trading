@@ -173,7 +173,7 @@ def test_buy_usd_with_cad_is_one_idealpro_market_order():
     result = _broker(ib).buy_usd_with_cad(700_000)
     contract, order = ib.placed[0]
     assert (contract.symbol, contract.currency, contract.exchange) == ("USD", "CAD", "IDEALPRO")
-    assert (order.action, order.orderType, order.totalQuantity) == ("BUY", "MKT", 700_000)
+    assert (order.action, order.orderType, order.tif, order.totalQuantity) == ("BUY", "MKT", "GTC", 700_000)
     assert result.status == "accepted"
 
 
@@ -188,3 +188,11 @@ def test_buy_usd_with_cad_refuses_a_live_account():
 def test_buy_usd_with_cad_refuses_a_non_positive_amount():
     with pytest.raises(ValueError):
         _broker(FakeIB()).buy_usd_with_cad(0)
+
+
+def test_buy_usd_with_cad_refuses_while_a_conversion_is_open():
+    open_fx = SimpleNamespace(contract=SimpleNamespace(symbol="USD"), order=SimpleNamespace(action="BUY", totalQuantity=693_000))
+    ib = FakeIB(trades=[open_fx])
+    with pytest.raises(RuntimeError, match="already open"):
+        _broker(ib).buy_usd_with_cad(700_000)
+    assert ib.placed == []
