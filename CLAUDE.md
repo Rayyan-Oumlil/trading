@@ -41,7 +41,6 @@ Apply the seven lessons from [PRINCIPLES.md](PRINCIPLES.md) on every task:
 | [README.md](README.md) | Public-facing workspace overview |
 | [prompts/](prompts/) | Reusable prompt templates for common tasks |
 | [memory/](memory/) | Durable files that routines read and update |
-| [routines/](routines/) | Routine run-specs, schedules, and conventions |
 | [strategies/](strategies/) | Each strategy = folder with `STRATEGY.md` spec + code |
 | [research/](research/) | Ticker / market / concept research notes |
 | [backtests/](backtests/) | Backtest runs, configs, results |
@@ -49,23 +48,15 @@ Apply the seven lessons from [PRINCIPLES.md](PRINCIPLES.md) on every task:
 | [live-trading/](live-trading/) | **Gated.** Empty until all 3 gates in section 2 pass |
 | [journal/](journal/) | Daily statistical tests + session reflections |
 | [knowledge/](knowledge/) | Glossary + concepts I've learned |
-| [agents/](agents/) | Multi-agent workflow role definitions |
 | [tools/](tools/) | MCP, broker, framework setup notes |
-| [freqtrade/](freqtrade/) | Crypto bot framework (cloned) |
-| [claude-trading-skills/](claude-trading-skills/) | Skills for screening/research/options |
-| [TradingAgents/](TradingAgents/) | Multi-LLM firm framework — **dormant, do not use yet** |
-| [ft_userdata/](ft_userdata/) | Freqtrade config, strategies, data |
 
 ## 5. My Stack (update as decisions get made)
 
-- **Markets:** learning both crypto (freqtrade) and US equities (Alpaca paper).
+- **Markets:** US-listed ETFs on IBKR paper. Crypto exposure only through spot ETFs (IBIT / ETHA).
 - **Data format:** OHLCV bars, timezone UTC, no dividend adjustment unless noted.
-- **Automation foundation:** `skills.md` in each routine folder defines exchange APIs, 16+ `/trade-*` commands, and 5-agent research workflows. See [tools/skills-template.md](tools/skills-template.md).
-- **Research system:** 5 agents in parallel (technical + fundamentals + sentiment + risk + thesis synthesis) for every stock/ticker analysis.
 - **Paper broker (2026-10-04):** IBKR paper `DUR239224`, traded by `run_signal.py` from GitHub Actions through an IB Gateway container (paper logins need no 2FA). US-listed ETFs only — Canadian residents may not send API orders on Canadian-listed products (CIRO). See [plans/2026-10-04-ibkr-paper.md](plans/2026-10-04-ibkr-paper.md). Alpaca retired the same day; its history stays in `memory/confidence-log.md`.
 - **Live broker candidate:** IBKR Canada (account approved 2026-10-04). Public.com is not available in Canada.
 - **Crypto exchanges (futures + spot, with API encryption local):** Binance, Bybit, Blofin, OKX, WEX, Tubbit (2bit). Keys never leave machine.
-- **Crypto bot:** freqtrade, dry-run mode, docker-compose on port 8080.
 - **Charting:** TradingView Desktop via MCP + webhook integration for signal automation.
 - **Research:** Perplexity API for fast narrative/catalyst research; built-in web tools only as fallback.
 - **Notifications:** Telegram for urgent alerts + mobile command channel, ClickUp optional for summaries.
@@ -74,7 +65,7 @@ Apply the seven lessons from [PRINCIPLES.md](PRINCIPLES.md) on every task:
 - **Secrets:** `.env` only, never committed. Remote routines use environment variables.
 - **Logs:** every session ends with a dated entry in `journal/`.
 - **Brake (2026-10-03):** `routines_pkg/auto_halt.py` on GitHub writes `.HALT` on any unacknowledged halt flag from `desk_snapshot.py` and texts Rayyan — no AI involved.
-- **Trading desk (2026-10-02, PAUSED 2026-10-03):** Claude Code routine `trading-desk` ([routines/trading-desk.md](routines/trading-desk.md)) audits the robot nightly via `routines_pkg/desk_snapshot.py`, may write `.HALT` on Python-computed halt flags only, never trades. Memory: [memory/desk-notes.md](memory/desk-notes.md). Research pipeline: [research/queue.md](research/queue.md) (Rayyan approves, Sunday lab executes).
+- **Cleanup (2026-10-18):** freqtrade, claude-trading-skills, TradingAgents, ft_userdata, the trading-desk routine and workflows, agent role files, rsi2-multi robot and dead tool docs removed. Everything is recoverable from git tag `archive/v1-2026-10-18`. Research pipeline: [research/queue.md](research/queue.md).
 
 ## 6. Active Strategies
 

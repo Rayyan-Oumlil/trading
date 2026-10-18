@@ -18,27 +18,6 @@ def _named() -> tuple[list[str], list[dict]]:
     return [s["name"] for s in steps], steps
 
 
-def test_desk_alert_file_is_forwarded_to_telegram():
-    path = WORKFLOW.parent / "desk-notify.yml"
-    doc = _doc(path)
-    on = doc[True] if True in doc else doc["on"]  # PyYAML parses bare `on` as True
-    assert on["push"]["paths"] == ["memory/desk-alert.txt"]
-    assert any("paper_trading.notify" in s.get("run", "") for s in _steps(path))
-
-
-def test_desk_merge_runs_masters_definition_not_the_branch():
-    path = WORKFLOW.parent / "desk-merge.yml"
-    doc = _doc(path)
-    on = doc[True] if True in doc else doc["on"]
-    assert "push" not in on, "push-triggered workflows run the pushed branch's YAML"
-    assert on["workflow_run"]["workflows"] == ["desk-branch-pushed"]
-    runs = " ".join(s.get("run", "") for s in _steps(path))
-    assert "--no-renames" in runs
-    assert "routines_pkg.desk_merge_guard" in runs and "paper_trading.notify" in runs
-    checkout = next(s for s in _steps(path) if s.get("uses", "").startswith("actions/checkout"))
-    assert checkout["with"]["ref"] == "master"
-
-
 def test_runs_every_evening():
     doc = _doc()
     on = doc[True] if True in doc else doc["on"]

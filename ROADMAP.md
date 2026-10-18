@@ -12,7 +12,6 @@ A stage-gated progression. You do not skip stages. You do not revisit earlier st
 - [ ] Build [knowledge/glossary.md](knowledge/glossary.md) entries for: OHLCV, slippage, commission, Sharpe, drawdown, win rate, risk/reward, position sizing, mean reversion, trend following, walk-forward, overfitting.
 - [ ] Complete one research note on a market I want to trade (equities or crypto). Template in [research/README.md](research/README.md).
 - [ ] Install the Alpaca paper account and confirm API key works (keep in `.env`).
-- [ ] Install `claude-trading-skills` and run the screening skill on one stock.
 
 **Gate to Stage 1:** I can explain OHLCV, Sharpe, drawdown, and overfitting in my own words without looking them up.
 
@@ -62,8 +61,7 @@ A stage-gated progression. You do not skip stages. You do not revisit earlier st
 **Goal:** increase size carefully, add strategies, introduce the multi-agent workflow.
 
 - [ ] Scale position size by a fixed factor (e.g. 2x) only if stage 3 gates hold for another month at the new size.
-- [ ] Add a second uncorrelated strategy — different market, different timeframe, different signal. See [agents/](agents/) for the multi-strategy agent architecture.
-- [ ] Only now consider bringing `TradingAgents/` out of dormancy.
+- [ ] Add a second uncorrelated strategy — different market, different timeframe, different signal.
 
 ---
 

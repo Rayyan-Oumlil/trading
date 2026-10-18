@@ -13,7 +13,6 @@ ROADMAP.md          learn -> backtest -> paper -> live, stage-gated
 
 prompts/            reusable prompt templates (research, strategy, review)
 memory/             routine-readable state files and operating memory
-routines/           schedule-facing routine specs and run conventions
 strategies/         one folder per strategy with STRATEGY.md + code
 research/           ticker / market / concept research notes
 backtests/          backtest configs + results (never delete)
@@ -21,14 +20,9 @@ paper-trading/      paper broker setup + daily execution log
 live-trading/       GATED. empty until roadmap stage 3 passes.
 journal/            daily session notes + statistical tests
 knowledge/          glossary + concepts I've learned
-agents/             multi-agent workflow role definitions
 tools/              MCP + broker + framework setup docs
 tasks/              cross-session lessons and process corrections
 
-freqtrade/          crypto bot framework (cloned)
-claude-trading-skills/  Claude skills for screening/research/options
-TradingAgents/      multi-LLM firm framework — DORMANT
-ft_userdata/        freqtrade config + strategies + data
 ```
 
 ## First session

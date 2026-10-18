@@ -36,7 +36,6 @@ All local + remote routines depend on a `skills.md` file in their working folder
 - Multi-agent workflows (5 parallel: technical + fundamentals + sentiment + risk + thesis)
 - Webhook handlers (TradingView signals → trade execution)
 
-See [claude-trading-skills/](../claude-trading-skills/) for the active skills library.
 
 ## Supported Exchanges (encrypted local keys)
 

@@ -43,3 +43,9 @@ tmp/
 backtests/intraday/cache/
 
 .playwright-mcp/
+
+# Removed 2026-10-18 (see tag archive/v1-2026-10-18); ignore leftover local copies
+freqtrade/
+claude-trading-skills/
+TradingAgents/
+ft_userdata/
