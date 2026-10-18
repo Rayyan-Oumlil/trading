@@ -4,16 +4,17 @@
 *.key
 *.pem
 
-# Broker state / session caches
-paper-trading/.HALT
-paper-trading/sessions/
-live-trading/*.state
+# Robot runtime state
+**/.HALT
+**/sessions/
+*.state
 
-# Freqtrade runtime
-ft_userdata/logs/
-ft_userdata/data/*/
-ft_userdata/backtest_results/
-ft_userdata/hyperopt_results/
+# Data caches and logs
+**/intraday/cache/
+**/logs/
+*.log
+*.tmp
+tmp/
 
 # Python
 __pycache__/
@@ -24,28 +25,13 @@ venv/
 .mypy_cache/
 .pytest_cache/
 .ruff_cache/
-
-# Jupyter
 .ipynb_checkpoints/
 
-# OS / editor
+# OS / editor / tools
 .DS_Store
 Thumbs.db
 *.swp
 .vscode/
 .idea/
-
-# Logs + temp
-*.log
-*.tmp
-tmp/
 .superpowers/
-backtests/intraday/cache/
-
 .playwright-mcp/
-
-# Removed 2026-10-18 (see tag archive/v1-2026-10-18); ignore leftover local copies
-freqtrade/
-claude-trading-skills/
-TradingAgents/
-ft_userdata/
