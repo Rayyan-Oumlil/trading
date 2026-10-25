@@ -23,8 +23,9 @@ def main() -> int:
     broker = IbkrBroker.connect()
     account_id = broker.account_id
     kind = "PAPER" if account_id.startswith(PAPER_PREFIXES) else "LIVE (armed)"
-    account = broker.get_account()
     print(f"Connected: {account_id} [{kind}]")
+    print(f"Cash by currency: {broker.cash_by_currency()}")
+    account = broker.get_account()
     print(f"Equity (USD): {account['equity']:,.2f}   USD cash: {account['cash']:,.2f}")
     print(f"Positions:    {broker.get_positions() or 'none'}")
     print(f"Open orders:  {broker.get_open_orders() or 'none'}")

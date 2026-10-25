@@ -68,3 +68,12 @@ def test_brake_commits_halt():
 def test_failure_or_timeout_alerts():
     names, steps = _named()
     assert steps[names.index("Alert on failure")]["if"] == "failure() || cancelled()"
+
+
+def test_account_check_is_read_only_and_never_runs_the_robot():
+    names, steps = _named()
+    assert "READ_ONLY_API=${{ inputs.mode == 'account-check' && 'yes' || 'no' }}" in steps[names.index("Start IB Gateway (paper)")]["run"]
+    check = steps[names.index("Check account (read-only)")]
+    assert check["if"] == "inputs.mode == 'account-check'" and check["run"] == "python -m brokers.ibkr_smoke"
+    for name in ("Run the robot", "Build snapshot + daily report"):
+        assert "inputs.mode != 'account-check'" in steps[names.index(name)]["if"]

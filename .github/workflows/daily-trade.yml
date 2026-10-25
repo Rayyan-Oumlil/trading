@@ -14,13 +14,14 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: 'eod = the robot; fx-convert = one-off CAD->USD in the paper account'
+        description: 'eod = the robot; fx-convert = one-off CAD->USD in the paper account; account-check = read-only'
         required: true
         default: 'eod'
         type: choice
         options:
           - eod
           - fx-convert
+          - account-check
 
 permissions:
   contents: write   # required so the run can commit memory/journal updates back
@@ -63,14 +64,14 @@ jobs:
       # The image receives the paper password, so it is pinned by digest (= the `stable` tag on
       # 2026-10-04, IB Gateway 10.50 + IBC 3.24.2). Bump it deliberately, never by tag.
       # Credentials go through an env file (mode 600) so they never appear in the process list.
-      # READ_ONLY_API=no because the robot must place orders.
+      # READ_ONLY_API=no because the robot must place orders (yes in account-check mode).
       - name: Start IB Gateway (paper)
         shell: bash
         run: |
           umask 077
           printf 'TWS_USERID=%s\nTWS_PASSWORD=%s\n' "$IBKR_USERNAME" "$IBKR_PASSWORD" > "$RUNNER_TEMP/ibgw.env"
           docker run -d --name ibgw -p 127.0.0.1:4002:4004 --env-file "$RUNNER_TEMP/ibgw.env" \
-            -e TRADING_MODE=paper -e READ_ONLY_API=no -e TWS_ACCEPT_INCOMING=accept \
+            -e TRADING_MODE=paper -e READ_ONLY_API=${{ inputs.mode == 'account-check' && 'yes' || 'no' }} -e TWS_ACCEPT_INCOMING=accept \
             -e TIME_ZONE=America/New_York \
             ghcr.io/gnzsnz/ib-gateway@sha256:e340626b5569d476bb96f891b5435ec9b9da517afd1e03c71e73fc50188477b1
           rm -f "$RUNNER_TEMP/ibgw.env"
@@ -94,15 +95,20 @@ jobs:
         timeout-minutes: 5
         run: python -m brokers.fx_convert
 
+      - name: Check account (read-only)
+        if: inputs.mode == 'account-check'
+        timeout-minutes: 5
+        run: python -m brokers.ibkr_smoke
+
       - name: Run the robot
         id: robot
-        if: inputs.mode != 'fx-convert'
+        if: inputs.mode != 'fx-convert' && inputs.mode != 'account-check'
         timeout-minutes: 8
         run: python run_signal.py
 
       - name: Build snapshot + daily report
         id: snapshot
-        if: always() && inputs.mode != 'fx-convert'
+        if: always() && inputs.mode != 'fx-convert' && inputs.mode != 'account-check'
         timeout-minutes: 5
         run: python -m routines_pkg.desk_snapshot --report > "$RUNNER_TEMP/daily-report.txt"
 
