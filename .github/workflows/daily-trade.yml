@@ -98,6 +98,8 @@ jobs:
       - name: Check account (read-only)
         if: inputs.mode == 'account-check'
         timeout-minutes: 5
+        env:
+          IBKR_READONLY: '1'
         run: python -m brokers.ibkr_smoke
 
       - name: Run the robot

@@ -74,6 +74,7 @@ class IbkrBroker:
                     clientId=int(os.environ.get("IBKR_CLIENT_ID", "17")),
                     timeout=20,
                     raiseSyncErrors=True,  # a half-synced login must not look like an empty account
+                    readonly=os.environ.get("IBKR_READONLY") == "1",  # match a READ_ONLY_API gateway
                 )
                 if not ib.managedAccounts():
                     raise ConnectionError("Gateway connected but reports no account yet")
