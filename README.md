@@ -2,6 +2,8 @@
 
 My personal Claude-assisted trading workspace. Learning algorithmic trading from zero, using Claude Code as a senior-quant partner.
 
+> **Status (November 2026):** paper trading only, no live trading. Scheduled automation is switched off; this repository is kept as a record of the research, backtests and journal.
+
 > **Start here:** [CLAUDE.md](CLAUDE.md) for session context, [PRINCIPLES.md](PRINCIPLES.md) for the rules of engagement, [ROADMAP.md](ROADMAP.md) for the stage-gated progression.
 
 ## Layout

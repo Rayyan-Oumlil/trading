@@ -49,3 +49,4 @@ freqtrade/
 claude-trading-skills/
 TradingAgents/
 ft_userdata/
+.playwright-mcp/
